@@ -32,7 +32,7 @@ if __name__ == "__main__":
     args = parse_args()
 
     num_rows = [250, 1000, 2000]
-    seeds = [42]
+    seeds = [3, 42, 57]
 
     leg_to_module = {
         Config.DISTRIBUTION_TO_CUSTOMER: distributor_to_customer,
@@ -56,7 +56,7 @@ if __name__ == "__main__":
         print("Generating metadata ..")
         metadata_output_dir = output_dir + '/metadata'
         utils.create_dir_if_not_exists(metadata_output_dir)
-        
+
         generate_metadata(leg_to_module[leg], metadata_output_dir)
 
         # print("Generating priors ..")

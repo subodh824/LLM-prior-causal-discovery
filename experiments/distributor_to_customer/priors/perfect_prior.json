@@ -1,187 +1,172 @@
 {
+  "type": "perfect",
+  "name": "perfect_prior",
   "edges_with_probability": [
     [
       "order_volume_peak_season",
-      "geographic_distance",
-      0.275
+      "order_item_quantity",
+      0.9
     ],
     [
       "order_volume_peak_season",
-      "scheduled_transit_time",
-      0.422
-    ],
-    [
-      "order_volume_peak_season",
-      "traffic_congestion",
-      0.219
-    ],
-    [
-      "order_volume_peak_season",
-      "delivery_delay",
-      0.199
+      "fulfillment_center_congestion",
+      0.9
     ],
     [
       "weather_severity",
-      "order_volume_peak_season",
-      0.806
+      "actual_transit_time",
+      0.9
     ],
     [
       "weather_severity",
-      "scheduled_transit_time",
-      0.097
-    ],
-    [
-      "geographic_distance",
-      "shipping_mode",
-      0.228
-    ],
-    [
-      "geographic_distance",
       "traffic_congestion",
-      0.233
+      0.9
     ],
     [
       "geographic_distance",
       "actual_transit_time",
-      0.278
+      0.9
+    ],
+    [
+      "geographic_distance",
+      "shipping_mode",
+      0.9
     ],
     [
       "order_item_quantity",
-      "profit_ratio",
-      0.315
+      "fulfillment_center_congestion",
+      0.9
     ],
     [
-      "fulfillment_center_congestion",
-      "order_item_quantity",
-      0.047
-    ],
-    [
-      "fulfillment_center_congestion",
       "order_processing_time",
-      0.627
+      "delivery_delay",
+      0.9
     ],
     [
       "fulfillment_center_congestion",
-      "traffic_congestion",
-      0.382
-    ],
-    [
-      "fulfillment_center_congestion",
-      "customer_satisfaction",
-      0.721
+      "scheduled_transit_time",
+      0.9
     ],
     [
       "shipping_mode",
-      "geographic_distance",
-      0.435
+      "scheduled_transit_time",
+      0.9
     ],
     [
-      "scheduled_transit_time",
-      "order_processing_time",
-      0.324
-    ],
-    [
-      "scheduled_transit_time",
-      "fulfillment_center_congestion",
-      0.929
+      "shipping_mode",
+      "actual_transit_time",
+      0.9
     ],
     [
       "scheduled_transit_time",
       "delivery_delay",
-      0.878
+      0.9
     ],
     [
-      "scheduled_transit_time",
+      "traffic_congestion",
+      "actual_transit_time",
+      0.9
+    ],
+    [
+      "actual_transit_time",
+      "delivery_delay",
+      0.9
+    ],
+    [
+      "delivery_delay",
+      "late_delivery_risk",
+      0.9
+    ],
+    [
+      "delivery_delay",
+      "customer_satisfaction",
+      0.9
+    ],
+    [
       "order_discount_rate",
-      0.486
-    ],
-    [
-      "scheduled_transit_time",
-      "customer_satisfaction",
-      0.761
-    ],
-    [
-      "scheduled_transit_time",
-      "churn_repeat_purchase_risk",
-      0.475
-    ],
-    [
-      "traffic_congestion",
       "profit_ratio",
-      0.225
+      0.9
     ],
     [
-      "actual_transit_time",
-      "order_item_quantity",
-      0.631
-    ],
-    [
-      "actual_transit_time",
-      "scheduled_transit_time",
-      0.238
-    ],
-    [
-      "actual_transit_time",
-      "late_delivery_risk",
-      0.936
-    ],
-    [
-      "delivery_delay",
-      "weather_severity",
-      0.431
-    ],
-    [
-      "delivery_delay",
-      "scheduled_transit_time",
-      0.403
-    ],
-    [
-      "late_delivery_risk",
-      "fulfillment_center_congestion",
-      0.999
-    ],
-    [
-      "late_delivery_risk",
+      "customer_satisfaction",
       "churn_repeat_purchase_risk",
-      0.379
-    ],
-    [
-      "customer_satisfaction",
-      "order_volume_peak_season",
-      0.584
-    ],
-    [
-      "customer_satisfaction",
-      "fulfillment_center_congestion",
-      0.186
-    ],
-    [
-      "customer_satisfaction",
-      "actual_transit_time",
-      0.89
-    ],
-    [
-      "profit_ratio",
-      "delivery_delay",
-      0.458
-    ],
-    [
-      "profit_ratio",
-      "customer_satisfaction",
-      0.213
-    ],
-    [
-      "churn_repeat_purchase_risk",
-      "delivery_delay",
-      0.817
-    ],
-    [
-      "churn_repeat_purchase_risk",
-      "profit_ratio",
-      0.115
+      0.9
     ]
   ],
-  "forbidden_edges": [],
+  "forbidden_edges": [
+    [
+      "order_item_quantity",
+      "order_volume_peak_season"
+    ],
+    [
+      "fulfillment_center_congestion",
+      "order_volume_peak_season"
+    ],
+    [
+      "actual_transit_time",
+      "weather_severity"
+    ],
+    [
+      "traffic_congestion",
+      "weather_severity"
+    ],
+    [
+      "actual_transit_time",
+      "geographic_distance"
+    ],
+    [
+      "shipping_mode",
+      "geographic_distance"
+    ],
+    [
+      "fulfillment_center_congestion",
+      "order_item_quantity"
+    ],
+    [
+      "delivery_delay",
+      "order_processing_time"
+    ],
+    [
+      "scheduled_transit_time",
+      "fulfillment_center_congestion"
+    ],
+    [
+      "scheduled_transit_time",
+      "shipping_mode"
+    ],
+    [
+      "actual_transit_time",
+      "shipping_mode"
+    ],
+    [
+      "delivery_delay",
+      "scheduled_transit_time"
+    ],
+    [
+      "actual_transit_time",
+      "traffic_congestion"
+    ],
+    [
+      "delivery_delay",
+      "actual_transit_time"
+    ],
+    [
+      "late_delivery_risk",
+      "delivery_delay"
+    ],
+    [
+      "customer_satisfaction",
+      "delivery_delay"
+    ],
+    [
+      "profit_ratio",
+      "order_discount_rate"
+    ],
+    [
+      "churn_repeat_purchase_risk",
+      "customer_satisfaction"
+    ]
+  ],
   "tier_ordering": [
     [
       "order_volume_peak_season",
@@ -189,19 +174,19 @@
     ],
     [
       "weather_severity",
-      1
+      0
     ],
     [
       "geographic_distance",
-      2
+      0
     ],
     [
       "order_item_quantity",
-      2
+      1
     ],
     [
       "order_processing_time",
-      1
+      0
     ],
     [
       "fulfillment_center_congestion",
@@ -213,11 +198,11 @@
     ],
     [
       "scheduled_transit_time",
-      2
+      3
     ],
     [
       "traffic_congestion",
-      3
+      1
     ],
     [
       "actual_transit_time",
@@ -225,65 +210,30 @@
     ],
     [
       "delivery_delay",
-      0
+      4
     ],
     [
       "late_delivery_risk",
-      0
+      5
     ],
     [
       "order_discount_rate",
-      3
+      0
     ],
     [
       "customer_satisfaction",
-      2
+      5
     ],
     [
       "profit_ratio",
-      0
+      1
     ],
     [
       "churn_repeat_purchase_risk",
-      0
+      6
     ]
   ],
   "rationale": {
-    "order_volume_peak_season->geographic_distance": "RANDOM CONTROL \u2014 no rationale, generated without LLM",
-    "order_volume_peak_season->scheduled_transit_time": "RANDOM CONTROL \u2014 no rationale, generated without LLM",
-    "order_volume_peak_season->traffic_congestion": "RANDOM CONTROL \u2014 no rationale, generated without LLM",
-    "order_volume_peak_season->delivery_delay": "RANDOM CONTROL \u2014 no rationale, generated without LLM",
-    "weather_severity->order_volume_peak_season": "RANDOM CONTROL \u2014 no rationale, generated without LLM",
-    "weather_severity->scheduled_transit_time": "RANDOM CONTROL \u2014 no rationale, generated without LLM",
-    "geographic_distance->shipping_mode": "RANDOM CONTROL \u2014 no rationale, generated without LLM",
-    "geographic_distance->traffic_congestion": "RANDOM CONTROL \u2014 no rationale, generated without LLM",
-    "geographic_distance->actual_transit_time": "RANDOM CONTROL \u2014 no rationale, generated without LLM",
-    "order_item_quantity->profit_ratio": "RANDOM CONTROL \u2014 no rationale, generated without LLM",
-    "fulfillment_center_congestion->order_item_quantity": "RANDOM CONTROL \u2014 no rationale, generated without LLM",
-    "fulfillment_center_congestion->order_processing_time": "RANDOM CONTROL \u2014 no rationale, generated without LLM",
-    "fulfillment_center_congestion->traffic_congestion": "RANDOM CONTROL \u2014 no rationale, generated without LLM",
-    "fulfillment_center_congestion->customer_satisfaction": "RANDOM CONTROL \u2014 no rationale, generated without LLM",
-    "shipping_mode->geographic_distance": "RANDOM CONTROL \u2014 no rationale, generated without LLM",
-    "scheduled_transit_time->order_processing_time": "RANDOM CONTROL \u2014 no rationale, generated without LLM",
-    "scheduled_transit_time->fulfillment_center_congestion": "RANDOM CONTROL \u2014 no rationale, generated without LLM",
-    "scheduled_transit_time->delivery_delay": "RANDOM CONTROL \u2014 no rationale, generated without LLM",
-    "scheduled_transit_time->order_discount_rate": "RANDOM CONTROL \u2014 no rationale, generated without LLM",
-    "scheduled_transit_time->customer_satisfaction": "RANDOM CONTROL \u2014 no rationale, generated without LLM",
-    "scheduled_transit_time->churn_repeat_purchase_risk": "RANDOM CONTROL \u2014 no rationale, generated without LLM",
-    "traffic_congestion->profit_ratio": "RANDOM CONTROL \u2014 no rationale, generated without LLM",
-    "actual_transit_time->order_item_quantity": "RANDOM CONTROL \u2014 no rationale, generated without LLM",
-    "actual_transit_time->scheduled_transit_time": "RANDOM CONTROL \u2014 no rationale, generated without LLM",
-    "actual_transit_time->late_delivery_risk": "RANDOM CONTROL \u2014 no rationale, generated without LLM",
-    "delivery_delay->weather_severity": "RANDOM CONTROL \u2014 no rationale, generated without LLM",
-    "delivery_delay->scheduled_transit_time": "RANDOM CONTROL \u2014 no rationale, generated without LLM",
-    "late_delivery_risk->fulfillment_center_congestion": "RANDOM CONTROL \u2014 no rationale, generated without LLM",
-    "late_delivery_risk->churn_repeat_purchase_risk": "RANDOM CONTROL \u2014 no rationale, generated without LLM",
-    "customer_satisfaction->order_volume_peak_season": "RANDOM CONTROL \u2014 no rationale, generated without LLM",
-    "customer_satisfaction->fulfillment_center_congestion": "RANDOM CONTROL \u2014 no rationale, generated without LLM",
-    "customer_satisfaction->actual_transit_time": "RANDOM CONTROL \u2014 no rationale, generated without LLM",
-    "profit_ratio->delivery_delay": "RANDOM CONTROL \u2014 no rationale, generated without LLM",
-    "profit_ratio->customer_satisfaction": "RANDOM CONTROL \u2014 no rationale, generated without LLM",
-    "churn_repeat_purchase_risk->delivery_delay": "RANDOM CONTROL \u2014 no rationale, generated without LLM",
-    "churn_repeat_purchase_risk->profit_ratio": "RANDOM CONTROL \u2014 no rationale, generated without LLM"
+    "_": "PERFECT PRIOR"
   }
 }

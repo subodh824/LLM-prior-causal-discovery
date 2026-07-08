@@ -2,6 +2,7 @@ import matplotlib
 import matplotlib.pyplot as plt
 import networkx as nx
 import numpy as np
+from scipy import stats
 import pickle
 import os
 import json
@@ -19,8 +20,14 @@ def read_json(filepath):
         return json.load(f)
 
 def write_json(data, filepath):
+    json_str = json.dumps(data, indent=2)
+    json_str = re.sub(
+        r'\[\n\s+([^\[\]{}]+?)\n\s*\]',
+        lambda m: '[' + ', '.join(x.strip().rstrip(',') for x in m.group(1).split('\n')) + ']',
+        json_str
+    )
     with open(filepath, "w") as f:
-        json.dump(data, f, indent=2)
+        f.write(json_str)
     return
 
 def build_graph(nodes, edges, output_path=None, title='', save_pos=True):
@@ -62,3 +69,9 @@ def build_graph_pos(data_dict):
     reference_graph = nx.complete_graph(all_nodes)
     pos = nx.spring_layout(reference_graph, seed=42)
     return pos
+
+def ci95(values):
+    values = np.asarray(values)
+    if len(values) < 2 or np.all(values == values[0]):
+        return None
+    return stats.sem(values) * stats.t.ppf(0.975, df=len(values) - 1)
