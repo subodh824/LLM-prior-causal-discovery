@@ -48,7 +48,7 @@ EDGES = [
     ("order_discount_rate",           "profit_ratio"),
 ]
 
-def build_data_dictionary(output_path):
+def build_data_dictionary(output_dir):
     data_dict = {
         "order_volume_peak_season":      {"type": "float", "range": "[0,inf)",   "description": "Seasonal order volume index (annual cycle, e.g. holiday peaks).",                        "distribution": "Seasonal sinusoid + Gaussian noise"},
         "weather_severity":              {"type": "float", "range": "[0,inf)",   "description": "Weather severity index along the shipping route.",                                         "distribution": "Gamma(shape=1.2, scale=2.0)"},
@@ -68,12 +68,18 @@ def build_data_dictionary(output_path):
         "churn_repeat_purchase_risk":    {"type": "float", "range": "[0,1]",     "description": "Risk of customer churn / not repeat-purchasing.",                                         "distribution": "SCM: f(customer_satisfaction) + noise"},
     }
 
-    if output_path:
-        utils.write_json(data_dict, output_path)
+    if output_dir:
+        utils.write_json(data_dict, output_dir +  '/data_dictionary.json')
     return data_dict
 
-def build_ref_graph(output_path):
-    return utils.build_graph(NODES, EDGES, output_path, 'Distributor-to-Customer Ground Truth DAG')
+def build_ref_graph(output_dir):
+    G = utils.build_graph(NODES, EDGES)
+    png_bytes, G_json, pos = utils.draw_graph(G, 'Distributor-to-Customer Ground Truth DAG')
+    utils.write_pickle(G, output_dir + '/ref_dag.pkl')
+    utils.write_to_file(png_bytes, output_dir + '/ref_dag.png')
+    utils.write_json(G_json, output_dir + '/ref_dag.json')
+    utils.write_pickle(G_json, output_dir + '/ref_dag_pos.pkl')
+    return G
 
 def generate(n, seed):
     rng = utils.make_rng(seed)

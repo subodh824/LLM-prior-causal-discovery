@@ -36,7 +36,7 @@ EDGES = [
 ]
 
 
-def build_data_dictionary(output_path):
+def build_data_dictionary(output_dir):
     data_dict = {
         "geopolitical_disruption":         {"type": "float", "range": "[0,1]",    "description": "Index of geopolitical/tariff-regime disruption severity affecting the supplier base.", "distribution": "Beta(2,5)"},
         "supplier_financial_health":       {"type": "float", "range": "[0,1]",    "description": "Composite financial-health score of the supplier (higher = healthier).", "distribution": "Beta(5,2)"},
@@ -50,13 +50,18 @@ def build_data_dictionary(output_path):
         "inventory_holding_cost":          {"type": "float", "range": "[0,inf)",  "description": "Monthly inventory holding cost in $k.", "distribution": "SCM: f(raw_material_delay) + noise"},
     }
 
-    if output_path:
-        utils.write_json(data_dict, output_path)
+    if output_dir:
+        utils.write_json(data_dict, output_dir +  '/data_dictionary.json')
     return data_dict
 
-def build_ref_graph(output_path):
-    return utils.build_graph(NODES, EDGES, output_path, 'Supplier-to-Manufacturer Ground Truth DAG')
-
+def build_ref_graph(output_dir):
+    G = utils.build_graph(NODES, EDGES)
+    png_bytes, G_json, pos = utils.draw_graph(G, 'Supplier-to-Manufacturer Ground Truth DAG')
+    utils.write_pickle(G, output_dir + '/ref_dag.pkl')
+    utils.write_to_file(png_bytes, output_dir + '/ref_dag.png')
+    utils.write_json(G_json, output_dir + '/ref_dag.json')
+    utils.write_pickle(G_json, output_dir + '/ref_dag_pos.pkl')
+    return G
 
 def generate(n, seed):
     rng = utils.make_rng(seed)

@@ -34,7 +34,7 @@ EDGES = [
 ]
 
 
-def build_data_dictionary(output_path):
+def build_data_dictionary(output_dir):
     data_dict = {
         "machine_downtime":              {"type": "float", "range": "[0,inf)",  "description": "Weekly machine downtime in hours.",                                        "distribution": "Gamma(shape=1.5, scale=3.0)"},
         "demand_volatility":             {"type": "float", "range": "[0,1]",    "description": "Index of downstream demand volatility.",                                    "distribution": "Beta(2,2)"},
@@ -47,12 +47,19 @@ def build_data_dictionary(output_path):
         "delivery_to_distributor":       {"type": "float", "range": "[0,inf)",  "description": "Delivery time to distributor in days.",                                     "distribution": "SCM: f(factory_issues, vehicle_fill_rate, sales_order_quantity) + noise"},
     }
 
-    if output_path:
-        utils.write_json(data_dict, output_path)
+    if output_dir:
+        utils.write_json(data_dict, output_dir +  '/data_dictionary.json')
     return data_dict
 
-def build_ref_graph(output_path):
-    return utils.build_graph(NODES, EDGES, output_path, 'Manufacturer-to-Distributor Ground Truth DAG')
+
+def build_ref_graph(output_dir):
+    G = utils.build_graph(NODES, EDGES)
+    png_bytes, G_json, pos = utils.draw_graph(G, 'Manufacturer-to-Distributor Ground Truth DAG')
+    utils.write_pickle(G, output_dir + '/ref_dag.pkl')
+    utils.write_to_file(png_bytes, output_dir + '/ref_dag.png')
+    utils.write_json(G_json, output_dir + '/ref_dag.json')
+    utils.write_pickle(G_json, output_dir + '/ref_dag_pos.pkl')
+    return G
 
 def generate(n, seed):
     rng = utils.make_rng(seed)

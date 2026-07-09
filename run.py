@@ -33,25 +33,27 @@ def run(experiment):
     ref_dag = utils.read_pickle(pos_filepath)
 
     # Generate Priors
-    print("Reading priors if exists..")
     prior_output_dir = f'{exp_dir}/priors'
-    utils.create_dir_if_not_exists(prior_output_dir)
+
+    if not os.path.exists(prior_output_dir):
+        utils.create_dir_if_not_exists(prior_output_dir)
+        print("Generating priors .. ")
+        priors.generate_priors(data_dict, prior_output_dir, ref_G=ref_dag) 
 
     # Load perfect_prior, random_priors, llm_priors, llm_consensus_prior
-    perfect_prior = utils.read_json(prior_output_dir + '/perfect_prior.json')
-    random_priors = utils.read_json(prior_output_dir + '/random_priors_list.json')
-    llm_priors = utils.read_json(prior_output_dir + '/llm_priors_list.json')
-    llm_consensus_prior = utils.read_json(prior_output_dir + '/llm_consensus_prior.json')
+    all_priors = {}
+    all_priors['perfect'] = utils.read_json(prior_output_dir + '/perfect_prior.json')
+    all_priors['random'] = utils.read_json(prior_output_dir + '/random_priors_list.json')
+    for llm, _ in Config.LLM.items():
+        all_priors[llm] = utils.read_json(prior_output_dir + f'/{llm}_priors_list.json')
+        all_priors[f'{llm}_consensus'] = utils.read_json(prior_output_dir + f'/{llm}_consensus_prior.json')
 
-    if not perfect_prior or not random_priors or not llm_priors or not llm_consensus_prior:
-        print("Generating Missing priors .. ")
-        priors.generate_priors(data_dict, prior_output_dir, ref_G=ref_dag) 
 
     # Evaluate Priors
     print("Evaluating priors")
-    priors_summary, priors_result  = priors.generate_priors_report(data_dict, perfect_prior, random_priors, llm_priors, ref_dag)
+    priors_summary, priors_all_eval = priors.generate_priors_report(data_dict, all_priors, ref_dag)
     utils.write_json(priors_summary, exp_dir + '/priors_summary.json')
-    utils.write_json(priors_result, exp_dir + '/priors_report.json')
+    utils.write_json(priors_all_eval, exp_dir + '/priors_all.json')
 
     # Data Dir
     data_dir =  f'{exp_dir}/data'
@@ -64,34 +66,40 @@ def run(experiment):
     results_output_dir =  f'{exp_dir}/results'
     utils.create_dir_if_not_exists(results_output_dir)
 
+    all_discovery_priors = {}
+    for key, value in all_priors.items():
+        all_discovery_priors[key] = value if isinstance(value, dict) else value[random.randrange(len(value))]
+
     for data_file in data_files_list:
         data_filename = data_file['name']
         print(f"Processing {data_filename} .. ")
         df = pd.read_csv(data_dir + '/' + data_filename)
 
+        # Changing random prior for each dataset
+        all_discovery_priors['random'] = all_priors['random'][random.randrange(len(all_priors['random']))]
         discovery_results = causal.run_causal_discovery_pipeline(
                                                         df, 
                                                         data_dict, 
-                                                        perfect_prior, 
-                                                        random_priors[random.randrange(len(random_priors))], 
-                                                        llm_consensus_prior)
+                                                        all_discovery_priors)
 
         # Evaluate individual runs
         for i in range(len(discovery_results)):
             discovery_results[i] = discovery_results[i] | causal.evaluate_graph(ref_dag, discovery_results[i]['dag'])
+            discovery_results[i]['dag_json'] = utils.convert_graph_to_json(discovery_results[i]['dag'])
+            del discovery_results[i]['dag']
 
         data_file['runs'] = discovery_results
 
         base, ext = os.path.splitext(data_filename)
-        result_path = base + '_result.pkl'
-        utils.write_pickle(data_file, results_output_dir + '/' + result_path)
+        result_path = base + '_result.json'
+        utils.write_json(data_file, results_output_dir + '/' + result_path)
 
     # Evaluate Causal Discovery
     result_files_list = os.listdir(results_output_dir)
     results = []
     for file in result_files_list:
-        if "_result.pkl" in file:
-            results.append(utils.read_pickle(results_output_dir + '/' + file))
+        if "_result.json" in file:
+            results.append(utils.read_json(results_output_dir + '/' + file))
     
     print("Writing report...")
     all_runs, summary = causal.generate_discovery_report(results)

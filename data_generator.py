@@ -18,8 +18,9 @@ def parse_args():
     return p.parse_args()
 
 def generate_metadata(module, output_dir):
-    module.build_ref_graph(os.path.join(output_dir, 'ref_dag.png'))
-    return module.build_data_dictionary(os.path.join(output_dir, 'data_dictionary.json'))
+    module.build_ref_graph(output_dir)
+    module.build_data_dictionary(output_dir)
+    return
 
 
 def generate_data(module, num_rows, seed):
@@ -30,8 +31,8 @@ def generate_data(module, num_rows, seed):
 if __name__ == "__main__":
     args = parse_args()
 
-    num_rows = [250, 500, 1000]
-    seeds = [3, 42, 65, 76 ]
+    num_rows = [250, 1000, 2000]
+    seeds = [3, 42, 65, 76]
 
     leg_to_module = {
         Config.DISTRIBUTION_TO_CUSTOMER: distributor_to_customer,

@@ -8,6 +8,8 @@ import pickle
 import os
 import json
 import re
+import io
+import base64
 
 
 def make_rng(seed):
@@ -35,19 +37,6 @@ def write_json(data, filepath):
         f.write(json_str)
     return
 
-def build_graph(nodes, edges, output_path=None, title='', save_pos=True):
-    G = nx.DiGraph()
-    G.add_nodes_from(nodes)
-    G.add_edges_from(edges)
-
-    if output_path:
-        _, pos =  save_graph(G, output_path, title)
-        write_pickle(G, os.path.join(os.path.dirname(output_path), 'ref_dag.pkl'))
-        if save_pos:
-            write_pickle(pos,  os.path.join(os.path.dirname(output_path), 'ref_dag_pos.pkl'))
-        
-    return G, None
-
 def write_pickle(pos, output_path):
     with open(output_path, 'wb') as f:
         pickle.dump(pos, f)
@@ -57,7 +46,28 @@ def read_pickle(pos_path):
         pos = pickle.load(f)
     return pos
 
-def save_graph(G, path, title, pos=None):
+def write_to_file(data, output_path):
+    with open(output_path, 'wb') as f:
+        f.write(data)
+
+def build_graph(nodes, edges, output_path=None, title='', save_pos=True):
+    G = nx.DiGraph()
+    G.add_nodes_from(nodes)
+    G.add_edges_from(edges)
+
+    return G
+    if output_path:
+        _, pos =  draw_graph(G, output_path, title)
+        data = convert_graph_to_json(G)
+        write_pickle(G, os.path.join(os.path.dirname(output_path), 'ref_dag.pkl'))
+        write_json(data, os.path.join(os.path.dirname(output_path), 'ref_dag.json'))
+        if save_pos:
+            write_pickle(pos,  os.path.join(os.path.dirname(output_path), 'ref_dag_pos.pkl'))
+        
+    return G, None
+
+
+def draw_graph(G, title, pos=None):
     pos = nx.spring_layout(G, seed=42, k=1.8) if not pos else pos
     plt.figure(figsize=(16, 10))
     nx.draw(
@@ -65,9 +75,21 @@ def save_graph(G, path, title, pos=None):
         font_size=7, arrowsize=16, edge_color="#555555",
     )
     plt.title(title)
-    plt.savefig(path, dpi=150)
+
+    buf = io.BytesIO()
+    plt.savefig(buf, format='png', dpi=150, bbox_inches='tight')
     plt.close()
-    return G, pos
+    buf.seek(0)
+    png_bytes = buf.read()
+    
+    G_json = convert_graph_to_json(G)
+    return png_bytes, G_json, pos
+
+def convert_graph_to_json(G):
+    return {
+        "nodes": [{"id": str(n)} for n in G.nodes()],
+        "links": [{"source": str(u), "target": str(v)} for u, v in G.edges()],
+    }
 
 def build_graph_pos(data_dict):
     all_nodes = data_dict.keys()

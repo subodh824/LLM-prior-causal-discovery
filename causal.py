@@ -52,7 +52,7 @@ def evaluate_graph(true_G, est_G, directed=True):
         "f1": utils.safe_round(f1,2),
     }
 
-def run_causal_discovery_pipeline(df, data_dict, perfect_prior, random_prior, llm_prior):
+def run_causal_discovery_pipeline(df, data_dict, all_priors):
 
     prev = time.time()
 
@@ -63,72 +63,43 @@ def run_causal_discovery_pipeline(df, data_dict, perfect_prior, random_prior, ll
     results.append({ 
         'algo': 'PC',
         'type': 'Baseline',
+        'prior_name': None,
         'dag': pc.baseline(df, 0.05)
     })
 
-    print("Running PC with perfect priors")
-    results.append({ 
-        'algo': 'PC',
-        'type': 'Perfect',
-        'dag': pc.with_prior(df, 0.05, perfect_prior)
-    })
+    for prior_type, prior in all_priors.items():
+        print(f"Running PC with {prior_type} prior")
+        results.append({ 
+            'algo': 'PC',
+            'type': prior_type,
+            'prior_name': prior['name'],
+            'dag': pc.with_prior(df, 0.05, prior)
+        })
 
-    print("Running PC with random priors")
-    results.append({ 
-        'algo': 'PC',
-        'type': 'Random',
-        'dag': pc.with_prior(df, 0.05, random_prior)
-    })
-
-    print("Running PC with LLM priors")
-    results.append({ 
-        'algo': 'PC',
-        'type': 'LLM',
-        'dag': pc.with_prior(df, 0.05, llm_prior)
-    })
 
     # ======= Hill Climb 
     print("Running HillClimb Baseline")
     results.append({ 
         'algo': 'HC',
         'type': 'Baseline',
+        'prior_name': None,
         'dag': hill_climb.baseline(df)
     })
 
-    lambda_grid = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
-
-    print("Running HillClimb with perfect priors")
-    for lamb in lambda_grid:
-        results.append({ 
-            'algo': 'HC',
-            'type': 'Perfect',
-            'dag': hill_climb.with_prior(df, perfect_prior, lamb),
-            'params': {
-                'lambda': lamb
-            }
-        })
-
-    print("Running HillClimb with random priors")
-    for lamb in lambda_grid:
-        results.append({ 
-            'algo': 'HC',
-            'type': 'Random',
-            'dag': hill_climb.with_prior(df, random_prior, lamb),
-            'params': {
-                'lambda': lamb
-            }
-        })
-    
-    print("Running HillClimb with LLM priors")
-    for lamb in lambda_grid:
-        results.append({ 
-            'algo': 'HC',
-            'type': 'LLM',
-            'dag': hill_climb.with_prior(df, llm_prior, lamb),
-            'params': {
-                'lambda': lamb
-            }
-        })
+    # lambda_grid = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
+    lambda_grid = [0.1, 0.5, 0.9]
+    for prior_type, prior in all_priors.items():
+        for lamb in lambda_grid:
+            print(f"Running HillClimb with {prior_type} prior. Lambda = {lamb}")
+            results.append({ 
+                'algo': 'HC',
+                'type': prior_type,
+                'prior_name': prior['name'],
+                'dag': hill_climb.with_prior(df, prior, lamb),
+                'params': {
+                    'lambda': lamb
+                }
+            })
     
     print(f"Took {time.time()-prev:.1f} secs\n")
     
@@ -166,6 +137,7 @@ def generate_discovery_report(results):
             "type": algo_type,
             "lambda": None if pd.isna(lam) else lam,
             "n_rows": n_rows,
+            "n_seeds": group["seed"].nunique()
         }
         for metric in METRICS:
             entry[metric] = {

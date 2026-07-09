@@ -2,7 +2,7 @@ from config import Config
 from common import utils
 import random
 import json
-from itertools import combinations
+from itertools import combinations, chain
 from collections import Counter, defaultdict
 from scipy import stats
 from statistics import mean, stdev
@@ -136,12 +136,113 @@ def _call_ollama(data_dict):
     except (json.JSONDecodeError, ValueError) as e:
         raise
 
-def generate_llm_prior(data_dict, name="llm_prior"):
-    priors = _call_groq(data_dict)
+def _call_cerebras(data_dict):
+    import requests
 
-    priors['parsed']['name'] = name
-    priors['parsed']['type'] = 'llm'
-    return priors['parsed']
+    api_key = Config.LLM['cerebras']['api_key']
+    user_prompt = _build_user_prompt(data_dict)
+
+    try:
+        response = requests.post(
+            "https://api.cerebras.ai/v1/chat/completions",
+            headers={
+                "Authorization": f"Bearer {api_key}",
+                "Content-Type": "application/json",
+            },
+            json={
+                "model": Config.LLM['cerebras']['model'],  
+                "messages": [
+                    {"role": "system", "content": SYSTEM_PROMPT},
+                    {"role": "user", "content": user_prompt},
+                ],
+                "response_format": {"type": "json_object"},
+                "stream": False,
+                "temperature": Config.LLM['cerebras']["temperature"],
+                "max_tokens": Config.LLM['cerebras']["max_tokens"],
+            },
+        )
+        response.raise_for_status()
+    except requests.RequestException as e:
+        raise RuntimeError(f"Could not reach Cerebras API: {e} | {response.text if 'response' in dir() else ''}")
+
+    choice = response.json()["choices"][0]
+    message = choice["message"]
+    finish_reason = choice.get("finish_reason")
+
+    
+
+    raw_text = message.get("content") or ""
+    raw_text = raw_text.strip()
+
+    if not raw_text:
+        raise RuntimeError(
+            f"Cerebras returned empty content (finish_reason={finish_reason}). "
+            f"Consider increasing max_completion_tokens or switching models."
+        )
+    try:
+        text = raw_text
+        if text.startswith("```"):
+            text = text.strip("`")
+            text = text[text.find("{"):text.rfind("}") + 1]
+        parsed = json.loads(text)
+        return {"raw_response": raw_text, "parsed": parsed}
+    except (json.JSONDecodeError, ValueError) as e:
+        raise
+
+def _call_gemini(data_dict):
+    import requests
+
+    api_key = Config.LLM['gemini']['api_key']
+    user_prompt = _build_user_prompt(data_dict)
+
+    try:
+        response = requests.post(
+            "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
+            headers={
+                "Authorization": f"Bearer {api_key}",
+                "Content-Type": "application/json",
+            },
+            json={
+                "model": Config.LLM['gemini']['model'],  # e.g. 'gemini-2.5-flash'
+                "messages": [
+                    {"role": "system", "content": SYSTEM_PROMPT},
+                    {"role": "user", "content": user_prompt},
+                ],
+                "response_format": {"type": "json_object"},
+                "temperature": Config.LLM['gemini']["temperature"],
+                "max_tokens": Config.LLM['gemini']["max_tokens"],
+            },
+        )
+        response.raise_for_status()
+    except requests.RequestException as e:
+        raise RuntimeError(f"Could not reach Gemini API: {e} | {response.text if 'response' in dir() else ''}")
+
+    raw_text = response.json()["choices"][0]["message"].get("content", "").strip()
+    if not raw_text:
+        finish_reason = response.json()["choices"][0].get("finish_reason")
+        raise RuntimeError(f"Gemini returned empty content (finish_reason={finish_reason}).")
+
+    try:
+        text = raw_text
+        if text.startswith("```"):
+            text = text.strip("`")
+            text = text[text.find("{"):text.rfind("}") + 1]
+        parsed = json.loads(text)
+        return {"raw_response": raw_text, "parsed": parsed}
+    except (json.JSONDecodeError, ValueError) as e:
+        raise
+
+def generate_llm_prior(llm, data_dict, name="llm_prior"):
+    if llm == 'ollama':
+        prior = _call_ollama(data_dict)
+    elif llm == 'groq':
+        prior = _call_groq(data_dict)
+    elif llm == 'gemini':
+        prior = _call_gemini(data_dict)
+
+    prior['parsed']['name'] = name
+    prior['parsed']['type'] = llm
+    return prior['parsed']
 
 def generate_random_prior(data_dict, name="random_prior", seed=Config.RANDOM_SEED):
     rng = random.Random(seed)
@@ -173,8 +274,8 @@ def generate_perfect_prior(ref_G, name="perfect_prior", prob=Config.PERFECT_EDGE
             tier[child] = max(tier[child], tier[v] + 1)
  
     return {
-        "type": "perfect",
         "name": "perfect_prior",
+        "type": "perfect",
         "edges_with_probability": [[u, v, prob] for u, v in ref_G.edges()],
         "forbidden_edges": [[v, u] for u, v in ref_G.edges()], 
         "tier_ordering": [[v, tier[v]] for v in ref_G.nodes()],
@@ -185,26 +286,30 @@ def generate_priors(data_dict, output_dir, K=5, ref_G=None):
 
     # Perfect prior
     if ref_G:
+        print(" Writing perfect prior")
         perfect_prior = generate_perfect_prior(ref_G)
         utils.write_json(perfect_prior, output_dir + f'/perfect_prior.json')
-
+        
     # Random prior
+    print(f" Writing {K} random priors")
     random_priors = []
     for k in range(K):
         random_priors.append(generate_random_prior(data_dict, f"random_prior_{k}", k))
     utils.write_json(random_priors, output_dir + f'/random_priors_list.json')
 
     # LLM prior
-    llm_priors = []
-    for k in range(K):
-        llm_priors.append(generate_llm_prior(data_dict, f"llm_prior_{k}"))
-        if k >= 2:
-            break
-    utils.write_json(llm_priors, output_dir + f'/llm_priors_list.json')
+    for llm, val in Config.LLM.items():
+        print(f" Writing {K} {llm} priors")
+        llm_priors = []
+        for k in range(K):
+            llm_priors.append(generate_llm_prior(llm, data_dict, f"{llm}_prior_{k}"))
+            if k >= 2:
+                break
+        utils.write_json(llm_priors, output_dir + f'/{llm}_priors_list.json')
 
-    # Create LLM Consensus prior
-    llm_consensus_prior = create_consensus_prior(llm_priors, data_dict)
-    utils.write_json(llm_consensus_prior, output_dir + f'/llm_consensus_prior.json')
+        # Create LLM Consensus prior
+        llm_consensus_prior = create_consensus_prior(llm_priors, data_dict)
+        utils.write_json(llm_consensus_prior, output_dir + f'/{llm}_consensus_prior.json')
 
 def format_prior(prior):
     acc = defaultdict(list)
@@ -247,8 +352,8 @@ def create_consensus_prior(priors, data_dict):
     tier_ordering = [[var, round(sum(ts) / len(ts))] for var, ts in sorted(tier_lists.items())]
  
     return {
-        "name": "llm_consensus_prior",
-        "type": "llm_consensus",
+        "name": f"{priors[0]['type']}_consensus_prior",
+        "type": priors[0]['type'],
         "edges_with_probability": edges,
         "forbidden_edges": forbidden,
         "tier_ordering": tier_ordering,
@@ -297,61 +402,36 @@ def evaluate_prior(prior, data_dict, ref_G=None):
         'tene': tene(prior, ref_G),
     }
 
-def generate_priors_report(data_dict, perfect_prior, random_priors, llm_priors, ref_G=None):
-    
-    # Perfect prior 
-    perfect_prior_eval = evaluate_prior(perfect_prior, data_dict, ref_G)
+def generate_priors_report(data_dict, all_priors, ref_G=None):
+    all_priors_eval = {}
+    for prior_type, priors in all_priors.items():
+        if prior_type not in all_priors_eval:
+            all_priors_eval[prior_type] = []
+        
+        if isinstance(priors, list):
+            for prior in priors:
+                all_priors_eval[prior_type].append(evaluate_prior(prior, data_dict, ref_G))
+        elif isinstance(priors, dict):
+            all_priors_eval[prior_type].append(evaluate_prior(priors, data_dict, ref_G))
 
-    # Random priors
-    random_priors_eval = []
-    for random_prior in random_priors:
-        random_priors_eval.append(evaluate_prior(random_prior, data_dict, ref_G))
-
-    # LLM Priors
-    llm_priors_eval = []
-    for llm_prior in llm_priors:
-        llm_priors_eval.append(evaluate_prior(llm_prior, data_dict, ref_G))
-
-
-    all_priors_eval = [perfect_prior_eval] + random_priors_eval + llm_priors_eval
-
+    print(all_priors_eval)
     # Overall  Summary
     summary = []
-    
-    summary.append({
-        'name': perfect_prior_eval['name'],
-        'type': perfect_prior_eval['type'],
-        'fco': perfect_prior_eval['fco'],
-        'tere': perfect_prior_eval['tere'],
-        'tene': perfect_prior_eval['tene'],
-        'lod': None
-    })
+    for prior_type, priors_eval in all_priors_eval.items():
+        summary.append({
+            'name': "Overall",
+            'type': prior_type,
+            'count': len(priors_eval),
+            'fco' : round(mean(p['fco'] for p in priors_eval),2),
+            'fco_ci95' : utils.ci95(list(p['fco'] for p in priors_eval)),
+            'tere' : round(mean(p['tere'] for p in priors_eval),2),
+            'tere_ci95' : utils.ci95(list(p['tere'] for p in priors_eval)),
+            'tene' : round(mean(p['tene'] for p in priors_eval),2),
+            'tene_ci95' : utils.ci95(list(p['tene'] for p in priors_eval)),
+            'lod': None
+        })
 
-    summary.append({
-        'name': 'random_overall',
-        'type': 'random',
-        'count': len(random_priors_eval),
-        'fco' : round(mean(p['fco'] for p in random_priors_eval),2),
-        'fco_ci95' : utils.ci95(list(p['fco'] for p in random_priors_eval)),
-        'tere' : round(mean(p['tere'] for p in random_priors_eval),2),
-        'tere_ci95' : utils.ci95(list(p['tere'] for p in random_priors_eval)),
-        'tene' : round(mean(p['tene'] for p in random_priors_eval),2),
-        'tene_ci95' : utils.ci95(list(p['tene'] for p in random_priors_eval))
-    })
-
-    summary.append({
-        'name': 'llm_overall',
-        'type': 'llm',
-        'count': len(llm_priors_eval),
-        'fco' : round(mean(p['fco'] for p in llm_priors_eval),2),
-        'fco_ci95' : utils.ci95(list(p['fco'] for p in llm_priors_eval)),
-        'tere' : round(mean(p['tere'] for p in llm_priors_eval),2),
-        'tere_ci95' : utils.ci95(list(p['tere'] for p in llm_priors_eval)),
-        'tene' : round(mean(p['tene'] for p in llm_priors_eval),2),
-        'tene_ci95' : utils.ci95(list(p['tene'] for p in llm_priors_eval))
-    })
-
-    return summary, all_priors_eval
+    return summary, list(chain.from_iterable(all_priors_eval.values()))
     
 
 
