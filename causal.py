@@ -14,7 +14,7 @@ from common import utils
 def _skeleton(G):
     return {frozenset(e) for e in G.edges()}
 
-def calculate_shd(true_G, est_G):
+def evaluate_graph(true_G, est_G, directed=True):
     true_edges = set(true_G.edges())
     est_edges = set(est_G.edges())
     true_skel = _skeleton(true_G)
@@ -23,6 +23,7 @@ def calculate_shd(true_G, est_G):
     missing = true_skel - est_skel
     extra = est_skel - true_skel
     common = true_skel & est_skel
+
     wrong_direction = 0
     for fs in common:
         a, b = tuple(fs)
@@ -31,15 +32,10 @@ def calculate_shd(true_G, est_G):
         if true_dir_ab != est_dir_ab:
             wrong_direction += 1
 
-    return len(missing) + len(extra) + wrong_direction
+    shd = len(missing) + len(extra) + wrong_direction
 
-def precision_recall_f1(true_G, est_G, directed=True):
-    if directed:
-        true_set = set(true_G.edges())
-        est_set = set(est_G.edges())
-    else:
-        true_set = _skeleton(true_G)
-        est_set = _skeleton(est_G)
+    true_set = true_edges if directed else true_skel
+    est_set = est_edges if directed else est_skel
 
     tp = len(true_set & est_set)
     fp = len(est_set - true_set)
@@ -48,7 +44,13 @@ def precision_recall_f1(true_G, est_G, directed=True):
     precision = tp / (tp + fp) if (tp + fp) > 0 else 0.0
     recall = tp / (tp + fn) if (tp + fn) > 0 else 0.0
     f1 = 2 * precision * recall / (precision + recall) if (precision + recall) > 0 else 0.0
-    return {"precision": precision, "recall": recall, "f1": f1}
+
+    return {
+        "shd": shd,
+        "precision": utils.safe_round(precision,2),
+        "recall": utils.safe_round(recall,2),
+        "f1": utils.safe_round(f1,2),
+    }
 
 def run_causal_discovery_pipeline(df, data_dict, perfect_prior, random_prior, llm_prior):
 
@@ -59,41 +61,47 @@ def run_causal_discovery_pipeline(df, data_dict, perfect_prior, random_prior, ll
     # ===== PC
     print("Running PC Baseline")
     results.append({ 
-        'algo': 'pc_baseline',
+        'algo': 'PC',
+        'type': 'Baseline',
         'dag': pc.baseline(df, 0.05)
     })
 
     print("Running PC with perfect priors")
     results.append({ 
-        'algo': 'pc_perfect_prior',
+        'algo': 'PC',
+        'type': 'Perfect',
         'dag': pc.with_prior(df, 0.05, perfect_prior)
     })
 
     print("Running PC with random priors")
     results.append({ 
-        'algo': 'pc_random_prior',
+        'algo': 'PC',
+        'type': 'Random',
         'dag': pc.with_prior(df, 0.05, random_prior)
     })
 
     print("Running PC with LLM priors")
     results.append({ 
-        'algo': 'pc_llm_prior',
+        'algo': 'PC',
+        'type': 'LLM',
         'dag': pc.with_prior(df, 0.05, llm_prior)
     })
 
     # ======= Hill Climb 
     print("Running HillClimb Baseline")
     results.append({ 
-        'algo': 'hc_baseline',
+        'algo': 'HC',
+        'type': 'Baseline',
         'dag': hill_climb.baseline(df)
     })
 
-    lambda_grid = [0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
+    lambda_grid = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
 
     print("Running HillClimb with perfect priors")
     for lamb in lambda_grid:
         results.append({ 
-            'algo': 'hc_perfect_prior',
+            'algo': 'HC',
+            'type': 'Perfect',
             'dag': hill_climb.with_prior(df, perfect_prior, lamb),
             'params': {
                 'lambda': lamb
@@ -103,7 +111,8 @@ def run_causal_discovery_pipeline(df, data_dict, perfect_prior, random_prior, ll
     print("Running HillClimb with random priors")
     for lamb in lambda_grid:
         results.append({ 
-            'algo': 'hc_random_prior',
+            'algo': 'HC',
+            'type': 'Random',
             'dag': hill_climb.with_prior(df, random_prior, lamb),
             'params': {
                 'lambda': lamb
@@ -113,7 +122,8 @@ def run_causal_discovery_pipeline(df, data_dict, perfect_prior, random_prior, ll
     print("Running HillClimb with LLM priors")
     for lamb in lambda_grid:
         results.append({ 
-            'algo': 'hc_llm',
+            'algo': 'HC',
+            'type': 'LLM',
             'dag': hill_climb.with_prior(df, llm_prior, lamb),
             'params': {
                 'lambda': lamb
@@ -125,49 +135,46 @@ def run_causal_discovery_pipeline(df, data_dict, perfect_prior, random_prior, ll
     return results
 
 def generate_discovery_report(results):
-    
+    METRICS = ["shd", "f1", "precision", "recall", "n_edges_est"]
     rows = []
-    for file, runs in results.items():
-        file_splits = file.split("_")
-        seed, n = file_splits[2], file_splits[3]
-        for r in runs:
+    for result in results:
+        for r in result['runs']:
+            lam = (r.get("params") or {}).get("lambda", np.nan)
             rows.append({
-                'data': file,
-                "seed": seed, 
-                "n_rows": n,
+                'data': result['name'],
                 "algo": r["algo"],
-                "lambda": (r.get("params") or {}).get("lambda", np.nan),
+                "type": r["type"],
+                "lambda": lam,
+                "seed": result['seed'],
+                "n_rows": result['num_rows'],
                 "shd": r["shd"],
-                "precision": r["edges"]["precision"],
-                "recall": r["edges"]["recall"],
-                "f1": r["edges"]["f1"],
-                "n_edges_est": (r["dag"].number_of_edges() if r.get("dag") is not None else np.nan),
+                "precision": r["precision"],
+                "recall": r["recall"],
+                "f1": r["f1"],
+                "n_edges_est": r["dag"].number_of_edges() if r.get("dag") is not None else np.nan,
             })
+
     df = pd.DataFrame(rows)
-    df["condition"] = df.apply(lambda x: x["algo"] if np.isnan(x["lambda"]) else f"{x['algo']}(lambda={x['lambda']:g})", axis=1)
-    
-    # SHD Evaluation
-    df_shd_comp = (df.groupby(["condition", "n_rows"])['shd']
-           .agg(mean="mean", ci95=utils.ci95, n_seeds="count")
-           .reset_index())
+    all_runs = df.replace({np.nan: None}).to_dict(orient="records")
 
-    df_shd_comp = df_shd_comp.pivot(index="condition", columns="n_rows", values=["mean", "ci95"])
-    df_shd_comp.columns = df_shd_comp.columns.swaplevel(0, 1)
-    df_shd_comp = df_shd_comp.sort_index(axis=1, level=0)
-    df_shd_comp.columns = [f'{n_rows}_{metric}' for n_rows, metric in df_shd_comp.columns]
+    group_cols = ["algo", "type", "lambda", "n_rows"]
+    summary = []
+    for keys, group in df.groupby(group_cols, dropna=False):
+        algo, algo_type, lam, n_rows = keys
+        entry = {
+            "algo": algo,
+            "type": algo_type,
+            "lambda": None if pd.isna(lam) else lam,
+            "n_rows": n_rows,
+        }
+        for metric in METRICS:
+            entry[metric] = {
+                "mean": utils.safe_round(group[metric].mean(), 2),
+                "ci95": utils.safe_round(utils.ci95(group[metric]), 2),
+            }
+        summary.append(entry)
 
-    shd_results = df_shd_comp.reset_index().replace({np.nan: None}).to_dict(orient='records')
-    
-    # Metrics Evaluation
-    df_metrics = []
-    for metric in ["f1", "precision", "recall", "n_edges_est"]:
-        df_temp = (df.groupby("condition")[metric]
-             .agg(**{f"{metric}_mean": "mean", f"{metric}_ci95": utils.ci95}))
-        df_metrics.append(df_temp)
-    df_metrics = pd.concat(df_metrics, axis=1).round(3)
-    df_metrics.reindex()
-    metrics_result = df_metrics.reset_index().replace({np.nan: None}).to_dict(orient='records')
+    return all_runs, summary
 
-    return shd_results, metrics_result
 
 

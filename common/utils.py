@@ -2,10 +2,13 @@ import matplotlib
 import matplotlib.pyplot as plt
 import networkx as nx
 import numpy as np
+import pandas as pd
 from scipy import stats
 import pickle
 import os
 import json
+import re
+
 
 def make_rng(seed):
     return np.random.default_rng(seed)
@@ -16,8 +19,10 @@ def create_dir_if_not_exists(dir):
     return 
 
 def read_json(filepath):
-    with open(filepath) as f:
-        return json.load(f)
+    if os.path.exists(filepath):
+        with open(filepath) as f:
+            return json.load(f)
+    return None
 
 def write_json(data, filepath):
     json_str = json.dumps(data, indent=2)
@@ -74,4 +79,11 @@ def ci95(values):
     values = np.asarray(values)
     if len(values) < 2 or np.all(values == values[0]):
         return None
-    return stats.sem(values) * stats.t.ppf(0.975, df=len(values) - 1)
+    return round(stats.sem(values) * stats.t.ppf(0.975, df=len(values) - 1),2)
+
+def safe_round(x, digits=2):
+    if x is None:
+        return None
+    if isinstance(x, float) and np.isnan(x):
+        return None
+    return round(x, digits)

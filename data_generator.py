@@ -22,17 +22,16 @@ def generate_metadata(module, output_dir):
     return module.build_data_dictionary(os.path.join(output_dir, 'data_dictionary.json'))
 
 
-def generate_data(module, output_dir, num_rows, seed):
+def generate_data(module, num_rows, seed):
     df = module.generate(num_rows, seed)
-    df.to_csv(os.path.join(output_dir, f'syn_data_{seed}_{num_rows}.csv'), index=False)
     return df
 
 
 if __name__ == "__main__":
     args = parse_args()
 
-    num_rows = [250, 1000, 2000]
-    seeds = [3, 42, 57]
+    num_rows = [250, 500, 1000]
+    seeds = [3, 42, 65, 76 ]
 
     leg_to_module = {
         Config.DISTRIBUTION_TO_CUSTOMER: distributor_to_customer,
@@ -59,16 +58,22 @@ if __name__ == "__main__":
 
         generate_metadata(leg_to_module[leg], metadata_output_dir)
 
-        # print("Generating priors ..")
-        # prior_output_dir = output_dir + '/priors'
-        # utils.create_dir_if_not_exists(prior_output_dir)
-        # priors.generate_priors(data_dict, prior_output_dir)
-
         data_output_dir = output_dir + '/data'
         utils.create_dir_if_not_exists(data_output_dir)
+        data_files_list = []
         for seed in seeds:
             for n in num_rows:
                 print(f"Generating data for Leg: {leg} | Seed : {seed} | Size : {n}")
-                generate_data(leg_to_module[leg], data_output_dir, n, seed)
+                df = generate_data(leg_to_module[leg], n, seed)
+
+                data_file_name = f'syn_data_{seed}_{n}.csv'
+                df.to_csv(os.path.join(data_output_dir, data_file_name), index=False)
+                data_files_list.append({
+                    'name': data_file_name,
+                    'seed': seed,
+                    'num_rows': n
+                })
+
+        utils.write_json(data_files_list, metadata_output_dir + '/data_files_list.json')
     
     print(f"\nDone in {(time.time() - t0):.1f} secs.\n")

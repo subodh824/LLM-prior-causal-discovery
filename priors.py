@@ -82,7 +82,7 @@ def _call_groq(data_dict):
             },
         )
         response.raise_for_status()
-        print(response.headers)
+        
     except requests.RequestException as e:
         raise RuntimeError(f"Could not reach Groq API: {e}")
 
@@ -198,7 +198,7 @@ def generate_priors(data_dict, output_dir, K=5, ref_G=None):
     llm_priors = []
     for k in range(K):
         llm_priors.append(generate_llm_prior(data_dict, f"llm_prior_{k}"))
-        if k >= 3:
+        if k >= 2:
             break
     utils.write_json(llm_priors, output_dir + f'/llm_priors_list.json')
 
@@ -264,7 +264,7 @@ def fco(prior, ref_G):
             scores.append(0.5)
         else:
             scores.append(1.0 if p_uv > p_vu else 0.0)
-    return sum(scores) / len(scores) if scores else None
+    return round(sum(scores) / len(scores), 2) if scores else None
 
 def tere(prior, ref_G, as_share=True):
     prior = format_prior(prior)
@@ -273,7 +273,7 @@ def tere(prior, ref_G, as_share=True):
     if num + den <= Config.EPS:
         return None
     share = num / (num + den)
-    return share if as_share else share / max(1.0 - share, Config.EPS)
+    return round(share,2) if as_share else round(share / max(1.0 - share, Config.EPS),2)
 
 def tene(prior, ref_G, as_share=True):
     prior = format_prior(prior)
@@ -282,7 +282,7 @@ def tene(prior, ref_G, as_share=True):
     if num + den <= Config.EPS:
         return None
     share = num / (num + den)
-    return share if as_share else share / max(1.0 - share, Config.EPS)
+    return round(share,2) if as_share else round(share / max(1.0 - share, Config.EPS),2)
 
 def lod(prior, data_dict):
     pass
@@ -331,11 +331,11 @@ def generate_priors_report(data_dict, perfect_prior, random_priors, llm_priors, 
         'name': 'random_overall',
         'type': 'random',
         'count': len(random_priors_eval),
-        'fco' : mean(p['fco'] for p in random_priors_eval),
+        'fco' : round(mean(p['fco'] for p in random_priors_eval),2),
         'fco_ci95' : utils.ci95(list(p['fco'] for p in random_priors_eval)),
-        'tere' : mean(p['tere'] for p in random_priors_eval),
+        'tere' : round(mean(p['tere'] for p in random_priors_eval),2),
         'tere_ci95' : utils.ci95(list(p['tere'] for p in random_priors_eval)),
-        'tene' : mean(p['tene'] for p in random_priors_eval),
+        'tene' : round(mean(p['tene'] for p in random_priors_eval),2),
         'tene_ci95' : utils.ci95(list(p['tene'] for p in random_priors_eval))
     })
 
@@ -343,11 +343,11 @@ def generate_priors_report(data_dict, perfect_prior, random_priors, llm_priors, 
         'name': 'llm_overall',
         'type': 'llm',
         'count': len(llm_priors_eval),
-        'fco' : mean(p['fco'] for p in llm_priors_eval),
+        'fco' : round(mean(p['fco'] for p in llm_priors_eval),2),
         'fco_ci95' : utils.ci95(list(p['fco'] for p in llm_priors_eval)),
-        'tere' : mean(p['tere'] for p in llm_priors_eval),
+        'tere' : round(mean(p['tere'] for p in llm_priors_eval),2),
         'tere_ci95' : utils.ci95(list(p['tere'] for p in llm_priors_eval)),
-        'tene' : mean(p['tene'] for p in llm_priors_eval),
+        'tene' : round(mean(p['tene'] for p in llm_priors_eval),2),
         'tene_ci95' : utils.ci95(list(p['tene'] for p in llm_priors_eval))
     })
 
