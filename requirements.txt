@@ -7,3 +7,6 @@ scikit-learn
 causal-learn
 pgmpy
 requests
+numba==0.59.1 
+llvmlite==0.42.0
+dowhy

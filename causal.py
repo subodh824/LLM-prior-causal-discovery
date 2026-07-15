@@ -50,6 +50,7 @@ def evaluate_graph(true_G, est_G, directed=True):
         "precision": utils.safe_round(precision,2),
         "recall": utils.safe_round(recall,2),
         "f1": utils.safe_round(f1,2),
+        "n_edges_est": est_G.number_of_edges()
     }
 
 def run_causal_discovery_pipeline(df, data_dict, all_priors):
@@ -86,6 +87,7 @@ def run_causal_discovery_pipeline(df, data_dict, all_priors):
         'dag': hill_climb.baseline(df)
     })
 
+    return results
     # lambda_grid = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
     lambda_grid = [0.1, 0.5, 0.9]
     for prior_type, prior in all_priors.items():
@@ -105,27 +107,10 @@ def run_causal_discovery_pipeline(df, data_dict, all_priors):
     
     return results
 
-def generate_discovery_report(results):
-    METRICS = ["shd", "f1", "precision", "recall", "n_edges_est"]
-    rows = []
-    for result in results:
-        for r in result['runs']:
-            lam = (r.get("params") or {}).get("lambda", np.nan)
-            rows.append({
-                'data': result['name'],
-                "algo": r["algo"],
-                "type": r["type"],
-                "lambda": lam,
-                "seed": result['seed'],
-                "n_rows": result['num_rows'],
-                "shd": r["shd"],
-                "precision": r["precision"],
-                "recall": r["recall"],
-                "f1": r["f1"],
-                "n_edges_est": r["dag"].number_of_edges() if r.get("dag") is not None else np.nan,
-            })
+def generate_discovery_report(runs):
+    METRICS = ["shd", "f1", "precision", "recall"]
 
-    df = pd.DataFrame(rows)
+    df = pd.DataFrame(runs)
     all_runs = df.replace({np.nan: None}).to_dict(orient="records")
 
     group_cols = ["algo", "type", "lambda", "n_rows"]
@@ -146,7 +131,7 @@ def generate_discovery_report(results):
             }
         summary.append(entry)
 
-    return all_runs, summary
+    return summary
 
 
 

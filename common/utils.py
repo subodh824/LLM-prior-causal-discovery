@@ -10,7 +10,7 @@ import json
 import re
 import io
 import base64
-
+from config import Config
 
 def make_rng(seed):
     return np.random.default_rng(seed)
@@ -91,6 +91,14 @@ def convert_graph_to_json(G):
         "links": [{"source": str(u), "target": str(v)} for u, v in G.edges()],
     }
 
+def convert_json_to_graph(json):
+    G = nx.DiGraph()
+    for node in json["nodes"]:
+        G.add_node(node["id"] if isinstance(node, dict) else node)
+    for link in json.get("links", json.get("edges", [])):
+        G.add_edge(link["source"], link["target"])
+    return G
+
 def build_graph_pos(data_dict):
     all_nodes = data_dict.keys()
     reference_graph = nx.complete_graph(all_nodes)
@@ -109,3 +117,14 @@ def safe_round(x, digits=2):
     if isinstance(x, float) and np.isnan(x):
         return None
     return round(x, digits)
+
+def get_scm(leg):
+    from dags import distributor_to_customer 
+    from dags import manufacturer_to_distributor
+    from dags import supplier_to_manufacturer
+    leg_to_scm = {
+        Config.DISTRIBUTION_TO_CUSTOMER: distributor_to_customer,
+        Config.MANUFACTURER_TO_DISTRIBUTOR: manufacturer_to_distributor,
+        Config.SUPPLIER_TO_MANUFACTURER: supplier_to_manufacturer,
+    }
+    return leg_to_scm[leg] if leg in leg_to_scm.keys() else None

@@ -81,43 +81,51 @@ def build_ref_graph(output_dir):
     utils.write_pickle(G_json, output_dir + '/ref_dag_pos.pkl')
     return G
 
-def generate(n, seed):
+def generate(n, seed, interventions=None):
     rng = utils.make_rng(seed)
+
+    do = interventions or {}
+
+    def value(name, computed):
+        if name in do:
+            return np.full(n, float(do[name]))
+        return computed
+
     d = {}
 
     # Root nodes
     # order_volume_peak_season: seasonal sinusoid (annual cycle) + noise.
     t = rng.uniform(0, 2 * np.pi, n)
-    d["order_volume_peak_season"] = np.clip(50 + 30 * np.sin(t) + rng.normal(0, 8, n), 0, None)
+    d["order_volume_peak_season"] = value("order_volume_peak_season", np.clip(50 + 30 * np.sin(t) + rng.normal(0, 8, n), 0, None))
 
     # weather_severity: Gamma — most days mild, occasional severe weather.
-    d["weather_severity"] = rng.gamma(1.2, 2.0, n)
+    d["weather_severity"] = value("weather_severity", rng.gamma(1.2, 2.0, n))
 
     # geographic_distance (km): Gamma — right-skewed shipping distances.
-    d["geographic_distance"] = rng.gamma(2.0, 400.0, n)
+    d["geographic_distance"] = value("geographic_distance", rng.gamma(2.0, 400.0, n))
 
     # order_discount_rate (fraction 0-0.5): Beta(2,5) scaled.
-    d["order_discount_rate"] = rng.beta(2, 5, n) * 0.5
+    d["order_discount_rate"] = value("order_discount_rate", rng.beta(2, 5, n) * 0.5)
 
     # order_processing_time (hours): root node (no DAG parents in this leg).
-    d["order_processing_time"] = rng.gamma(2.0, 4.0, n)
+    d["order_processing_time"] = value("order_processing_time", rng.gamma(2.0, 4.0, n))
 
     # Non-root nodes in topological order
-    d["order_item_quantity"] = np.clip(
+    d["order_item_quantity"] = value("order_processing_time", np.clip(
         scm.linear_combo(
             {"order_volume_peak_season": d["order_volume_peak_season"]},
             {"order_volume_peak_season": 0.4}, intercept=2.0, noise_std=1.5, rng=rng,
         ), 1, None,
-    )
+    ))
 
-    d["shipping_mode"] = np.clip(
+    d["shipping_mode"] = value("shipping_mode", np.clip(
         scm.linear_combo(
             {"geographic_distance": d["geographic_distance"]},
             {"geographic_distance": 0.0015}, intercept=1.0, noise_std=0.5, rng=rng,
         ), 0, 4,
-    )
+    ))
 
-    d["fulfillment_center_congestion"] = np.clip(
+    d["fulfillment_center_congestion"] = value("fulfillment_center_congestion", np.clip(
         scm.linear_combo(
             {
                 "order_volume_peak_season": d["order_volume_peak_season"],
@@ -126,16 +134,16 @@ def generate(n, seed):
             {"order_volume_peak_season": 0.5, "order_item_quantity": 2.0},
             intercept=5.0, noise_std=5.0, rng=rng,
         ), 0, 100,
-    )
+    ))
 
-    d["traffic_congestion"] = np.clip(
+    d["traffic_congestion"] = value("traffic_congestion", np.clip(
         scm.linear_combo(
             {"weather_severity": d["weather_severity"]},
             {"weather_severity": 8.0}, intercept=20.0, noise_std=8.0, rng=rng,
         ), 0, 100,
-    )
+    ))
 
-    d["scheduled_transit_time"] = np.clip(
+    d["scheduled_transit_time"] = value("scheduled_transit_time", np.clip(
         scm.linear_combo(
             {
                 "shipping_mode":                 d["shipping_mode"],
@@ -144,9 +152,9 @@ def generate(n, seed):
             {"shipping_mode": -1.0, "fulfillment_center_congestion": 0.04},
             intercept=5.0, noise_std=0.8, rng=rng,
         ), 0.5, None,
-    )
+    ))
 
-    d["actual_transit_time"] = np.clip(
+    d["actual_transit_time"] = value("actual_transit_time", np.clip(
         scm.linear_combo(
             {
                 "weather_severity":    d["weather_severity"],
@@ -162,41 +170,41 @@ def generate(n, seed):
             },
             intercept=2.0, noise_std=1.0, rng=rng,
         ), 0.5, None,
-    )
+    ))
 
     opt_contribution = scm.concave_transform(d["order_processing_time"], scale=2.0, shift=0.0)
     transit_gap = d["actual_transit_time"] - d["scheduled_transit_time"]
-    d["delivery_delay"] = np.clip(
+    d["delivery_delay"] = value("delivery_delay", np.clip(
         transit_gap + opt_contribution + rng.normal(0, 0.7, n), -5, None,
-    )
+    ))
 
-    d["late_delivery_risk"] = np.clip(
+    d["late_delivery_risk"] = value("late_delivery_risk", np.clip(
         scm.linear_combo(
             {"delivery_delay": d["delivery_delay"]},
             {"delivery_delay": 0.18}, intercept=0.05, noise_std=0.08, rng=rng,
         ), 0, 1,
-    )
+    ))
 
-    d["customer_satisfaction"] = np.clip(
+    d["customer_satisfaction"] = value("customer_satisfaction", np.clip(
         scm.linear_combo(
             {"delivery_delay": d["delivery_delay"]},
             {"delivery_delay": -0.35}, intercept=4.3, noise_std=0.4, rng=rng,
         ), 1, 5,
-    )
+    ))
 
-    d["churn_repeat_purchase_risk"] = np.clip(
+    d["churn_repeat_purchase_risk"] = value("churn_repeat_purchase_risk", np.clip(
         scm.linear_combo(
             {"customer_satisfaction": d["customer_satisfaction"]},
             {"customer_satisfaction": -0.15}, intercept=0.8, noise_std=0.1, rng=rng,
         ), 0, 1,
-    )
+    ))
 
-    d["profit_ratio"] = np.clip(
+    d["profit_ratio"] = value("profit_ratio", np.clip(
         scm.linear_combo(
             {"order_discount_rate": d["order_discount_rate"]},
             {"order_discount_rate": -0.8}, intercept=0.3, noise_std=0.05, rng=rng,
         ), -0.5, 1,
-    )
+    ))
 
     return pd.DataFrame(d)
 

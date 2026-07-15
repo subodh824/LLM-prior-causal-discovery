@@ -414,7 +414,6 @@ def generate_priors_report(data_dict, all_priors, ref_G=None):
         elif isinstance(priors, dict):
             all_priors_eval[prior_type].append(evaluate_prior(priors, data_dict, ref_G))
 
-    print(all_priors_eval)
     # Overall  Summary
     summary = []
     for prior_type, priors_eval in all_priors_eval.items():

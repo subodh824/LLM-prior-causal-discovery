@@ -1,9 +1,10 @@
-from pgmpy.causal_discovery.HillClimbSearch import HillClimbSearch
-from pgmpy.structure_score import BICGauss
+from pgmpy.estimators import HillClimbSearch
+from pgmpy.estimators import BICGauss
 
 from common import utils
 from config import Config
 import networkx as nx
+import pandas as pd
 
 class PriorWeightedBIC(BICGauss):
 
@@ -19,9 +20,12 @@ class PriorWeightedBIC(BICGauss):
 
 
 def _run_hill_climb(df, score, max_indegree):
-    hc = HillClimbSearch(scoring_method=score, max_indegree=max_indegree, return_type="dag", show_progress=False)
-    hc.fit(df)
-    model = hc.causal_graph_
+    hc = HillClimbSearch(df)
+    model = hc.estimate(
+        scoring_method=score,
+        max_indegree=max_indegree,
+        show_progress=False,
+    )
     G = nx.DiGraph()
     G.add_nodes_from(df.columns)
     G.add_edges_from(model.edges())
