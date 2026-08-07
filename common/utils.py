@@ -50,21 +50,11 @@ def write_to_file(data, output_path):
     with open(output_path, 'wb') as f:
         f.write(data)
 
-def build_graph(nodes, edges, output_path=None, title='', save_pos=True):
+def build_graph(nodes, edges):
     G = nx.DiGraph()
     G.add_nodes_from(nodes)
     G.add_edges_from(edges)
-
     return G
-    if output_path:
-        _, pos =  draw_graph(G, output_path, title)
-        data = convert_graph_to_json(G)
-        write_pickle(G, os.path.join(os.path.dirname(output_path), 'ref_dag.pkl'))
-        write_json(data, os.path.join(os.path.dirname(output_path), 'ref_dag.json'))
-        if save_pos:
-            write_pickle(pos,  os.path.join(os.path.dirname(output_path), 'ref_dag_pos.pkl'))
-        
-    return G, None
 
 
 def draw_graph(G, title, pos=None):
@@ -86,12 +76,16 @@ def draw_graph(G, title, pos=None):
     return png_bytes, G_json, pos
 
 def convert_graph_to_json(G):
+    if  not G:
+        return None
     return {
         "nodes": [{"id": str(n)} for n in G.nodes()],
         "links": [{"source": str(u), "target": str(v)} for u, v in G.edges()],
     }
 
 def convert_json_to_graph(json):
+    if  not json:
+        return None
     G = nx.DiGraph()
     for node in json["nodes"]:
         G.add_node(node["id"] if isinstance(node, dict) else node)
@@ -122,9 +116,11 @@ def get_scm(leg):
     from dags import distributor_to_customer 
     from dags import manufacturer_to_distributor
     from dags import supplier_to_manufacturer
+    from dags import dataco
     leg_to_scm = {
         Config.DISTRIBUTION_TO_CUSTOMER: distributor_to_customer,
         Config.MANUFACTURER_TO_DISTRIBUTOR: manufacturer_to_distributor,
         Config.SUPPLIER_TO_MANUFACTURER: supplier_to_manufacturer,
+        Config.DATACO: dataco
     }
     return leg_to_scm[leg] if leg in leg_to_scm.keys() else None

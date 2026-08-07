@@ -8,34 +8,7 @@ from scipy import stats
 from statistics import mean, stdev
 import numpy as np
 import networkx as nx
-
-SYSTEM_PROMPT = '''You are a supply chain operations research expert helping \
-propose a causal structure prior for causal discovery. You will be given a \
-list of variables (names + descriptions only, no data) from a supply chain \
-dataset. Using domain knowledge of supply chain, logistics, and operations \
-management literature, propose plausible directed causal relationships \
-among these variables.
-
-Respond with STRICT JSON only, no markdown fences, no commentary, matching \
-exactly this schema:
-{
-  "edges_with_probability": [["cause_var", "effect_var", 0.0_to_1.0], ...],
-  "forbidden_edges": [["a", "b"], ...],
-  "tier_ordering": [["var", tier_integer], ...],
-  "rationale": {"cause->effect": "one sentence justification", ...}
-}
-
-Rules:
-- Only use variable names exactly as given.
-- "edges_with_probability": your belief (0-1) that a directed causal edge \
-cause->effect exists. Include only edges you consider plausible (probability >= 0.05).
-- "forbidden_edges": edges you are confident CANNOT be causal (e.g. effect \
-preceding cause, or no plausible mechanism).
-- "tier_ordering": assign every variable to an integer tier representing \
-its rough causal depth (0 = exogenous/root cause, higher = more downstream \
-effect). Used as a topological-order constraint.
-- "rationale": one-sentence justification for each edge in edges_with_probability, \
-keyed as "cause->effect".'''
+import llms as LLMs
 
 def _pair_probs(prior, u, v):
     p_uv = float(prior.get((u, v), 0.0))
@@ -46,200 +19,21 @@ def _pair_probs(prior, u, v):
         return (1 / 3, 1 / 3, 1 / 3)     
     return (p_uv / total, p_vu / total, p_none / total)
 
-def _build_user_prompt(data_dict):
-    var_lines = []
-    for name, info in data_dict.items():
-        desc = info.get("description", "")
-        var_lines.append(f"- {name}: {desc}")
-    return (
-        "Variables in this supply chain dataset:\n\n"
-        + "\n".join(var_lines)
-        + "\n\nPropose the causal structure prior as specified in the system prompt."
-    )
-
-def _call_groq(data_dict):
-    import requests
-
-    api_key = Config.LLM['groq']['api_key']
-    user_prompt = _build_user_prompt(data_dict)
-
-    try:
-        response = requests.post(
-            "https://api.groq.com/openai/v1/chat/completions",
-            headers={
-                "Authorization": f"Bearer {api_key}",
-                "Content-Type": "application/json",
-            },
-            json={
-                "model": Config.LLM['groq']['model'], 
-                "messages": [
-                    {"role": "system", "content": SYSTEM_PROMPT},
-                    {"role": "user", "content": user_prompt},
-                ],
-                "stream": False,
-                "temperature": Config.LLM['groq']["temperature"],
-                "max_tokens": Config.LLM['groq']["max_tokens"],
-            },
-        )
-        response.raise_for_status()
-        
-    except requests.RequestException as e:
-        raise RuntimeError(f"Could not reach Groq API: {e}")
-
-    raw_text = response.json()["choices"][0]["message"]["content"].strip()
-    try:
-        text = raw_text
-        if text.startswith("```"):
-            text = text.strip("`")
-            text = text[text.find("{"):text.rfind("}") + 1]
-        parsed = json.loads(text)
-        return {"raw_response": raw_text, "parsed": parsed}
-    except (json.JSONDecodeError, ValueError) as e:
-        raise
-
-def _call_ollama(data_dict):
-    import requests
-
-    host = Config.LLM['ollama']['host']
-    user_prompt = _build_user_prompt(data_dict)
-
-    try:
-        response = requests.post(
-            f"{host}/api/chat",
-            json={
-                "model": 'llama3.1:8b',
-                "messages": [
-                    {"role": "system", "content": SYSTEM_PROMPT},
-                    {"role": "user", "content": user_prompt},
-                ],
-                "format": "json",
-                "stream": False,
-                "options": {
-                    "temperature": Config.LLM['ollama']["temperature"],
-                    "num_predict": Config.LLM['ollama']["max_tokens"],
-                },
-            }
-        )
-        response.raise_for_status()
-    except requests.RequestException as e:
-        raise RuntimeError(f"Could not reach Ollama at {host}")
-
-    
-    raw_text = response.json()["message"]["content"].strip()
-    try:
-        text = raw_text
-        if text.startswith("```"):
-            text = text.strip("`")
-            text = text[text.find("{"):text.rfind("}") + 1]
-        parsed = json.loads(text)
-        return {"raw_response": raw_text, "parsed": parsed}
-    except (json.JSONDecodeError, ValueError) as e:
-        raise
-
-def _call_cerebras(data_dict):
-    import requests
-
-    api_key = Config.LLM['cerebras']['api_key']
-    user_prompt = _build_user_prompt(data_dict)
-
-    try:
-        response = requests.post(
-            "https://api.cerebras.ai/v1/chat/completions",
-            headers={
-                "Authorization": f"Bearer {api_key}",
-                "Content-Type": "application/json",
-            },
-            json={
-                "model": Config.LLM['cerebras']['model'],  
-                "messages": [
-                    {"role": "system", "content": SYSTEM_PROMPT},
-                    {"role": "user", "content": user_prompt},
-                ],
-                "response_format": {"type": "json_object"},
-                "stream": False,
-                "temperature": Config.LLM['cerebras']["temperature"],
-                "max_tokens": Config.LLM['cerebras']["max_tokens"],
-            },
-        )
-        response.raise_for_status()
-    except requests.RequestException as e:
-        raise RuntimeError(f"Could not reach Cerebras API: {e} | {response.text if 'response' in dir() else ''}")
-
-    choice = response.json()["choices"][0]
-    message = choice["message"]
-    finish_reason = choice.get("finish_reason")
-
-    
-
-    raw_text = message.get("content") or ""
-    raw_text = raw_text.strip()
-
-    if not raw_text:
-        raise RuntimeError(
-            f"Cerebras returned empty content (finish_reason={finish_reason}). "
-            f"Consider increasing max_completion_tokens or switching models."
-        )
-    try:
-        text = raw_text
-        if text.startswith("```"):
-            text = text.strip("`")
-            text = text[text.find("{"):text.rfind("}") + 1]
-        parsed = json.loads(text)
-        return {"raw_response": raw_text, "parsed": parsed}
-    except (json.JSONDecodeError, ValueError) as e:
-        raise
-
-def _call_gemini(data_dict):
-    import requests
-
-    api_key = Config.LLM['gemini']['api_key']
-    user_prompt = _build_user_prompt(data_dict)
-
-    try:
-        response = requests.post(
-            "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
-            headers={
-                "Authorization": f"Bearer {api_key}",
-                "Content-Type": "application/json",
-            },
-            json={
-                "model": Config.LLM['gemini']['model'],  # e.g. 'gemini-2.5-flash'
-                "messages": [
-                    {"role": "system", "content": SYSTEM_PROMPT},
-                    {"role": "user", "content": user_prompt},
-                ],
-                "response_format": {"type": "json_object"},
-                "temperature": Config.LLM['gemini']["temperature"],
-                "max_tokens": Config.LLM['gemini']["max_tokens"],
-            },
-        )
-        response.raise_for_status()
-    except requests.RequestException as e:
-        raise RuntimeError(f"Could not reach Gemini API: {e} | {response.text if 'response' in dir() else ''}")
-
-    raw_text = response.json()["choices"][0]["message"].get("content", "").strip()
-    if not raw_text:
-        finish_reason = response.json()["choices"][0].get("finish_reason")
-        raise RuntimeError(f"Gemini returned empty content (finish_reason={finish_reason}).")
-
-    try:
-        text = raw_text
-        if text.startswith("```"):
-            text = text.strip("`")
-            text = text[text.find("{"):text.rfind("}") + 1]
-        parsed = json.loads(text)
-        return {"raw_response": raw_text, "parsed": parsed}
-    except (json.JSONDecodeError, ValueError) as e:
-        raise
-
 def generate_llm_prior(llm, data_dict, name="llm_prior"):
-    if llm == 'ollama':
-        prior = _call_ollama(data_dict)
-    elif llm == 'groq':
-        prior = _call_groq(data_dict)
-    elif llm == 'gemini':
-        prior = _call_gemini(data_dict)
+    cfg = Config.LLM[llm]
 
+    if llm.startswith("ollama"):
+        prior = LLMs._call_ollama(cfg, data_dict)
+    elif llm.startswith("groq"):
+        prior = LLMs._call_groq(cfg, data_dict)
+    elif llm.startswith("gemini"):
+        prior = LLMs._call_gemini(cfg, data_dict)
+    elif llm.startswith("cerebras"):
+        prior = LLMs._call_cerebras(cfg, data_dict)
+
+    if not prior:
+        return None
+    
     prior['parsed']['name'] = name
     prior['parsed']['type'] = llm
     return prior['parsed']
@@ -282,7 +76,7 @@ def generate_perfect_prior(ref_G, name="perfect_prior", prob=Config.PERFECT_EDGE
         "rationale": {f"_": "PERFECT PRIOR"},
     }
 
-def generate_priors(data_dict, output_dir, K=5, ref_G=None):
+def generate_priors(data_dict, output_dir, K=3, ref_G=None):
 
     # Perfect prior
     if ref_G:
@@ -302,14 +96,17 @@ def generate_priors(data_dict, output_dir, K=5, ref_G=None):
         print(f" Writing {K} {llm} priors")
         llm_priors = []
         for k in range(K):
-            llm_priors.append(generate_llm_prior(llm, data_dict, f"{llm}_prior_{k}"))
-            if k >= 2:
+            prior = generate_llm_prior(llm, data_dict, f"{llm}_prior_{k}")
+            if prior:
+                llm_priors.append(prior)
+            else:
                 break
-        utils.write_json(llm_priors, output_dir + f'/{llm}_priors_list.json')
-
+        
         # Create LLM Consensus prior
-        llm_consensus_prior = create_consensus_prior(llm_priors, data_dict)
-        utils.write_json(llm_consensus_prior, output_dir + f'/{llm}_consensus_prior.json')
+        if len(llm_priors) > 0:
+            utils.write_json(llm_priors, output_dir + f'/{llm}_priors_list.json')
+            llm_consensus_prior = create_consensus_prior(llm_priors, data_dict)
+            utils.write_json(llm_consensus_prior, output_dir + f'/{llm}_consensus_prior.json')
 
 def format_prior(prior):
     acc = defaultdict(list)
@@ -397,9 +194,9 @@ def evaluate_prior(prior, data_dict, ref_G=None):
     return {
         'name': prior['name'],
         'type': prior['type'],
-        'fco': fco(prior, ref_G),
-        'tere': tere(prior, ref_G),
-        'tene': tene(prior, ref_G),
+        'fco': fco(prior, ref_G) if ref_G else None,
+        'tere': tere(prior, ref_G) if ref_G else None,
+        'tene': tene(prior, ref_G) if ref_G else None,
     }
 
 def generate_priors_report(data_dict, all_priors, ref_G=None):
@@ -421,12 +218,12 @@ def generate_priors_report(data_dict, all_priors, ref_G=None):
             'name': "Overall",
             'type': prior_type,
             'count': len(priors_eval),
-            'fco' : round(mean(p['fco'] for p in priors_eval),2),
-            'fco_ci95' : utils.ci95(list(p['fco'] for p in priors_eval)),
-            'tere' : round(mean(p['tere'] for p in priors_eval),2),
-            'tere_ci95' : utils.ci95(list(p['tere'] for p in priors_eval)),
-            'tene' : round(mean(p['tene'] for p in priors_eval),2),
-            'tene_ci95' : utils.ci95(list(p['tene'] for p in priors_eval)),
+            'fco' : round(mean(p['fco'] for p in priors_eval if p['fco'] is not None),2) if ref_G else None,
+            'fco_ci95' : utils.ci95(list(p['fco'] for p in priors_eval if p['fco'] is not None)) if ref_G else None,
+            'tere' : round(mean(p['tere'] for p in priors_eval if p['tere'] is not None),2) if ref_G else None, 
+            'tere_ci95' : utils.ci95(list(p['tere'] for p in priors_eval if p['tere'] is not None)) if ref_G else None,
+            'tene' : round(mean(p['tene'] for p in priors_eval if p['tene'] is not None),2) if ref_G else None,
+            'tene_ci95' : utils.ci95(list(p['tene'] for p in priors_eval if p['tene'] is not None)) if ref_G else None,
             'lod': None
         })
 

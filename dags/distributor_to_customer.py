@@ -2,7 +2,7 @@ import networkx as nx
 from common import scm, utils
 import pandas as pd
 import numpy as np
-import config
+from config import Config
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
@@ -48,37 +48,58 @@ EDGES = [
     ("order_discount_rate",           "profit_ratio"),
 ]
 
+DATA_DICTIONARY = {
+    "order_volume_peak_season":      {"type": "float", "range": "[0,inf)",   "description": "Seasonal order volume index (annual cycle, e.g. holiday peaks).",                        "distribution": "Seasonal sinusoid + Gaussian noise"},
+    "weather_severity":              {"type": "float", "range": "[0,inf)",   "description": "Weather severity index along the shipping route.",                                         "distribution": "Gamma(shape=1.2, scale=2.0)"},
+    "geographic_distance":           {"type": "float", "range": "[0,inf)",   "description": "Shipping distance in km.",                                                                 "distribution": "Gamma(shape=2.0, scale=400.0)"},
+    "order_item_quantity":           {"type": "float", "range": "[1,inf)",   "description": "Number of items in the order.",                                                            "distribution": "SCM: f(order_volume_peak_season) + noise"},
+    "order_processing_time":         {"type": "float", "range": "[0,inf)",   "description": "Order processing time (hours) from order placed to dispatch-ready.",                      "distribution": "Gamma(shape=2.0, scale=4.0)"},
+    "fulfillment_center_congestion": {"type": "float", "range": "[0,100]",   "description": "Index of fulfillment center congestion.",                                                  "distribution": "SCM: f(order_volume_peak_season, order_item_quantity) + noise"},
+    "shipping_mode":                 {"type": "float", "range": "[0,4]",     "description": "Ordinal shipping mode (0=standard ground .. 4=same-day).",                               "distribution": "SCM: f(geographic_distance) + noise"},
+    "scheduled_transit_time":        {"type": "float", "range": "[0.5,inf)", "description": "Carrier-promised transit time in days.",                                                  "distribution": "SCM: f(shipping_mode, fulfillment_center_congestion) + noise"},
+    "traffic_congestion":            {"type": "float", "range": "[0,100]",   "description": "Road traffic congestion index along the route.",                                           "distribution": "SCM: f(weather_severity) + noise"},
+    "actual_transit_time":           {"type": "float", "range": "[0.5,inf)", "description": "Realized transit time in days.",                                                          "distribution": "SCM: f(weather_severity, geographic_distance, shipping_mode, traffic_congestion) + noise"},
+    "delivery_delay":                {"type": "float", "range": "[-5,inf)",  "description": "Delivery delay in days (actual - scheduled, plus OPT effect).",                           "distribution": "SCM: linear transit gap + CONCAVE f(order_processing_time) + noise"},
+    "late_delivery_risk":            {"type": "float", "range": "[0,1]",     "description": "Probability/flag-like risk score of late delivery.",                                       "distribution": "SCM: f(delivery_delay) + noise"},
+    "order_discount_rate":           {"type": "float", "range": "[0,0.5]",   "description": "Discount rate applied to the order.",                                                     "distribution": "Beta(2,5) scaled to [0,0.5]"},
+    "customer_satisfaction":         {"type": "float", "range": "[1,5]",     "description": "Post-purchase customer satisfaction rating.",                                              "distribution": "SCM: f(delivery_delay) + noise"},
+    "profit_ratio":                  {"type": "float", "range": "[-0.5,1]",  "description": "Profit ratio for the order.",                                                             "distribution": "SCM: f(order_discount_rate) + noise"},
+    "churn_repeat_purchase_risk":    {"type": "float", "range": "[0,1]",     "description": "Risk of customer churn / not repeat-purchasing.",                                         "distribution": "SCM: f(customer_satisfaction) + noise"},
+}
+
 def build_data_dictionary(output_dir):
     data_dict = {
-        "order_volume_peak_season":      {"type": "float", "range": "[0,inf)",   "description": "Seasonal order volume index (annual cycle, e.g. holiday peaks).",                        "distribution": "Seasonal sinusoid + Gaussian noise"},
-        "weather_severity":              {"type": "float", "range": "[0,inf)",   "description": "Weather severity index along the shipping route.",                                         "distribution": "Gamma(shape=1.2, scale=2.0)"},
-        "geographic_distance":           {"type": "float", "range": "[0,inf)",   "description": "Shipping distance in km.",                                                                 "distribution": "Gamma(shape=2.0, scale=400.0)"},
-        "order_item_quantity":           {"type": "float", "range": "[1,inf)",   "description": "Number of items in the order.",                                                            "distribution": "SCM: f(order_volume_peak_season) + noise"},
-        "order_processing_time":         {"type": "float", "range": "[0,inf)",   "description": "Order processing time (hours) from order placed to dispatch-ready.",                      "distribution": "Gamma(shape=2.0, scale=4.0)"},
-        "fulfillment_center_congestion": {"type": "float", "range": "[0,100]",   "description": "Index of fulfillment center congestion.",                                                  "distribution": "SCM: f(order_volume_peak_season, order_item_quantity) + noise"},
-        "shipping_mode":                 {"type": "float", "range": "[0,4]",     "description": "Ordinal shipping mode (0=standard ground .. 4=same-day).",                               "distribution": "SCM: f(geographic_distance) + noise"},
-        "scheduled_transit_time":        {"type": "float", "range": "[0.5,inf)", "description": "Carrier-promised transit time in days.",                                                  "distribution": "SCM: f(shipping_mode, fulfillment_center_congestion) + noise"},
-        "traffic_congestion":            {"type": "float", "range": "[0,100]",   "description": "Road traffic congestion index along the route.",                                           "distribution": "SCM: f(weather_severity) + noise"},
-        "actual_transit_time":           {"type": "float", "range": "[0.5,inf)", "description": "Realized transit time in days.",                                                          "distribution": "SCM: f(weather_severity, geographic_distance, shipping_mode, traffic_congestion) + noise"},
-        "delivery_delay":                {"type": "float", "range": "[-5,inf)",  "description": "Delivery delay in days (actual - scheduled, plus OPT effect).",                           "distribution": "SCM: linear transit gap + CONCAVE f(order_processing_time) + noise"},
-        "late_delivery_risk":            {"type": "float", "range": "[0,1]",     "description": "Probability/flag-like risk score of late delivery.",                                       "distribution": "SCM: f(delivery_delay) + noise"},
-        "order_discount_rate":           {"type": "float", "range": "[0,0.5]",   "description": "Discount rate applied to the order.",                                                     "distribution": "Beta(2,5) scaled to [0,0.5]"},
-        "customer_satisfaction":         {"type": "float", "range": "[1,5]",     "description": "Post-purchase customer satisfaction rating.",                                              "distribution": "SCM: f(delivery_delay) + noise"},
-        "profit_ratio":                  {"type": "float", "range": "[-0.5,1]",  "description": "Profit ratio for the order.",                                                             "distribution": "SCM: f(order_discount_rate) + noise"},
-        "churn_repeat_purchase_risk":    {"type": "float", "range": "[0,1]",     "description": "Risk of customer churn / not repeat-purchasing.",                                         "distribution": "SCM: f(customer_satisfaction) + noise"},
+        'leg': 'distributor_to_customer',
+        'natural': []
     }
+    for col, info in DATA_DICTIONARY.items():
+        data_dict['natural'].append({ 'name': col } | info)
 
     if output_dir:
         utils.write_json(data_dict, output_dir +  '/data_dictionary.json')
     return data_dict
 
+def build_downstream_config(output_dir=None):
+    cfg = {
+        "target": "delivery_delay",
+        "causes": ["fulfillment_center_congestion", "weather_severity"],
+        "actionables": [
+            "order_processing_time",
+            "shipping_mode",
+            "scheduled_transit_time",
+            "fulfillment_center_congestion",
+        ]
+    }
+
+    if output_dir:
+        utils.write_json(cfg, output_dir + "/downstream_config.json")
+    return cfg
+
 def build_ref_graph(output_dir):
     G = utils.build_graph(NODES, EDGES)
     png_bytes, G_json, pos = utils.draw_graph(G, 'Distributor-to-Customer Ground Truth DAG')
-    utils.write_pickle(G, output_dir + '/ref_dag.pkl')
     utils.write_to_file(png_bytes, output_dir + '/ref_dag.png')
     utils.write_json(G_json, output_dir + '/ref_dag.json')
-    utils.write_pickle(G_json, output_dir + '/ref_dag_pos.pkl')
     return G
 
 def generate(n, seed, interventions=None):

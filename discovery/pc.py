@@ -21,13 +21,17 @@ def _build_graph(cg, variable_names):
     
     return G
 
-def _build_background_knowledge(priors, variable_names):
+def _build_background_knowledge(priors, variable_names, require_threshold=0.8):
     nodes = {name: GraphNode(name) for name in variable_names}
     bk = BackgroundKnowledge()
 
     for a, b in priors.get("forbidden_edges", []):
         if a in nodes and b in nodes:
             bk.add_forbidden_by_node(nodes[a], nodes[b])
+    
+    for a, b, prob in priors.get("edges_with_probability", []):
+        if a in nodes and b in nodes and prob >= require_threshold:
+            bk.add_required_by_node(nodes[a], nodes[b])
 
     for var, tier in priors.get("tier_ordering", []):
         if var in nodes:
@@ -37,7 +41,7 @@ def _build_background_knowledge(priors, variable_names):
 
 def baseline(df, alpha, indep_test = 'fisherz'):
     variable_names = list(df.columns)
-    cg = pc(df.values, alpha=alpha, indep_test=indep_test, node_names=variable_names)
+    cg = pc(df.values, alpha=alpha, indep_test=indep_test, node_names=variable_names, show_progress=False)
 
     G = _build_graph(cg, variable_names)
     return G
@@ -48,7 +52,7 @@ def with_prior(df, alpha, prior, indep_test= 'fisherz'):
     bk = _build_background_knowledge(prior, variable_names)
     cg = pc(
         df.values, alpha=alpha, indep_test=indep_test, node_names=variable_names,
-        background_knowledge=bk
+        background_knowledge=bk, show_progress=False
     )
 
     G = _build_graph(cg, variable_names)
