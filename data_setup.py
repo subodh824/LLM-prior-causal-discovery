@@ -6,11 +6,6 @@ from config import Config
 from common import utils
 import priors
 
-def parse_args():
-    p = argparse.ArgumentParser(description="Run the data generation script.")
-    p.add_argument("--leg", type=str, help="distributor_to_customer,manufacturer_to_distributor,supplier_to_manufacturer")
-    p.add_argument("--num-rows", type=int, default=500, help="Number of rows")
-    return p.parse_args()
 
 def generate_metadata(scm, output_dir):
     scm.build_ref_graph(output_dir)
@@ -67,10 +62,10 @@ def process_real_data(leg):
 
 
 if __name__ == "__main__":
-    args = parse_args()
+    args = utils.parse_args()
 
     num_rows = [250, 1000, 5000]
-    seeds = [3, 42, 5]
+    seeds = [3, 42, 5, 7, 11, 17, 23, 29, 41, 53, 67, 79, 89, 97, 101]
 
     t0 = time.time()
 

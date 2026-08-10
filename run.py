@@ -10,11 +10,6 @@ import causal_discovery
 import os
 import causal_utility
 
-def parse_args():
-    p = argparse.ArgumentParser(description="Run the causal discovery pipeline.")
-    p.add_argument("--leg", type=str, help=f'{",".join(Config.SUPPLY_CHAIN_LEGS)}')
-    return p.parse_args()
-
 def flatten_runs(results_dir):
     result_files_list = os.listdir(results_dir)
     all_runs = []
@@ -76,7 +71,7 @@ def run(leg):
         utils.create_dir_if_not_exists(prior_output_dir)
         print("Generating priors .. ")
         priors.generate_priors(data_dict, prior_output_dir, ref_G=ref_dag) 
-
+    
     # Load perfect_prior, random_priors, llm_priors, llm_consensus_prior
     all_priors = {}
     if ref_dag:
@@ -141,6 +136,11 @@ def run(leg):
     discovery_summary = causal_discovery.generate_discovery_summary(all_runs)
     utils.write_json(discovery_summary, exp_dir + '/discovery_summary.json')
 
+    if leg == 'dataco':
+        print("Writing validation summary...")
+        validation_summary = causal_discovery.generate_validation_summary(all_runs, data_dir, prior_output_dir)
+        utils.write_json(validation_summary, exp_dir + '/validation_summary.json')
+
     print("Writing utility report...")
     utility_summary = causal_utility.generate_utility_report(all_runs, data_dir, target, causes, actionables, scm)
     utils.write_json(utility_summary, exp_dir + '/utility_summary.json')
@@ -151,7 +151,7 @@ def run(leg):
 
 
 if __name__ == "__main__":
-    args = parse_args()
+    args = utils.parse_args()
 
     print("Starting Causal Discovery pipeline...")
     if args.leg is not None:

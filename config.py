@@ -40,7 +40,7 @@ class Config:
             'max_tokens': 16000,
         },
         'groq': {
-            'host': 'https://api.groq.com/openai/v1/c hat/completions',
+            'host': 'https://api.groq.com/openai/v1/chat/completions',
             'api_key': 'REDACTED',
             'model': 'llama-3.3-70b-versatile',
             'temperature': 0.7,

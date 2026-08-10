@@ -124,3 +124,47 @@ def get_scm(leg):
         Config.DATACO: dataco
     }
     return leg_to_scm[leg] if leg in leg_to_scm.keys() else None
+
+def _llm_family(row):
+    text = f"{row.get('type', '')} {row.get('prior_name', '')}".lower()
+    for fam in ["gemini", "groq", "ollama_llama", "ollama_qwen",
+                "ollama", "llama", "qwen", "cerebras"]:
+        if fam in text:
+            return fam
+    return "other"
+
+def pick_best_runs(runs):
+    df = pd.DataFrame(runs)
+    df = df[~df["type"].str.contains("random", case=False)]
+
+    min_n_rows = df["n_rows"].min()
+    max_n_rows = df["n_rows"].max()
+    df = df[df["n_rows"].isin([min_n_rows, max_n_rows])]
+
+    df["shd_sort"] = df["shd"].fillna(float("inf"))
+    df = df.sort_values(["shd_sort", "n_rows"], ascending=[True, False])
+
+    is_baseline = df["type"].str.contains("baseline", case=False)
+    is_perfect = df["type"].str.contains("perfect", case=False)
+    is_consensus = df["prior_name"].fillna("").str.contains("consensus", case=False)
+
+    baseline = df[is_baseline].groupby(["algo", "n_rows"], sort=False).head(1)
+    perfect = df[is_perfect].groupby(["algo", "n_rows"], sort=False).head(1)
+
+    cons = df[is_consensus & ~is_baseline & ~is_perfect].copy()
+    if not cons.empty:
+        cons["llm"] = cons.apply(_llm_family, axis=1)
+        consensus = cons.groupby(["algo", "n_rows", "llm"], sort=False).head(1)
+        consensus = consensus.drop(columns=["llm"])
+    else:
+        consensus = cons
+
+    picked = pd.concat([baseline, consensus, perfect])
+    picked = picked.drop(columns=["shd_sort"]).sort_values(["algo", "n_rows"], ascending=[True, True])
+    return picked.astype(object).where(pd.notnull(picked), None).to_dict("records")
+
+def parse_args():
+    import argparse
+    p = argparse.ArgumentParser(description="Run the causal discovery pipeline.")
+    p.add_argument("--leg", type=str, help=f'{",".join(Config.SUPPLY_CHAIN_LEGS)}')
+    return p.parse_args()

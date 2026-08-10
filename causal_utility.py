@@ -153,48 +153,6 @@ def shift_effect(df, model, target, lever, delta):
         "effect": float(intervened_mean - baseline_mean),
     }
 
-def _type_priority(run_type, priority_types):
-    t = run_type.lower()
-    for i, key in enumerate(priority_types):
-        if key in t:
-            return i
-    return len(priority_types)
-
-def _llm_family(row):
-    text = f"{row.get('type', '')} {row.get('prior_name', '')}".lower()
-    for fam in ["gemini", "groq", "ollama_llama", "ollama_qwen",
-                "ollama", "llama", "qwen"]:
-        if fam in text:
-            return fam
-    return "other"
-
-def pick_best_runs(runs):
-    df = pd.DataFrame(runs)
-    df = df[~df["type"].str.contains("random", case=False)]
-
-    df["shd_sort"] = df["shd"].fillna(float("inf"))
-    df = df.sort_values(["shd_sort", "n_rows"], ascending=[True, False])
-
-    is_baseline = df["type"].str.contains("baseline", case=False)
-    is_perfect = df["type"].str.contains("perfect", case=False)
-    is_consensus = df["prior_name"].fillna("").str.contains("consensus", case=False)
-
-    baseline = df[is_baseline].groupby("algo", sort=False).head(1)
-    perfect = df[is_perfect].groupby("algo", sort=False).head(1)
-
-    cons = df[is_consensus & ~is_baseline & ~is_perfect].copy()
-    if not cons.empty:
-        cons["llm"] = cons.apply(_llm_family, axis=1)
-        consensus = cons.groupby(["algo", "llm"], sort=False).head(1)
-        consensus = consensus.drop(columns=["llm"])
-    else:
-        consensus = cons
-
-    picked = pd.concat([baseline, consensus, perfect])
-    picked = picked.drop(columns=["shd_sort"])
-    return picked.astype(object).where(pd.notnull(picked), None).to_dict("records")
-
-
 def _col_stats(df, column):
     col = df[column]
     return {
@@ -210,7 +168,7 @@ def _col_stats(df, column):
 
 def generate_utility_report(all_runs, data_dir, target, causes, actionables, scm=None):
     summary = []
-    best_runs = pick_best_runs(all_runs)
+    best_runs = utils.pick_best_runs(all_runs)
     print(f"\tPicked {len(best_runs)} best runs of all {len(all_runs)} runs")
     for i, run in enumerate(best_runs):
         print(f"=" * 50)
@@ -244,23 +202,15 @@ def generate_utility_report(all_runs, data_dir, target, causes, actionables, scm
         summary.append(run)
     return summary
 
-def parse_args():
-    import argparse
-    p = argparse.ArgumentParser(description="Run the causal discovery pipeline.")
-    p.add_argument("--leg", type=str, help=f'{",".join(Config.SUPPLY_CHAIN_LEGS)}')
-    return p.parse_args()
 
-
-if __name__ == "__main__":
-    args = parse_args()
-
-    print("Starting Causal Utility pipeline...")
-    exp_dir = f'{Config.EXPERIMENTS_DIR}/{args.leg}'
+def run(leg):
+    print(f"Causal Utility pipeline for {leg}...")
+    exp_dir = f'{Config.EXPERIMENTS_DIR}/{leg}'
     all_runs = utils.read_json(exp_dir + '/all_runs.json')
 
     data_dir =  f'{exp_dir}/data'
 
-    scm = utils.get_scm(args.leg)
+    scm = utils.get_scm(leg)
 
     downstream_config_filepath = f'{exp_dir}/metadata/downstream_config.json'
     downstream_config = utils.read_json(downstream_config_filepath)
@@ -273,4 +223,17 @@ if __name__ == "__main__":
     print("Writing utility report...")
     utils.write_json(utility_summary, exp_dir + '/utility_summary.json')
 
+    
+
+if __name__ == "__main__":
+    args = utils.parse_args()
+
+    print("Starting Causal Utility pipeline...")
+    if args.leg is not None:
+        run(args.leg)
+    else:
+        for leg in Config.SUPPLY_CHAIN_LEGS:
+            run(leg)
+
     print("Done.")
+    

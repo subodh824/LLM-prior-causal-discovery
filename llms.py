@@ -1,5 +1,6 @@
 import json
 import requests
+from config import Config
 
 
 SYSTEM_PROMPT = '''You are a supply chain operations research expert helping \
@@ -95,7 +96,7 @@ def _call_ollama(cfg, data_dict):
             },
         )
         response.raise_for_status()
-    except requests.RequestException:
+    except requests.RequestException as e:
         print(f"Could not reach ollama API: {e}")
         return None
 
