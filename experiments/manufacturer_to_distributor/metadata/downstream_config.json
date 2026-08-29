@@ -1,0 +1,5 @@
+{
+  "target": "delivery_to_distributor",
+  "causes": ["machine_downtime", "demand_volatility"],
+  "actionables": ["production_schedule_stability", "production_volume"]
+}

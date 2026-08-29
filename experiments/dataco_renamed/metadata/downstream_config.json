@@ -1,0 +1,6 @@
+{
+  "renamed": true,
+  "target": "arrival_slip_days",
+  "causes": [],
+  "actionables": ["service_tier", "promised_transit_days", "handling_lead_days"]
+}

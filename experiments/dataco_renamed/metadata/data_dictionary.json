@@ -1,0 +1,50 @@
+{
+  "leg": "dataco",
+  "renamed": true,
+  "natural": [
+    {
+      "name": "service_tier",
+      "description": "Ordinal tier of the transport service booked for a consignment (0 = fastest promise, 3 = slowest)."
+    },
+    {
+      "name": "promised_transit_days",
+      "description": "Days quoted to the client for the consignment to arrive."
+    },
+    {
+      "name": "handling_lead_days",
+      "description": "Days between booking and dispatch (internal handling before carrier pickup)."
+    },
+    {
+      "name": "serve_distance_km",
+      "description": "Great-circle distance from destination to the network hub, in km."
+    },
+    {
+      "name": "line_count",
+      "description": "Number of distinct product lines in the consignment."
+    },
+    {
+      "name": "unit_total",
+      "description": "Total units across all lines of the consignment."
+    },
+    {
+      "name": "consignment_value",
+      "description": "Monetary value of the consignment."
+    },
+    {
+      "name": "mean_markdown",
+      "description": "Average markdown applied to the consignment's lines."
+    },
+    {
+      "name": "same_day_workload",
+      "description": "Consignments booked by the seller on the same day (workload proxy)."
+    },
+    {
+      "name": "zone_weekly_bookings",
+      "description": "Consignments headed to the same zone in the same week (local demand proxy)."
+    },
+    {
+      "name": "arrival_slip_days",
+      "description": "Actual transit days minus promised transit days; positive = late (outcome)."
+    }
+  ]
+}

@@ -1,0 +1,3866 @@
+{
+  "name": "data_62897.csv",
+  "seed": null,
+  "num_rows": 62897,
+  "runs": [
+    {
+      "algo": "PC",
+      "type": "Baseline",
+      "prior_name": null,
+      "shd": null,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "n_edges_est": 4,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "service_tier"
+          },
+          {
+            "id": "promised_transit_days"
+          },
+          {
+            "id": "handling_lead_days"
+          },
+          {
+            "id": "serve_distance_km"
+          },
+          {
+            "id": "line_count"
+          },
+          {
+            "id": "unit_total"
+          },
+          {
+            "id": "consignment_value"
+          },
+          {
+            "id": "mean_markdown"
+          },
+          {
+            "id": "same_day_workload"
+          },
+          {
+            "id": "zone_weekly_bookings"
+          },
+          {
+            "id": "arrival_slip_days"
+          }
+        ],
+        "links": [
+          {
+            "source": "line_count",
+            "target": "consignment_value"
+          },
+          {
+            "source": "unit_total",
+            "target": "consignment_value"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "consignment_value"
+          },
+          {
+            "source": "zone_weekly_bookings",
+            "target": "consignment_value"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "PC",
+      "type": "random",
+      "prior_name": "random_prior_1",
+      "shd": null,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "n_edges_est": 11,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "service_tier"
+          },
+          {
+            "id": "promised_transit_days"
+          },
+          {
+            "id": "handling_lead_days"
+          },
+          {
+            "id": "serve_distance_km"
+          },
+          {
+            "id": "line_count"
+          },
+          {
+            "id": "unit_total"
+          },
+          {
+            "id": "consignment_value"
+          },
+          {
+            "id": "mean_markdown"
+          },
+          {
+            "id": "same_day_workload"
+          },
+          {
+            "id": "zone_weekly_bookings"
+          },
+          {
+            "id": "arrival_slip_days"
+          }
+        ],
+        "links": [
+          {
+            "source": "service_tier",
+            "target": "promised_transit_days"
+          },
+          {
+            "source": "service_tier",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "promised_transit_days",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "handling_lead_days",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "line_count",
+            "target": "unit_total"
+          },
+          {
+            "source": "line_count",
+            "target": "consignment_value"
+          },
+          {
+            "source": "consignment_value",
+            "target": "unit_total"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "unit_total"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "consignment_value"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "zone_weekly_bookings"
+          },
+          {
+            "source": "zone_weekly_bookings",
+            "target": "consignment_value"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "PC",
+      "type": "ollama_llama",
+      "prior_name": "ollama_llama_prior_0",
+      "shd": null,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "n_edges_est": 14,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "service_tier"
+          },
+          {
+            "id": "promised_transit_days"
+          },
+          {
+            "id": "handling_lead_days"
+          },
+          {
+            "id": "serve_distance_km"
+          },
+          {
+            "id": "line_count"
+          },
+          {
+            "id": "unit_total"
+          },
+          {
+            "id": "consignment_value"
+          },
+          {
+            "id": "mean_markdown"
+          },
+          {
+            "id": "same_day_workload"
+          },
+          {
+            "id": "zone_weekly_bookings"
+          },
+          {
+            "id": "arrival_slip_days"
+          }
+        ],
+        "links": [
+          {
+            "source": "service_tier",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "promised_transit_days",
+            "target": "service_tier"
+          },
+          {
+            "source": "promised_transit_days",
+            "target": "handling_lead_days"
+          },
+          {
+            "source": "promised_transit_days",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "handling_lead_days",
+            "target": "service_tier"
+          },
+          {
+            "source": "handling_lead_days",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "line_count",
+            "target": "unit_total"
+          },
+          {
+            "source": "line_count",
+            "target": "consignment_value"
+          },
+          {
+            "source": "unit_total",
+            "target": "consignment_value"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "line_count"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "unit_total"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "consignment_value"
+          },
+          {
+            "source": "zone_weekly_bookings",
+            "target": "consignment_value"
+          },
+          {
+            "source": "zone_weekly_bookings",
+            "target": "same_day_workload"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "PC",
+      "type": "ollama_llama_consensus",
+      "prior_name": "ollama_llama_consensus_prior",
+      "shd": null,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "n_edges_est": 14,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "service_tier"
+          },
+          {
+            "id": "promised_transit_days"
+          },
+          {
+            "id": "handling_lead_days"
+          },
+          {
+            "id": "serve_distance_km"
+          },
+          {
+            "id": "line_count"
+          },
+          {
+            "id": "unit_total"
+          },
+          {
+            "id": "consignment_value"
+          },
+          {
+            "id": "mean_markdown"
+          },
+          {
+            "id": "same_day_workload"
+          },
+          {
+            "id": "zone_weekly_bookings"
+          },
+          {
+            "id": "arrival_slip_days"
+          }
+        ],
+        "links": [
+          {
+            "source": "service_tier",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "promised_transit_days",
+            "target": "service_tier"
+          },
+          {
+            "source": "promised_transit_days",
+            "target": "handling_lead_days"
+          },
+          {
+            "source": "promised_transit_days",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "handling_lead_days",
+            "target": "service_tier"
+          },
+          {
+            "source": "handling_lead_days",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "line_count",
+            "target": "unit_total"
+          },
+          {
+            "source": "line_count",
+            "target": "consignment_value"
+          },
+          {
+            "source": "line_count",
+            "target": "same_day_workload"
+          },
+          {
+            "source": "consignment_value",
+            "target": "unit_total"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "unit_total"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "consignment_value"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "zone_weekly_bookings"
+          },
+          {
+            "source": "zone_weekly_bookings",
+            "target": "consignment_value"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "PC",
+      "type": "ollama_qwen",
+      "prior_name": "ollama_qwen_prior_1",
+      "shd": null,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "n_edges_est": 7,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "service_tier"
+          },
+          {
+            "id": "promised_transit_days"
+          },
+          {
+            "id": "handling_lead_days"
+          },
+          {
+            "id": "serve_distance_km"
+          },
+          {
+            "id": "line_count"
+          },
+          {
+            "id": "unit_total"
+          },
+          {
+            "id": "consignment_value"
+          },
+          {
+            "id": "mean_markdown"
+          },
+          {
+            "id": "same_day_workload"
+          },
+          {
+            "id": "zone_weekly_bookings"
+          },
+          {
+            "id": "arrival_slip_days"
+          }
+        ],
+        "links": [
+          {
+            "source": "line_count",
+            "target": "unit_total"
+          },
+          {
+            "source": "line_count",
+            "target": "consignment_value"
+          },
+          {
+            "source": "line_count",
+            "target": "same_day_workload"
+          },
+          {
+            "source": "unit_total",
+            "target": "consignment_value"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "consignment_value"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "zone_weekly_bookings"
+          },
+          {
+            "source": "zone_weekly_bookings",
+            "target": "consignment_value"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "PC",
+      "type": "ollama_qwen_consensus",
+      "prior_name": "ollama_qwen_consensus_prior",
+      "shd": null,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "n_edges_est": 11,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "service_tier"
+          },
+          {
+            "id": "promised_transit_days"
+          },
+          {
+            "id": "handling_lead_days"
+          },
+          {
+            "id": "serve_distance_km"
+          },
+          {
+            "id": "line_count"
+          },
+          {
+            "id": "unit_total"
+          },
+          {
+            "id": "consignment_value"
+          },
+          {
+            "id": "mean_markdown"
+          },
+          {
+            "id": "same_day_workload"
+          },
+          {
+            "id": "zone_weekly_bookings"
+          },
+          {
+            "id": "arrival_slip_days"
+          }
+        ],
+        "links": [
+          {
+            "source": "service_tier",
+            "target": "handling_lead_days"
+          },
+          {
+            "source": "service_tier",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "line_count",
+            "target": "consignment_value"
+          },
+          {
+            "source": "unit_total",
+            "target": "line_count"
+          },
+          {
+            "source": "unit_total",
+            "target": "consignment_value"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "line_count"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "unit_total"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "consignment_value"
+          },
+          {
+            "source": "zone_weekly_bookings",
+            "target": "consignment_value"
+          },
+          {
+            "source": "zone_weekly_bookings",
+            "target": "same_day_workload"
+          },
+          {
+            "source": "arrival_slip_days",
+            "target": "handling_lead_days"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "PC",
+      "type": "gemini",
+      "prior_name": "gemini_prior_1",
+      "shd": null,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "n_edges_est": 11,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "service_tier"
+          },
+          {
+            "id": "promised_transit_days"
+          },
+          {
+            "id": "handling_lead_days"
+          },
+          {
+            "id": "serve_distance_km"
+          },
+          {
+            "id": "line_count"
+          },
+          {
+            "id": "unit_total"
+          },
+          {
+            "id": "consignment_value"
+          },
+          {
+            "id": "mean_markdown"
+          },
+          {
+            "id": "same_day_workload"
+          },
+          {
+            "id": "zone_weekly_bookings"
+          },
+          {
+            "id": "arrival_slip_days"
+          }
+        ],
+        "links": [
+          {
+            "source": "service_tier",
+            "target": "promised_transit_days"
+          },
+          {
+            "source": "service_tier",
+            "target": "handling_lead_days"
+          },
+          {
+            "source": "service_tier",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "promised_transit_days",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "line_count",
+            "target": "consignment_value"
+          },
+          {
+            "source": "line_count",
+            "target": "same_day_workload"
+          },
+          {
+            "source": "unit_total",
+            "target": "consignment_value"
+          },
+          {
+            "source": "unit_total",
+            "target": "same_day_workload"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "consignment_value"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "zone_weekly_bookings"
+          },
+          {
+            "source": "zone_weekly_bookings",
+            "target": "consignment_value"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "PC",
+      "type": "gemini_consensus",
+      "prior_name": "gemini_consensus_prior",
+      "shd": null,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "n_edges_est": 9,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "service_tier"
+          },
+          {
+            "id": "promised_transit_days"
+          },
+          {
+            "id": "handling_lead_days"
+          },
+          {
+            "id": "serve_distance_km"
+          },
+          {
+            "id": "line_count"
+          },
+          {
+            "id": "unit_total"
+          },
+          {
+            "id": "consignment_value"
+          },
+          {
+            "id": "mean_markdown"
+          },
+          {
+            "id": "same_day_workload"
+          },
+          {
+            "id": "zone_weekly_bookings"
+          },
+          {
+            "id": "arrival_slip_days"
+          }
+        ],
+        "links": [
+          {
+            "source": "service_tier",
+            "target": "promised_transit_days"
+          },
+          {
+            "source": "service_tier",
+            "target": "handling_lead_days"
+          },
+          {
+            "source": "service_tier",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "promised_transit_days",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "handling_lead_days",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "line_count",
+            "target": "consignment_value"
+          },
+          {
+            "source": "unit_total",
+            "target": "consignment_value"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "consignment_value"
+          },
+          {
+            "source": "zone_weekly_bookings",
+            "target": "consignment_value"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "PC",
+      "type": "cerebras",
+      "prior_name": "cerebras_prior_2",
+      "shd": null,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "n_edges_est": 12,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "service_tier"
+          },
+          {
+            "id": "promised_transit_days"
+          },
+          {
+            "id": "handling_lead_days"
+          },
+          {
+            "id": "serve_distance_km"
+          },
+          {
+            "id": "line_count"
+          },
+          {
+            "id": "unit_total"
+          },
+          {
+            "id": "consignment_value"
+          },
+          {
+            "id": "mean_markdown"
+          },
+          {
+            "id": "same_day_workload"
+          },
+          {
+            "id": "zone_weekly_bookings"
+          },
+          {
+            "id": "arrival_slip_days"
+          }
+        ],
+        "links": [
+          {
+            "source": "service_tier",
+            "target": "promised_transit_days"
+          },
+          {
+            "source": "service_tier",
+            "target": "handling_lead_days"
+          },
+          {
+            "source": "service_tier",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "promised_transit_days",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "handling_lead_days",
+            "target": "promised_transit_days"
+          },
+          {
+            "source": "handling_lead_days",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "line_count",
+            "target": "unit_total"
+          },
+          {
+            "source": "line_count",
+            "target": "consignment_value"
+          },
+          {
+            "source": "unit_total",
+            "target": "consignment_value"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "unit_total"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "consignment_value"
+          },
+          {
+            "source": "zone_weekly_bookings",
+            "target": "consignment_value"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "PC",
+      "type": "cerebras_consensus",
+      "prior_name": "cerebras_consensus_prior",
+      "shd": null,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "n_edges_est": 12,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "service_tier"
+          },
+          {
+            "id": "promised_transit_days"
+          },
+          {
+            "id": "handling_lead_days"
+          },
+          {
+            "id": "serve_distance_km"
+          },
+          {
+            "id": "line_count"
+          },
+          {
+            "id": "unit_total"
+          },
+          {
+            "id": "consignment_value"
+          },
+          {
+            "id": "mean_markdown"
+          },
+          {
+            "id": "same_day_workload"
+          },
+          {
+            "id": "zone_weekly_bookings"
+          },
+          {
+            "id": "arrival_slip_days"
+          }
+        ],
+        "links": [
+          {
+            "source": "service_tier",
+            "target": "promised_transit_days"
+          },
+          {
+            "source": "service_tier",
+            "target": "handling_lead_days"
+          },
+          {
+            "source": "service_tier",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "promised_transit_days",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "handling_lead_days",
+            "target": "promised_transit_days"
+          },
+          {
+            "source": "handling_lead_days",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "line_count",
+            "target": "unit_total"
+          },
+          {
+            "source": "line_count",
+            "target": "consignment_value"
+          },
+          {
+            "source": "unit_total",
+            "target": "consignment_value"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "unit_total"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "consignment_value"
+          },
+          {
+            "source": "zone_weekly_bookings",
+            "target": "consignment_value"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "Baseline",
+      "prior_name": null,
+      "shd": null,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "n_edges_est": 14,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "service_tier"
+          },
+          {
+            "id": "promised_transit_days"
+          },
+          {
+            "id": "handling_lead_days"
+          },
+          {
+            "id": "serve_distance_km"
+          },
+          {
+            "id": "line_count"
+          },
+          {
+            "id": "unit_total"
+          },
+          {
+            "id": "consignment_value"
+          },
+          {
+            "id": "mean_markdown"
+          },
+          {
+            "id": "same_day_workload"
+          },
+          {
+            "id": "zone_weekly_bookings"
+          },
+          {
+            "id": "arrival_slip_days"
+          }
+        ],
+        "links": [
+          {
+            "source": "service_tier",
+            "target": "promised_transit_days"
+          },
+          {
+            "source": "service_tier",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "promised_transit_days",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "handling_lead_days",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "handling_lead_days",
+            "target": "service_tier"
+          },
+          {
+            "source": "handling_lead_days",
+            "target": "promised_transit_days"
+          },
+          {
+            "source": "line_count",
+            "target": "consignment_value"
+          },
+          {
+            "source": "line_count",
+            "target": "same_day_workload"
+          },
+          {
+            "source": "unit_total",
+            "target": "line_count"
+          },
+          {
+            "source": "unit_total",
+            "target": "consignment_value"
+          },
+          {
+            "source": "unit_total",
+            "target": "same_day_workload"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "consignment_value"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "zone_weekly_bookings"
+          },
+          {
+            "source": "zone_weekly_bookings",
+            "target": "consignment_value"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "random",
+      "prior_name": "random_prior_1",
+      "params": {
+        "lambda": 0.1
+      },
+      "shd": null,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "n_edges_est": 15,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "service_tier"
+          },
+          {
+            "id": "promised_transit_days"
+          },
+          {
+            "id": "handling_lead_days"
+          },
+          {
+            "id": "serve_distance_km"
+          },
+          {
+            "id": "line_count"
+          },
+          {
+            "id": "unit_total"
+          },
+          {
+            "id": "consignment_value"
+          },
+          {
+            "id": "mean_markdown"
+          },
+          {
+            "id": "same_day_workload"
+          },
+          {
+            "id": "zone_weekly_bookings"
+          },
+          {
+            "id": "arrival_slip_days"
+          }
+        ],
+        "links": [
+          {
+            "source": "service_tier",
+            "target": "promised_transit_days"
+          },
+          {
+            "source": "service_tier",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "promised_transit_days",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "handling_lead_days",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "handling_lead_days",
+            "target": "service_tier"
+          },
+          {
+            "source": "handling_lead_days",
+            "target": "promised_transit_days"
+          },
+          {
+            "source": "line_count",
+            "target": "unit_total"
+          },
+          {
+            "source": "line_count",
+            "target": "consignment_value"
+          },
+          {
+            "source": "consignment_value",
+            "target": "unit_total"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "line_count"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "unit_total"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "consignment_value"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "zone_weekly_bookings"
+          },
+          {
+            "source": "zone_weekly_bookings",
+            "target": "consignment_value"
+          },
+          {
+            "source": "zone_weekly_bookings",
+            "target": "unit_total"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "random",
+      "prior_name": "random_prior_1",
+      "params": {
+        "lambda": 0.5
+      },
+      "shd": null,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "n_edges_est": 15,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "service_tier"
+          },
+          {
+            "id": "promised_transit_days"
+          },
+          {
+            "id": "handling_lead_days"
+          },
+          {
+            "id": "serve_distance_km"
+          },
+          {
+            "id": "line_count"
+          },
+          {
+            "id": "unit_total"
+          },
+          {
+            "id": "consignment_value"
+          },
+          {
+            "id": "mean_markdown"
+          },
+          {
+            "id": "same_day_workload"
+          },
+          {
+            "id": "zone_weekly_bookings"
+          },
+          {
+            "id": "arrival_slip_days"
+          }
+        ],
+        "links": [
+          {
+            "source": "service_tier",
+            "target": "promised_transit_days"
+          },
+          {
+            "source": "service_tier",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "promised_transit_days",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "handling_lead_days",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "handling_lead_days",
+            "target": "service_tier"
+          },
+          {
+            "source": "handling_lead_days",
+            "target": "promised_transit_days"
+          },
+          {
+            "source": "line_count",
+            "target": "unit_total"
+          },
+          {
+            "source": "line_count",
+            "target": "consignment_value"
+          },
+          {
+            "source": "consignment_value",
+            "target": "unit_total"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "line_count"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "unit_total"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "consignment_value"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "zone_weekly_bookings"
+          },
+          {
+            "source": "zone_weekly_bookings",
+            "target": "consignment_value"
+          },
+          {
+            "source": "zone_weekly_bookings",
+            "target": "unit_total"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "random",
+      "prior_name": "random_prior_1",
+      "params": {
+        "lambda": 0.9
+      },
+      "shd": null,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "n_edges_est": 15,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "service_tier"
+          },
+          {
+            "id": "promised_transit_days"
+          },
+          {
+            "id": "handling_lead_days"
+          },
+          {
+            "id": "serve_distance_km"
+          },
+          {
+            "id": "line_count"
+          },
+          {
+            "id": "unit_total"
+          },
+          {
+            "id": "consignment_value"
+          },
+          {
+            "id": "mean_markdown"
+          },
+          {
+            "id": "same_day_workload"
+          },
+          {
+            "id": "zone_weekly_bookings"
+          },
+          {
+            "id": "arrival_slip_days"
+          }
+        ],
+        "links": [
+          {
+            "source": "service_tier",
+            "target": "promised_transit_days"
+          },
+          {
+            "source": "service_tier",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "promised_transit_days",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "handling_lead_days",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "handling_lead_days",
+            "target": "service_tier"
+          },
+          {
+            "source": "handling_lead_days",
+            "target": "promised_transit_days"
+          },
+          {
+            "source": "line_count",
+            "target": "unit_total"
+          },
+          {
+            "source": "line_count",
+            "target": "consignment_value"
+          },
+          {
+            "source": "consignment_value",
+            "target": "unit_total"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "line_count"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "unit_total"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "consignment_value"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "zone_weekly_bookings"
+          },
+          {
+            "source": "zone_weekly_bookings",
+            "target": "consignment_value"
+          },
+          {
+            "source": "zone_weekly_bookings",
+            "target": "unit_total"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "ollama_llama",
+      "prior_name": "ollama_llama_prior_0",
+      "params": {
+        "lambda": 0.1
+      },
+      "shd": null,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "n_edges_est": 14,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "service_tier"
+          },
+          {
+            "id": "promised_transit_days"
+          },
+          {
+            "id": "handling_lead_days"
+          },
+          {
+            "id": "serve_distance_km"
+          },
+          {
+            "id": "line_count"
+          },
+          {
+            "id": "unit_total"
+          },
+          {
+            "id": "consignment_value"
+          },
+          {
+            "id": "mean_markdown"
+          },
+          {
+            "id": "same_day_workload"
+          },
+          {
+            "id": "zone_weekly_bookings"
+          },
+          {
+            "id": "arrival_slip_days"
+          }
+        ],
+        "links": [
+          {
+            "source": "service_tier",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "promised_transit_days",
+            "target": "service_tier"
+          },
+          {
+            "source": "promised_transit_days",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "promised_transit_days",
+            "target": "handling_lead_days"
+          },
+          {
+            "source": "handling_lead_days",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "handling_lead_days",
+            "target": "service_tier"
+          },
+          {
+            "source": "line_count",
+            "target": "unit_total"
+          },
+          {
+            "source": "line_count",
+            "target": "consignment_value"
+          },
+          {
+            "source": "unit_total",
+            "target": "consignment_value"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "line_count"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "unit_total"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "consignment_value"
+          },
+          {
+            "source": "zone_weekly_bookings",
+            "target": "consignment_value"
+          },
+          {
+            "source": "zone_weekly_bookings",
+            "target": "same_day_workload"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "ollama_llama",
+      "prior_name": "ollama_llama_prior_0",
+      "params": {
+        "lambda": 0.5
+      },
+      "shd": null,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "n_edges_est": 14,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "service_tier"
+          },
+          {
+            "id": "promised_transit_days"
+          },
+          {
+            "id": "handling_lead_days"
+          },
+          {
+            "id": "serve_distance_km"
+          },
+          {
+            "id": "line_count"
+          },
+          {
+            "id": "unit_total"
+          },
+          {
+            "id": "consignment_value"
+          },
+          {
+            "id": "mean_markdown"
+          },
+          {
+            "id": "same_day_workload"
+          },
+          {
+            "id": "zone_weekly_bookings"
+          },
+          {
+            "id": "arrival_slip_days"
+          }
+        ],
+        "links": [
+          {
+            "source": "service_tier",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "promised_transit_days",
+            "target": "service_tier"
+          },
+          {
+            "source": "promised_transit_days",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "promised_transit_days",
+            "target": "handling_lead_days"
+          },
+          {
+            "source": "handling_lead_days",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "handling_lead_days",
+            "target": "service_tier"
+          },
+          {
+            "source": "line_count",
+            "target": "unit_total"
+          },
+          {
+            "source": "line_count",
+            "target": "consignment_value"
+          },
+          {
+            "source": "unit_total",
+            "target": "consignment_value"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "line_count"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "unit_total"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "consignment_value"
+          },
+          {
+            "source": "zone_weekly_bookings",
+            "target": "consignment_value"
+          },
+          {
+            "source": "zone_weekly_bookings",
+            "target": "same_day_workload"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "ollama_llama",
+      "prior_name": "ollama_llama_prior_0",
+      "params": {
+        "lambda": 0.9
+      },
+      "shd": null,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "n_edges_est": 14,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "service_tier"
+          },
+          {
+            "id": "promised_transit_days"
+          },
+          {
+            "id": "handling_lead_days"
+          },
+          {
+            "id": "serve_distance_km"
+          },
+          {
+            "id": "line_count"
+          },
+          {
+            "id": "unit_total"
+          },
+          {
+            "id": "consignment_value"
+          },
+          {
+            "id": "mean_markdown"
+          },
+          {
+            "id": "same_day_workload"
+          },
+          {
+            "id": "zone_weekly_bookings"
+          },
+          {
+            "id": "arrival_slip_days"
+          }
+        ],
+        "links": [
+          {
+            "source": "service_tier",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "promised_transit_days",
+            "target": "service_tier"
+          },
+          {
+            "source": "promised_transit_days",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "promised_transit_days",
+            "target": "handling_lead_days"
+          },
+          {
+            "source": "handling_lead_days",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "handling_lead_days",
+            "target": "service_tier"
+          },
+          {
+            "source": "line_count",
+            "target": "unit_total"
+          },
+          {
+            "source": "line_count",
+            "target": "consignment_value"
+          },
+          {
+            "source": "unit_total",
+            "target": "consignment_value"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "line_count"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "unit_total"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "consignment_value"
+          },
+          {
+            "source": "zone_weekly_bookings",
+            "target": "consignment_value"
+          },
+          {
+            "source": "zone_weekly_bookings",
+            "target": "same_day_workload"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "ollama_llama_consensus",
+      "prior_name": "ollama_llama_consensus_prior",
+      "params": {
+        "lambda": 0.1
+      },
+      "shd": null,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "n_edges_est": 15,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "service_tier"
+          },
+          {
+            "id": "promised_transit_days"
+          },
+          {
+            "id": "handling_lead_days"
+          },
+          {
+            "id": "serve_distance_km"
+          },
+          {
+            "id": "line_count"
+          },
+          {
+            "id": "unit_total"
+          },
+          {
+            "id": "consignment_value"
+          },
+          {
+            "id": "mean_markdown"
+          },
+          {
+            "id": "same_day_workload"
+          },
+          {
+            "id": "zone_weekly_bookings"
+          },
+          {
+            "id": "arrival_slip_days"
+          }
+        ],
+        "links": [
+          {
+            "source": "service_tier",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "promised_transit_days",
+            "target": "service_tier"
+          },
+          {
+            "source": "promised_transit_days",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "promised_transit_days",
+            "target": "handling_lead_days"
+          },
+          {
+            "source": "handling_lead_days",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "handling_lead_days",
+            "target": "service_tier"
+          },
+          {
+            "source": "line_count",
+            "target": "unit_total"
+          },
+          {
+            "source": "line_count",
+            "target": "consignment_value"
+          },
+          {
+            "source": "line_count",
+            "target": "same_day_workload"
+          },
+          {
+            "source": "consignment_value",
+            "target": "unit_total"
+          },
+          {
+            "source": "consignment_value",
+            "target": "same_day_workload"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "unit_total"
+          },
+          {
+            "source": "zone_weekly_bookings",
+            "target": "consignment_value"
+          },
+          {
+            "source": "zone_weekly_bookings",
+            "target": "same_day_workload"
+          },
+          {
+            "source": "zone_weekly_bookings",
+            "target": "unit_total"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "ollama_llama_consensus",
+      "prior_name": "ollama_llama_consensus_prior",
+      "params": {
+        "lambda": 0.5
+      },
+      "shd": null,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "n_edges_est": 15,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "service_tier"
+          },
+          {
+            "id": "promised_transit_days"
+          },
+          {
+            "id": "handling_lead_days"
+          },
+          {
+            "id": "serve_distance_km"
+          },
+          {
+            "id": "line_count"
+          },
+          {
+            "id": "unit_total"
+          },
+          {
+            "id": "consignment_value"
+          },
+          {
+            "id": "mean_markdown"
+          },
+          {
+            "id": "same_day_workload"
+          },
+          {
+            "id": "zone_weekly_bookings"
+          },
+          {
+            "id": "arrival_slip_days"
+          }
+        ],
+        "links": [
+          {
+            "source": "service_tier",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "promised_transit_days",
+            "target": "service_tier"
+          },
+          {
+            "source": "promised_transit_days",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "promised_transit_days",
+            "target": "handling_lead_days"
+          },
+          {
+            "source": "handling_lead_days",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "handling_lead_days",
+            "target": "service_tier"
+          },
+          {
+            "source": "line_count",
+            "target": "unit_total"
+          },
+          {
+            "source": "line_count",
+            "target": "consignment_value"
+          },
+          {
+            "source": "line_count",
+            "target": "same_day_workload"
+          },
+          {
+            "source": "consignment_value",
+            "target": "unit_total"
+          },
+          {
+            "source": "consignment_value",
+            "target": "same_day_workload"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "unit_total"
+          },
+          {
+            "source": "zone_weekly_bookings",
+            "target": "consignment_value"
+          },
+          {
+            "source": "zone_weekly_bookings",
+            "target": "same_day_workload"
+          },
+          {
+            "source": "zone_weekly_bookings",
+            "target": "unit_total"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "ollama_llama_consensus",
+      "prior_name": "ollama_llama_consensus_prior",
+      "params": {
+        "lambda": 0.9
+      },
+      "shd": null,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "n_edges_est": 15,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "service_tier"
+          },
+          {
+            "id": "promised_transit_days"
+          },
+          {
+            "id": "handling_lead_days"
+          },
+          {
+            "id": "serve_distance_km"
+          },
+          {
+            "id": "line_count"
+          },
+          {
+            "id": "unit_total"
+          },
+          {
+            "id": "consignment_value"
+          },
+          {
+            "id": "mean_markdown"
+          },
+          {
+            "id": "same_day_workload"
+          },
+          {
+            "id": "zone_weekly_bookings"
+          },
+          {
+            "id": "arrival_slip_days"
+          }
+        ],
+        "links": [
+          {
+            "source": "service_tier",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "promised_transit_days",
+            "target": "service_tier"
+          },
+          {
+            "source": "promised_transit_days",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "promised_transit_days",
+            "target": "handling_lead_days"
+          },
+          {
+            "source": "handling_lead_days",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "handling_lead_days",
+            "target": "service_tier"
+          },
+          {
+            "source": "line_count",
+            "target": "unit_total"
+          },
+          {
+            "source": "line_count",
+            "target": "consignment_value"
+          },
+          {
+            "source": "line_count",
+            "target": "same_day_workload"
+          },
+          {
+            "source": "consignment_value",
+            "target": "unit_total"
+          },
+          {
+            "source": "consignment_value",
+            "target": "same_day_workload"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "unit_total"
+          },
+          {
+            "source": "zone_weekly_bookings",
+            "target": "consignment_value"
+          },
+          {
+            "source": "zone_weekly_bookings",
+            "target": "same_day_workload"
+          },
+          {
+            "source": "zone_weekly_bookings",
+            "target": "unit_total"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "ollama_qwen",
+      "prior_name": "ollama_qwen_prior_1",
+      "params": {
+        "lambda": 0.1
+      },
+      "shd": null,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "n_edges_est": 14,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "service_tier"
+          },
+          {
+            "id": "promised_transit_days"
+          },
+          {
+            "id": "handling_lead_days"
+          },
+          {
+            "id": "serve_distance_km"
+          },
+          {
+            "id": "line_count"
+          },
+          {
+            "id": "unit_total"
+          },
+          {
+            "id": "consignment_value"
+          },
+          {
+            "id": "mean_markdown"
+          },
+          {
+            "id": "same_day_workload"
+          },
+          {
+            "id": "zone_weekly_bookings"
+          },
+          {
+            "id": "arrival_slip_days"
+          }
+        ],
+        "links": [
+          {
+            "source": "service_tier",
+            "target": "promised_transit_days"
+          },
+          {
+            "source": "service_tier",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "promised_transit_days",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "handling_lead_days",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "handling_lead_days",
+            "target": "service_tier"
+          },
+          {
+            "source": "handling_lead_days",
+            "target": "promised_transit_days"
+          },
+          {
+            "source": "line_count",
+            "target": "unit_total"
+          },
+          {
+            "source": "line_count",
+            "target": "consignment_value"
+          },
+          {
+            "source": "line_count",
+            "target": "same_day_workload"
+          },
+          {
+            "source": "unit_total",
+            "target": "consignment_value"
+          },
+          {
+            "source": "unit_total",
+            "target": "same_day_workload"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "consignment_value"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "zone_weekly_bookings"
+          },
+          {
+            "source": "zone_weekly_bookings",
+            "target": "consignment_value"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "ollama_qwen",
+      "prior_name": "ollama_qwen_prior_1",
+      "params": {
+        "lambda": 0.5
+      },
+      "shd": null,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "n_edges_est": 14,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "service_tier"
+          },
+          {
+            "id": "promised_transit_days"
+          },
+          {
+            "id": "handling_lead_days"
+          },
+          {
+            "id": "serve_distance_km"
+          },
+          {
+            "id": "line_count"
+          },
+          {
+            "id": "unit_total"
+          },
+          {
+            "id": "consignment_value"
+          },
+          {
+            "id": "mean_markdown"
+          },
+          {
+            "id": "same_day_workload"
+          },
+          {
+            "id": "zone_weekly_bookings"
+          },
+          {
+            "id": "arrival_slip_days"
+          }
+        ],
+        "links": [
+          {
+            "source": "service_tier",
+            "target": "promised_transit_days"
+          },
+          {
+            "source": "service_tier",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "promised_transit_days",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "handling_lead_days",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "handling_lead_days",
+            "target": "service_tier"
+          },
+          {
+            "source": "handling_lead_days",
+            "target": "promised_transit_days"
+          },
+          {
+            "source": "line_count",
+            "target": "unit_total"
+          },
+          {
+            "source": "line_count",
+            "target": "consignment_value"
+          },
+          {
+            "source": "line_count",
+            "target": "same_day_workload"
+          },
+          {
+            "source": "unit_total",
+            "target": "consignment_value"
+          },
+          {
+            "source": "unit_total",
+            "target": "same_day_workload"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "consignment_value"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "zone_weekly_bookings"
+          },
+          {
+            "source": "zone_weekly_bookings",
+            "target": "consignment_value"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "ollama_qwen",
+      "prior_name": "ollama_qwen_prior_1",
+      "params": {
+        "lambda": 0.9
+      },
+      "shd": null,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "n_edges_est": 14,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "service_tier"
+          },
+          {
+            "id": "promised_transit_days"
+          },
+          {
+            "id": "handling_lead_days"
+          },
+          {
+            "id": "serve_distance_km"
+          },
+          {
+            "id": "line_count"
+          },
+          {
+            "id": "unit_total"
+          },
+          {
+            "id": "consignment_value"
+          },
+          {
+            "id": "mean_markdown"
+          },
+          {
+            "id": "same_day_workload"
+          },
+          {
+            "id": "zone_weekly_bookings"
+          },
+          {
+            "id": "arrival_slip_days"
+          }
+        ],
+        "links": [
+          {
+            "source": "service_tier",
+            "target": "promised_transit_days"
+          },
+          {
+            "source": "service_tier",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "promised_transit_days",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "handling_lead_days",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "handling_lead_days",
+            "target": "service_tier"
+          },
+          {
+            "source": "handling_lead_days",
+            "target": "promised_transit_days"
+          },
+          {
+            "source": "line_count",
+            "target": "unit_total"
+          },
+          {
+            "source": "line_count",
+            "target": "consignment_value"
+          },
+          {
+            "source": "line_count",
+            "target": "same_day_workload"
+          },
+          {
+            "source": "unit_total",
+            "target": "consignment_value"
+          },
+          {
+            "source": "unit_total",
+            "target": "same_day_workload"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "consignment_value"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "zone_weekly_bookings"
+          },
+          {
+            "source": "zone_weekly_bookings",
+            "target": "consignment_value"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "ollama_qwen_consensus",
+      "prior_name": "ollama_qwen_consensus_prior",
+      "params": {
+        "lambda": 0.1
+      },
+      "shd": null,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "n_edges_est": 14,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "service_tier"
+          },
+          {
+            "id": "promised_transit_days"
+          },
+          {
+            "id": "handling_lead_days"
+          },
+          {
+            "id": "serve_distance_km"
+          },
+          {
+            "id": "line_count"
+          },
+          {
+            "id": "unit_total"
+          },
+          {
+            "id": "consignment_value"
+          },
+          {
+            "id": "mean_markdown"
+          },
+          {
+            "id": "same_day_workload"
+          },
+          {
+            "id": "zone_weekly_bookings"
+          },
+          {
+            "id": "arrival_slip_days"
+          }
+        ],
+        "links": [
+          {
+            "source": "service_tier",
+            "target": "promised_transit_days"
+          },
+          {
+            "source": "service_tier",
+            "target": "handling_lead_days"
+          },
+          {
+            "source": "service_tier",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "promised_transit_days",
+            "target": "handling_lead_days"
+          },
+          {
+            "source": "line_count",
+            "target": "consignment_value"
+          },
+          {
+            "source": "unit_total",
+            "target": "line_count"
+          },
+          {
+            "source": "unit_total",
+            "target": "consignment_value"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "line_count"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "consignment_value"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "unit_total"
+          },
+          {
+            "source": "zone_weekly_bookings",
+            "target": "consignment_value"
+          },
+          {
+            "source": "zone_weekly_bookings",
+            "target": "same_day_workload"
+          },
+          {
+            "source": "arrival_slip_days",
+            "target": "handling_lead_days"
+          },
+          {
+            "source": "arrival_slip_days",
+            "target": "promised_transit_days"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "ollama_qwen_consensus",
+      "prior_name": "ollama_qwen_consensus_prior",
+      "params": {
+        "lambda": 0.5
+      },
+      "shd": null,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "n_edges_est": 14,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "service_tier"
+          },
+          {
+            "id": "promised_transit_days"
+          },
+          {
+            "id": "handling_lead_days"
+          },
+          {
+            "id": "serve_distance_km"
+          },
+          {
+            "id": "line_count"
+          },
+          {
+            "id": "unit_total"
+          },
+          {
+            "id": "consignment_value"
+          },
+          {
+            "id": "mean_markdown"
+          },
+          {
+            "id": "same_day_workload"
+          },
+          {
+            "id": "zone_weekly_bookings"
+          },
+          {
+            "id": "arrival_slip_days"
+          }
+        ],
+        "links": [
+          {
+            "source": "service_tier",
+            "target": "promised_transit_days"
+          },
+          {
+            "source": "service_tier",
+            "target": "handling_lead_days"
+          },
+          {
+            "source": "service_tier",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "promised_transit_days",
+            "target": "handling_lead_days"
+          },
+          {
+            "source": "line_count",
+            "target": "consignment_value"
+          },
+          {
+            "source": "unit_total",
+            "target": "line_count"
+          },
+          {
+            "source": "unit_total",
+            "target": "consignment_value"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "line_count"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "consignment_value"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "unit_total"
+          },
+          {
+            "source": "zone_weekly_bookings",
+            "target": "consignment_value"
+          },
+          {
+            "source": "zone_weekly_bookings",
+            "target": "same_day_workload"
+          },
+          {
+            "source": "arrival_slip_days",
+            "target": "handling_lead_days"
+          },
+          {
+            "source": "arrival_slip_days",
+            "target": "promised_transit_days"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "ollama_qwen_consensus",
+      "prior_name": "ollama_qwen_consensus_prior",
+      "params": {
+        "lambda": 0.9
+      },
+      "shd": null,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "n_edges_est": 14,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "service_tier"
+          },
+          {
+            "id": "promised_transit_days"
+          },
+          {
+            "id": "handling_lead_days"
+          },
+          {
+            "id": "serve_distance_km"
+          },
+          {
+            "id": "line_count"
+          },
+          {
+            "id": "unit_total"
+          },
+          {
+            "id": "consignment_value"
+          },
+          {
+            "id": "mean_markdown"
+          },
+          {
+            "id": "same_day_workload"
+          },
+          {
+            "id": "zone_weekly_bookings"
+          },
+          {
+            "id": "arrival_slip_days"
+          }
+        ],
+        "links": [
+          {
+            "source": "service_tier",
+            "target": "promised_transit_days"
+          },
+          {
+            "source": "service_tier",
+            "target": "handling_lead_days"
+          },
+          {
+            "source": "service_tier",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "promised_transit_days",
+            "target": "handling_lead_days"
+          },
+          {
+            "source": "line_count",
+            "target": "consignment_value"
+          },
+          {
+            "source": "unit_total",
+            "target": "line_count"
+          },
+          {
+            "source": "unit_total",
+            "target": "consignment_value"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "line_count"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "consignment_value"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "unit_total"
+          },
+          {
+            "source": "zone_weekly_bookings",
+            "target": "consignment_value"
+          },
+          {
+            "source": "zone_weekly_bookings",
+            "target": "same_day_workload"
+          },
+          {
+            "source": "arrival_slip_days",
+            "target": "handling_lead_days"
+          },
+          {
+            "source": "arrival_slip_days",
+            "target": "promised_transit_days"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "gemini",
+      "prior_name": "gemini_prior_1",
+      "params": {
+        "lambda": 0.1
+      },
+      "shd": null,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "n_edges_est": 12,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "service_tier"
+          },
+          {
+            "id": "promised_transit_days"
+          },
+          {
+            "id": "handling_lead_days"
+          },
+          {
+            "id": "serve_distance_km"
+          },
+          {
+            "id": "line_count"
+          },
+          {
+            "id": "unit_total"
+          },
+          {
+            "id": "consignment_value"
+          },
+          {
+            "id": "mean_markdown"
+          },
+          {
+            "id": "same_day_workload"
+          },
+          {
+            "id": "zone_weekly_bookings"
+          },
+          {
+            "id": "arrival_slip_days"
+          }
+        ],
+        "links": [
+          {
+            "source": "service_tier",
+            "target": "promised_transit_days"
+          },
+          {
+            "source": "service_tier",
+            "target": "handling_lead_days"
+          },
+          {
+            "source": "service_tier",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "promised_transit_days",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "line_count",
+            "target": "consignment_value"
+          },
+          {
+            "source": "line_count",
+            "target": "same_day_workload"
+          },
+          {
+            "source": "unit_total",
+            "target": "line_count"
+          },
+          {
+            "source": "unit_total",
+            "target": "consignment_value"
+          },
+          {
+            "source": "unit_total",
+            "target": "same_day_workload"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "consignment_value"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "zone_weekly_bookings"
+          },
+          {
+            "source": "zone_weekly_bookings",
+            "target": "consignment_value"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "gemini",
+      "prior_name": "gemini_prior_1",
+      "params": {
+        "lambda": 0.5
+      },
+      "shd": null,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "n_edges_est": 12,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "service_tier"
+          },
+          {
+            "id": "promised_transit_days"
+          },
+          {
+            "id": "handling_lead_days"
+          },
+          {
+            "id": "serve_distance_km"
+          },
+          {
+            "id": "line_count"
+          },
+          {
+            "id": "unit_total"
+          },
+          {
+            "id": "consignment_value"
+          },
+          {
+            "id": "mean_markdown"
+          },
+          {
+            "id": "same_day_workload"
+          },
+          {
+            "id": "zone_weekly_bookings"
+          },
+          {
+            "id": "arrival_slip_days"
+          }
+        ],
+        "links": [
+          {
+            "source": "service_tier",
+            "target": "promised_transit_days"
+          },
+          {
+            "source": "service_tier",
+            "target": "handling_lead_days"
+          },
+          {
+            "source": "service_tier",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "promised_transit_days",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "line_count",
+            "target": "consignment_value"
+          },
+          {
+            "source": "line_count",
+            "target": "same_day_workload"
+          },
+          {
+            "source": "unit_total",
+            "target": "line_count"
+          },
+          {
+            "source": "unit_total",
+            "target": "consignment_value"
+          },
+          {
+            "source": "unit_total",
+            "target": "same_day_workload"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "consignment_value"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "zone_weekly_bookings"
+          },
+          {
+            "source": "zone_weekly_bookings",
+            "target": "consignment_value"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "gemini",
+      "prior_name": "gemini_prior_1",
+      "params": {
+        "lambda": 0.9
+      },
+      "shd": null,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "n_edges_est": 12,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "service_tier"
+          },
+          {
+            "id": "promised_transit_days"
+          },
+          {
+            "id": "handling_lead_days"
+          },
+          {
+            "id": "serve_distance_km"
+          },
+          {
+            "id": "line_count"
+          },
+          {
+            "id": "unit_total"
+          },
+          {
+            "id": "consignment_value"
+          },
+          {
+            "id": "mean_markdown"
+          },
+          {
+            "id": "same_day_workload"
+          },
+          {
+            "id": "zone_weekly_bookings"
+          },
+          {
+            "id": "arrival_slip_days"
+          }
+        ],
+        "links": [
+          {
+            "source": "service_tier",
+            "target": "promised_transit_days"
+          },
+          {
+            "source": "service_tier",
+            "target": "handling_lead_days"
+          },
+          {
+            "source": "service_tier",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "promised_transit_days",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "line_count",
+            "target": "consignment_value"
+          },
+          {
+            "source": "line_count",
+            "target": "same_day_workload"
+          },
+          {
+            "source": "unit_total",
+            "target": "line_count"
+          },
+          {
+            "source": "unit_total",
+            "target": "consignment_value"
+          },
+          {
+            "source": "unit_total",
+            "target": "same_day_workload"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "consignment_value"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "zone_weekly_bookings"
+          },
+          {
+            "source": "zone_weekly_bookings",
+            "target": "consignment_value"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "gemini_consensus",
+      "prior_name": "gemini_consensus_prior",
+      "params": {
+        "lambda": 0.1
+      },
+      "shd": null,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "n_edges_est": 9,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "service_tier"
+          },
+          {
+            "id": "promised_transit_days"
+          },
+          {
+            "id": "handling_lead_days"
+          },
+          {
+            "id": "serve_distance_km"
+          },
+          {
+            "id": "line_count"
+          },
+          {
+            "id": "unit_total"
+          },
+          {
+            "id": "consignment_value"
+          },
+          {
+            "id": "mean_markdown"
+          },
+          {
+            "id": "same_day_workload"
+          },
+          {
+            "id": "zone_weekly_bookings"
+          },
+          {
+            "id": "arrival_slip_days"
+          }
+        ],
+        "links": [
+          {
+            "source": "service_tier",
+            "target": "promised_transit_days"
+          },
+          {
+            "source": "service_tier",
+            "target": "handling_lead_days"
+          },
+          {
+            "source": "service_tier",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "promised_transit_days",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "handling_lead_days",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "line_count",
+            "target": "consignment_value"
+          },
+          {
+            "source": "unit_total",
+            "target": "consignment_value"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "consignment_value"
+          },
+          {
+            "source": "zone_weekly_bookings",
+            "target": "consignment_value"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "gemini_consensus",
+      "prior_name": "gemini_consensus_prior",
+      "params": {
+        "lambda": 0.5
+      },
+      "shd": null,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "n_edges_est": 9,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "service_tier"
+          },
+          {
+            "id": "promised_transit_days"
+          },
+          {
+            "id": "handling_lead_days"
+          },
+          {
+            "id": "serve_distance_km"
+          },
+          {
+            "id": "line_count"
+          },
+          {
+            "id": "unit_total"
+          },
+          {
+            "id": "consignment_value"
+          },
+          {
+            "id": "mean_markdown"
+          },
+          {
+            "id": "same_day_workload"
+          },
+          {
+            "id": "zone_weekly_bookings"
+          },
+          {
+            "id": "arrival_slip_days"
+          }
+        ],
+        "links": [
+          {
+            "source": "service_tier",
+            "target": "promised_transit_days"
+          },
+          {
+            "source": "service_tier",
+            "target": "handling_lead_days"
+          },
+          {
+            "source": "service_tier",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "promised_transit_days",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "handling_lead_days",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "line_count",
+            "target": "consignment_value"
+          },
+          {
+            "source": "unit_total",
+            "target": "consignment_value"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "consignment_value"
+          },
+          {
+            "source": "zone_weekly_bookings",
+            "target": "consignment_value"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "gemini_consensus",
+      "prior_name": "gemini_consensus_prior",
+      "params": {
+        "lambda": 0.9
+      },
+      "shd": null,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "n_edges_est": 9,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "service_tier"
+          },
+          {
+            "id": "promised_transit_days"
+          },
+          {
+            "id": "handling_lead_days"
+          },
+          {
+            "id": "serve_distance_km"
+          },
+          {
+            "id": "line_count"
+          },
+          {
+            "id": "unit_total"
+          },
+          {
+            "id": "consignment_value"
+          },
+          {
+            "id": "mean_markdown"
+          },
+          {
+            "id": "same_day_workload"
+          },
+          {
+            "id": "zone_weekly_bookings"
+          },
+          {
+            "id": "arrival_slip_days"
+          }
+        ],
+        "links": [
+          {
+            "source": "service_tier",
+            "target": "promised_transit_days"
+          },
+          {
+            "source": "service_tier",
+            "target": "handling_lead_days"
+          },
+          {
+            "source": "service_tier",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "promised_transit_days",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "handling_lead_days",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "line_count",
+            "target": "consignment_value"
+          },
+          {
+            "source": "unit_total",
+            "target": "consignment_value"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "consignment_value"
+          },
+          {
+            "source": "zone_weekly_bookings",
+            "target": "consignment_value"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "cerebras",
+      "prior_name": "cerebras_prior_2",
+      "params": {
+        "lambda": 0.1
+      },
+      "shd": null,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "n_edges_est": 13,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "service_tier"
+          },
+          {
+            "id": "promised_transit_days"
+          },
+          {
+            "id": "handling_lead_days"
+          },
+          {
+            "id": "serve_distance_km"
+          },
+          {
+            "id": "line_count"
+          },
+          {
+            "id": "unit_total"
+          },
+          {
+            "id": "consignment_value"
+          },
+          {
+            "id": "mean_markdown"
+          },
+          {
+            "id": "same_day_workload"
+          },
+          {
+            "id": "zone_weekly_bookings"
+          },
+          {
+            "id": "arrival_slip_days"
+          }
+        ],
+        "links": [
+          {
+            "source": "service_tier",
+            "target": "promised_transit_days"
+          },
+          {
+            "source": "service_tier",
+            "target": "handling_lead_days"
+          },
+          {
+            "source": "service_tier",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "promised_transit_days",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "handling_lead_days",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "handling_lead_days",
+            "target": "promised_transit_days"
+          },
+          {
+            "source": "line_count",
+            "target": "unit_total"
+          },
+          {
+            "source": "line_count",
+            "target": "consignment_value"
+          },
+          {
+            "source": "unit_total",
+            "target": "consignment_value"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "line_count"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "consignment_value"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "unit_total"
+          },
+          {
+            "source": "zone_weekly_bookings",
+            "target": "consignment_value"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "cerebras",
+      "prior_name": "cerebras_prior_2",
+      "params": {
+        "lambda": 0.5
+      },
+      "shd": null,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "n_edges_est": 13,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "service_tier"
+          },
+          {
+            "id": "promised_transit_days"
+          },
+          {
+            "id": "handling_lead_days"
+          },
+          {
+            "id": "serve_distance_km"
+          },
+          {
+            "id": "line_count"
+          },
+          {
+            "id": "unit_total"
+          },
+          {
+            "id": "consignment_value"
+          },
+          {
+            "id": "mean_markdown"
+          },
+          {
+            "id": "same_day_workload"
+          },
+          {
+            "id": "zone_weekly_bookings"
+          },
+          {
+            "id": "arrival_slip_days"
+          }
+        ],
+        "links": [
+          {
+            "source": "service_tier",
+            "target": "promised_transit_days"
+          },
+          {
+            "source": "service_tier",
+            "target": "handling_lead_days"
+          },
+          {
+            "source": "service_tier",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "promised_transit_days",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "handling_lead_days",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "handling_lead_days",
+            "target": "promised_transit_days"
+          },
+          {
+            "source": "line_count",
+            "target": "unit_total"
+          },
+          {
+            "source": "line_count",
+            "target": "consignment_value"
+          },
+          {
+            "source": "unit_total",
+            "target": "consignment_value"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "line_count"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "consignment_value"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "unit_total"
+          },
+          {
+            "source": "zone_weekly_bookings",
+            "target": "consignment_value"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "cerebras",
+      "prior_name": "cerebras_prior_2",
+      "params": {
+        "lambda": 0.9
+      },
+      "shd": null,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "n_edges_est": 13,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "service_tier"
+          },
+          {
+            "id": "promised_transit_days"
+          },
+          {
+            "id": "handling_lead_days"
+          },
+          {
+            "id": "serve_distance_km"
+          },
+          {
+            "id": "line_count"
+          },
+          {
+            "id": "unit_total"
+          },
+          {
+            "id": "consignment_value"
+          },
+          {
+            "id": "mean_markdown"
+          },
+          {
+            "id": "same_day_workload"
+          },
+          {
+            "id": "zone_weekly_bookings"
+          },
+          {
+            "id": "arrival_slip_days"
+          }
+        ],
+        "links": [
+          {
+            "source": "service_tier",
+            "target": "promised_transit_days"
+          },
+          {
+            "source": "service_tier",
+            "target": "handling_lead_days"
+          },
+          {
+            "source": "service_tier",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "promised_transit_days",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "handling_lead_days",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "handling_lead_days",
+            "target": "promised_transit_days"
+          },
+          {
+            "source": "line_count",
+            "target": "unit_total"
+          },
+          {
+            "source": "line_count",
+            "target": "consignment_value"
+          },
+          {
+            "source": "unit_total",
+            "target": "consignment_value"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "line_count"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "consignment_value"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "unit_total"
+          },
+          {
+            "source": "zone_weekly_bookings",
+            "target": "consignment_value"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "cerebras_consensus",
+      "prior_name": "cerebras_consensus_prior",
+      "params": {
+        "lambda": 0.1
+      },
+      "shd": null,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "n_edges_est": 14,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "service_tier"
+          },
+          {
+            "id": "promised_transit_days"
+          },
+          {
+            "id": "handling_lead_days"
+          },
+          {
+            "id": "serve_distance_km"
+          },
+          {
+            "id": "line_count"
+          },
+          {
+            "id": "unit_total"
+          },
+          {
+            "id": "consignment_value"
+          },
+          {
+            "id": "mean_markdown"
+          },
+          {
+            "id": "same_day_workload"
+          },
+          {
+            "id": "zone_weekly_bookings"
+          },
+          {
+            "id": "arrival_slip_days"
+          }
+        ],
+        "links": [
+          {
+            "source": "service_tier",
+            "target": "promised_transit_days"
+          },
+          {
+            "source": "service_tier",
+            "target": "handling_lead_days"
+          },
+          {
+            "source": "service_tier",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "promised_transit_days",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "handling_lead_days",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "handling_lead_days",
+            "target": "promised_transit_days"
+          },
+          {
+            "source": "line_count",
+            "target": "unit_total"
+          },
+          {
+            "source": "line_count",
+            "target": "consignment_value"
+          },
+          {
+            "source": "unit_total",
+            "target": "consignment_value"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "line_count"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "consignment_value"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "unit_total"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "zone_weekly_bookings"
+          },
+          {
+            "source": "zone_weekly_bookings",
+            "target": "consignment_value"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "cerebras_consensus",
+      "prior_name": "cerebras_consensus_prior",
+      "params": {
+        "lambda": 0.5
+      },
+      "shd": null,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "n_edges_est": 14,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "service_tier"
+          },
+          {
+            "id": "promised_transit_days"
+          },
+          {
+            "id": "handling_lead_days"
+          },
+          {
+            "id": "serve_distance_km"
+          },
+          {
+            "id": "line_count"
+          },
+          {
+            "id": "unit_total"
+          },
+          {
+            "id": "consignment_value"
+          },
+          {
+            "id": "mean_markdown"
+          },
+          {
+            "id": "same_day_workload"
+          },
+          {
+            "id": "zone_weekly_bookings"
+          },
+          {
+            "id": "arrival_slip_days"
+          }
+        ],
+        "links": [
+          {
+            "source": "service_tier",
+            "target": "promised_transit_days"
+          },
+          {
+            "source": "service_tier",
+            "target": "handling_lead_days"
+          },
+          {
+            "source": "service_tier",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "promised_transit_days",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "handling_lead_days",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "handling_lead_days",
+            "target": "promised_transit_days"
+          },
+          {
+            "source": "line_count",
+            "target": "unit_total"
+          },
+          {
+            "source": "line_count",
+            "target": "consignment_value"
+          },
+          {
+            "source": "unit_total",
+            "target": "consignment_value"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "line_count"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "consignment_value"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "unit_total"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "zone_weekly_bookings"
+          },
+          {
+            "source": "zone_weekly_bookings",
+            "target": "consignment_value"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "cerebras_consensus",
+      "prior_name": "cerebras_consensus_prior",
+      "params": {
+        "lambda": 0.9
+      },
+      "shd": null,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "n_edges_est": 14,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "service_tier"
+          },
+          {
+            "id": "promised_transit_days"
+          },
+          {
+            "id": "handling_lead_days"
+          },
+          {
+            "id": "serve_distance_km"
+          },
+          {
+            "id": "line_count"
+          },
+          {
+            "id": "unit_total"
+          },
+          {
+            "id": "consignment_value"
+          },
+          {
+            "id": "mean_markdown"
+          },
+          {
+            "id": "same_day_workload"
+          },
+          {
+            "id": "zone_weekly_bookings"
+          },
+          {
+            "id": "arrival_slip_days"
+          }
+        ],
+        "links": [
+          {
+            "source": "service_tier",
+            "target": "promised_transit_days"
+          },
+          {
+            "source": "service_tier",
+            "target": "handling_lead_days"
+          },
+          {
+            "source": "service_tier",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "promised_transit_days",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "handling_lead_days",
+            "target": "arrival_slip_days"
+          },
+          {
+            "source": "handling_lead_days",
+            "target": "promised_transit_days"
+          },
+          {
+            "source": "line_count",
+            "target": "unit_total"
+          },
+          {
+            "source": "line_count",
+            "target": "consignment_value"
+          },
+          {
+            "source": "unit_total",
+            "target": "consignment_value"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "line_count"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "consignment_value"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "unit_total"
+          },
+          {
+            "source": "same_day_workload",
+            "target": "zone_weekly_bookings"
+          },
+          {
+            "source": "zone_weekly_bookings",
+            "target": "consignment_value"
+          }
+        ]
+      }
+    }
+  ]
+}

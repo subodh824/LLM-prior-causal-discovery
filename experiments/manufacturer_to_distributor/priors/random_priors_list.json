@@ -1,0 +1,84 @@
+[
+  {
+    "name": "random_prior_0",
+    "type": "random",
+    "edges_with_probability": [
+      ["production_schedule_stability", "demand_volatility", 0.434],
+      ["production_volume", "material_delay", 0.72],
+      ["production_volume", "sales_order_quantity", 0.494],
+      ["vehicle_fill_rate", "demand_volatility", 0.32],
+      ["vehicle_fill_rate", "production_volume", 0.551],
+      ["delivery_to_distributor", "vehicle_fill_rate", 0.758]
+    ],
+    "forbidden_edges": [],
+    "tier_ordering": [
+      ["machine_downtime", 0],
+      ["demand_volatility", 0],
+      ["material_delay", 3],
+      ["production_schedule_stability", 2],
+      ["production_volume", 1],
+      ["factory_issues", 1],
+      ["vehicle_fill_rate", 3],
+      ["sales_order_quantity", 2],
+      ["delivery_to_distributor", 3]
+    ],
+    "rationale": {
+      "_": "RANDOM CONTROL"
+    }
+  },
+  {
+    "name": "random_prior_1",
+    "type": "random",
+    "edges_with_probability": [
+      ["machine_downtime", "demand_volatility", 0.847],
+      ["machine_downtime", "delivery_to_distributor", 0.028],
+      ["demand_volatility", "production_volume", 0.445],
+      ["material_delay", "machine_downtime", 0.025],
+      ["material_delay", "sales_order_quantity", 0.222],
+      ["production_schedule_stability", "sales_order_quantity", 0.838],
+      ["production_volume", "factory_issues", 0.333],
+      ["vehicle_fill_rate", "demand_volatility", 0.243],
+      ["sales_order_quantity", "delivery_to_distributor", 0.043]
+    ],
+    "forbidden_edges": [],
+    "tier_ordering": [
+      ["machine_downtime", 1],
+      ["demand_volatility", 3],
+      ["material_delay", 2],
+      ["production_schedule_stability", 2],
+      ["production_volume", 3],
+      ["factory_issues", 2],
+      ["vehicle_fill_rate", 0],
+      ["sales_order_quantity", 3],
+      ["delivery_to_distributor", 1]
+    ],
+    "rationale": {
+      "_": "RANDOM CONTROL"
+    }
+  },
+  {
+    "name": "random_prior_2",
+    "type": "random",
+    "edges_with_probability": [
+      ["machine_downtime", "production_schedule_stability", 0.085],
+      ["material_delay", "production_volume", 0.027],
+      ["production_schedule_stability", "production_volume", 0.325],
+      ["production_schedule_stability", "factory_issues", 0.51]
+    ],
+    "forbidden_edges": [],
+    "tier_ordering": [
+      ["machine_downtime", 2],
+      ["demand_volatility", 1],
+      ["material_delay", 3],
+      ["production_schedule_stability", 2],
+      ["production_volume", 0],
+      ["factory_issues", 2],
+      ["vehicle_fill_rate", 0],
+      ["sales_order_quantity", 1],
+      ["delivery_to_distributor", 0]
+    ],
+    "rationale": {
+      "_": "RANDOM CONTROL"
+    }
+  }
+]

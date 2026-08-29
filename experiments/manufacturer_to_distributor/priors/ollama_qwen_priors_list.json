@@ -1,0 +1,71 @@
+[
+  {
+    "edges_with_probability": [
+      ["demand_volatility", "machine_downtime", 0.6],
+      ["material_delay", "production_schedule_stability", 0.8],
+      ["vehicle_fill_rate", "production_volume", 0.75],
+      ["sales_order_quantity", "production_schedule_stability", 0.9]
+    ],
+    "forbidden_edges": [
+      ["machine_downtime", "demand_volatility"],
+      ["material_delay", "sales_order_quantity"]
+    ],
+    "tier_ordering": [
+      ["factory_issues", 1],
+      ["vehicle_fill_rate", 2],
+      ["production_schedule_stability", 3],
+      ["machine_downtime", 4],
+      ["demand_volatility", 5]
+    ],
+    "name": "ollama_qwen_prior_0",
+    "type": "ollama_qwen"
+  },
+  {
+    "edges_with_probability": [
+      ["demand_volatility", "machine_downtime", 0.5],
+      ["production_schedule_stability", "production_volume", 0.6],
+      ["production_schedule_stability", "factory_issues", 0.7],
+      ["vehicle_fill_rate", "delivery_to_distributor", 0.8]
+    ],
+    "forbidden_edges": [
+      ["demand_volatility", "material_delay"],
+      ["production_schedule_stability", "machine_downtime"]
+    ],
+    "tier_ordering": [
+      ["demand_volatility", 1],
+      ["production_schedule_stability", 2],
+      ["vehicle_fill_rate", 3],
+      ["factory_issues", 4],
+      ["delivery_to_distributor", 5]
+    ],
+    "name": "ollama_qwen_prior_1",
+    "type": "ollama_qwen"
+  },
+  {
+    "edges_with_probability": [
+      ["machine_downtime", "production_schedule_stability", 0.25],
+      ["material_delay", "production_volume", 0.3],
+      ["demand_volatility", "vehicle_fill_rate", 0.4],
+      ["factory_issues", "sales_order_quantity", 0.4]
+    ],
+    "forbidden_edges": [
+      ["machine_downtime", "production_schedule_stability"],
+      ["material_delay", "production_volume"],
+      ["demand_volatility", "vehicle_fill_rate"],
+      ["factory_issues", "sales_order_quantity"]
+    ],
+    "tier_ordering": [
+      ["machine_downtime", 0],
+      ["material_delay", 1],
+      ["demand_volatility", 2],
+      ["production_schedule_stability", 3],
+      ["production_volume", 4],
+      ["factory_issues", 5],
+      ["vehicle_fill_rate", 6],
+      ["sales_order_quantity", 7],
+      ["delivery_to_distributor", 8]
+    ],
+    "name": "ollama_qwen_prior_2",
+    "type": "ollama_qwen"
+  }
+]

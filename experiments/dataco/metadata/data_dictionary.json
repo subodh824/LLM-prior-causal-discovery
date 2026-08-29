@@ -1,0 +1,50 @@
+{
+  "leg": "dataco",
+  "renamed": false,
+  "natural": [
+    {
+      "name": "shipping_mode_speed",
+      "description": "Ordinal shipping service level chosen for the order (0 = same day, 3 = standard slow service)."
+    },
+    {
+      "name": "scheduled_ship_days",
+      "description": "Number of days the carrier promised for delivery when the order was placed."
+    },
+    {
+      "name": "order_processing_time",
+      "description": "Days between the order being placed and dispatched (internal handling time before the carrier takes over)."
+    },
+    {
+      "name": "geographic_distance",
+      "description": "Great-circle distance from the customer location to the network's mean hub location, in km (a distance-to-serve proxy)."
+    },
+    {
+      "name": "order_item_count",
+      "description": "Number of distinct line items in the order."
+    },
+    {
+      "name": "total_quantity",
+      "description": "Total units of product across all line items of the order."
+    },
+    {
+      "name": "total_sales",
+      "description": "Total sales value of the order in dollars."
+    },
+    {
+      "name": "avg_discount_rate",
+      "description": "Average discount rate applied across the order's line items."
+    },
+    {
+      "name": "daily_order_volume",
+      "description": "Number of orders the retailer received on the same calendar day (fulfilment workload proxy)."
+    },
+    {
+      "name": "region_weekly_orders",
+      "description": "Number of orders from the same destination region in the same week (regional demand proxy)."
+    },
+    {
+      "name": "delivery_delay",
+      "description": "Actual delivery days minus promised delivery days; positive means the order arrived late (outcome)."
+    }
+  ]
+}

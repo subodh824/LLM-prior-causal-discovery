@@ -1,0 +1,67 @@
+[
+  {
+    "edges_with_probability": [
+      ["shipping_mode_speed", "order_processing_time", 0.5],
+      ["scheduled_ship_days", "order_processing_time", 0.4],
+      ["geographic_distance", "total_quantity", 0.6],
+      ["order_item_count", "total_sales", 0.3],
+      ["avg_discount_rate", "total_quantity", 0.2],
+      ["daily_order_volume", "region_weekly_orders", 0.7]
+    ],
+    "forbidden_edges": [
+      ["delivery_delay", "scheduled_ship_days"],
+      ["order_processing_time", "shipping_mode_speed"]
+    ],
+    "tier_ordering": [
+      ["geographic_distance", 1],
+      ["total_sales", 2],
+      ["daily_order_volume", 3],
+      ["region_weekly_orders", 4]
+    ],
+    "name": "ollama_qwen_prior_0",
+    "type": "ollama_qwen"
+  },
+  {
+    "edges_with_probability": [
+      ["scheduled_ship_days", "shipping_mode_speed", 0.35],
+      ["order_processing_time", "total_quantity", 0.28],
+      ["order_item_count", "total_sales", 0.41]
+    ],
+    "forbidden_edges": [],
+    "tier_ordering": [
+      ["daily_order_volume", 1],
+      ["region_weekly_orders", 2],
+      ["delivery_delay", 3]
+    ],
+    "name": "ollama_qwen_prior_1",
+    "type": "ollama_qwen"
+  },
+  {
+    "edges_with_probability": [
+      ["shipping_mode_speed", "delivery_delay", 0.5],
+      ["scheduled_ship_days", "delivery_delay", 0.5],
+      ["order_processing_time", "delivery_delay", 0.4],
+      ["total_quantity", "delivery_delay", 0.6],
+      ["avg_discount_rate", "delivery_delay", 0.5],
+      ["daily_order_volume", "delivery_delay", 0.7],
+      ["region_weekly_orders", "delivery_delay", 0.8],
+      ["order_item_count", "delivery_delay", 0.9]
+    ],
+    "forbidden_edges": [
+      ["total_sales", "delivery_delay"],
+      ["geographic_distance", "delivery_delay"]
+    ],
+    "tier_ordering": [
+      ["daily_order_volume", 1],
+      ["region_weekly_orders", 2],
+      ["shipping_mode_speed", 3],
+      ["scheduled_ship_days", 4],
+      ["order_processing_time", 5],
+      ["total_quantity", 6],
+      ["avg_discount_rate", 7],
+      ["delivery_delay", 8]
+    ],
+    "name": "ollama_qwen_prior_2",
+    "type": "ollama_qwen"
+  }
+]

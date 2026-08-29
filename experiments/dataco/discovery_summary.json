@@ -1,0 +1,876 @@
+[
+  {
+    "algo": "HC",
+    "type": "Baseline",
+    "lambda": null,
+    "n_rows": 62897,
+    "n_seeds": 0,
+    "shd": {
+      "mean": null,
+      "ci95": null
+    },
+    "f1": {
+      "mean": null,
+      "ci95": null
+    },
+    "precision": {
+      "mean": null,
+      "ci95": null
+    },
+    "recall": {
+      "mean": null,
+      "ci95": null
+    }
+  },
+  {
+    "algo": "HC",
+    "type": "cerebras",
+    "lambda": 0.1,
+    "n_rows": 62897,
+    "n_seeds": 0,
+    "shd": {
+      "mean": null,
+      "ci95": null
+    },
+    "f1": {
+      "mean": null,
+      "ci95": null
+    },
+    "precision": {
+      "mean": null,
+      "ci95": null
+    },
+    "recall": {
+      "mean": null,
+      "ci95": null
+    }
+  },
+  {
+    "algo": "HC",
+    "type": "cerebras",
+    "lambda": 0.5,
+    "n_rows": 62897,
+    "n_seeds": 0,
+    "shd": {
+      "mean": null,
+      "ci95": null
+    },
+    "f1": {
+      "mean": null,
+      "ci95": null
+    },
+    "precision": {
+      "mean": null,
+      "ci95": null
+    },
+    "recall": {
+      "mean": null,
+      "ci95": null
+    }
+  },
+  {
+    "algo": "HC",
+    "type": "cerebras",
+    "lambda": 0.9,
+    "n_rows": 62897,
+    "n_seeds": 0,
+    "shd": {
+      "mean": null,
+      "ci95": null
+    },
+    "f1": {
+      "mean": null,
+      "ci95": null
+    },
+    "precision": {
+      "mean": null,
+      "ci95": null
+    },
+    "recall": {
+      "mean": null,
+      "ci95": null
+    }
+  },
+  {
+    "algo": "HC",
+    "type": "cerebras_consensus",
+    "lambda": 0.1,
+    "n_rows": 62897,
+    "n_seeds": 0,
+    "shd": {
+      "mean": null,
+      "ci95": null
+    },
+    "f1": {
+      "mean": null,
+      "ci95": null
+    },
+    "precision": {
+      "mean": null,
+      "ci95": null
+    },
+    "recall": {
+      "mean": null,
+      "ci95": null
+    }
+  },
+  {
+    "algo": "HC",
+    "type": "cerebras_consensus",
+    "lambda": 0.5,
+    "n_rows": 62897,
+    "n_seeds": 0,
+    "shd": {
+      "mean": null,
+      "ci95": null
+    },
+    "f1": {
+      "mean": null,
+      "ci95": null
+    },
+    "precision": {
+      "mean": null,
+      "ci95": null
+    },
+    "recall": {
+      "mean": null,
+      "ci95": null
+    }
+  },
+  {
+    "algo": "HC",
+    "type": "cerebras_consensus",
+    "lambda": 0.9,
+    "n_rows": 62897,
+    "n_seeds": 0,
+    "shd": {
+      "mean": null,
+      "ci95": null
+    },
+    "f1": {
+      "mean": null,
+      "ci95": null
+    },
+    "precision": {
+      "mean": null,
+      "ci95": null
+    },
+    "recall": {
+      "mean": null,
+      "ci95": null
+    }
+  },
+  {
+    "algo": "HC",
+    "type": "gemini",
+    "lambda": 0.1,
+    "n_rows": 62897,
+    "n_seeds": 0,
+    "shd": {
+      "mean": null,
+      "ci95": null
+    },
+    "f1": {
+      "mean": null,
+      "ci95": null
+    },
+    "precision": {
+      "mean": null,
+      "ci95": null
+    },
+    "recall": {
+      "mean": null,
+      "ci95": null
+    }
+  },
+  {
+    "algo": "HC",
+    "type": "gemini",
+    "lambda": 0.5,
+    "n_rows": 62897,
+    "n_seeds": 0,
+    "shd": {
+      "mean": null,
+      "ci95": null
+    },
+    "f1": {
+      "mean": null,
+      "ci95": null
+    },
+    "precision": {
+      "mean": null,
+      "ci95": null
+    },
+    "recall": {
+      "mean": null,
+      "ci95": null
+    }
+  },
+  {
+    "algo": "HC",
+    "type": "gemini",
+    "lambda": 0.9,
+    "n_rows": 62897,
+    "n_seeds": 0,
+    "shd": {
+      "mean": null,
+      "ci95": null
+    },
+    "f1": {
+      "mean": null,
+      "ci95": null
+    },
+    "precision": {
+      "mean": null,
+      "ci95": null
+    },
+    "recall": {
+      "mean": null,
+      "ci95": null
+    }
+  },
+  {
+    "algo": "HC",
+    "type": "gemini_consensus",
+    "lambda": 0.1,
+    "n_rows": 62897,
+    "n_seeds": 0,
+    "shd": {
+      "mean": null,
+      "ci95": null
+    },
+    "f1": {
+      "mean": null,
+      "ci95": null
+    },
+    "precision": {
+      "mean": null,
+      "ci95": null
+    },
+    "recall": {
+      "mean": null,
+      "ci95": null
+    }
+  },
+  {
+    "algo": "HC",
+    "type": "gemini_consensus",
+    "lambda": 0.5,
+    "n_rows": 62897,
+    "n_seeds": 0,
+    "shd": {
+      "mean": null,
+      "ci95": null
+    },
+    "f1": {
+      "mean": null,
+      "ci95": null
+    },
+    "precision": {
+      "mean": null,
+      "ci95": null
+    },
+    "recall": {
+      "mean": null,
+      "ci95": null
+    }
+  },
+  {
+    "algo": "HC",
+    "type": "gemini_consensus",
+    "lambda": 0.9,
+    "n_rows": 62897,
+    "n_seeds": 0,
+    "shd": {
+      "mean": null,
+      "ci95": null
+    },
+    "f1": {
+      "mean": null,
+      "ci95": null
+    },
+    "precision": {
+      "mean": null,
+      "ci95": null
+    },
+    "recall": {
+      "mean": null,
+      "ci95": null
+    }
+  },
+  {
+    "algo": "HC",
+    "type": "ollama_llama",
+    "lambda": 0.1,
+    "n_rows": 62897,
+    "n_seeds": 0,
+    "shd": {
+      "mean": null,
+      "ci95": null
+    },
+    "f1": {
+      "mean": null,
+      "ci95": null
+    },
+    "precision": {
+      "mean": null,
+      "ci95": null
+    },
+    "recall": {
+      "mean": null,
+      "ci95": null
+    }
+  },
+  {
+    "algo": "HC",
+    "type": "ollama_llama",
+    "lambda": 0.5,
+    "n_rows": 62897,
+    "n_seeds": 0,
+    "shd": {
+      "mean": null,
+      "ci95": null
+    },
+    "f1": {
+      "mean": null,
+      "ci95": null
+    },
+    "precision": {
+      "mean": null,
+      "ci95": null
+    },
+    "recall": {
+      "mean": null,
+      "ci95": null
+    }
+  },
+  {
+    "algo": "HC",
+    "type": "ollama_llama",
+    "lambda": 0.9,
+    "n_rows": 62897,
+    "n_seeds": 0,
+    "shd": {
+      "mean": null,
+      "ci95": null
+    },
+    "f1": {
+      "mean": null,
+      "ci95": null
+    },
+    "precision": {
+      "mean": null,
+      "ci95": null
+    },
+    "recall": {
+      "mean": null,
+      "ci95": null
+    }
+  },
+  {
+    "algo": "HC",
+    "type": "ollama_llama_consensus",
+    "lambda": 0.1,
+    "n_rows": 62897,
+    "n_seeds": 0,
+    "shd": {
+      "mean": null,
+      "ci95": null
+    },
+    "f1": {
+      "mean": null,
+      "ci95": null
+    },
+    "precision": {
+      "mean": null,
+      "ci95": null
+    },
+    "recall": {
+      "mean": null,
+      "ci95": null
+    }
+  },
+  {
+    "algo": "HC",
+    "type": "ollama_llama_consensus",
+    "lambda": 0.5,
+    "n_rows": 62897,
+    "n_seeds": 0,
+    "shd": {
+      "mean": null,
+      "ci95": null
+    },
+    "f1": {
+      "mean": null,
+      "ci95": null
+    },
+    "precision": {
+      "mean": null,
+      "ci95": null
+    },
+    "recall": {
+      "mean": null,
+      "ci95": null
+    }
+  },
+  {
+    "algo": "HC",
+    "type": "ollama_llama_consensus",
+    "lambda": 0.9,
+    "n_rows": 62897,
+    "n_seeds": 0,
+    "shd": {
+      "mean": null,
+      "ci95": null
+    },
+    "f1": {
+      "mean": null,
+      "ci95": null
+    },
+    "precision": {
+      "mean": null,
+      "ci95": null
+    },
+    "recall": {
+      "mean": null,
+      "ci95": null
+    }
+  },
+  {
+    "algo": "HC",
+    "type": "ollama_qwen",
+    "lambda": 0.1,
+    "n_rows": 62897,
+    "n_seeds": 0,
+    "shd": {
+      "mean": null,
+      "ci95": null
+    },
+    "f1": {
+      "mean": null,
+      "ci95": null
+    },
+    "precision": {
+      "mean": null,
+      "ci95": null
+    },
+    "recall": {
+      "mean": null,
+      "ci95": null
+    }
+  },
+  {
+    "algo": "HC",
+    "type": "ollama_qwen",
+    "lambda": 0.5,
+    "n_rows": 62897,
+    "n_seeds": 0,
+    "shd": {
+      "mean": null,
+      "ci95": null
+    },
+    "f1": {
+      "mean": null,
+      "ci95": null
+    },
+    "precision": {
+      "mean": null,
+      "ci95": null
+    },
+    "recall": {
+      "mean": null,
+      "ci95": null
+    }
+  },
+  {
+    "algo": "HC",
+    "type": "ollama_qwen",
+    "lambda": 0.9,
+    "n_rows": 62897,
+    "n_seeds": 0,
+    "shd": {
+      "mean": null,
+      "ci95": null
+    },
+    "f1": {
+      "mean": null,
+      "ci95": null
+    },
+    "precision": {
+      "mean": null,
+      "ci95": null
+    },
+    "recall": {
+      "mean": null,
+      "ci95": null
+    }
+  },
+  {
+    "algo": "HC",
+    "type": "ollama_qwen_consensus",
+    "lambda": 0.1,
+    "n_rows": 62897,
+    "n_seeds": 0,
+    "shd": {
+      "mean": null,
+      "ci95": null
+    },
+    "f1": {
+      "mean": null,
+      "ci95": null
+    },
+    "precision": {
+      "mean": null,
+      "ci95": null
+    },
+    "recall": {
+      "mean": null,
+      "ci95": null
+    }
+  },
+  {
+    "algo": "HC",
+    "type": "ollama_qwen_consensus",
+    "lambda": 0.5,
+    "n_rows": 62897,
+    "n_seeds": 0,
+    "shd": {
+      "mean": null,
+      "ci95": null
+    },
+    "f1": {
+      "mean": null,
+      "ci95": null
+    },
+    "precision": {
+      "mean": null,
+      "ci95": null
+    },
+    "recall": {
+      "mean": null,
+      "ci95": null
+    }
+  },
+  {
+    "algo": "HC",
+    "type": "ollama_qwen_consensus",
+    "lambda": 0.9,
+    "n_rows": 62897,
+    "n_seeds": 0,
+    "shd": {
+      "mean": null,
+      "ci95": null
+    },
+    "f1": {
+      "mean": null,
+      "ci95": null
+    },
+    "precision": {
+      "mean": null,
+      "ci95": null
+    },
+    "recall": {
+      "mean": null,
+      "ci95": null
+    }
+  },
+  {
+    "algo": "HC",
+    "type": "random",
+    "lambda": 0.1,
+    "n_rows": 62897,
+    "n_seeds": 0,
+    "shd": {
+      "mean": null,
+      "ci95": null
+    },
+    "f1": {
+      "mean": null,
+      "ci95": null
+    },
+    "precision": {
+      "mean": null,
+      "ci95": null
+    },
+    "recall": {
+      "mean": null,
+      "ci95": null
+    }
+  },
+  {
+    "algo": "HC",
+    "type": "random",
+    "lambda": 0.5,
+    "n_rows": 62897,
+    "n_seeds": 0,
+    "shd": {
+      "mean": null,
+      "ci95": null
+    },
+    "f1": {
+      "mean": null,
+      "ci95": null
+    },
+    "precision": {
+      "mean": null,
+      "ci95": null
+    },
+    "recall": {
+      "mean": null,
+      "ci95": null
+    }
+  },
+  {
+    "algo": "HC",
+    "type": "random",
+    "lambda": 0.9,
+    "n_rows": 62897,
+    "n_seeds": 0,
+    "shd": {
+      "mean": null,
+      "ci95": null
+    },
+    "f1": {
+      "mean": null,
+      "ci95": null
+    },
+    "precision": {
+      "mean": null,
+      "ci95": null
+    },
+    "recall": {
+      "mean": null,
+      "ci95": null
+    }
+  },
+  {
+    "algo": "PC",
+    "type": "Baseline",
+    "lambda": null,
+    "n_rows": 62897,
+    "n_seeds": 0,
+    "shd": {
+      "mean": null,
+      "ci95": null
+    },
+    "f1": {
+      "mean": null,
+      "ci95": null
+    },
+    "precision": {
+      "mean": null,
+      "ci95": null
+    },
+    "recall": {
+      "mean": null,
+      "ci95": null
+    }
+  },
+  {
+    "algo": "PC",
+    "type": "cerebras",
+    "lambda": null,
+    "n_rows": 62897,
+    "n_seeds": 0,
+    "shd": {
+      "mean": null,
+      "ci95": null
+    },
+    "f1": {
+      "mean": null,
+      "ci95": null
+    },
+    "precision": {
+      "mean": null,
+      "ci95": null
+    },
+    "recall": {
+      "mean": null,
+      "ci95": null
+    }
+  },
+  {
+    "algo": "PC",
+    "type": "cerebras_consensus",
+    "lambda": null,
+    "n_rows": 62897,
+    "n_seeds": 0,
+    "shd": {
+      "mean": null,
+      "ci95": null
+    },
+    "f1": {
+      "mean": null,
+      "ci95": null
+    },
+    "precision": {
+      "mean": null,
+      "ci95": null
+    },
+    "recall": {
+      "mean": null,
+      "ci95": null
+    }
+  },
+  {
+    "algo": "PC",
+    "type": "gemini",
+    "lambda": null,
+    "n_rows": 62897,
+    "n_seeds": 0,
+    "shd": {
+      "mean": null,
+      "ci95": null
+    },
+    "f1": {
+      "mean": null,
+      "ci95": null
+    },
+    "precision": {
+      "mean": null,
+      "ci95": null
+    },
+    "recall": {
+      "mean": null,
+      "ci95": null
+    }
+  },
+  {
+    "algo": "PC",
+    "type": "gemini_consensus",
+    "lambda": null,
+    "n_rows": 62897,
+    "n_seeds": 0,
+    "shd": {
+      "mean": null,
+      "ci95": null
+    },
+    "f1": {
+      "mean": null,
+      "ci95": null
+    },
+    "precision": {
+      "mean": null,
+      "ci95": null
+    },
+    "recall": {
+      "mean": null,
+      "ci95": null
+    }
+  },
+  {
+    "algo": "PC",
+    "type": "ollama_llama",
+    "lambda": null,
+    "n_rows": 62897,
+    "n_seeds": 0,
+    "shd": {
+      "mean": null,
+      "ci95": null
+    },
+    "f1": {
+      "mean": null,
+      "ci95": null
+    },
+    "precision": {
+      "mean": null,
+      "ci95": null
+    },
+    "recall": {
+      "mean": null,
+      "ci95": null
+    }
+  },
+  {
+    "algo": "PC",
+    "type": "ollama_llama_consensus",
+    "lambda": null,
+    "n_rows": 62897,
+    "n_seeds": 0,
+    "shd": {
+      "mean": null,
+      "ci95": null
+    },
+    "f1": {
+      "mean": null,
+      "ci95": null
+    },
+    "precision": {
+      "mean": null,
+      "ci95": null
+    },
+    "recall": {
+      "mean": null,
+      "ci95": null
+    }
+  },
+  {
+    "algo": "PC",
+    "type": "ollama_qwen",
+    "lambda": null,
+    "n_rows": 62897,
+    "n_seeds": 0,
+    "shd": {
+      "mean": null,
+      "ci95": null
+    },
+    "f1": {
+      "mean": null,
+      "ci95": null
+    },
+    "precision": {
+      "mean": null,
+      "ci95": null
+    },
+    "recall": {
+      "mean": null,
+      "ci95": null
+    }
+  },
+  {
+    "algo": "PC",
+    "type": "ollama_qwen_consensus",
+    "lambda": null,
+    "n_rows": 62897,
+    "n_seeds": 0,
+    "shd": {
+      "mean": null,
+      "ci95": null
+    },
+    "f1": {
+      "mean": null,
+      "ci95": null
+    },
+    "precision": {
+      "mean": null,
+      "ci95": null
+    },
+    "recall": {
+      "mean": null,
+      "ci95": null
+    }
+  },
+  {
+    "algo": "PC",
+    "type": "random",
+    "lambda": null,
+    "n_rows": 62897,
+    "n_seeds": 0,
+    "shd": {
+      "mean": null,
+      "ci95": null
+    },
+    "f1": {
+      "mean": null,
+      "ci95": null
+    },
+    "precision": {
+      "mean": null,
+      "ci95": null
+    },
+    "recall": {
+      "mean": null,
+      "ci95": null
+    }
+  }
+]

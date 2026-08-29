@@ -1,0 +1,122 @@
+[
+  {
+    "name": "Overall",
+    "type": "perfect",
+    "count": 1,
+    "fco": 1.0,
+    "fco_ci95": null,
+    "tere": 1.0,
+    "tere_ci95": null,
+    "tene": 0.9,
+    "tene_ci95": null,
+    "lod": null
+  },
+  {
+    "name": "Overall",
+    "type": "random",
+    "count": 3,
+    "fco": 0.48,
+    "fco_ci95": 0.07,
+    "tere": 0.41,
+    "tere_ci95": 0.91,
+    "tene": 0.04,
+    "tene_ci95": 0.09,
+    "lod": null
+  },
+  {
+    "name": "Overall",
+    "type": "ollama_llama",
+    "count": 3,
+    "fco": 0.62,
+    "fco_ci95": 0.13,
+    "tere": 1.0,
+    "tere_ci95": null,
+    "tene": 0.1,
+    "tene_ci95": 0.11,
+    "lod": null
+  },
+  {
+    "name": "Overall",
+    "type": "ollama_llama_consensus",
+    "count": 1,
+    "fco": 0.77,
+    "fco_ci95": null,
+    "tere": 1.0,
+    "tere_ci95": null,
+    "tene": 0.09,
+    "tene_ci95": null,
+    "lod": null
+  },
+  {
+    "name": "Overall",
+    "type": "ollama_qwen",
+    "count": 3,
+    "fco": 0.56,
+    "fco_ci95": 0.18,
+    "tere": 0.8,
+    "tere_ci95": 0.86,
+    "tene": 0.09,
+    "tene_ci95": 0.23,
+    "lod": null
+  },
+  {
+    "name": "Overall",
+    "type": "ollama_qwen_consensus",
+    "count": 1,
+    "fco": 0.68,
+    "fco_ci95": null,
+    "tere": 0.76,
+    "tere_ci95": null,
+    "tene": 0.09,
+    "tene_ci95": null,
+    "lod": null
+  },
+  {
+    "name": "Overall",
+    "type": "gemini",
+    "count": 3,
+    "fco": 0.76,
+    "fco_ci95": 0.06,
+    "tere": 0.85,
+    "tere_ci95": 0.06,
+    "tene": 0.57,
+    "tene_ci95": 0.23,
+    "lod": null
+  },
+  {
+    "name": "Overall",
+    "type": "gemini_consensus",
+    "count": 1,
+    "fco": 0.77,
+    "fco_ci95": null,
+    "tere": 0.85,
+    "tere_ci95": null,
+    "tene": 0.57,
+    "tene_ci95": null,
+    "lod": null
+  },
+  {
+    "name": "Overall",
+    "type": "cerebras",
+    "count": 3,
+    "fco": 0.83,
+    "fco_ci95": 0.06,
+    "tere": 0.97,
+    "tere_ci95": 0.14,
+    "tene": 0.45,
+    "tene_ci95": 0.18,
+    "lod": null
+  },
+  {
+    "name": "Overall",
+    "type": "cerebras_consensus",
+    "count": 1,
+    "fco": 0.95,
+    "fco_ci95": null,
+    "tere": 0.96,
+    "tere_ci95": null,
+    "tene": 0.45,
+    "tene_ci95": null,
+    "lod": null
+  }
+]

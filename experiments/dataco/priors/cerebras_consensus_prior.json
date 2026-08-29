@@ -1,0 +1,62 @@
+{
+  "name": "cerebras_consensus_prior",
+  "type": "cerebras",
+  "edges_with_probability": [
+    ["avg_discount_rate", "order_item_count", 0.166667],
+    ["avg_discount_rate", "shipping_mode_speed", 0.233333],
+    ["avg_discount_rate", "total_quantity", 0.2],
+    ["avg_discount_rate", "total_sales", 0.566667],
+    ["daily_order_volume", "delivery_delay", 0.516667],
+    ["daily_order_volume", "order_processing_time", 0.683333],
+    ["geographic_distance", "delivery_delay", 0.366667],
+    ["geographic_distance", "scheduled_ship_days", 0.733333],
+    ["geographic_distance", "shipping_mode_speed", 0.2],
+    ["order_item_count", "order_processing_time", 0.766667],
+    ["order_item_count", "shipping_mode_speed", 0.066667],
+    ["order_item_count", "total_quantity", 0.866667],
+    ["order_item_count", "total_sales", 0.466667],
+    ["order_processing_time", "delivery_delay", 0.85],
+    ["region_weekly_orders", "delivery_delay", 0.133333],
+    ["region_weekly_orders", "order_processing_time", 0.333333],
+    ["region_weekly_orders", "scheduled_ship_days", 0.166667],
+    ["region_weekly_orders", "shipping_mode_speed", 0.133333],
+    ["scheduled_ship_days", "delivery_delay", 0.6],
+    ["shipping_mode_speed", "delivery_delay", 0.633333],
+    ["shipping_mode_speed", "scheduled_ship_days", 0.85],
+    ["total_quantity", "order_processing_time", 0.366667],
+    ["total_quantity", "total_sales", 0.866667],
+    ["total_sales", "delivery_delay", 0.1],
+    ["total_sales", "shipping_mode_speed", 0.2]
+  ],
+  "forbidden_edges": [
+    ["delivery_delay", "daily_order_volume"],
+    ["delivery_delay", "order_item_count"],
+    ["delivery_delay", "order_processing_time"],
+    ["delivery_delay", "region_weekly_orders"],
+    ["delivery_delay", "scheduled_ship_days"],
+    ["delivery_delay", "shipping_mode_speed"],
+    ["delivery_delay", "total_quantity"],
+    ["delivery_delay", "total_sales"],
+    ["scheduled_ship_days", "geographic_distance"],
+    ["scheduled_ship_days", "shipping_mode_speed"],
+    ["shipping_mode_speed", "geographic_distance"],
+    ["total_quantity", "order_item_count"],
+    ["total_sales", "total_quantity"]
+  ],
+  "tier_ordering": [
+    ["avg_discount_rate", 0],
+    ["daily_order_volume", 0],
+    ["delivery_delay", 4],
+    ["geographic_distance", 0],
+    ["order_item_count", 1],
+    ["order_processing_time", 3],
+    ["region_weekly_orders", 0],
+    ["scheduled_ship_days", 3],
+    ["shipping_mode_speed", 2],
+    ["total_quantity", 1],
+    ["total_sales", 2]
+  ],
+  "rationale": {
+    "_": "consensus of 3 priors; forbidden = majority vote; tiers = rounded mean"
+  }
+}

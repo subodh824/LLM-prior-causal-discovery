@@ -1,0 +1,82 @@
+[
+  {
+    "edges_with_probability": [
+      ["material_delay", "machine_downtime", 0.8],
+      ["demand_volatility", "sales_order_quantity", 0.7],
+      ["factory_issues", "machine_downtime", 0.6],
+      ["production_schedule_stability", "machine_downtime", 0.5],
+      ["vehicle_fill_rate", "material_delay", 0.4]
+    ],
+    "forbidden_edges": [
+      ["sales_order_quantity", "demand_volatility"],
+      ["delivery_to_distributor", "sales_order_quantity"]
+    ],
+    "tier_ordering": [
+      ["material_delay", 2],
+      ["factory_issues", 1],
+      ["production_schedule_stability", 3],
+      ["machine_downtime", 2],
+      ["vehicle_fill_rate", 4],
+      ["demand_volatility", 0],
+      ["sales_order_quantity", 5],
+      ["delivery_to_distributor", 6]
+    ],
+    "name": "ollama_llama_prior_0",
+    "type": "ollama_llama"
+  },
+  {
+    "edges_with_probability": [
+      ["sales_order_quantity", "demand_volatility", 0.8],
+      ["material_delay", "machine_downtime", 0.9],
+      ["factory_issues", "machine_downtime", 0.7],
+      ["production_volume", "vehicle_fill_rate", 0.6],
+      ["material_delay", "delivery_to_distributor", 0.5],
+      ["sales_order_quantity", "machine_downtime", 0.3]
+    ],
+    "forbidden_edges": [
+      ["demand_volatility", "sales_order_quantity"],
+      ["material_delay", "factory_issues"],
+      ["vehicle_fill_rate", "production_volume"]
+    ],
+    "tier_ordering": [
+      ["demand_volatility", 0],
+      ["material_delay", 1],
+      ["machine_downtime", 2],
+      ["factory_issues", 2],
+      ["sales_order_quantity", 3],
+      ["delivery_to_distributor", 3],
+      ["production_volume", 4],
+      ["vehicle_fill_rate", 5],
+      ["production_schedule_stability", 0]
+    ],
+    "name": "ollama_llama_prior_1",
+    "type": "ollama_llama"
+  },
+  {
+    "edges_with_probability": [
+      ["demand_volatility", "machine_downtime", 0.6],
+      ["material_delay", "machine_downtime", 0.7],
+      ["factory_issues", "machine_downtime", 0.8],
+      ["production_schedule_stability", "production_volume", 0.5],
+      ["sales_order_quantity", "production_volume", 0.9],
+      ["vehicle_fill_rate", "material_delay", 0.4],
+      ["delivery_to_distributor", "factory_issues", 0.6]
+    ],
+    "forbidden_edges": [
+      ["machine_downtime", "demand_volatility"],
+      ["machine_downtime", "sales_order_quantity"]
+    ],
+    "tier_ordering": [
+      ["demand_volatility", 1],
+      ["material_delay", 2],
+      ["factory_issues", 2],
+      ["production_schedule_stability", 3],
+      ["vehicle_fill_rate", 4],
+      ["delivery_to_distributor", 5],
+      ["machine_downtime", 6],
+      ["sales_order_quantity", 7]
+    ],
+    "name": "ollama_llama_prior_2",
+    "type": "ollama_llama"
+  }
+]

@@ -1,0 +1,5 @@
+{
+  "target": "raw_material_delay",
+  "causes": ["geopolitical_disruption", "supplier_risk_score"],
+  "actionables": ["safety_stock_held", "po_cycle_time"]
+}

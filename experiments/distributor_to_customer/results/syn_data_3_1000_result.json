@@ -1,0 +1,6289 @@
+{
+  "name": "syn_data_3_1000.csv",
+  "seed": 3,
+  "num_rows": 1000,
+  "runs": [
+    {
+      "algo": "PC",
+      "type": "Baseline",
+      "prior_name": null,
+      "shd": 12,
+      "precision": 0.67,
+      "recall": 0.44,
+      "f1": 0.53,
+      "n_edges_est": 12,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "order_volume_peak_season"
+          },
+          {
+            "id": "weather_severity"
+          },
+          {
+            "id": "geographic_distance"
+          },
+          {
+            "id": "order_discount_rate"
+          },
+          {
+            "id": "order_processing_time"
+          },
+          {
+            "id": "order_item_quantity"
+          },
+          {
+            "id": "shipping_mode"
+          },
+          {
+            "id": "fulfillment_center_congestion"
+          },
+          {
+            "id": "traffic_congestion"
+          },
+          {
+            "id": "scheduled_transit_time"
+          },
+          {
+            "id": "actual_transit_time"
+          },
+          {
+            "id": "delivery_delay"
+          },
+          {
+            "id": "late_delivery_risk"
+          },
+          {
+            "id": "customer_satisfaction"
+          },
+          {
+            "id": "churn_repeat_purchase_risk"
+          },
+          {
+            "id": "profit_ratio"
+          }
+        ],
+        "links": [
+          {
+            "source": "geographic_distance",
+            "target": "shipping_mode"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "late_delivery_risk"
+          },
+          {
+            "source": "shipping_mode",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "fulfillment_center_congestion",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "actual_transit_time",
+            "target": "shipping_mode"
+          },
+          {
+            "source": "actual_transit_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "late_delivery_risk"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "customer_satisfaction"
+          },
+          {
+            "source": "customer_satisfaction",
+            "target": "late_delivery_risk"
+          },
+          {
+            "source": "customer_satisfaction",
+            "target": "churn_repeat_purchase_risk"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "PC",
+      "type": "perfect",
+      "prior_name": "perfect_prior",
+      "shd": 3,
+      "precision": 0.89,
+      "recall": 0.94,
+      "f1": 0.92,
+      "n_edges_est": 19,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "order_volume_peak_season"
+          },
+          {
+            "id": "weather_severity"
+          },
+          {
+            "id": "geographic_distance"
+          },
+          {
+            "id": "order_discount_rate"
+          },
+          {
+            "id": "order_processing_time"
+          },
+          {
+            "id": "order_item_quantity"
+          },
+          {
+            "id": "shipping_mode"
+          },
+          {
+            "id": "fulfillment_center_congestion"
+          },
+          {
+            "id": "traffic_congestion"
+          },
+          {
+            "id": "scheduled_transit_time"
+          },
+          {
+            "id": "actual_transit_time"
+          },
+          {
+            "id": "delivery_delay"
+          },
+          {
+            "id": "late_delivery_risk"
+          },
+          {
+            "id": "customer_satisfaction"
+          },
+          {
+            "id": "churn_repeat_purchase_risk"
+          },
+          {
+            "id": "profit_ratio"
+          }
+        ],
+        "links": [
+          {
+            "source": "order_volume_peak_season",
+            "target": "order_item_quantity"
+          },
+          {
+            "source": "order_volume_peak_season",
+            "target": "fulfillment_center_congestion"
+          },
+          {
+            "source": "weather_severity",
+            "target": "traffic_congestion"
+          },
+          {
+            "source": "weather_severity",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "shipping_mode"
+          },
+          {
+            "source": "order_discount_rate",
+            "target": "profit_ratio"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "late_delivery_risk"
+          },
+          {
+            "source": "order_item_quantity",
+            "target": "fulfillment_center_congestion"
+          },
+          {
+            "source": "shipping_mode",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "shipping_mode",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "fulfillment_center_congestion",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "traffic_congestion",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "scheduled_transit_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "actual_transit_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "late_delivery_risk"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "customer_satisfaction"
+          },
+          {
+            "source": "customer_satisfaction",
+            "target": "late_delivery_risk"
+          },
+          {
+            "source": "customer_satisfaction",
+            "target": "churn_repeat_purchase_risk"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "PC",
+      "type": "random",
+      "prior_name": "random_prior_2",
+      "shd": 11,
+      "precision": 0.5,
+      "recall": 0.5,
+      "f1": 0.5,
+      "n_edges_est": 18,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "order_volume_peak_season"
+          },
+          {
+            "id": "weather_severity"
+          },
+          {
+            "id": "geographic_distance"
+          },
+          {
+            "id": "order_discount_rate"
+          },
+          {
+            "id": "order_processing_time"
+          },
+          {
+            "id": "order_item_quantity"
+          },
+          {
+            "id": "shipping_mode"
+          },
+          {
+            "id": "fulfillment_center_congestion"
+          },
+          {
+            "id": "traffic_congestion"
+          },
+          {
+            "id": "scheduled_transit_time"
+          },
+          {
+            "id": "actual_transit_time"
+          },
+          {
+            "id": "delivery_delay"
+          },
+          {
+            "id": "late_delivery_risk"
+          },
+          {
+            "id": "customer_satisfaction"
+          },
+          {
+            "id": "churn_repeat_purchase_risk"
+          },
+          {
+            "id": "profit_ratio"
+          }
+        ],
+        "links": [
+          {
+            "source": "order_volume_peak_season",
+            "target": "order_item_quantity"
+          },
+          {
+            "source": "order_volume_peak_season",
+            "target": "fulfillment_center_congestion"
+          },
+          {
+            "source": "weather_severity",
+            "target": "traffic_congestion"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "shipping_mode"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "late_delivery_risk"
+          },
+          {
+            "source": "fulfillment_center_congestion",
+            "target": "order_item_quantity"
+          },
+          {
+            "source": "fulfillment_center_congestion",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "scheduled_transit_time",
+            "target": "shipping_mode"
+          },
+          {
+            "source": "scheduled_transit_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "actual_transit_time",
+            "target": "weather_severity"
+          },
+          {
+            "source": "actual_transit_time",
+            "target": "shipping_mode"
+          },
+          {
+            "source": "actual_transit_time",
+            "target": "traffic_congestion"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "late_delivery_risk"
+          },
+          {
+            "source": "customer_satisfaction",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "customer_satisfaction",
+            "target": "late_delivery_risk"
+          },
+          {
+            "source": "customer_satisfaction",
+            "target": "churn_repeat_purchase_risk"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "PC",
+      "type": "ollama_llama",
+      "prior_name": "ollama_llama_prior_2",
+      "shd": 4,
+      "precision": 0.89,
+      "recall": 0.89,
+      "f1": 0.89,
+      "n_edges_est": 18,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "order_volume_peak_season"
+          },
+          {
+            "id": "weather_severity"
+          },
+          {
+            "id": "geographic_distance"
+          },
+          {
+            "id": "order_discount_rate"
+          },
+          {
+            "id": "order_processing_time"
+          },
+          {
+            "id": "order_item_quantity"
+          },
+          {
+            "id": "shipping_mode"
+          },
+          {
+            "id": "fulfillment_center_congestion"
+          },
+          {
+            "id": "traffic_congestion"
+          },
+          {
+            "id": "scheduled_transit_time"
+          },
+          {
+            "id": "actual_transit_time"
+          },
+          {
+            "id": "delivery_delay"
+          },
+          {
+            "id": "late_delivery_risk"
+          },
+          {
+            "id": "customer_satisfaction"
+          },
+          {
+            "id": "churn_repeat_purchase_risk"
+          },
+          {
+            "id": "profit_ratio"
+          }
+        ],
+        "links": [
+          {
+            "source": "order_volume_peak_season",
+            "target": "order_item_quantity"
+          },
+          {
+            "source": "order_volume_peak_season",
+            "target": "fulfillment_center_congestion"
+          },
+          {
+            "source": "weather_severity",
+            "target": "traffic_congestion"
+          },
+          {
+            "source": "weather_severity",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "shipping_mode"
+          },
+          {
+            "source": "order_discount_rate",
+            "target": "profit_ratio"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "late_delivery_risk"
+          },
+          {
+            "source": "shipping_mode",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "shipping_mode",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "fulfillment_center_congestion",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "traffic_congestion",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "scheduled_transit_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "actual_transit_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "late_delivery_risk"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "customer_satisfaction"
+          },
+          {
+            "source": "late_delivery_risk",
+            "target": "customer_satisfaction"
+          },
+          {
+            "source": "customer_satisfaction",
+            "target": "churn_repeat_purchase_risk"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "PC",
+      "type": "ollama_llama_consensus",
+      "prior_name": "ollama_llama_consensus_prior",
+      "shd": 4,
+      "precision": 0.84,
+      "recall": 0.89,
+      "f1": 0.86,
+      "n_edges_est": 19,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "order_volume_peak_season"
+          },
+          {
+            "id": "weather_severity"
+          },
+          {
+            "id": "geographic_distance"
+          },
+          {
+            "id": "order_discount_rate"
+          },
+          {
+            "id": "order_processing_time"
+          },
+          {
+            "id": "order_item_quantity"
+          },
+          {
+            "id": "shipping_mode"
+          },
+          {
+            "id": "fulfillment_center_congestion"
+          },
+          {
+            "id": "traffic_congestion"
+          },
+          {
+            "id": "scheduled_transit_time"
+          },
+          {
+            "id": "actual_transit_time"
+          },
+          {
+            "id": "delivery_delay"
+          },
+          {
+            "id": "late_delivery_risk"
+          },
+          {
+            "id": "customer_satisfaction"
+          },
+          {
+            "id": "churn_repeat_purchase_risk"
+          },
+          {
+            "id": "profit_ratio"
+          }
+        ],
+        "links": [
+          {
+            "source": "order_volume_peak_season",
+            "target": "order_item_quantity"
+          },
+          {
+            "source": "order_volume_peak_season",
+            "target": "fulfillment_center_congestion"
+          },
+          {
+            "source": "weather_severity",
+            "target": "traffic_congestion"
+          },
+          {
+            "source": "weather_severity",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "shipping_mode"
+          },
+          {
+            "source": "order_discount_rate",
+            "target": "profit_ratio"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "late_delivery_risk"
+          },
+          {
+            "source": "order_item_quantity",
+            "target": "fulfillment_center_congestion"
+          },
+          {
+            "source": "shipping_mode",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "shipping_mode",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "traffic_congestion",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "scheduled_transit_time",
+            "target": "fulfillment_center_congestion"
+          },
+          {
+            "source": "scheduled_transit_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "actual_transit_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "late_delivery_risk"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "customer_satisfaction"
+          },
+          {
+            "source": "late_delivery_risk",
+            "target": "customer_satisfaction"
+          },
+          {
+            "source": "customer_satisfaction",
+            "target": "churn_repeat_purchase_risk"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "PC",
+      "type": "ollama_qwen",
+      "prior_name": "ollama_qwen_prior_2",
+      "shd": 6,
+      "precision": 0.88,
+      "recall": 0.78,
+      "f1": 0.82,
+      "n_edges_est": 16,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "order_volume_peak_season"
+          },
+          {
+            "id": "weather_severity"
+          },
+          {
+            "id": "geographic_distance"
+          },
+          {
+            "id": "order_discount_rate"
+          },
+          {
+            "id": "order_processing_time"
+          },
+          {
+            "id": "order_item_quantity"
+          },
+          {
+            "id": "shipping_mode"
+          },
+          {
+            "id": "fulfillment_center_congestion"
+          },
+          {
+            "id": "traffic_congestion"
+          },
+          {
+            "id": "scheduled_transit_time"
+          },
+          {
+            "id": "actual_transit_time"
+          },
+          {
+            "id": "delivery_delay"
+          },
+          {
+            "id": "late_delivery_risk"
+          },
+          {
+            "id": "customer_satisfaction"
+          },
+          {
+            "id": "churn_repeat_purchase_risk"
+          },
+          {
+            "id": "profit_ratio"
+          }
+        ],
+        "links": [
+          {
+            "source": "order_volume_peak_season",
+            "target": "order_item_quantity"
+          },
+          {
+            "source": "order_volume_peak_season",
+            "target": "fulfillment_center_congestion"
+          },
+          {
+            "source": "weather_severity",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "late_delivery_risk"
+          },
+          {
+            "source": "order_item_quantity",
+            "target": "fulfillment_center_congestion"
+          },
+          {
+            "source": "shipping_mode",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "shipping_mode",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "fulfillment_center_congestion",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "traffic_congestion",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "scheduled_transit_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "actual_transit_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "late_delivery_risk"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "customer_satisfaction"
+          },
+          {
+            "source": "customer_satisfaction",
+            "target": "late_delivery_risk"
+          },
+          {
+            "source": "customer_satisfaction",
+            "target": "churn_repeat_purchase_risk"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "PC",
+      "type": "ollama_qwen_consensus",
+      "prior_name": "ollama_qwen_consensus_prior",
+      "shd": 10,
+      "precision": 0.59,
+      "recall": 0.56,
+      "f1": 0.57,
+      "n_edges_est": 17,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "order_volume_peak_season"
+          },
+          {
+            "id": "weather_severity"
+          },
+          {
+            "id": "geographic_distance"
+          },
+          {
+            "id": "order_discount_rate"
+          },
+          {
+            "id": "order_processing_time"
+          },
+          {
+            "id": "order_item_quantity"
+          },
+          {
+            "id": "shipping_mode"
+          },
+          {
+            "id": "fulfillment_center_congestion"
+          },
+          {
+            "id": "traffic_congestion"
+          },
+          {
+            "id": "scheduled_transit_time"
+          },
+          {
+            "id": "actual_transit_time"
+          },
+          {
+            "id": "delivery_delay"
+          },
+          {
+            "id": "late_delivery_risk"
+          },
+          {
+            "id": "customer_satisfaction"
+          },
+          {
+            "id": "churn_repeat_purchase_risk"
+          },
+          {
+            "id": "profit_ratio"
+          }
+        ],
+        "links": [
+          {
+            "source": "order_volume_peak_season",
+            "target": "fulfillment_center_congestion"
+          },
+          {
+            "source": "weather_severity",
+            "target": "traffic_congestion"
+          },
+          {
+            "source": "weather_severity",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "order_item_quantity",
+            "target": "fulfillment_center_congestion"
+          },
+          {
+            "source": "shipping_mode",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "shipping_mode",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "fulfillment_center_congestion",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "traffic_congestion",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "order_processing_time"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "late_delivery_risk"
+          },
+          {
+            "source": "late_delivery_risk",
+            "target": "order_processing_time"
+          },
+          {
+            "source": "customer_satisfaction",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "customer_satisfaction",
+            "target": "late_delivery_risk"
+          },
+          {
+            "source": "customer_satisfaction",
+            "target": "churn_repeat_purchase_risk"
+          },
+          {
+            "source": "profit_ratio",
+            "target": "order_discount_rate"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "PC",
+      "type": "gemini",
+      "prior_name": "gemini_prior_2",
+      "shd": 4,
+      "precision": 0.89,
+      "recall": 0.89,
+      "f1": 0.89,
+      "n_edges_est": 18,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "order_volume_peak_season"
+          },
+          {
+            "id": "weather_severity"
+          },
+          {
+            "id": "geographic_distance"
+          },
+          {
+            "id": "order_discount_rate"
+          },
+          {
+            "id": "order_processing_time"
+          },
+          {
+            "id": "order_item_quantity"
+          },
+          {
+            "id": "shipping_mode"
+          },
+          {
+            "id": "fulfillment_center_congestion"
+          },
+          {
+            "id": "traffic_congestion"
+          },
+          {
+            "id": "scheduled_transit_time"
+          },
+          {
+            "id": "actual_transit_time"
+          },
+          {
+            "id": "delivery_delay"
+          },
+          {
+            "id": "late_delivery_risk"
+          },
+          {
+            "id": "customer_satisfaction"
+          },
+          {
+            "id": "churn_repeat_purchase_risk"
+          },
+          {
+            "id": "profit_ratio"
+          }
+        ],
+        "links": [
+          {
+            "source": "order_volume_peak_season",
+            "target": "fulfillment_center_congestion"
+          },
+          {
+            "source": "weather_severity",
+            "target": "traffic_congestion"
+          },
+          {
+            "source": "weather_severity",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "shipping_mode"
+          },
+          {
+            "source": "order_discount_rate",
+            "target": "profit_ratio"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "late_delivery_risk"
+          },
+          {
+            "source": "order_item_quantity",
+            "target": "fulfillment_center_congestion"
+          },
+          {
+            "source": "shipping_mode",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "shipping_mode",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "fulfillment_center_congestion",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "traffic_congestion",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "scheduled_transit_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "actual_transit_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "late_delivery_risk"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "customer_satisfaction"
+          },
+          {
+            "source": "late_delivery_risk",
+            "target": "customer_satisfaction"
+          },
+          {
+            "source": "customer_satisfaction",
+            "target": "churn_repeat_purchase_risk"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "PC",
+      "type": "gemini_consensus",
+      "prior_name": "gemini_consensus_prior",
+      "shd": 4,
+      "precision": 0.89,
+      "recall": 0.89,
+      "f1": 0.89,
+      "n_edges_est": 18,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "order_volume_peak_season"
+          },
+          {
+            "id": "weather_severity"
+          },
+          {
+            "id": "geographic_distance"
+          },
+          {
+            "id": "order_discount_rate"
+          },
+          {
+            "id": "order_processing_time"
+          },
+          {
+            "id": "order_item_quantity"
+          },
+          {
+            "id": "shipping_mode"
+          },
+          {
+            "id": "fulfillment_center_congestion"
+          },
+          {
+            "id": "traffic_congestion"
+          },
+          {
+            "id": "scheduled_transit_time"
+          },
+          {
+            "id": "actual_transit_time"
+          },
+          {
+            "id": "delivery_delay"
+          },
+          {
+            "id": "late_delivery_risk"
+          },
+          {
+            "id": "customer_satisfaction"
+          },
+          {
+            "id": "churn_repeat_purchase_risk"
+          },
+          {
+            "id": "profit_ratio"
+          }
+        ],
+        "links": [
+          {
+            "source": "order_volume_peak_season",
+            "target": "order_item_quantity"
+          },
+          {
+            "source": "order_volume_peak_season",
+            "target": "fulfillment_center_congestion"
+          },
+          {
+            "source": "weather_severity",
+            "target": "traffic_congestion"
+          },
+          {
+            "source": "weather_severity",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "shipping_mode"
+          },
+          {
+            "source": "order_discount_rate",
+            "target": "profit_ratio"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "late_delivery_risk"
+          },
+          {
+            "source": "shipping_mode",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "shipping_mode",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "fulfillment_center_congestion",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "traffic_congestion",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "scheduled_transit_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "actual_transit_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "late_delivery_risk"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "customer_satisfaction"
+          },
+          {
+            "source": "late_delivery_risk",
+            "target": "customer_satisfaction"
+          },
+          {
+            "source": "customer_satisfaction",
+            "target": "churn_repeat_purchase_risk"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "PC",
+      "type": "cerebras",
+      "prior_name": "cerebras_prior_0",
+      "shd": 4,
+      "precision": 0.89,
+      "recall": 0.89,
+      "f1": 0.89,
+      "n_edges_est": 18,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "order_volume_peak_season"
+          },
+          {
+            "id": "weather_severity"
+          },
+          {
+            "id": "geographic_distance"
+          },
+          {
+            "id": "order_discount_rate"
+          },
+          {
+            "id": "order_processing_time"
+          },
+          {
+            "id": "order_item_quantity"
+          },
+          {
+            "id": "shipping_mode"
+          },
+          {
+            "id": "fulfillment_center_congestion"
+          },
+          {
+            "id": "traffic_congestion"
+          },
+          {
+            "id": "scheduled_transit_time"
+          },
+          {
+            "id": "actual_transit_time"
+          },
+          {
+            "id": "delivery_delay"
+          },
+          {
+            "id": "late_delivery_risk"
+          },
+          {
+            "id": "customer_satisfaction"
+          },
+          {
+            "id": "churn_repeat_purchase_risk"
+          },
+          {
+            "id": "profit_ratio"
+          }
+        ],
+        "links": [
+          {
+            "source": "order_volume_peak_season",
+            "target": "fulfillment_center_congestion"
+          },
+          {
+            "source": "weather_severity",
+            "target": "traffic_congestion"
+          },
+          {
+            "source": "weather_severity",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "shipping_mode"
+          },
+          {
+            "source": "order_discount_rate",
+            "target": "profit_ratio"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "late_delivery_risk"
+          },
+          {
+            "source": "order_item_quantity",
+            "target": "fulfillment_center_congestion"
+          },
+          {
+            "source": "shipping_mode",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "shipping_mode",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "fulfillment_center_congestion",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "traffic_congestion",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "scheduled_transit_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "actual_transit_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "late_delivery_risk"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "customer_satisfaction"
+          },
+          {
+            "source": "late_delivery_risk",
+            "target": "customer_satisfaction"
+          },
+          {
+            "source": "customer_satisfaction",
+            "target": "churn_repeat_purchase_risk"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "PC",
+      "type": "cerebras_consensus",
+      "prior_name": "cerebras_consensus_prior",
+      "shd": 3,
+      "precision": 0.89,
+      "recall": 0.94,
+      "f1": 0.92,
+      "n_edges_est": 19,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "order_volume_peak_season"
+          },
+          {
+            "id": "weather_severity"
+          },
+          {
+            "id": "geographic_distance"
+          },
+          {
+            "id": "order_discount_rate"
+          },
+          {
+            "id": "order_processing_time"
+          },
+          {
+            "id": "order_item_quantity"
+          },
+          {
+            "id": "shipping_mode"
+          },
+          {
+            "id": "fulfillment_center_congestion"
+          },
+          {
+            "id": "traffic_congestion"
+          },
+          {
+            "id": "scheduled_transit_time"
+          },
+          {
+            "id": "actual_transit_time"
+          },
+          {
+            "id": "delivery_delay"
+          },
+          {
+            "id": "late_delivery_risk"
+          },
+          {
+            "id": "customer_satisfaction"
+          },
+          {
+            "id": "churn_repeat_purchase_risk"
+          },
+          {
+            "id": "profit_ratio"
+          }
+        ],
+        "links": [
+          {
+            "source": "order_volume_peak_season",
+            "target": "order_item_quantity"
+          },
+          {
+            "source": "order_volume_peak_season",
+            "target": "fulfillment_center_congestion"
+          },
+          {
+            "source": "weather_severity",
+            "target": "traffic_congestion"
+          },
+          {
+            "source": "weather_severity",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "shipping_mode"
+          },
+          {
+            "source": "order_discount_rate",
+            "target": "profit_ratio"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "late_delivery_risk"
+          },
+          {
+            "source": "order_item_quantity",
+            "target": "fulfillment_center_congestion"
+          },
+          {
+            "source": "shipping_mode",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "shipping_mode",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "fulfillment_center_congestion",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "traffic_congestion",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "scheduled_transit_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "actual_transit_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "late_delivery_risk"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "customer_satisfaction"
+          },
+          {
+            "source": "customer_satisfaction",
+            "target": "late_delivery_risk"
+          },
+          {
+            "source": "customer_satisfaction",
+            "target": "churn_repeat_purchase_risk"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "Baseline",
+      "prior_name": null,
+      "shd": 6,
+      "precision": 0.7,
+      "recall": 0.78,
+      "f1": 0.74,
+      "n_edges_est": 20,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "order_volume_peak_season"
+          },
+          {
+            "id": "weather_severity"
+          },
+          {
+            "id": "geographic_distance"
+          },
+          {
+            "id": "order_discount_rate"
+          },
+          {
+            "id": "order_processing_time"
+          },
+          {
+            "id": "order_item_quantity"
+          },
+          {
+            "id": "shipping_mode"
+          },
+          {
+            "id": "fulfillment_center_congestion"
+          },
+          {
+            "id": "traffic_congestion"
+          },
+          {
+            "id": "scheduled_transit_time"
+          },
+          {
+            "id": "actual_transit_time"
+          },
+          {
+            "id": "delivery_delay"
+          },
+          {
+            "id": "late_delivery_risk"
+          },
+          {
+            "id": "customer_satisfaction"
+          },
+          {
+            "id": "churn_repeat_purchase_risk"
+          },
+          {
+            "id": "profit_ratio"
+          }
+        ],
+        "links": [
+          {
+            "source": "weather_severity",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "shipping_mode"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "order_discount_rate",
+            "target": "profit_ratio"
+          },
+          {
+            "source": "order_discount_rate",
+            "target": "weather_severity"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "order_item_quantity",
+            "target": "order_volume_peak_season"
+          },
+          {
+            "source": "shipping_mode",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "shipping_mode",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "fulfillment_center_congestion",
+            "target": "order_item_quantity"
+          },
+          {
+            "source": "fulfillment_center_congestion",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "fulfillment_center_congestion",
+            "target": "order_volume_peak_season"
+          },
+          {
+            "source": "traffic_congestion",
+            "target": "weather_severity"
+          },
+          {
+            "source": "traffic_congestion",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "scheduled_transit_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "actual_transit_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "late_delivery_risk"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "customer_satisfaction"
+          },
+          {
+            "source": "late_delivery_risk",
+            "target": "customer_satisfaction"
+          },
+          {
+            "source": "customer_satisfaction",
+            "target": "churn_repeat_purchase_risk"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "perfect",
+      "prior_name": "perfect_prior",
+      "params": {
+        "lambda": 0.1
+      },
+      "shd": 1,
+      "precision": 0.95,
+      "recall": 1.0,
+      "f1": 0.97,
+      "n_edges_est": 19,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "order_volume_peak_season"
+          },
+          {
+            "id": "weather_severity"
+          },
+          {
+            "id": "geographic_distance"
+          },
+          {
+            "id": "order_discount_rate"
+          },
+          {
+            "id": "order_processing_time"
+          },
+          {
+            "id": "order_item_quantity"
+          },
+          {
+            "id": "shipping_mode"
+          },
+          {
+            "id": "fulfillment_center_congestion"
+          },
+          {
+            "id": "traffic_congestion"
+          },
+          {
+            "id": "scheduled_transit_time"
+          },
+          {
+            "id": "actual_transit_time"
+          },
+          {
+            "id": "delivery_delay"
+          },
+          {
+            "id": "late_delivery_risk"
+          },
+          {
+            "id": "customer_satisfaction"
+          },
+          {
+            "id": "churn_repeat_purchase_risk"
+          },
+          {
+            "id": "profit_ratio"
+          }
+        ],
+        "links": [
+          {
+            "source": "order_volume_peak_season",
+            "target": "order_item_quantity"
+          },
+          {
+            "source": "order_volume_peak_season",
+            "target": "fulfillment_center_congestion"
+          },
+          {
+            "source": "weather_severity",
+            "target": "traffic_congestion"
+          },
+          {
+            "source": "weather_severity",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "shipping_mode"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "order_discount_rate",
+            "target": "profit_ratio"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "order_item_quantity",
+            "target": "fulfillment_center_congestion"
+          },
+          {
+            "source": "shipping_mode",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "shipping_mode",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "fulfillment_center_congestion",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "traffic_congestion",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "scheduled_transit_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "actual_transit_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "late_delivery_risk"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "customer_satisfaction"
+          },
+          {
+            "source": "late_delivery_risk",
+            "target": "customer_satisfaction"
+          },
+          {
+            "source": "customer_satisfaction",
+            "target": "churn_repeat_purchase_risk"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "perfect",
+      "prior_name": "perfect_prior",
+      "params": {
+        "lambda": 0.5
+      },
+      "shd": 1,
+      "precision": 0.95,
+      "recall": 1.0,
+      "f1": 0.97,
+      "n_edges_est": 19,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "order_volume_peak_season"
+          },
+          {
+            "id": "weather_severity"
+          },
+          {
+            "id": "geographic_distance"
+          },
+          {
+            "id": "order_discount_rate"
+          },
+          {
+            "id": "order_processing_time"
+          },
+          {
+            "id": "order_item_quantity"
+          },
+          {
+            "id": "shipping_mode"
+          },
+          {
+            "id": "fulfillment_center_congestion"
+          },
+          {
+            "id": "traffic_congestion"
+          },
+          {
+            "id": "scheduled_transit_time"
+          },
+          {
+            "id": "actual_transit_time"
+          },
+          {
+            "id": "delivery_delay"
+          },
+          {
+            "id": "late_delivery_risk"
+          },
+          {
+            "id": "customer_satisfaction"
+          },
+          {
+            "id": "churn_repeat_purchase_risk"
+          },
+          {
+            "id": "profit_ratio"
+          }
+        ],
+        "links": [
+          {
+            "source": "order_volume_peak_season",
+            "target": "order_item_quantity"
+          },
+          {
+            "source": "order_volume_peak_season",
+            "target": "fulfillment_center_congestion"
+          },
+          {
+            "source": "weather_severity",
+            "target": "traffic_congestion"
+          },
+          {
+            "source": "weather_severity",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "shipping_mode"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "order_discount_rate",
+            "target": "profit_ratio"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "order_item_quantity",
+            "target": "fulfillment_center_congestion"
+          },
+          {
+            "source": "shipping_mode",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "shipping_mode",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "fulfillment_center_congestion",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "traffic_congestion",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "scheduled_transit_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "actual_transit_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "late_delivery_risk"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "customer_satisfaction"
+          },
+          {
+            "source": "late_delivery_risk",
+            "target": "customer_satisfaction"
+          },
+          {
+            "source": "customer_satisfaction",
+            "target": "churn_repeat_purchase_risk"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "perfect",
+      "prior_name": "perfect_prior",
+      "params": {
+        "lambda": 0.9
+      },
+      "shd": 1,
+      "precision": 0.95,
+      "recall": 1.0,
+      "f1": 0.97,
+      "n_edges_est": 19,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "order_volume_peak_season"
+          },
+          {
+            "id": "weather_severity"
+          },
+          {
+            "id": "geographic_distance"
+          },
+          {
+            "id": "order_discount_rate"
+          },
+          {
+            "id": "order_processing_time"
+          },
+          {
+            "id": "order_item_quantity"
+          },
+          {
+            "id": "shipping_mode"
+          },
+          {
+            "id": "fulfillment_center_congestion"
+          },
+          {
+            "id": "traffic_congestion"
+          },
+          {
+            "id": "scheduled_transit_time"
+          },
+          {
+            "id": "actual_transit_time"
+          },
+          {
+            "id": "delivery_delay"
+          },
+          {
+            "id": "late_delivery_risk"
+          },
+          {
+            "id": "customer_satisfaction"
+          },
+          {
+            "id": "churn_repeat_purchase_risk"
+          },
+          {
+            "id": "profit_ratio"
+          }
+        ],
+        "links": [
+          {
+            "source": "order_volume_peak_season",
+            "target": "order_item_quantity"
+          },
+          {
+            "source": "order_volume_peak_season",
+            "target": "fulfillment_center_congestion"
+          },
+          {
+            "source": "weather_severity",
+            "target": "traffic_congestion"
+          },
+          {
+            "source": "weather_severity",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "shipping_mode"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "order_discount_rate",
+            "target": "profit_ratio"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "order_item_quantity",
+            "target": "fulfillment_center_congestion"
+          },
+          {
+            "source": "shipping_mode",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "shipping_mode",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "fulfillment_center_congestion",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "traffic_congestion",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "scheduled_transit_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "actual_transit_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "late_delivery_risk"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "customer_satisfaction"
+          },
+          {
+            "source": "late_delivery_risk",
+            "target": "customer_satisfaction"
+          },
+          {
+            "source": "customer_satisfaction",
+            "target": "churn_repeat_purchase_risk"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "random",
+      "prior_name": "random_prior_2",
+      "params": {
+        "lambda": 0.1
+      },
+      "shd": 24,
+      "precision": 0.27,
+      "recall": 0.5,
+      "f1": 0.35,
+      "n_edges_est": 33,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "order_volume_peak_season"
+          },
+          {
+            "id": "weather_severity"
+          },
+          {
+            "id": "geographic_distance"
+          },
+          {
+            "id": "order_discount_rate"
+          },
+          {
+            "id": "order_processing_time"
+          },
+          {
+            "id": "order_item_quantity"
+          },
+          {
+            "id": "shipping_mode"
+          },
+          {
+            "id": "fulfillment_center_congestion"
+          },
+          {
+            "id": "traffic_congestion"
+          },
+          {
+            "id": "scheduled_transit_time"
+          },
+          {
+            "id": "actual_transit_time"
+          },
+          {
+            "id": "delivery_delay"
+          },
+          {
+            "id": "late_delivery_risk"
+          },
+          {
+            "id": "customer_satisfaction"
+          },
+          {
+            "id": "churn_repeat_purchase_risk"
+          },
+          {
+            "id": "profit_ratio"
+          }
+        ],
+        "links": [
+          {
+            "source": "order_volume_peak_season",
+            "target": "order_item_quantity"
+          },
+          {
+            "source": "order_volume_peak_season",
+            "target": "fulfillment_center_congestion"
+          },
+          {
+            "source": "order_volume_peak_season",
+            "target": "weather_severity"
+          },
+          {
+            "source": "weather_severity",
+            "target": "traffic_congestion"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "shipping_mode"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "weather_severity"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "order_processing_time"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "order_discount_rate",
+            "target": "profit_ratio"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "fulfillment_center_congestion",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "fulfillment_center_congestion",
+            "target": "shipping_mode"
+          },
+          {
+            "source": "fulfillment_center_congestion",
+            "target": "order_item_quantity"
+          },
+          {
+            "source": "fulfillment_center_congestion",
+            "target": "geographic_distance"
+          },
+          {
+            "source": "fulfillment_center_congestion",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "traffic_congestion",
+            "target": "shipping_mode"
+          },
+          {
+            "source": "scheduled_transit_time",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "scheduled_transit_time",
+            "target": "shipping_mode"
+          },
+          {
+            "source": "scheduled_transit_time",
+            "target": "order_processing_time"
+          },
+          {
+            "source": "scheduled_transit_time",
+            "target": "weather_severity"
+          },
+          {
+            "source": "actual_transit_time",
+            "target": "weather_severity"
+          },
+          {
+            "source": "actual_transit_time",
+            "target": "traffic_congestion"
+          },
+          {
+            "source": "actual_transit_time",
+            "target": "shipping_mode"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "late_delivery_risk"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "geographic_distance"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "order_processing_time"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "customer_satisfaction",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "customer_satisfaction",
+            "target": "churn_repeat_purchase_risk"
+          },
+          {
+            "source": "customer_satisfaction",
+            "target": "order_volume_peak_season"
+          },
+          {
+            "source": "customer_satisfaction",
+            "target": "late_delivery_risk"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "random",
+      "prior_name": "random_prior_2",
+      "params": {
+        "lambda": 0.5
+      },
+      "shd": 24,
+      "precision": 0.27,
+      "recall": 0.5,
+      "f1": 0.35,
+      "n_edges_est": 33,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "order_volume_peak_season"
+          },
+          {
+            "id": "weather_severity"
+          },
+          {
+            "id": "geographic_distance"
+          },
+          {
+            "id": "order_discount_rate"
+          },
+          {
+            "id": "order_processing_time"
+          },
+          {
+            "id": "order_item_quantity"
+          },
+          {
+            "id": "shipping_mode"
+          },
+          {
+            "id": "fulfillment_center_congestion"
+          },
+          {
+            "id": "traffic_congestion"
+          },
+          {
+            "id": "scheduled_transit_time"
+          },
+          {
+            "id": "actual_transit_time"
+          },
+          {
+            "id": "delivery_delay"
+          },
+          {
+            "id": "late_delivery_risk"
+          },
+          {
+            "id": "customer_satisfaction"
+          },
+          {
+            "id": "churn_repeat_purchase_risk"
+          },
+          {
+            "id": "profit_ratio"
+          }
+        ],
+        "links": [
+          {
+            "source": "order_volume_peak_season",
+            "target": "order_item_quantity"
+          },
+          {
+            "source": "order_volume_peak_season",
+            "target": "fulfillment_center_congestion"
+          },
+          {
+            "source": "order_volume_peak_season",
+            "target": "weather_severity"
+          },
+          {
+            "source": "weather_severity",
+            "target": "traffic_congestion"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "shipping_mode"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "weather_severity"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "order_processing_time"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "order_discount_rate",
+            "target": "profit_ratio"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "fulfillment_center_congestion",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "fulfillment_center_congestion",
+            "target": "shipping_mode"
+          },
+          {
+            "source": "fulfillment_center_congestion",
+            "target": "order_item_quantity"
+          },
+          {
+            "source": "fulfillment_center_congestion",
+            "target": "geographic_distance"
+          },
+          {
+            "source": "fulfillment_center_congestion",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "traffic_congestion",
+            "target": "shipping_mode"
+          },
+          {
+            "source": "scheduled_transit_time",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "scheduled_transit_time",
+            "target": "shipping_mode"
+          },
+          {
+            "source": "scheduled_transit_time",
+            "target": "order_processing_time"
+          },
+          {
+            "source": "scheduled_transit_time",
+            "target": "weather_severity"
+          },
+          {
+            "source": "actual_transit_time",
+            "target": "weather_severity"
+          },
+          {
+            "source": "actual_transit_time",
+            "target": "traffic_congestion"
+          },
+          {
+            "source": "actual_transit_time",
+            "target": "shipping_mode"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "late_delivery_risk"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "geographic_distance"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "order_processing_time"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "customer_satisfaction",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "customer_satisfaction",
+            "target": "churn_repeat_purchase_risk"
+          },
+          {
+            "source": "customer_satisfaction",
+            "target": "order_volume_peak_season"
+          },
+          {
+            "source": "customer_satisfaction",
+            "target": "late_delivery_risk"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "random",
+      "prior_name": "random_prior_2",
+      "params": {
+        "lambda": 0.9
+      },
+      "shd": 24,
+      "precision": 0.27,
+      "recall": 0.5,
+      "f1": 0.35,
+      "n_edges_est": 33,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "order_volume_peak_season"
+          },
+          {
+            "id": "weather_severity"
+          },
+          {
+            "id": "geographic_distance"
+          },
+          {
+            "id": "order_discount_rate"
+          },
+          {
+            "id": "order_processing_time"
+          },
+          {
+            "id": "order_item_quantity"
+          },
+          {
+            "id": "shipping_mode"
+          },
+          {
+            "id": "fulfillment_center_congestion"
+          },
+          {
+            "id": "traffic_congestion"
+          },
+          {
+            "id": "scheduled_transit_time"
+          },
+          {
+            "id": "actual_transit_time"
+          },
+          {
+            "id": "delivery_delay"
+          },
+          {
+            "id": "late_delivery_risk"
+          },
+          {
+            "id": "customer_satisfaction"
+          },
+          {
+            "id": "churn_repeat_purchase_risk"
+          },
+          {
+            "id": "profit_ratio"
+          }
+        ],
+        "links": [
+          {
+            "source": "order_volume_peak_season",
+            "target": "order_item_quantity"
+          },
+          {
+            "source": "order_volume_peak_season",
+            "target": "fulfillment_center_congestion"
+          },
+          {
+            "source": "order_volume_peak_season",
+            "target": "weather_severity"
+          },
+          {
+            "source": "weather_severity",
+            "target": "traffic_congestion"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "shipping_mode"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "weather_severity"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "order_processing_time"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "order_discount_rate",
+            "target": "profit_ratio"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "fulfillment_center_congestion",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "fulfillment_center_congestion",
+            "target": "shipping_mode"
+          },
+          {
+            "source": "fulfillment_center_congestion",
+            "target": "order_item_quantity"
+          },
+          {
+            "source": "fulfillment_center_congestion",
+            "target": "geographic_distance"
+          },
+          {
+            "source": "fulfillment_center_congestion",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "traffic_congestion",
+            "target": "shipping_mode"
+          },
+          {
+            "source": "scheduled_transit_time",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "scheduled_transit_time",
+            "target": "shipping_mode"
+          },
+          {
+            "source": "scheduled_transit_time",
+            "target": "order_processing_time"
+          },
+          {
+            "source": "scheduled_transit_time",
+            "target": "weather_severity"
+          },
+          {
+            "source": "actual_transit_time",
+            "target": "weather_severity"
+          },
+          {
+            "source": "actual_transit_time",
+            "target": "traffic_congestion"
+          },
+          {
+            "source": "actual_transit_time",
+            "target": "shipping_mode"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "late_delivery_risk"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "geographic_distance"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "order_processing_time"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "customer_satisfaction",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "customer_satisfaction",
+            "target": "churn_repeat_purchase_risk"
+          },
+          {
+            "source": "customer_satisfaction",
+            "target": "order_volume_peak_season"
+          },
+          {
+            "source": "customer_satisfaction",
+            "target": "late_delivery_risk"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "ollama_llama",
+      "prior_name": "ollama_llama_prior_2",
+      "params": {
+        "lambda": 0.1
+      },
+      "shd": 1,
+      "precision": 0.95,
+      "recall": 1.0,
+      "f1": 0.97,
+      "n_edges_est": 19,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "order_volume_peak_season"
+          },
+          {
+            "id": "weather_severity"
+          },
+          {
+            "id": "geographic_distance"
+          },
+          {
+            "id": "order_discount_rate"
+          },
+          {
+            "id": "order_processing_time"
+          },
+          {
+            "id": "order_item_quantity"
+          },
+          {
+            "id": "shipping_mode"
+          },
+          {
+            "id": "fulfillment_center_congestion"
+          },
+          {
+            "id": "traffic_congestion"
+          },
+          {
+            "id": "scheduled_transit_time"
+          },
+          {
+            "id": "actual_transit_time"
+          },
+          {
+            "id": "delivery_delay"
+          },
+          {
+            "id": "late_delivery_risk"
+          },
+          {
+            "id": "customer_satisfaction"
+          },
+          {
+            "id": "churn_repeat_purchase_risk"
+          },
+          {
+            "id": "profit_ratio"
+          }
+        ],
+        "links": [
+          {
+            "source": "order_volume_peak_season",
+            "target": "order_item_quantity"
+          },
+          {
+            "source": "order_volume_peak_season",
+            "target": "fulfillment_center_congestion"
+          },
+          {
+            "source": "weather_severity",
+            "target": "traffic_congestion"
+          },
+          {
+            "source": "weather_severity",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "shipping_mode"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "order_discount_rate",
+            "target": "profit_ratio"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "order_item_quantity",
+            "target": "fulfillment_center_congestion"
+          },
+          {
+            "source": "shipping_mode",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "shipping_mode",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "fulfillment_center_congestion",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "traffic_congestion",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "scheduled_transit_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "actual_transit_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "late_delivery_risk"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "customer_satisfaction"
+          },
+          {
+            "source": "late_delivery_risk",
+            "target": "customer_satisfaction"
+          },
+          {
+            "source": "customer_satisfaction",
+            "target": "churn_repeat_purchase_risk"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "ollama_llama",
+      "prior_name": "ollama_llama_prior_2",
+      "params": {
+        "lambda": 0.5
+      },
+      "shd": 1,
+      "precision": 0.95,
+      "recall": 1.0,
+      "f1": 0.97,
+      "n_edges_est": 19,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "order_volume_peak_season"
+          },
+          {
+            "id": "weather_severity"
+          },
+          {
+            "id": "geographic_distance"
+          },
+          {
+            "id": "order_discount_rate"
+          },
+          {
+            "id": "order_processing_time"
+          },
+          {
+            "id": "order_item_quantity"
+          },
+          {
+            "id": "shipping_mode"
+          },
+          {
+            "id": "fulfillment_center_congestion"
+          },
+          {
+            "id": "traffic_congestion"
+          },
+          {
+            "id": "scheduled_transit_time"
+          },
+          {
+            "id": "actual_transit_time"
+          },
+          {
+            "id": "delivery_delay"
+          },
+          {
+            "id": "late_delivery_risk"
+          },
+          {
+            "id": "customer_satisfaction"
+          },
+          {
+            "id": "churn_repeat_purchase_risk"
+          },
+          {
+            "id": "profit_ratio"
+          }
+        ],
+        "links": [
+          {
+            "source": "order_volume_peak_season",
+            "target": "order_item_quantity"
+          },
+          {
+            "source": "order_volume_peak_season",
+            "target": "fulfillment_center_congestion"
+          },
+          {
+            "source": "weather_severity",
+            "target": "traffic_congestion"
+          },
+          {
+            "source": "weather_severity",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "shipping_mode"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "order_discount_rate",
+            "target": "profit_ratio"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "order_item_quantity",
+            "target": "fulfillment_center_congestion"
+          },
+          {
+            "source": "shipping_mode",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "shipping_mode",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "fulfillment_center_congestion",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "traffic_congestion",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "scheduled_transit_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "actual_transit_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "late_delivery_risk"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "customer_satisfaction"
+          },
+          {
+            "source": "late_delivery_risk",
+            "target": "customer_satisfaction"
+          },
+          {
+            "source": "customer_satisfaction",
+            "target": "churn_repeat_purchase_risk"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "ollama_llama",
+      "prior_name": "ollama_llama_prior_2",
+      "params": {
+        "lambda": 0.9
+      },
+      "shd": 1,
+      "precision": 0.95,
+      "recall": 1.0,
+      "f1": 0.97,
+      "n_edges_est": 19,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "order_volume_peak_season"
+          },
+          {
+            "id": "weather_severity"
+          },
+          {
+            "id": "geographic_distance"
+          },
+          {
+            "id": "order_discount_rate"
+          },
+          {
+            "id": "order_processing_time"
+          },
+          {
+            "id": "order_item_quantity"
+          },
+          {
+            "id": "shipping_mode"
+          },
+          {
+            "id": "fulfillment_center_congestion"
+          },
+          {
+            "id": "traffic_congestion"
+          },
+          {
+            "id": "scheduled_transit_time"
+          },
+          {
+            "id": "actual_transit_time"
+          },
+          {
+            "id": "delivery_delay"
+          },
+          {
+            "id": "late_delivery_risk"
+          },
+          {
+            "id": "customer_satisfaction"
+          },
+          {
+            "id": "churn_repeat_purchase_risk"
+          },
+          {
+            "id": "profit_ratio"
+          }
+        ],
+        "links": [
+          {
+            "source": "order_volume_peak_season",
+            "target": "order_item_quantity"
+          },
+          {
+            "source": "order_volume_peak_season",
+            "target": "fulfillment_center_congestion"
+          },
+          {
+            "source": "weather_severity",
+            "target": "traffic_congestion"
+          },
+          {
+            "source": "weather_severity",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "shipping_mode"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "order_discount_rate",
+            "target": "profit_ratio"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "order_item_quantity",
+            "target": "fulfillment_center_congestion"
+          },
+          {
+            "source": "shipping_mode",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "shipping_mode",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "fulfillment_center_congestion",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "traffic_congestion",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "scheduled_transit_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "actual_transit_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "late_delivery_risk"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "customer_satisfaction"
+          },
+          {
+            "source": "late_delivery_risk",
+            "target": "customer_satisfaction"
+          },
+          {
+            "source": "customer_satisfaction",
+            "target": "churn_repeat_purchase_risk"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "ollama_llama_consensus",
+      "prior_name": "ollama_llama_consensus_prior",
+      "params": {
+        "lambda": 0.1
+      },
+      "shd": 6,
+      "precision": 0.74,
+      "recall": 0.94,
+      "f1": 0.83,
+      "n_edges_est": 23,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "order_volume_peak_season"
+          },
+          {
+            "id": "weather_severity"
+          },
+          {
+            "id": "geographic_distance"
+          },
+          {
+            "id": "order_discount_rate"
+          },
+          {
+            "id": "order_processing_time"
+          },
+          {
+            "id": "order_item_quantity"
+          },
+          {
+            "id": "shipping_mode"
+          },
+          {
+            "id": "fulfillment_center_congestion"
+          },
+          {
+            "id": "traffic_congestion"
+          },
+          {
+            "id": "scheduled_transit_time"
+          },
+          {
+            "id": "actual_transit_time"
+          },
+          {
+            "id": "delivery_delay"
+          },
+          {
+            "id": "late_delivery_risk"
+          },
+          {
+            "id": "customer_satisfaction"
+          },
+          {
+            "id": "churn_repeat_purchase_risk"
+          },
+          {
+            "id": "profit_ratio"
+          }
+        ],
+        "links": [
+          {
+            "source": "order_volume_peak_season",
+            "target": "order_item_quantity"
+          },
+          {
+            "source": "order_volume_peak_season",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "order_volume_peak_season",
+            "target": "fulfillment_center_congestion"
+          },
+          {
+            "source": "weather_severity",
+            "target": "traffic_congestion"
+          },
+          {
+            "source": "weather_severity",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "shipping_mode"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "order_discount_rate",
+            "target": "profit_ratio"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "order_item_quantity",
+            "target": "fulfillment_center_congestion"
+          },
+          {
+            "source": "order_item_quantity",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "shipping_mode",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "shipping_mode",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "shipping_mode",
+            "target": "fulfillment_center_congestion"
+          },
+          {
+            "source": "traffic_congestion",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "traffic_congestion",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "scheduled_transit_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "scheduled_transit_time",
+            "target": "fulfillment_center_congestion"
+          },
+          {
+            "source": "actual_transit_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "late_delivery_risk"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "customer_satisfaction"
+          },
+          {
+            "source": "late_delivery_risk",
+            "target": "customer_satisfaction"
+          },
+          {
+            "source": "customer_satisfaction",
+            "target": "churn_repeat_purchase_risk"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "ollama_llama_consensus",
+      "prior_name": "ollama_llama_consensus_prior",
+      "params": {
+        "lambda": 0.5
+      },
+      "shd": 6,
+      "precision": 0.74,
+      "recall": 0.94,
+      "f1": 0.83,
+      "n_edges_est": 23,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "order_volume_peak_season"
+          },
+          {
+            "id": "weather_severity"
+          },
+          {
+            "id": "geographic_distance"
+          },
+          {
+            "id": "order_discount_rate"
+          },
+          {
+            "id": "order_processing_time"
+          },
+          {
+            "id": "order_item_quantity"
+          },
+          {
+            "id": "shipping_mode"
+          },
+          {
+            "id": "fulfillment_center_congestion"
+          },
+          {
+            "id": "traffic_congestion"
+          },
+          {
+            "id": "scheduled_transit_time"
+          },
+          {
+            "id": "actual_transit_time"
+          },
+          {
+            "id": "delivery_delay"
+          },
+          {
+            "id": "late_delivery_risk"
+          },
+          {
+            "id": "customer_satisfaction"
+          },
+          {
+            "id": "churn_repeat_purchase_risk"
+          },
+          {
+            "id": "profit_ratio"
+          }
+        ],
+        "links": [
+          {
+            "source": "order_volume_peak_season",
+            "target": "order_item_quantity"
+          },
+          {
+            "source": "order_volume_peak_season",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "order_volume_peak_season",
+            "target": "fulfillment_center_congestion"
+          },
+          {
+            "source": "weather_severity",
+            "target": "traffic_congestion"
+          },
+          {
+            "source": "weather_severity",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "shipping_mode"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "order_discount_rate",
+            "target": "profit_ratio"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "order_item_quantity",
+            "target": "fulfillment_center_congestion"
+          },
+          {
+            "source": "order_item_quantity",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "shipping_mode",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "shipping_mode",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "shipping_mode",
+            "target": "fulfillment_center_congestion"
+          },
+          {
+            "source": "traffic_congestion",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "traffic_congestion",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "scheduled_transit_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "scheduled_transit_time",
+            "target": "fulfillment_center_congestion"
+          },
+          {
+            "source": "actual_transit_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "late_delivery_risk"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "customer_satisfaction"
+          },
+          {
+            "source": "late_delivery_risk",
+            "target": "customer_satisfaction"
+          },
+          {
+            "source": "customer_satisfaction",
+            "target": "churn_repeat_purchase_risk"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "ollama_llama_consensus",
+      "prior_name": "ollama_llama_consensus_prior",
+      "params": {
+        "lambda": 0.9
+      },
+      "shd": 7,
+      "precision": 0.71,
+      "recall": 0.94,
+      "f1": 0.81,
+      "n_edges_est": 24,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "order_volume_peak_season"
+          },
+          {
+            "id": "weather_severity"
+          },
+          {
+            "id": "geographic_distance"
+          },
+          {
+            "id": "order_discount_rate"
+          },
+          {
+            "id": "order_processing_time"
+          },
+          {
+            "id": "order_item_quantity"
+          },
+          {
+            "id": "shipping_mode"
+          },
+          {
+            "id": "fulfillment_center_congestion"
+          },
+          {
+            "id": "traffic_congestion"
+          },
+          {
+            "id": "scheduled_transit_time"
+          },
+          {
+            "id": "actual_transit_time"
+          },
+          {
+            "id": "delivery_delay"
+          },
+          {
+            "id": "late_delivery_risk"
+          },
+          {
+            "id": "customer_satisfaction"
+          },
+          {
+            "id": "churn_repeat_purchase_risk"
+          },
+          {
+            "id": "profit_ratio"
+          }
+        ],
+        "links": [
+          {
+            "source": "order_volume_peak_season",
+            "target": "order_item_quantity"
+          },
+          {
+            "source": "order_volume_peak_season",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "order_volume_peak_season",
+            "target": "fulfillment_center_congestion"
+          },
+          {
+            "source": "weather_severity",
+            "target": "traffic_congestion"
+          },
+          {
+            "source": "weather_severity",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "shipping_mode"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "order_discount_rate",
+            "target": "profit_ratio"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "order_item_quantity",
+            "target": "fulfillment_center_congestion"
+          },
+          {
+            "source": "order_item_quantity",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "shipping_mode",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "shipping_mode",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "shipping_mode",
+            "target": "fulfillment_center_congestion"
+          },
+          {
+            "source": "traffic_congestion",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "traffic_congestion",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "scheduled_transit_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "scheduled_transit_time",
+            "target": "fulfillment_center_congestion"
+          },
+          {
+            "source": "actual_transit_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "late_delivery_risk"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "customer_satisfaction"
+          },
+          {
+            "source": "late_delivery_risk",
+            "target": "customer_satisfaction"
+          },
+          {
+            "source": "customer_satisfaction",
+            "target": "churn_repeat_purchase_risk"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "ollama_qwen",
+      "prior_name": "ollama_qwen_prior_2",
+      "params": {
+        "lambda": 0.1
+      },
+      "shd": 3,
+      "precision": 0.85,
+      "recall": 0.94,
+      "f1": 0.89,
+      "n_edges_est": 20,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "order_volume_peak_season"
+          },
+          {
+            "id": "weather_severity"
+          },
+          {
+            "id": "geographic_distance"
+          },
+          {
+            "id": "order_discount_rate"
+          },
+          {
+            "id": "order_processing_time"
+          },
+          {
+            "id": "order_item_quantity"
+          },
+          {
+            "id": "shipping_mode"
+          },
+          {
+            "id": "fulfillment_center_congestion"
+          },
+          {
+            "id": "traffic_congestion"
+          },
+          {
+            "id": "scheduled_transit_time"
+          },
+          {
+            "id": "actual_transit_time"
+          },
+          {
+            "id": "delivery_delay"
+          },
+          {
+            "id": "late_delivery_risk"
+          },
+          {
+            "id": "customer_satisfaction"
+          },
+          {
+            "id": "churn_repeat_purchase_risk"
+          },
+          {
+            "id": "profit_ratio"
+          }
+        ],
+        "links": [
+          {
+            "source": "order_volume_peak_season",
+            "target": "order_item_quantity"
+          },
+          {
+            "source": "order_volume_peak_season",
+            "target": "fulfillment_center_congestion"
+          },
+          {
+            "source": "weather_severity",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "shipping_mode"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "order_discount_rate",
+            "target": "profit_ratio"
+          },
+          {
+            "source": "order_discount_rate",
+            "target": "weather_severity"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "order_item_quantity",
+            "target": "fulfillment_center_congestion"
+          },
+          {
+            "source": "shipping_mode",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "shipping_mode",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "fulfillment_center_congestion",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "traffic_congestion",
+            "target": "weather_severity"
+          },
+          {
+            "source": "traffic_congestion",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "scheduled_transit_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "actual_transit_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "late_delivery_risk"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "customer_satisfaction"
+          },
+          {
+            "source": "late_delivery_risk",
+            "target": "customer_satisfaction"
+          },
+          {
+            "source": "customer_satisfaction",
+            "target": "churn_repeat_purchase_risk"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "ollama_qwen",
+      "prior_name": "ollama_qwen_prior_2",
+      "params": {
+        "lambda": 0.5
+      },
+      "shd": 3,
+      "precision": 0.85,
+      "recall": 0.94,
+      "f1": 0.89,
+      "n_edges_est": 20,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "order_volume_peak_season"
+          },
+          {
+            "id": "weather_severity"
+          },
+          {
+            "id": "geographic_distance"
+          },
+          {
+            "id": "order_discount_rate"
+          },
+          {
+            "id": "order_processing_time"
+          },
+          {
+            "id": "order_item_quantity"
+          },
+          {
+            "id": "shipping_mode"
+          },
+          {
+            "id": "fulfillment_center_congestion"
+          },
+          {
+            "id": "traffic_congestion"
+          },
+          {
+            "id": "scheduled_transit_time"
+          },
+          {
+            "id": "actual_transit_time"
+          },
+          {
+            "id": "delivery_delay"
+          },
+          {
+            "id": "late_delivery_risk"
+          },
+          {
+            "id": "customer_satisfaction"
+          },
+          {
+            "id": "churn_repeat_purchase_risk"
+          },
+          {
+            "id": "profit_ratio"
+          }
+        ],
+        "links": [
+          {
+            "source": "order_volume_peak_season",
+            "target": "order_item_quantity"
+          },
+          {
+            "source": "order_volume_peak_season",
+            "target": "fulfillment_center_congestion"
+          },
+          {
+            "source": "weather_severity",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "shipping_mode"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "order_discount_rate",
+            "target": "profit_ratio"
+          },
+          {
+            "source": "order_discount_rate",
+            "target": "weather_severity"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "order_item_quantity",
+            "target": "fulfillment_center_congestion"
+          },
+          {
+            "source": "shipping_mode",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "shipping_mode",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "fulfillment_center_congestion",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "traffic_congestion",
+            "target": "weather_severity"
+          },
+          {
+            "source": "traffic_congestion",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "scheduled_transit_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "actual_transit_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "late_delivery_risk"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "customer_satisfaction"
+          },
+          {
+            "source": "late_delivery_risk",
+            "target": "customer_satisfaction"
+          },
+          {
+            "source": "customer_satisfaction",
+            "target": "churn_repeat_purchase_risk"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "ollama_qwen",
+      "prior_name": "ollama_qwen_prior_2",
+      "params": {
+        "lambda": 0.9
+      },
+      "shd": 3,
+      "precision": 0.85,
+      "recall": 0.94,
+      "f1": 0.89,
+      "n_edges_est": 20,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "order_volume_peak_season"
+          },
+          {
+            "id": "weather_severity"
+          },
+          {
+            "id": "geographic_distance"
+          },
+          {
+            "id": "order_discount_rate"
+          },
+          {
+            "id": "order_processing_time"
+          },
+          {
+            "id": "order_item_quantity"
+          },
+          {
+            "id": "shipping_mode"
+          },
+          {
+            "id": "fulfillment_center_congestion"
+          },
+          {
+            "id": "traffic_congestion"
+          },
+          {
+            "id": "scheduled_transit_time"
+          },
+          {
+            "id": "actual_transit_time"
+          },
+          {
+            "id": "delivery_delay"
+          },
+          {
+            "id": "late_delivery_risk"
+          },
+          {
+            "id": "customer_satisfaction"
+          },
+          {
+            "id": "churn_repeat_purchase_risk"
+          },
+          {
+            "id": "profit_ratio"
+          }
+        ],
+        "links": [
+          {
+            "source": "order_volume_peak_season",
+            "target": "order_item_quantity"
+          },
+          {
+            "source": "order_volume_peak_season",
+            "target": "fulfillment_center_congestion"
+          },
+          {
+            "source": "weather_severity",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "shipping_mode"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "order_discount_rate",
+            "target": "profit_ratio"
+          },
+          {
+            "source": "order_discount_rate",
+            "target": "weather_severity"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "order_item_quantity",
+            "target": "fulfillment_center_congestion"
+          },
+          {
+            "source": "shipping_mode",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "shipping_mode",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "fulfillment_center_congestion",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "traffic_congestion",
+            "target": "weather_severity"
+          },
+          {
+            "source": "traffic_congestion",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "scheduled_transit_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "actual_transit_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "late_delivery_risk"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "customer_satisfaction"
+          },
+          {
+            "source": "late_delivery_risk",
+            "target": "customer_satisfaction"
+          },
+          {
+            "source": "customer_satisfaction",
+            "target": "churn_repeat_purchase_risk"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "ollama_qwen_consensus",
+      "prior_name": "ollama_qwen_consensus_prior",
+      "params": {
+        "lambda": 0.1
+      },
+      "shd": 21,
+      "precision": 0.35,
+      "recall": 0.61,
+      "f1": 0.45,
+      "n_edges_est": 31,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "order_volume_peak_season"
+          },
+          {
+            "id": "weather_severity"
+          },
+          {
+            "id": "geographic_distance"
+          },
+          {
+            "id": "order_discount_rate"
+          },
+          {
+            "id": "order_processing_time"
+          },
+          {
+            "id": "order_item_quantity"
+          },
+          {
+            "id": "shipping_mode"
+          },
+          {
+            "id": "fulfillment_center_congestion"
+          },
+          {
+            "id": "traffic_congestion"
+          },
+          {
+            "id": "scheduled_transit_time"
+          },
+          {
+            "id": "actual_transit_time"
+          },
+          {
+            "id": "delivery_delay"
+          },
+          {
+            "id": "late_delivery_risk"
+          },
+          {
+            "id": "customer_satisfaction"
+          },
+          {
+            "id": "churn_repeat_purchase_risk"
+          },
+          {
+            "id": "profit_ratio"
+          }
+        ],
+        "links": [
+          {
+            "source": "order_volume_peak_season",
+            "target": "customer_satisfaction"
+          },
+          {
+            "source": "order_volume_peak_season",
+            "target": "fulfillment_center_congestion"
+          },
+          {
+            "source": "weather_severity",
+            "target": "traffic_congestion"
+          },
+          {
+            "source": "weather_severity",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "weather_severity",
+            "target": "customer_satisfaction"
+          },
+          {
+            "source": "weather_severity",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "weather_severity",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "shipping_mode"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "customer_satisfaction"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "order_item_quantity",
+            "target": "order_volume_peak_season"
+          },
+          {
+            "source": "order_item_quantity",
+            "target": "fulfillment_center_congestion"
+          },
+          {
+            "source": "shipping_mode",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "shipping_mode",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "fulfillment_center_congestion",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "fulfillment_center_congestion",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "traffic_congestion",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "scheduled_transit_time",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "scheduled_transit_time",
+            "target": "order_processing_time"
+          },
+          {
+            "source": "actual_transit_time",
+            "target": "order_processing_time"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "late_delivery_risk"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "order_processing_time"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "customer_satisfaction",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "customer_satisfaction",
+            "target": "churn_repeat_purchase_risk"
+          },
+          {
+            "source": "customer_satisfaction",
+            "target": "late_delivery_risk"
+          },
+          {
+            "source": "customer_satisfaction",
+            "target": "traffic_congestion"
+          },
+          {
+            "source": "profit_ratio",
+            "target": "order_discount_rate"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "ollama_qwen_consensus",
+      "prior_name": "ollama_qwen_consensus_prior",
+      "params": {
+        "lambda": 0.5
+      },
+      "shd": 21,
+      "precision": 0.35,
+      "recall": 0.61,
+      "f1": 0.45,
+      "n_edges_est": 31,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "order_volume_peak_season"
+          },
+          {
+            "id": "weather_severity"
+          },
+          {
+            "id": "geographic_distance"
+          },
+          {
+            "id": "order_discount_rate"
+          },
+          {
+            "id": "order_processing_time"
+          },
+          {
+            "id": "order_item_quantity"
+          },
+          {
+            "id": "shipping_mode"
+          },
+          {
+            "id": "fulfillment_center_congestion"
+          },
+          {
+            "id": "traffic_congestion"
+          },
+          {
+            "id": "scheduled_transit_time"
+          },
+          {
+            "id": "actual_transit_time"
+          },
+          {
+            "id": "delivery_delay"
+          },
+          {
+            "id": "late_delivery_risk"
+          },
+          {
+            "id": "customer_satisfaction"
+          },
+          {
+            "id": "churn_repeat_purchase_risk"
+          },
+          {
+            "id": "profit_ratio"
+          }
+        ],
+        "links": [
+          {
+            "source": "order_volume_peak_season",
+            "target": "customer_satisfaction"
+          },
+          {
+            "source": "order_volume_peak_season",
+            "target": "fulfillment_center_congestion"
+          },
+          {
+            "source": "weather_severity",
+            "target": "traffic_congestion"
+          },
+          {
+            "source": "weather_severity",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "weather_severity",
+            "target": "customer_satisfaction"
+          },
+          {
+            "source": "weather_severity",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "weather_severity",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "shipping_mode"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "customer_satisfaction"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "order_item_quantity",
+            "target": "order_volume_peak_season"
+          },
+          {
+            "source": "order_item_quantity",
+            "target": "fulfillment_center_congestion"
+          },
+          {
+            "source": "shipping_mode",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "shipping_mode",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "fulfillment_center_congestion",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "fulfillment_center_congestion",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "traffic_congestion",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "scheduled_transit_time",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "scheduled_transit_time",
+            "target": "order_processing_time"
+          },
+          {
+            "source": "actual_transit_time",
+            "target": "order_processing_time"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "late_delivery_risk"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "order_processing_time"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "customer_satisfaction",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "customer_satisfaction",
+            "target": "churn_repeat_purchase_risk"
+          },
+          {
+            "source": "customer_satisfaction",
+            "target": "late_delivery_risk"
+          },
+          {
+            "source": "customer_satisfaction",
+            "target": "traffic_congestion"
+          },
+          {
+            "source": "profit_ratio",
+            "target": "order_discount_rate"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "ollama_qwen_consensus",
+      "prior_name": "ollama_qwen_consensus_prior",
+      "params": {
+        "lambda": 0.9
+      },
+      "shd": 21,
+      "precision": 0.35,
+      "recall": 0.61,
+      "f1": 0.45,
+      "n_edges_est": 31,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "order_volume_peak_season"
+          },
+          {
+            "id": "weather_severity"
+          },
+          {
+            "id": "geographic_distance"
+          },
+          {
+            "id": "order_discount_rate"
+          },
+          {
+            "id": "order_processing_time"
+          },
+          {
+            "id": "order_item_quantity"
+          },
+          {
+            "id": "shipping_mode"
+          },
+          {
+            "id": "fulfillment_center_congestion"
+          },
+          {
+            "id": "traffic_congestion"
+          },
+          {
+            "id": "scheduled_transit_time"
+          },
+          {
+            "id": "actual_transit_time"
+          },
+          {
+            "id": "delivery_delay"
+          },
+          {
+            "id": "late_delivery_risk"
+          },
+          {
+            "id": "customer_satisfaction"
+          },
+          {
+            "id": "churn_repeat_purchase_risk"
+          },
+          {
+            "id": "profit_ratio"
+          }
+        ],
+        "links": [
+          {
+            "source": "order_volume_peak_season",
+            "target": "customer_satisfaction"
+          },
+          {
+            "source": "order_volume_peak_season",
+            "target": "fulfillment_center_congestion"
+          },
+          {
+            "source": "weather_severity",
+            "target": "traffic_congestion"
+          },
+          {
+            "source": "weather_severity",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "weather_severity",
+            "target": "customer_satisfaction"
+          },
+          {
+            "source": "weather_severity",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "weather_severity",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "shipping_mode"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "customer_satisfaction"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "order_item_quantity",
+            "target": "order_volume_peak_season"
+          },
+          {
+            "source": "order_item_quantity",
+            "target": "fulfillment_center_congestion"
+          },
+          {
+            "source": "shipping_mode",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "shipping_mode",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "fulfillment_center_congestion",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "fulfillment_center_congestion",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "traffic_congestion",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "scheduled_transit_time",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "scheduled_transit_time",
+            "target": "order_processing_time"
+          },
+          {
+            "source": "actual_transit_time",
+            "target": "order_processing_time"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "late_delivery_risk"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "order_processing_time"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "customer_satisfaction",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "customer_satisfaction",
+            "target": "churn_repeat_purchase_risk"
+          },
+          {
+            "source": "customer_satisfaction",
+            "target": "late_delivery_risk"
+          },
+          {
+            "source": "customer_satisfaction",
+            "target": "traffic_congestion"
+          },
+          {
+            "source": "profit_ratio",
+            "target": "order_discount_rate"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "gemini",
+      "prior_name": "gemini_prior_2",
+      "params": {
+        "lambda": 0.1
+      },
+      "shd": 2,
+      "precision": 0.89,
+      "recall": 0.94,
+      "f1": 0.92,
+      "n_edges_est": 19,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "order_volume_peak_season"
+          },
+          {
+            "id": "weather_severity"
+          },
+          {
+            "id": "geographic_distance"
+          },
+          {
+            "id": "order_discount_rate"
+          },
+          {
+            "id": "order_processing_time"
+          },
+          {
+            "id": "order_item_quantity"
+          },
+          {
+            "id": "shipping_mode"
+          },
+          {
+            "id": "fulfillment_center_congestion"
+          },
+          {
+            "id": "traffic_congestion"
+          },
+          {
+            "id": "scheduled_transit_time"
+          },
+          {
+            "id": "actual_transit_time"
+          },
+          {
+            "id": "delivery_delay"
+          },
+          {
+            "id": "late_delivery_risk"
+          },
+          {
+            "id": "customer_satisfaction"
+          },
+          {
+            "id": "churn_repeat_purchase_risk"
+          },
+          {
+            "id": "profit_ratio"
+          }
+        ],
+        "links": [
+          {
+            "source": "order_volume_peak_season",
+            "target": "fulfillment_center_congestion"
+          },
+          {
+            "source": "weather_severity",
+            "target": "traffic_congestion"
+          },
+          {
+            "source": "weather_severity",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "shipping_mode"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "order_discount_rate",
+            "target": "profit_ratio"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "order_item_quantity",
+            "target": "order_volume_peak_season"
+          },
+          {
+            "source": "order_item_quantity",
+            "target": "fulfillment_center_congestion"
+          },
+          {
+            "source": "shipping_mode",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "shipping_mode",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "fulfillment_center_congestion",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "traffic_congestion",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "scheduled_transit_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "actual_transit_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "late_delivery_risk"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "customer_satisfaction"
+          },
+          {
+            "source": "late_delivery_risk",
+            "target": "customer_satisfaction"
+          },
+          {
+            "source": "customer_satisfaction",
+            "target": "churn_repeat_purchase_risk"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "gemini",
+      "prior_name": "gemini_prior_2",
+      "params": {
+        "lambda": 0.5
+      },
+      "shd": 2,
+      "precision": 0.89,
+      "recall": 0.94,
+      "f1": 0.92,
+      "n_edges_est": 19,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "order_volume_peak_season"
+          },
+          {
+            "id": "weather_severity"
+          },
+          {
+            "id": "geographic_distance"
+          },
+          {
+            "id": "order_discount_rate"
+          },
+          {
+            "id": "order_processing_time"
+          },
+          {
+            "id": "order_item_quantity"
+          },
+          {
+            "id": "shipping_mode"
+          },
+          {
+            "id": "fulfillment_center_congestion"
+          },
+          {
+            "id": "traffic_congestion"
+          },
+          {
+            "id": "scheduled_transit_time"
+          },
+          {
+            "id": "actual_transit_time"
+          },
+          {
+            "id": "delivery_delay"
+          },
+          {
+            "id": "late_delivery_risk"
+          },
+          {
+            "id": "customer_satisfaction"
+          },
+          {
+            "id": "churn_repeat_purchase_risk"
+          },
+          {
+            "id": "profit_ratio"
+          }
+        ],
+        "links": [
+          {
+            "source": "order_volume_peak_season",
+            "target": "fulfillment_center_congestion"
+          },
+          {
+            "source": "weather_severity",
+            "target": "traffic_congestion"
+          },
+          {
+            "source": "weather_severity",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "shipping_mode"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "order_discount_rate",
+            "target": "profit_ratio"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "order_item_quantity",
+            "target": "order_volume_peak_season"
+          },
+          {
+            "source": "order_item_quantity",
+            "target": "fulfillment_center_congestion"
+          },
+          {
+            "source": "shipping_mode",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "shipping_mode",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "fulfillment_center_congestion",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "traffic_congestion",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "scheduled_transit_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "actual_transit_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "late_delivery_risk"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "customer_satisfaction"
+          },
+          {
+            "source": "late_delivery_risk",
+            "target": "customer_satisfaction"
+          },
+          {
+            "source": "customer_satisfaction",
+            "target": "churn_repeat_purchase_risk"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "gemini",
+      "prior_name": "gemini_prior_2",
+      "params": {
+        "lambda": 0.9
+      },
+      "shd": 2,
+      "precision": 0.89,
+      "recall": 0.94,
+      "f1": 0.92,
+      "n_edges_est": 19,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "order_volume_peak_season"
+          },
+          {
+            "id": "weather_severity"
+          },
+          {
+            "id": "geographic_distance"
+          },
+          {
+            "id": "order_discount_rate"
+          },
+          {
+            "id": "order_processing_time"
+          },
+          {
+            "id": "order_item_quantity"
+          },
+          {
+            "id": "shipping_mode"
+          },
+          {
+            "id": "fulfillment_center_congestion"
+          },
+          {
+            "id": "traffic_congestion"
+          },
+          {
+            "id": "scheduled_transit_time"
+          },
+          {
+            "id": "actual_transit_time"
+          },
+          {
+            "id": "delivery_delay"
+          },
+          {
+            "id": "late_delivery_risk"
+          },
+          {
+            "id": "customer_satisfaction"
+          },
+          {
+            "id": "churn_repeat_purchase_risk"
+          },
+          {
+            "id": "profit_ratio"
+          }
+        ],
+        "links": [
+          {
+            "source": "order_volume_peak_season",
+            "target": "fulfillment_center_congestion"
+          },
+          {
+            "source": "weather_severity",
+            "target": "traffic_congestion"
+          },
+          {
+            "source": "weather_severity",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "shipping_mode"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "order_discount_rate",
+            "target": "profit_ratio"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "order_item_quantity",
+            "target": "order_volume_peak_season"
+          },
+          {
+            "source": "order_item_quantity",
+            "target": "fulfillment_center_congestion"
+          },
+          {
+            "source": "shipping_mode",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "shipping_mode",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "fulfillment_center_congestion",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "traffic_congestion",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "scheduled_transit_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "actual_transit_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "late_delivery_risk"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "customer_satisfaction"
+          },
+          {
+            "source": "late_delivery_risk",
+            "target": "customer_satisfaction"
+          },
+          {
+            "source": "customer_satisfaction",
+            "target": "churn_repeat_purchase_risk"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "gemini_consensus",
+      "prior_name": "gemini_consensus_prior",
+      "params": {
+        "lambda": 0.1
+      },
+      "shd": 1,
+      "precision": 0.95,
+      "recall": 1.0,
+      "f1": 0.97,
+      "n_edges_est": 19,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "order_volume_peak_season"
+          },
+          {
+            "id": "weather_severity"
+          },
+          {
+            "id": "geographic_distance"
+          },
+          {
+            "id": "order_discount_rate"
+          },
+          {
+            "id": "order_processing_time"
+          },
+          {
+            "id": "order_item_quantity"
+          },
+          {
+            "id": "shipping_mode"
+          },
+          {
+            "id": "fulfillment_center_congestion"
+          },
+          {
+            "id": "traffic_congestion"
+          },
+          {
+            "id": "scheduled_transit_time"
+          },
+          {
+            "id": "actual_transit_time"
+          },
+          {
+            "id": "delivery_delay"
+          },
+          {
+            "id": "late_delivery_risk"
+          },
+          {
+            "id": "customer_satisfaction"
+          },
+          {
+            "id": "churn_repeat_purchase_risk"
+          },
+          {
+            "id": "profit_ratio"
+          }
+        ],
+        "links": [
+          {
+            "source": "order_volume_peak_season",
+            "target": "order_item_quantity"
+          },
+          {
+            "source": "order_volume_peak_season",
+            "target": "fulfillment_center_congestion"
+          },
+          {
+            "source": "weather_severity",
+            "target": "traffic_congestion"
+          },
+          {
+            "source": "weather_severity",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "shipping_mode"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "order_discount_rate",
+            "target": "profit_ratio"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "order_item_quantity",
+            "target": "fulfillment_center_congestion"
+          },
+          {
+            "source": "shipping_mode",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "shipping_mode",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "fulfillment_center_congestion",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "traffic_congestion",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "scheduled_transit_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "actual_transit_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "late_delivery_risk"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "customer_satisfaction"
+          },
+          {
+            "source": "late_delivery_risk",
+            "target": "customer_satisfaction"
+          },
+          {
+            "source": "customer_satisfaction",
+            "target": "churn_repeat_purchase_risk"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "gemini_consensus",
+      "prior_name": "gemini_consensus_prior",
+      "params": {
+        "lambda": 0.5
+      },
+      "shd": 1,
+      "precision": 0.95,
+      "recall": 1.0,
+      "f1": 0.97,
+      "n_edges_est": 19,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "order_volume_peak_season"
+          },
+          {
+            "id": "weather_severity"
+          },
+          {
+            "id": "geographic_distance"
+          },
+          {
+            "id": "order_discount_rate"
+          },
+          {
+            "id": "order_processing_time"
+          },
+          {
+            "id": "order_item_quantity"
+          },
+          {
+            "id": "shipping_mode"
+          },
+          {
+            "id": "fulfillment_center_congestion"
+          },
+          {
+            "id": "traffic_congestion"
+          },
+          {
+            "id": "scheduled_transit_time"
+          },
+          {
+            "id": "actual_transit_time"
+          },
+          {
+            "id": "delivery_delay"
+          },
+          {
+            "id": "late_delivery_risk"
+          },
+          {
+            "id": "customer_satisfaction"
+          },
+          {
+            "id": "churn_repeat_purchase_risk"
+          },
+          {
+            "id": "profit_ratio"
+          }
+        ],
+        "links": [
+          {
+            "source": "order_volume_peak_season",
+            "target": "order_item_quantity"
+          },
+          {
+            "source": "order_volume_peak_season",
+            "target": "fulfillment_center_congestion"
+          },
+          {
+            "source": "weather_severity",
+            "target": "traffic_congestion"
+          },
+          {
+            "source": "weather_severity",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "shipping_mode"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "order_discount_rate",
+            "target": "profit_ratio"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "order_item_quantity",
+            "target": "fulfillment_center_congestion"
+          },
+          {
+            "source": "shipping_mode",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "shipping_mode",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "fulfillment_center_congestion",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "traffic_congestion",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "scheduled_transit_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "actual_transit_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "late_delivery_risk"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "customer_satisfaction"
+          },
+          {
+            "source": "late_delivery_risk",
+            "target": "customer_satisfaction"
+          },
+          {
+            "source": "customer_satisfaction",
+            "target": "churn_repeat_purchase_risk"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "gemini_consensus",
+      "prior_name": "gemini_consensus_prior",
+      "params": {
+        "lambda": 0.9
+      },
+      "shd": 1,
+      "precision": 0.95,
+      "recall": 1.0,
+      "f1": 0.97,
+      "n_edges_est": 19,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "order_volume_peak_season"
+          },
+          {
+            "id": "weather_severity"
+          },
+          {
+            "id": "geographic_distance"
+          },
+          {
+            "id": "order_discount_rate"
+          },
+          {
+            "id": "order_processing_time"
+          },
+          {
+            "id": "order_item_quantity"
+          },
+          {
+            "id": "shipping_mode"
+          },
+          {
+            "id": "fulfillment_center_congestion"
+          },
+          {
+            "id": "traffic_congestion"
+          },
+          {
+            "id": "scheduled_transit_time"
+          },
+          {
+            "id": "actual_transit_time"
+          },
+          {
+            "id": "delivery_delay"
+          },
+          {
+            "id": "late_delivery_risk"
+          },
+          {
+            "id": "customer_satisfaction"
+          },
+          {
+            "id": "churn_repeat_purchase_risk"
+          },
+          {
+            "id": "profit_ratio"
+          }
+        ],
+        "links": [
+          {
+            "source": "order_volume_peak_season",
+            "target": "order_item_quantity"
+          },
+          {
+            "source": "order_volume_peak_season",
+            "target": "fulfillment_center_congestion"
+          },
+          {
+            "source": "weather_severity",
+            "target": "traffic_congestion"
+          },
+          {
+            "source": "weather_severity",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "shipping_mode"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "order_discount_rate",
+            "target": "profit_ratio"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "order_item_quantity",
+            "target": "fulfillment_center_congestion"
+          },
+          {
+            "source": "shipping_mode",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "shipping_mode",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "fulfillment_center_congestion",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "traffic_congestion",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "scheduled_transit_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "actual_transit_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "late_delivery_risk"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "customer_satisfaction"
+          },
+          {
+            "source": "late_delivery_risk",
+            "target": "customer_satisfaction"
+          },
+          {
+            "source": "customer_satisfaction",
+            "target": "churn_repeat_purchase_risk"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "cerebras",
+      "prior_name": "cerebras_prior_0",
+      "params": {
+        "lambda": 0.1
+      },
+      "shd": 2,
+      "precision": 0.89,
+      "recall": 0.94,
+      "f1": 0.92,
+      "n_edges_est": 19,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "order_volume_peak_season"
+          },
+          {
+            "id": "weather_severity"
+          },
+          {
+            "id": "geographic_distance"
+          },
+          {
+            "id": "order_discount_rate"
+          },
+          {
+            "id": "order_processing_time"
+          },
+          {
+            "id": "order_item_quantity"
+          },
+          {
+            "id": "shipping_mode"
+          },
+          {
+            "id": "fulfillment_center_congestion"
+          },
+          {
+            "id": "traffic_congestion"
+          },
+          {
+            "id": "scheduled_transit_time"
+          },
+          {
+            "id": "actual_transit_time"
+          },
+          {
+            "id": "delivery_delay"
+          },
+          {
+            "id": "late_delivery_risk"
+          },
+          {
+            "id": "customer_satisfaction"
+          },
+          {
+            "id": "churn_repeat_purchase_risk"
+          },
+          {
+            "id": "profit_ratio"
+          }
+        ],
+        "links": [
+          {
+            "source": "order_volume_peak_season",
+            "target": "fulfillment_center_congestion"
+          },
+          {
+            "source": "weather_severity",
+            "target": "traffic_congestion"
+          },
+          {
+            "source": "weather_severity",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "shipping_mode"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "order_discount_rate",
+            "target": "profit_ratio"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "order_item_quantity",
+            "target": "order_volume_peak_season"
+          },
+          {
+            "source": "order_item_quantity",
+            "target": "fulfillment_center_congestion"
+          },
+          {
+            "source": "shipping_mode",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "shipping_mode",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "fulfillment_center_congestion",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "traffic_congestion",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "scheduled_transit_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "actual_transit_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "late_delivery_risk"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "customer_satisfaction"
+          },
+          {
+            "source": "late_delivery_risk",
+            "target": "customer_satisfaction"
+          },
+          {
+            "source": "customer_satisfaction",
+            "target": "churn_repeat_purchase_risk"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "cerebras",
+      "prior_name": "cerebras_prior_0",
+      "params": {
+        "lambda": 0.5
+      },
+      "shd": 2,
+      "precision": 0.89,
+      "recall": 0.94,
+      "f1": 0.92,
+      "n_edges_est": 19,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "order_volume_peak_season"
+          },
+          {
+            "id": "weather_severity"
+          },
+          {
+            "id": "geographic_distance"
+          },
+          {
+            "id": "order_discount_rate"
+          },
+          {
+            "id": "order_processing_time"
+          },
+          {
+            "id": "order_item_quantity"
+          },
+          {
+            "id": "shipping_mode"
+          },
+          {
+            "id": "fulfillment_center_congestion"
+          },
+          {
+            "id": "traffic_congestion"
+          },
+          {
+            "id": "scheduled_transit_time"
+          },
+          {
+            "id": "actual_transit_time"
+          },
+          {
+            "id": "delivery_delay"
+          },
+          {
+            "id": "late_delivery_risk"
+          },
+          {
+            "id": "customer_satisfaction"
+          },
+          {
+            "id": "churn_repeat_purchase_risk"
+          },
+          {
+            "id": "profit_ratio"
+          }
+        ],
+        "links": [
+          {
+            "source": "order_volume_peak_season",
+            "target": "fulfillment_center_congestion"
+          },
+          {
+            "source": "weather_severity",
+            "target": "traffic_congestion"
+          },
+          {
+            "source": "weather_severity",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "shipping_mode"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "order_discount_rate",
+            "target": "profit_ratio"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "order_item_quantity",
+            "target": "order_volume_peak_season"
+          },
+          {
+            "source": "order_item_quantity",
+            "target": "fulfillment_center_congestion"
+          },
+          {
+            "source": "shipping_mode",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "shipping_mode",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "fulfillment_center_congestion",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "traffic_congestion",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "scheduled_transit_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "actual_transit_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "late_delivery_risk"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "customer_satisfaction"
+          },
+          {
+            "source": "late_delivery_risk",
+            "target": "customer_satisfaction"
+          },
+          {
+            "source": "customer_satisfaction",
+            "target": "churn_repeat_purchase_risk"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "cerebras",
+      "prior_name": "cerebras_prior_0",
+      "params": {
+        "lambda": 0.9
+      },
+      "shd": 2,
+      "precision": 0.89,
+      "recall": 0.94,
+      "f1": 0.92,
+      "n_edges_est": 19,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "order_volume_peak_season"
+          },
+          {
+            "id": "weather_severity"
+          },
+          {
+            "id": "geographic_distance"
+          },
+          {
+            "id": "order_discount_rate"
+          },
+          {
+            "id": "order_processing_time"
+          },
+          {
+            "id": "order_item_quantity"
+          },
+          {
+            "id": "shipping_mode"
+          },
+          {
+            "id": "fulfillment_center_congestion"
+          },
+          {
+            "id": "traffic_congestion"
+          },
+          {
+            "id": "scheduled_transit_time"
+          },
+          {
+            "id": "actual_transit_time"
+          },
+          {
+            "id": "delivery_delay"
+          },
+          {
+            "id": "late_delivery_risk"
+          },
+          {
+            "id": "customer_satisfaction"
+          },
+          {
+            "id": "churn_repeat_purchase_risk"
+          },
+          {
+            "id": "profit_ratio"
+          }
+        ],
+        "links": [
+          {
+            "source": "order_volume_peak_season",
+            "target": "fulfillment_center_congestion"
+          },
+          {
+            "source": "weather_severity",
+            "target": "traffic_congestion"
+          },
+          {
+            "source": "weather_severity",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "shipping_mode"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "order_discount_rate",
+            "target": "profit_ratio"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "order_item_quantity",
+            "target": "order_volume_peak_season"
+          },
+          {
+            "source": "order_item_quantity",
+            "target": "fulfillment_center_congestion"
+          },
+          {
+            "source": "shipping_mode",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "shipping_mode",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "fulfillment_center_congestion",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "traffic_congestion",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "scheduled_transit_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "actual_transit_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "late_delivery_risk"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "customer_satisfaction"
+          },
+          {
+            "source": "late_delivery_risk",
+            "target": "customer_satisfaction"
+          },
+          {
+            "source": "customer_satisfaction",
+            "target": "churn_repeat_purchase_risk"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "cerebras_consensus",
+      "prior_name": "cerebras_consensus_prior",
+      "params": {
+        "lambda": 0.1
+      },
+      "shd": 1,
+      "precision": 0.95,
+      "recall": 1.0,
+      "f1": 0.97,
+      "n_edges_est": 19,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "order_volume_peak_season"
+          },
+          {
+            "id": "weather_severity"
+          },
+          {
+            "id": "geographic_distance"
+          },
+          {
+            "id": "order_discount_rate"
+          },
+          {
+            "id": "order_processing_time"
+          },
+          {
+            "id": "order_item_quantity"
+          },
+          {
+            "id": "shipping_mode"
+          },
+          {
+            "id": "fulfillment_center_congestion"
+          },
+          {
+            "id": "traffic_congestion"
+          },
+          {
+            "id": "scheduled_transit_time"
+          },
+          {
+            "id": "actual_transit_time"
+          },
+          {
+            "id": "delivery_delay"
+          },
+          {
+            "id": "late_delivery_risk"
+          },
+          {
+            "id": "customer_satisfaction"
+          },
+          {
+            "id": "churn_repeat_purchase_risk"
+          },
+          {
+            "id": "profit_ratio"
+          }
+        ],
+        "links": [
+          {
+            "source": "order_volume_peak_season",
+            "target": "order_item_quantity"
+          },
+          {
+            "source": "order_volume_peak_season",
+            "target": "fulfillment_center_congestion"
+          },
+          {
+            "source": "weather_severity",
+            "target": "traffic_congestion"
+          },
+          {
+            "source": "weather_severity",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "shipping_mode"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "order_discount_rate",
+            "target": "profit_ratio"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "order_item_quantity",
+            "target": "fulfillment_center_congestion"
+          },
+          {
+            "source": "shipping_mode",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "shipping_mode",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "fulfillment_center_congestion",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "traffic_congestion",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "scheduled_transit_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "actual_transit_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "late_delivery_risk"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "customer_satisfaction"
+          },
+          {
+            "source": "late_delivery_risk",
+            "target": "customer_satisfaction"
+          },
+          {
+            "source": "customer_satisfaction",
+            "target": "churn_repeat_purchase_risk"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "cerebras_consensus",
+      "prior_name": "cerebras_consensus_prior",
+      "params": {
+        "lambda": 0.5
+      },
+      "shd": 1,
+      "precision": 0.95,
+      "recall": 1.0,
+      "f1": 0.97,
+      "n_edges_est": 19,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "order_volume_peak_season"
+          },
+          {
+            "id": "weather_severity"
+          },
+          {
+            "id": "geographic_distance"
+          },
+          {
+            "id": "order_discount_rate"
+          },
+          {
+            "id": "order_processing_time"
+          },
+          {
+            "id": "order_item_quantity"
+          },
+          {
+            "id": "shipping_mode"
+          },
+          {
+            "id": "fulfillment_center_congestion"
+          },
+          {
+            "id": "traffic_congestion"
+          },
+          {
+            "id": "scheduled_transit_time"
+          },
+          {
+            "id": "actual_transit_time"
+          },
+          {
+            "id": "delivery_delay"
+          },
+          {
+            "id": "late_delivery_risk"
+          },
+          {
+            "id": "customer_satisfaction"
+          },
+          {
+            "id": "churn_repeat_purchase_risk"
+          },
+          {
+            "id": "profit_ratio"
+          }
+        ],
+        "links": [
+          {
+            "source": "order_volume_peak_season",
+            "target": "order_item_quantity"
+          },
+          {
+            "source": "order_volume_peak_season",
+            "target": "fulfillment_center_congestion"
+          },
+          {
+            "source": "weather_severity",
+            "target": "traffic_congestion"
+          },
+          {
+            "source": "weather_severity",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "shipping_mode"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "order_discount_rate",
+            "target": "profit_ratio"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "order_item_quantity",
+            "target": "fulfillment_center_congestion"
+          },
+          {
+            "source": "shipping_mode",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "shipping_mode",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "fulfillment_center_congestion",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "traffic_congestion",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "scheduled_transit_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "actual_transit_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "late_delivery_risk"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "customer_satisfaction"
+          },
+          {
+            "source": "late_delivery_risk",
+            "target": "customer_satisfaction"
+          },
+          {
+            "source": "customer_satisfaction",
+            "target": "churn_repeat_purchase_risk"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "cerebras_consensus",
+      "prior_name": "cerebras_consensus_prior",
+      "params": {
+        "lambda": 0.9
+      },
+      "shd": 1,
+      "precision": 0.95,
+      "recall": 1.0,
+      "f1": 0.97,
+      "n_edges_est": 19,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "order_volume_peak_season"
+          },
+          {
+            "id": "weather_severity"
+          },
+          {
+            "id": "geographic_distance"
+          },
+          {
+            "id": "order_discount_rate"
+          },
+          {
+            "id": "order_processing_time"
+          },
+          {
+            "id": "order_item_quantity"
+          },
+          {
+            "id": "shipping_mode"
+          },
+          {
+            "id": "fulfillment_center_congestion"
+          },
+          {
+            "id": "traffic_congestion"
+          },
+          {
+            "id": "scheduled_transit_time"
+          },
+          {
+            "id": "actual_transit_time"
+          },
+          {
+            "id": "delivery_delay"
+          },
+          {
+            "id": "late_delivery_risk"
+          },
+          {
+            "id": "customer_satisfaction"
+          },
+          {
+            "id": "churn_repeat_purchase_risk"
+          },
+          {
+            "id": "profit_ratio"
+          }
+        ],
+        "links": [
+          {
+            "source": "order_volume_peak_season",
+            "target": "order_item_quantity"
+          },
+          {
+            "source": "order_volume_peak_season",
+            "target": "fulfillment_center_congestion"
+          },
+          {
+            "source": "weather_severity",
+            "target": "traffic_congestion"
+          },
+          {
+            "source": "weather_severity",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "shipping_mode"
+          },
+          {
+            "source": "geographic_distance",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "order_discount_rate",
+            "target": "profit_ratio"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "order_item_quantity",
+            "target": "fulfillment_center_congestion"
+          },
+          {
+            "source": "shipping_mode",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "shipping_mode",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "fulfillment_center_congestion",
+            "target": "scheduled_transit_time"
+          },
+          {
+            "source": "traffic_congestion",
+            "target": "actual_transit_time"
+          },
+          {
+            "source": "scheduled_transit_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "actual_transit_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "late_delivery_risk"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "customer_satisfaction"
+          },
+          {
+            "source": "late_delivery_risk",
+            "target": "customer_satisfaction"
+          },
+          {
+            "source": "customer_satisfaction",
+            "target": "churn_repeat_purchase_risk"
+          }
+        ]
+      }
+    }
+  ]
+}

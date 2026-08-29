@@ -1,0 +1,40 @@
+{
+  "name": "perfect_prior",
+  "type": "perfect",
+  "edges_with_probability": [
+    ["machine_downtime", "production_schedule_stability", 0.9],
+    ["demand_volatility", "production_schedule_stability", 0.9],
+    ["demand_volatility", "production_volume", 0.9],
+    ["material_delay", "production_volume", 0.9],
+    ["production_schedule_stability", "factory_issues", 0.9],
+    ["production_volume", "vehicle_fill_rate", 0.9],
+    ["factory_issues", "delivery_to_distributor", 0.9],
+    ["vehicle_fill_rate", "delivery_to_distributor", 0.9],
+    ["sales_order_quantity", "delivery_to_distributor", 0.9]
+  ],
+  "forbidden_edges": [
+    ["production_schedule_stability", "machine_downtime"],
+    ["production_schedule_stability", "demand_volatility"],
+    ["production_volume", "demand_volatility"],
+    ["production_volume", "material_delay"],
+    ["factory_issues", "production_schedule_stability"],
+    ["vehicle_fill_rate", "production_volume"],
+    ["delivery_to_distributor", "factory_issues"],
+    ["delivery_to_distributor", "vehicle_fill_rate"],
+    ["delivery_to_distributor", "sales_order_quantity"]
+  ],
+  "tier_ordering": [
+    ["machine_downtime", 0],
+    ["demand_volatility", 0],
+    ["material_delay", 0],
+    ["production_schedule_stability", 1],
+    ["production_volume", 1],
+    ["factory_issues", 2],
+    ["vehicle_fill_rate", 2],
+    ["sales_order_quantity", 0],
+    ["delivery_to_distributor", 3]
+  ],
+  "rationale": {
+    "_": "PERFECT PRIOR"
+  }
+}

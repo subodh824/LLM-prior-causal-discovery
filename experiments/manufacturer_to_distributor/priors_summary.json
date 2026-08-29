@@ -1,0 +1,98 @@
+[
+  {
+    "name": "Overall",
+    "type": "perfect",
+    "count": 1,
+    "fco": 1.0,
+    "fco_ci95": null,
+    "tere": 1.0,
+    "tere_ci95": null,
+    "tene": 0.9,
+    "tene_ci95": null,
+    "lod": null
+  },
+  {
+    "name": "Overall",
+    "type": "random",
+    "count": 3,
+    "fco": 0.52,
+    "fco_ci95": 0.52,
+    "tere": 0.67,
+    "tere_ci95": 1.43,
+    "tene": 0.04,
+    "tene_ci95": 0.09,
+    "lod": null
+  },
+  {
+    "name": "Overall",
+    "type": "ollama_llama",
+    "count": 3,
+    "fco": 0.48,
+    "fco_ci95": 0.17,
+    "tere": 0.33,
+    "tere_ci95": 1.43,
+    "tene": 0.02,
+    "tene_ci95": 0.1,
+    "lod": null
+  },
+  {
+    "name": "Overall",
+    "type": "ollama_llama_consensus",
+    "count": 1,
+    "fco": 0.44,
+    "fco_ci95": null,
+    "tere": 0.35,
+    "tere_ci95": null,
+    "tene": 0.02,
+    "tene_ci95": null,
+    "lod": null
+  },
+  {
+    "name": "Overall",
+    "type": "ollama_qwen",
+    "count": 3,
+    "fco": 0.55,
+    "fco_ci95": 0.24,
+    "tere": 0.67,
+    "tere_ci95": 1.43,
+    "tene": 0.08,
+    "tene_ci95": 0.21,
+    "lod": null
+  },
+  {
+    "name": "Overall",
+    "type": "ollama_qwen_consensus",
+    "count": 1,
+    "fco": 0.67,
+    "fco_ci95": null,
+    "tere": 0.73,
+    "tere_ci95": null,
+    "tene": 0.08,
+    "tene_ci95": null,
+    "lod": null
+  },
+  {
+    "name": "Overall",
+    "type": "gemini",
+    "count": 3,
+    "fco": 0.78,
+    "fco_ci95": null,
+    "tere": 0.97,
+    "tere_ci95": 0.13,
+    "tene": 0.49,
+    "tene_ci95": 0.3,
+    "lod": null
+  },
+  {
+    "name": "Overall",
+    "type": "gemini_consensus",
+    "count": 1,
+    "fco": 0.89,
+    "fco_ci95": null,
+    "tere": 0.96,
+    "tere_ci95": null,
+    "tene": 0.49,
+    "tene_ci95": null,
+    "lod": null
+  }
+]

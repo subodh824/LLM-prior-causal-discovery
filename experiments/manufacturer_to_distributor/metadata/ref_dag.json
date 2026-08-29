@@ -1,0 +1,69 @@
+{
+  "nodes": [
+    {
+      "id": "machine_downtime"
+    },
+    {
+      "id": "demand_volatility"
+    },
+    {
+      "id": "material_delay"
+    },
+    {
+      "id": "production_schedule_stability"
+    },
+    {
+      "id": "production_volume"
+    },
+    {
+      "id": "factory_issues"
+    },
+    {
+      "id": "vehicle_fill_rate"
+    },
+    {
+      "id": "sales_order_quantity"
+    },
+    {
+      "id": "delivery_to_distributor"
+    }
+  ],
+  "links": [
+    {
+      "source": "machine_downtime",
+      "target": "production_schedule_stability"
+    },
+    {
+      "source": "demand_volatility",
+      "target": "production_schedule_stability"
+    },
+    {
+      "source": "demand_volatility",
+      "target": "production_volume"
+    },
+    {
+      "source": "material_delay",
+      "target": "production_volume"
+    },
+    {
+      "source": "production_schedule_stability",
+      "target": "factory_issues"
+    },
+    {
+      "source": "production_volume",
+      "target": "vehicle_fill_rate"
+    },
+    {
+      "source": "factory_issues",
+      "target": "delivery_to_distributor"
+    },
+    {
+      "source": "vehicle_fill_rate",
+      "target": "delivery_to_distributor"
+    },
+    {
+      "source": "sales_order_quantity",
+      "target": "delivery_to_distributor"
+    }
+  ]
+}

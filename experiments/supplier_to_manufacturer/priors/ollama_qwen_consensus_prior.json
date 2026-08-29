@@ -1,0 +1,41 @@
+{
+  "name": "ollama_qwen_consensus_prior",
+  "type": "ollama_qwen",
+  "edges_with_probability": [
+    ["geopolitical_disruption", "supplier_distance", 0.1],
+    ["geopolitical_disruption", "supplier_financial_health", 0.283333],
+    ["geopolitical_disruption", "supplier_risk_score", 0.133333],
+    ["inventory_holding_cost", "production_schedule_instability", 0.233333],
+    ["lead_time_variability", "safety_stock_held", 0.266667],
+    ["po_cycle_time", "lead_time_variability", 0.233333],
+    ["production_schedule_instability", "raw_material_delay", 0.3],
+    ["production_schedule_instability", "supplier_financial_health", 0.166667],
+    ["safety_stock_held", "raw_material_delay", 0.2],
+    ["supplier_distance", "lead_time_variability", 0.033333],
+    ["supplier_distance", "safety_stock_held", 0.1],
+    ["supplier_distance", "supplier_risk_score", 0.2],
+    ["supplier_financial_health", "production_schedule_instability", 0.066667],
+    ["supplier_financial_health", "raw_material_delay", 0.05],
+    ["supplier_financial_health", "supplier_distance", 0.333333],
+    ["supplier_financial_health", "supplier_risk_score", 0.2],
+    ["supplier_risk_score", "po_cycle_time", 0.133333],
+    ["supplier_risk_score", "production_schedule_instability", 0.116667]
+  ],
+  "forbidden_edges": [],
+  "tier_ordering": [
+    ["geopolitical_disruption", 1],
+    ["inventory_holding_cost", 8],
+    ["lead_time_variability", 6],
+    ["po_cycle_time", 5],
+    ["production_schedule_instability", 5],
+    ["raw_material_delay", 8],
+    ["safety_stock_held", 7],
+    ["supplier_distance", 2],
+    ["supplier_financial_health", 1],
+    ["supplier_risk_score", 4],
+    ["supply_chain_tightness", 2]
+  ],
+  "rationale": {
+    "_": "consensus of 3 priors; forbidden = majority vote; tiers = rounded mean"
+  }
+}

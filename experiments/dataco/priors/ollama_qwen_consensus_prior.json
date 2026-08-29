@@ -1,0 +1,38 @@
+{
+  "name": "ollama_qwen_consensus_prior",
+  "type": "ollama_qwen",
+  "edges_with_probability": [
+    ["avg_discount_rate", "delivery_delay", 0.166667],
+    ["avg_discount_rate", "total_quantity", 0.066667],
+    ["daily_order_volume", "delivery_delay", 0.233333],
+    ["daily_order_volume", "region_weekly_orders", 0.233333],
+    ["geographic_distance", "total_quantity", 0.2],
+    ["order_item_count", "delivery_delay", 0.3],
+    ["order_item_count", "total_sales", 0.236667],
+    ["order_processing_time", "delivery_delay", 0.133333],
+    ["order_processing_time", "total_quantity", 0.093333],
+    ["region_weekly_orders", "delivery_delay", 0.266667],
+    ["scheduled_ship_days", "delivery_delay", 0.166667],
+    ["scheduled_ship_days", "order_processing_time", 0.133333],
+    ["scheduled_ship_days", "shipping_mode_speed", 0.116667],
+    ["shipping_mode_speed", "delivery_delay", 0.166667],
+    ["shipping_mode_speed", "order_processing_time", 0.166667],
+    ["total_quantity", "delivery_delay", 0.2]
+  ],
+  "forbidden_edges": [],
+  "tier_ordering": [
+    ["avg_discount_rate", 7],
+    ["daily_order_volume", 2],
+    ["delivery_delay", 6],
+    ["geographic_distance", 1],
+    ["order_processing_time", 5],
+    ["region_weekly_orders", 3],
+    ["scheduled_ship_days", 4],
+    ["shipping_mode_speed", 3],
+    ["total_quantity", 6],
+    ["total_sales", 2]
+  ],
+  "rationale": {
+    "_": "consensus of 3 priors; forbidden = majority vote; tiers = rounded mean"
+  }
+}

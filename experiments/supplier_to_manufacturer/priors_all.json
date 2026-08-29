@@ -1,0 +1,142 @@
+[
+  {
+    "name": "perfect_prior",
+    "type": "perfect",
+    "fco": 1.0,
+    "tere": 1.0,
+    "tene": 0.9
+  },
+  {
+    "name": "random_prior_0",
+    "type": "random",
+    "fco": 0.5,
+    "tere": 0.7,
+    "tene": 0.07
+  },
+  {
+    "name": "random_prior_1",
+    "type": "random",
+    "fco": 0.5,
+    "tere": 0.54,
+    "tene": 0.06
+  },
+  {
+    "name": "random_prior_2",
+    "type": "random",
+    "fco": 0.45,
+    "tere": 0.0,
+    "tene": 0.0
+  },
+  {
+    "name": "ollama_llama_prior_0",
+    "type": "ollama_llama",
+    "fco": 0.59,
+    "tere": 1.0,
+    "tene": 0.1
+  },
+  {
+    "name": "ollama_llama_prior_1",
+    "type": "ollama_llama",
+    "fco": 0.68,
+    "tere": 1.0,
+    "tene": 0.05
+  },
+  {
+    "name": "ollama_llama_prior_2",
+    "type": "ollama_llama",
+    "fco": 0.59,
+    "tere": 1.0,
+    "tene": 0.14
+  },
+  {
+    "name": "ollama_llama_consensus_prior",
+    "type": "ollama_llama",
+    "fco": 0.77,
+    "tere": 1.0,
+    "tene": 0.09
+  },
+  {
+    "name": "ollama_qwen_prior_0",
+    "type": "ollama_qwen",
+    "fco": 0.64,
+    "tere": 1.0,
+    "tene": 0.19
+  },
+  {
+    "name": "ollama_qwen_prior_1",
+    "type": "ollama_qwen",
+    "fco": 0.5,
+    "tere": 0.4,
+    "tene": 0.06
+  },
+  {
+    "name": "ollama_qwen_prior_2",
+    "type": "ollama_qwen",
+    "fco": 0.55,
+    "tere": 1.0,
+    "tene": 0.01
+  },
+  {
+    "name": "ollama_qwen_consensus_prior",
+    "type": "ollama_qwen",
+    "fco": 0.68,
+    "tere": 0.76,
+    "tene": 0.09
+  },
+  {
+    "name": "gemini_prior_0",
+    "type": "gemini",
+    "fco": 0.73,
+    "tere": 0.86,
+    "tene": 0.49
+  },
+  {
+    "name": "gemini_prior_1",
+    "type": "gemini",
+    "fco": 0.77,
+    "tere": 0.82,
+    "tene": 0.67
+  },
+  {
+    "name": "gemini_prior_2",
+    "type": "gemini",
+    "fco": 0.77,
+    "tere": 0.86,
+    "tene": 0.56
+  },
+  {
+    "name": "gemini_consensus_prior",
+    "type": "gemini",
+    "fco": 0.77,
+    "tere": 0.85,
+    "tene": 0.57
+  },
+  {
+    "name": "cerebras_prior_0",
+    "type": "cerebras",
+    "fco": 0.82,
+    "tere": 0.9,
+    "tene": 0.5
+  },
+  {
+    "name": "cerebras_prior_1",
+    "type": "cerebras",
+    "fco": 0.82,
+    "tere": 1.0,
+    "tene": 0.37
+  },
+  {
+    "name": "cerebras_prior_2",
+    "type": "cerebras",
+    "fco": 0.86,
+    "tere": 1.0,
+    "tene": 0.49
+  },
+  {
+    "name": "cerebras_consensus_prior",
+    "type": "cerebras",
+    "fco": 0.95,
+    "tere": 0.96,
+    "tene": 0.45
+  }
+]

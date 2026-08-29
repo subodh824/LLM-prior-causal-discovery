@@ -1,0 +1,108 @@
+[
+  {
+    "name": "random_prior_0",
+    "type": "random",
+    "edges_with_probability": [
+      ["handling_lead_days", "consignment_value", 0.434],
+      ["serve_distance_km", "unit_total", 0.72],
+      ["serve_distance_km", "zone_weekly_bookings", 0.494],
+      ["line_count", "arrival_slip_days", 0.32],
+      ["unit_total", "handling_lead_days", 0.551],
+      ["mean_markdown", "service_tier", 0.758],
+      ["zone_weekly_bookings", "promised_transit_days", 0.613],
+      ["zone_weekly_bookings", "mean_markdown", 0.22],
+      ["arrival_slip_days", "promised_transit_days", 0.146],
+      ["arrival_slip_days", "serve_distance_km", 0.574],
+      ["arrival_slip_days", "mean_markdown", 0.635]
+    ],
+    "forbidden_edges": [],
+    "tier_ordering": [
+      ["service_tier", 3],
+      ["promised_transit_days", 0],
+      ["handling_lead_days", 2],
+      ["serve_distance_km", 0],
+      ["line_count", 0],
+      ["unit_total", 0],
+      ["consignment_value", 1],
+      ["mean_markdown", 1],
+      ["same_day_workload", 0],
+      ["zone_weekly_bookings", 3],
+      ["arrival_slip_days", 1]
+    ],
+    "rationale": {
+      "_": "RANDOM CONTROL"
+    }
+  },
+  {
+    "name": "random_prior_1",
+    "type": "random",
+    "edges_with_probability": [
+      ["service_tier", "promised_transit_days", 0.847],
+      ["service_tier", "same_day_workload", 0.028],
+      ["promised_transit_days", "handling_lead_days", 0.445],
+      ["promised_transit_days", "mean_markdown", 0.025],
+      ["handling_lead_days", "serve_distance_km", 0.222],
+      ["serve_distance_km", "service_tier", 0.838],
+      ["serve_distance_km", "mean_markdown", 0.333],
+      ["line_count", "arrival_slip_days", 0.243],
+      ["consignment_value", "serve_distance_km", 0.043],
+      ["same_day_workload", "handling_lead_days", 0.784],
+      ["zone_weekly_bookings", "service_tier", 0.87],
+      ["arrival_slip_days", "promised_transit_days", 0.23]
+    ],
+    "forbidden_edges": [],
+    "tier_ordering": [
+      ["service_tier", 0],
+      ["promised_transit_days", 0],
+      ["handling_lead_days", 0],
+      ["serve_distance_km", 3],
+      ["line_count", 0],
+      ["unit_total", 2],
+      ["consignment_value", 1],
+      ["mean_markdown", 2],
+      ["same_day_workload", 0],
+      ["zone_weekly_bookings", 1],
+      ["arrival_slip_days", 2]
+    ],
+    "rationale": {
+      "_": "RANDOM CONTROL"
+    }
+  },
+  {
+    "name": "random_prior_2",
+    "type": "random",
+    "edges_with_probability": [
+      ["service_tier", "serve_distance_km", 0.085],
+      ["promised_transit_days", "arrival_slip_days", 0.027],
+      ["handling_lead_days", "same_day_workload", 0.325],
+      ["handling_lead_days", "zone_weekly_bookings", 0.51],
+      ["mean_markdown", "same_day_workload", 0.82],
+      ["same_day_workload", "handling_lead_days", 0.653],
+      ["same_day_workload", "consignment_value", 0.522],
+      ["zone_weekly_bookings", "serve_distance_km", 0.362],
+      ["zone_weekly_bookings", "consignment_value", 0.955],
+      ["zone_weekly_bookings", "mean_markdown", 0.729],
+      ["zone_weekly_bookings", "same_day_workload", 0.256],
+      ["arrival_slip_days", "line_count", 0.99],
+      ["arrival_slip_days", "consignment_value", 0.344],
+      ["arrival_slip_days", "zone_weekly_bookings", 0.337]
+    ],
+    "forbidden_edges": [],
+    "tier_ordering": [
+      ["service_tier", 0],
+      ["promised_transit_days", 2],
+      ["handling_lead_days", 3],
+      ["serve_distance_km", 0],
+      ["line_count", 2],
+      ["unit_total", 3],
+      ["consignment_value", 1],
+      ["mean_markdown", 3],
+      ["same_day_workload", 1],
+      ["zone_weekly_bookings", 0],
+      ["arrival_slip_days", 2]
+    ],
+    "rationale": {
+      "_": "RANDOM CONTROL"
+    }
+  }
+]

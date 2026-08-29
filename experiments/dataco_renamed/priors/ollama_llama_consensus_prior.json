@@ -1,0 +1,39 @@
+{
+  "name": "ollama_llama_consensus_prior",
+  "type": "ollama_llama",
+  "edges_with_probability": [
+    ["consignment_value", "mean_markdown", 0.266667],
+    ["handling_lead_days", "arrival_slip_days", 0.4],
+    ["line_count", "unit_total", 0.866667],
+    ["mean_markdown", "consignment_value", 0.333333],
+    ["promised_transit_days", "arrival_slip_days", 0.233333],
+    ["same_day_workload", "line_count", 0.233333],
+    ["same_day_workload", "zone_weekly_bookings", 0.233333],
+    ["serve_distance_km", "handling_lead_days", 0.233333],
+    ["serve_distance_km", "promised_transit_days", 0.233333],
+    ["service_tier", "promised_transit_days", 0.5],
+    ["unit_total", "consignment_value", 0.6],
+    ["zone_weekly_bookings", "line_count", 0.2],
+    ["zone_weekly_bookings", "same_day_workload", 0.3]
+  ],
+  "forbidden_edges": [
+    ["line_count", "mean_markdown"],
+    ["unit_total", "serve_distance_km"]
+  ],
+  "tier_ordering": [
+    ["arrival_slip_days", 7],
+    ["consignment_value", 3],
+    ["handling_lead_days", 2],
+    ["line_count", 2],
+    ["mean_markdown", 4],
+    ["promised_transit_days", 1],
+    ["same_day_workload", 3],
+    ["serve_distance_km", 2],
+    ["service_tier", 4],
+    ["unit_total", 4],
+    ["zone_weekly_bookings", 3]
+  ],
+  "rationale": {
+    "_": "consensus of 3 priors; forbidden = majority vote; tiers = rounded mean"
+  }
+}

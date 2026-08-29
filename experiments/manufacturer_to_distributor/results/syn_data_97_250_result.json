@@ -1,0 +1,2953 @@
+{
+  "name": "syn_data_97_250.csv",
+  "seed": 97,
+  "num_rows": 250,
+  "runs": [
+    {
+      "algo": "PC",
+      "type": "Baseline",
+      "prior_name": null,
+      "shd": 7,
+      "precision": 0.5,
+      "recall": 0.22,
+      "f1": 0.31,
+      "n_edges_est": 4,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "machine_downtime"
+          },
+          {
+            "id": "demand_volatility"
+          },
+          {
+            "id": "material_delay"
+          },
+          {
+            "id": "sales_order_quantity"
+          },
+          {
+            "id": "production_schedule_stability"
+          },
+          {
+            "id": "production_volume"
+          },
+          {
+            "id": "factory_issues"
+          },
+          {
+            "id": "vehicle_fill_rate"
+          },
+          {
+            "id": "delivery_to_distributor"
+          }
+        ],
+        "links": [
+          {
+            "source": "sales_order_quantity",
+            "target": "delivery_to_distributor"
+          },
+          {
+            "source": "production_schedule_stability",
+            "target": "demand_volatility"
+          },
+          {
+            "source": "production_volume",
+            "target": "demand_volatility"
+          },
+          {
+            "source": "factory_issues",
+            "target": "delivery_to_distributor"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "PC",
+      "type": "perfect",
+      "prior_name": "perfect_prior",
+      "shd": 1,
+      "precision": 1.0,
+      "recall": 0.89,
+      "f1": 0.94,
+      "n_edges_est": 8,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "machine_downtime"
+          },
+          {
+            "id": "demand_volatility"
+          },
+          {
+            "id": "material_delay"
+          },
+          {
+            "id": "sales_order_quantity"
+          },
+          {
+            "id": "production_schedule_stability"
+          },
+          {
+            "id": "production_volume"
+          },
+          {
+            "id": "factory_issues"
+          },
+          {
+            "id": "vehicle_fill_rate"
+          },
+          {
+            "id": "delivery_to_distributor"
+          }
+        ],
+        "links": [
+          {
+            "source": "machine_downtime",
+            "target": "production_schedule_stability"
+          },
+          {
+            "source": "demand_volatility",
+            "target": "production_schedule_stability"
+          },
+          {
+            "source": "demand_volatility",
+            "target": "production_volume"
+          },
+          {
+            "source": "material_delay",
+            "target": "production_volume"
+          },
+          {
+            "source": "sales_order_quantity",
+            "target": "delivery_to_distributor"
+          },
+          {
+            "source": "production_schedule_stability",
+            "target": "factory_issues"
+          },
+          {
+            "source": "production_volume",
+            "target": "vehicle_fill_rate"
+          },
+          {
+            "source": "factory_issues",
+            "target": "delivery_to_distributor"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "PC",
+      "type": "random",
+      "prior_name": "random_prior_0",
+      "shd": 3,
+      "precision": 0.75,
+      "recall": 0.67,
+      "f1": 0.71,
+      "n_edges_est": 8,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "machine_downtime"
+          },
+          {
+            "id": "demand_volatility"
+          },
+          {
+            "id": "material_delay"
+          },
+          {
+            "id": "sales_order_quantity"
+          },
+          {
+            "id": "production_schedule_stability"
+          },
+          {
+            "id": "production_volume"
+          },
+          {
+            "id": "factory_issues"
+          },
+          {
+            "id": "vehicle_fill_rate"
+          },
+          {
+            "id": "delivery_to_distributor"
+          }
+        ],
+        "links": [
+          {
+            "source": "machine_downtime",
+            "target": "production_schedule_stability"
+          },
+          {
+            "source": "demand_volatility",
+            "target": "production_schedule_stability"
+          },
+          {
+            "source": "demand_volatility",
+            "target": "production_volume"
+          },
+          {
+            "source": "sales_order_quantity",
+            "target": "delivery_to_distributor"
+          },
+          {
+            "source": "production_volume",
+            "target": "material_delay"
+          },
+          {
+            "source": "production_volume",
+            "target": "vehicle_fill_rate"
+          },
+          {
+            "source": "factory_issues",
+            "target": "production_schedule_stability"
+          },
+          {
+            "source": "factory_issues",
+            "target": "delivery_to_distributor"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "PC",
+      "type": "ollama_llama",
+      "prior_name": "ollama_llama_prior_0",
+      "shd": 3,
+      "precision": 0.75,
+      "recall": 0.67,
+      "f1": 0.71,
+      "n_edges_est": 8,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "machine_downtime"
+          },
+          {
+            "id": "demand_volatility"
+          },
+          {
+            "id": "material_delay"
+          },
+          {
+            "id": "sales_order_quantity"
+          },
+          {
+            "id": "production_schedule_stability"
+          },
+          {
+            "id": "production_volume"
+          },
+          {
+            "id": "factory_issues"
+          },
+          {
+            "id": "vehicle_fill_rate"
+          },
+          {
+            "id": "delivery_to_distributor"
+          }
+        ],
+        "links": [
+          {
+            "source": "machine_downtime",
+            "target": "production_schedule_stability"
+          },
+          {
+            "source": "demand_volatility",
+            "target": "production_schedule_stability"
+          },
+          {
+            "source": "demand_volatility",
+            "target": "production_volume"
+          },
+          {
+            "source": "material_delay",
+            "target": "production_volume"
+          },
+          {
+            "source": "sales_order_quantity",
+            "target": "delivery_to_distributor"
+          },
+          {
+            "source": "factory_issues",
+            "target": "production_schedule_stability"
+          },
+          {
+            "source": "factory_issues",
+            "target": "delivery_to_distributor"
+          },
+          {
+            "source": "vehicle_fill_rate",
+            "target": "production_volume"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "PC",
+      "type": "ollama_llama_consensus",
+      "prior_name": "ollama_llama_consensus_prior",
+      "shd": 3,
+      "precision": 0.75,
+      "recall": 0.67,
+      "f1": 0.71,
+      "n_edges_est": 8,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "machine_downtime"
+          },
+          {
+            "id": "demand_volatility"
+          },
+          {
+            "id": "material_delay"
+          },
+          {
+            "id": "sales_order_quantity"
+          },
+          {
+            "id": "production_schedule_stability"
+          },
+          {
+            "id": "production_volume"
+          },
+          {
+            "id": "factory_issues"
+          },
+          {
+            "id": "vehicle_fill_rate"
+          },
+          {
+            "id": "delivery_to_distributor"
+          }
+        ],
+        "links": [
+          {
+            "source": "demand_volatility",
+            "target": "production_schedule_stability"
+          },
+          {
+            "source": "demand_volatility",
+            "target": "production_volume"
+          },
+          {
+            "source": "material_delay",
+            "target": "production_volume"
+          },
+          {
+            "source": "sales_order_quantity",
+            "target": "delivery_to_distributor"
+          },
+          {
+            "source": "production_schedule_stability",
+            "target": "machine_downtime"
+          },
+          {
+            "source": "production_schedule_stability",
+            "target": "factory_issues"
+          },
+          {
+            "source": "factory_issues",
+            "target": "delivery_to_distributor"
+          },
+          {
+            "source": "vehicle_fill_rate",
+            "target": "production_volume"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "PC",
+      "type": "ollama_qwen",
+      "prior_name": "ollama_qwen_prior_1",
+      "shd": 2,
+      "precision": 0.88,
+      "recall": 0.78,
+      "f1": 0.82,
+      "n_edges_est": 8,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "machine_downtime"
+          },
+          {
+            "id": "demand_volatility"
+          },
+          {
+            "id": "material_delay"
+          },
+          {
+            "id": "sales_order_quantity"
+          },
+          {
+            "id": "production_schedule_stability"
+          },
+          {
+            "id": "production_volume"
+          },
+          {
+            "id": "factory_issues"
+          },
+          {
+            "id": "vehicle_fill_rate"
+          },
+          {
+            "id": "delivery_to_distributor"
+          }
+        ],
+        "links": [
+          {
+            "source": "machine_downtime",
+            "target": "production_schedule_stability"
+          },
+          {
+            "source": "demand_volatility",
+            "target": "production_schedule_stability"
+          },
+          {
+            "source": "demand_volatility",
+            "target": "production_volume"
+          },
+          {
+            "source": "material_delay",
+            "target": "production_volume"
+          },
+          {
+            "source": "sales_order_quantity",
+            "target": "delivery_to_distributor"
+          },
+          {
+            "source": "production_schedule_stability",
+            "target": "factory_issues"
+          },
+          {
+            "source": "factory_issues",
+            "target": "delivery_to_distributor"
+          },
+          {
+            "source": "vehicle_fill_rate",
+            "target": "production_volume"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "PC",
+      "type": "ollama_qwen_consensus",
+      "prior_name": "ollama_qwen_consensus_prior",
+      "shd": 3,
+      "precision": 0.75,
+      "recall": 0.67,
+      "f1": 0.71,
+      "n_edges_est": 8,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "machine_downtime"
+          },
+          {
+            "id": "demand_volatility"
+          },
+          {
+            "id": "material_delay"
+          },
+          {
+            "id": "sales_order_quantity"
+          },
+          {
+            "id": "production_schedule_stability"
+          },
+          {
+            "id": "production_volume"
+          },
+          {
+            "id": "factory_issues"
+          },
+          {
+            "id": "vehicle_fill_rate"
+          },
+          {
+            "id": "delivery_to_distributor"
+          }
+        ],
+        "links": [
+          {
+            "source": "machine_downtime",
+            "target": "production_schedule_stability"
+          },
+          {
+            "source": "demand_volatility",
+            "target": "production_schedule_stability"
+          },
+          {
+            "source": "demand_volatility",
+            "target": "production_volume"
+          },
+          {
+            "source": "material_delay",
+            "target": "production_volume"
+          },
+          {
+            "source": "production_schedule_stability",
+            "target": "factory_issues"
+          },
+          {
+            "source": "factory_issues",
+            "target": "delivery_to_distributor"
+          },
+          {
+            "source": "vehicle_fill_rate",
+            "target": "production_volume"
+          },
+          {
+            "source": "delivery_to_distributor",
+            "target": "sales_order_quantity"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "PC",
+      "type": "gemini",
+      "prior_name": "gemini_prior_1",
+      "shd": 2,
+      "precision": 0.88,
+      "recall": 0.78,
+      "f1": 0.82,
+      "n_edges_est": 8,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "machine_downtime"
+          },
+          {
+            "id": "demand_volatility"
+          },
+          {
+            "id": "material_delay"
+          },
+          {
+            "id": "sales_order_quantity"
+          },
+          {
+            "id": "production_schedule_stability"
+          },
+          {
+            "id": "production_volume"
+          },
+          {
+            "id": "factory_issues"
+          },
+          {
+            "id": "vehicle_fill_rate"
+          },
+          {
+            "id": "delivery_to_distributor"
+          }
+        ],
+        "links": [
+          {
+            "source": "demand_volatility",
+            "target": "production_schedule_stability"
+          },
+          {
+            "source": "demand_volatility",
+            "target": "production_volume"
+          },
+          {
+            "source": "material_delay",
+            "target": "production_volume"
+          },
+          {
+            "source": "sales_order_quantity",
+            "target": "delivery_to_distributor"
+          },
+          {
+            "source": "production_schedule_stability",
+            "target": "machine_downtime"
+          },
+          {
+            "source": "production_schedule_stability",
+            "target": "factory_issues"
+          },
+          {
+            "source": "production_volume",
+            "target": "vehicle_fill_rate"
+          },
+          {
+            "source": "factory_issues",
+            "target": "delivery_to_distributor"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "PC",
+      "type": "gemini_consensus",
+      "prior_name": "gemini_consensus_prior",
+      "shd": 2,
+      "precision": 0.88,
+      "recall": 0.78,
+      "f1": 0.82,
+      "n_edges_est": 8,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "machine_downtime"
+          },
+          {
+            "id": "demand_volatility"
+          },
+          {
+            "id": "material_delay"
+          },
+          {
+            "id": "sales_order_quantity"
+          },
+          {
+            "id": "production_schedule_stability"
+          },
+          {
+            "id": "production_volume"
+          },
+          {
+            "id": "factory_issues"
+          },
+          {
+            "id": "vehicle_fill_rate"
+          },
+          {
+            "id": "delivery_to_distributor"
+          }
+        ],
+        "links": [
+          {
+            "source": "demand_volatility",
+            "target": "production_schedule_stability"
+          },
+          {
+            "source": "demand_volatility",
+            "target": "production_volume"
+          },
+          {
+            "source": "material_delay",
+            "target": "production_volume"
+          },
+          {
+            "source": "sales_order_quantity",
+            "target": "delivery_to_distributor"
+          },
+          {
+            "source": "production_schedule_stability",
+            "target": "machine_downtime"
+          },
+          {
+            "source": "production_schedule_stability",
+            "target": "factory_issues"
+          },
+          {
+            "source": "production_volume",
+            "target": "vehicle_fill_rate"
+          },
+          {
+            "source": "factory_issues",
+            "target": "delivery_to_distributor"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "Baseline",
+      "prior_name": null,
+      "shd": 7,
+      "precision": 0.42,
+      "recall": 0.56,
+      "f1": 0.48,
+      "n_edges_est": 12,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "machine_downtime"
+          },
+          {
+            "id": "demand_volatility"
+          },
+          {
+            "id": "material_delay"
+          },
+          {
+            "id": "sales_order_quantity"
+          },
+          {
+            "id": "production_schedule_stability"
+          },
+          {
+            "id": "production_volume"
+          },
+          {
+            "id": "factory_issues"
+          },
+          {
+            "id": "vehicle_fill_rate"
+          },
+          {
+            "id": "delivery_to_distributor"
+          }
+        ],
+        "links": [
+          {
+            "source": "demand_volatility",
+            "target": "machine_downtime"
+          },
+          {
+            "source": "demand_volatility",
+            "target": "material_delay"
+          },
+          {
+            "source": "demand_volatility",
+            "target": "production_schedule_stability"
+          },
+          {
+            "source": "sales_order_quantity",
+            "target": "delivery_to_distributor"
+          },
+          {
+            "source": "production_schedule_stability",
+            "target": "factory_issues"
+          },
+          {
+            "source": "production_schedule_stability",
+            "target": "machine_downtime"
+          },
+          {
+            "source": "production_volume",
+            "target": "material_delay"
+          },
+          {
+            "source": "production_volume",
+            "target": "demand_volatility"
+          },
+          {
+            "source": "factory_issues",
+            "target": "delivery_to_distributor"
+          },
+          {
+            "source": "vehicle_fill_rate",
+            "target": "production_volume"
+          },
+          {
+            "source": "vehicle_fill_rate",
+            "target": "delivery_to_distributor"
+          },
+          {
+            "source": "vehicle_fill_rate",
+            "target": "demand_volatility"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "perfect",
+      "prior_name": "perfect_prior",
+      "params": {
+        "lambda": 0.1
+      },
+      "shd": 1,
+      "precision": 0.9,
+      "recall": 1.0,
+      "f1": 0.95,
+      "n_edges_est": 10,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "machine_downtime"
+          },
+          {
+            "id": "demand_volatility"
+          },
+          {
+            "id": "material_delay"
+          },
+          {
+            "id": "sales_order_quantity"
+          },
+          {
+            "id": "production_schedule_stability"
+          },
+          {
+            "id": "production_volume"
+          },
+          {
+            "id": "factory_issues"
+          },
+          {
+            "id": "vehicle_fill_rate"
+          },
+          {
+            "id": "delivery_to_distributor"
+          }
+        ],
+        "links": [
+          {
+            "source": "machine_downtime",
+            "target": "production_schedule_stability"
+          },
+          {
+            "source": "demand_volatility",
+            "target": "production_schedule_stability"
+          },
+          {
+            "source": "demand_volatility",
+            "target": "production_volume"
+          },
+          {
+            "source": "material_delay",
+            "target": "production_volume"
+          },
+          {
+            "source": "sales_order_quantity",
+            "target": "delivery_to_distributor"
+          },
+          {
+            "source": "production_schedule_stability",
+            "target": "factory_issues"
+          },
+          {
+            "source": "production_volume",
+            "target": "vehicle_fill_rate"
+          },
+          {
+            "source": "factory_issues",
+            "target": "delivery_to_distributor"
+          },
+          {
+            "source": "factory_issues",
+            "target": "vehicle_fill_rate"
+          },
+          {
+            "source": "vehicle_fill_rate",
+            "target": "delivery_to_distributor"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "perfect",
+      "prior_name": "perfect_prior",
+      "params": {
+        "lambda": 0.5
+      },
+      "shd": 1,
+      "precision": 0.9,
+      "recall": 1.0,
+      "f1": 0.95,
+      "n_edges_est": 10,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "machine_downtime"
+          },
+          {
+            "id": "demand_volatility"
+          },
+          {
+            "id": "material_delay"
+          },
+          {
+            "id": "sales_order_quantity"
+          },
+          {
+            "id": "production_schedule_stability"
+          },
+          {
+            "id": "production_volume"
+          },
+          {
+            "id": "factory_issues"
+          },
+          {
+            "id": "vehicle_fill_rate"
+          },
+          {
+            "id": "delivery_to_distributor"
+          }
+        ],
+        "links": [
+          {
+            "source": "machine_downtime",
+            "target": "production_schedule_stability"
+          },
+          {
+            "source": "demand_volatility",
+            "target": "production_schedule_stability"
+          },
+          {
+            "source": "demand_volatility",
+            "target": "production_volume"
+          },
+          {
+            "source": "material_delay",
+            "target": "production_volume"
+          },
+          {
+            "source": "sales_order_quantity",
+            "target": "delivery_to_distributor"
+          },
+          {
+            "source": "production_schedule_stability",
+            "target": "factory_issues"
+          },
+          {
+            "source": "production_volume",
+            "target": "vehicle_fill_rate"
+          },
+          {
+            "source": "factory_issues",
+            "target": "delivery_to_distributor"
+          },
+          {
+            "source": "factory_issues",
+            "target": "vehicle_fill_rate"
+          },
+          {
+            "source": "vehicle_fill_rate",
+            "target": "delivery_to_distributor"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "perfect",
+      "prior_name": "perfect_prior",
+      "params": {
+        "lambda": 0.9
+      },
+      "shd": 1,
+      "precision": 0.9,
+      "recall": 1.0,
+      "f1": 0.95,
+      "n_edges_est": 10,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "machine_downtime"
+          },
+          {
+            "id": "demand_volatility"
+          },
+          {
+            "id": "material_delay"
+          },
+          {
+            "id": "sales_order_quantity"
+          },
+          {
+            "id": "production_schedule_stability"
+          },
+          {
+            "id": "production_volume"
+          },
+          {
+            "id": "factory_issues"
+          },
+          {
+            "id": "vehicle_fill_rate"
+          },
+          {
+            "id": "delivery_to_distributor"
+          }
+        ],
+        "links": [
+          {
+            "source": "machine_downtime",
+            "target": "production_schedule_stability"
+          },
+          {
+            "source": "demand_volatility",
+            "target": "production_schedule_stability"
+          },
+          {
+            "source": "demand_volatility",
+            "target": "production_volume"
+          },
+          {
+            "source": "material_delay",
+            "target": "production_volume"
+          },
+          {
+            "source": "sales_order_quantity",
+            "target": "delivery_to_distributor"
+          },
+          {
+            "source": "production_schedule_stability",
+            "target": "factory_issues"
+          },
+          {
+            "source": "production_volume",
+            "target": "vehicle_fill_rate"
+          },
+          {
+            "source": "factory_issues",
+            "target": "delivery_to_distributor"
+          },
+          {
+            "source": "factory_issues",
+            "target": "vehicle_fill_rate"
+          },
+          {
+            "source": "vehicle_fill_rate",
+            "target": "delivery_to_distributor"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "random",
+      "prior_name": "random_prior_0",
+      "params": {
+        "lambda": 0.1
+      },
+      "shd": 6,
+      "precision": 0.54,
+      "recall": 0.78,
+      "f1": 0.64,
+      "n_edges_est": 13,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "machine_downtime"
+          },
+          {
+            "id": "demand_volatility"
+          },
+          {
+            "id": "material_delay"
+          },
+          {
+            "id": "sales_order_quantity"
+          },
+          {
+            "id": "production_schedule_stability"
+          },
+          {
+            "id": "production_volume"
+          },
+          {
+            "id": "factory_issues"
+          },
+          {
+            "id": "vehicle_fill_rate"
+          },
+          {
+            "id": "delivery_to_distributor"
+          }
+        ],
+        "links": [
+          {
+            "source": "machine_downtime",
+            "target": "factory_issues"
+          },
+          {
+            "source": "machine_downtime",
+            "target": "production_schedule_stability"
+          },
+          {
+            "source": "demand_volatility",
+            "target": "production_schedule_stability"
+          },
+          {
+            "source": "demand_volatility",
+            "target": "factory_issues"
+          },
+          {
+            "source": "demand_volatility",
+            "target": "material_delay"
+          },
+          {
+            "source": "demand_volatility",
+            "target": "production_volume"
+          },
+          {
+            "source": "sales_order_quantity",
+            "target": "delivery_to_distributor"
+          },
+          {
+            "source": "production_volume",
+            "target": "vehicle_fill_rate"
+          },
+          {
+            "source": "production_volume",
+            "target": "material_delay"
+          },
+          {
+            "source": "factory_issues",
+            "target": "production_schedule_stability"
+          },
+          {
+            "source": "factory_issues",
+            "target": "delivery_to_distributor"
+          },
+          {
+            "source": "factory_issues",
+            "target": "vehicle_fill_rate"
+          },
+          {
+            "source": "vehicle_fill_rate",
+            "target": "delivery_to_distributor"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "random",
+      "prior_name": "random_prior_0",
+      "params": {
+        "lambda": 0.5
+      },
+      "shd": 6,
+      "precision": 0.54,
+      "recall": 0.78,
+      "f1": 0.64,
+      "n_edges_est": 13,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "machine_downtime"
+          },
+          {
+            "id": "demand_volatility"
+          },
+          {
+            "id": "material_delay"
+          },
+          {
+            "id": "sales_order_quantity"
+          },
+          {
+            "id": "production_schedule_stability"
+          },
+          {
+            "id": "production_volume"
+          },
+          {
+            "id": "factory_issues"
+          },
+          {
+            "id": "vehicle_fill_rate"
+          },
+          {
+            "id": "delivery_to_distributor"
+          }
+        ],
+        "links": [
+          {
+            "source": "machine_downtime",
+            "target": "factory_issues"
+          },
+          {
+            "source": "machine_downtime",
+            "target": "production_schedule_stability"
+          },
+          {
+            "source": "demand_volatility",
+            "target": "production_schedule_stability"
+          },
+          {
+            "source": "demand_volatility",
+            "target": "factory_issues"
+          },
+          {
+            "source": "demand_volatility",
+            "target": "material_delay"
+          },
+          {
+            "source": "demand_volatility",
+            "target": "production_volume"
+          },
+          {
+            "source": "sales_order_quantity",
+            "target": "delivery_to_distributor"
+          },
+          {
+            "source": "production_volume",
+            "target": "vehicle_fill_rate"
+          },
+          {
+            "source": "production_volume",
+            "target": "material_delay"
+          },
+          {
+            "source": "factory_issues",
+            "target": "production_schedule_stability"
+          },
+          {
+            "source": "factory_issues",
+            "target": "delivery_to_distributor"
+          },
+          {
+            "source": "factory_issues",
+            "target": "vehicle_fill_rate"
+          },
+          {
+            "source": "vehicle_fill_rate",
+            "target": "delivery_to_distributor"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "random",
+      "prior_name": "random_prior_0",
+      "params": {
+        "lambda": 0.9
+      },
+      "shd": 6,
+      "precision": 0.54,
+      "recall": 0.78,
+      "f1": 0.64,
+      "n_edges_est": 13,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "machine_downtime"
+          },
+          {
+            "id": "demand_volatility"
+          },
+          {
+            "id": "material_delay"
+          },
+          {
+            "id": "sales_order_quantity"
+          },
+          {
+            "id": "production_schedule_stability"
+          },
+          {
+            "id": "production_volume"
+          },
+          {
+            "id": "factory_issues"
+          },
+          {
+            "id": "vehicle_fill_rate"
+          },
+          {
+            "id": "delivery_to_distributor"
+          }
+        ],
+        "links": [
+          {
+            "source": "machine_downtime",
+            "target": "factory_issues"
+          },
+          {
+            "source": "machine_downtime",
+            "target": "production_schedule_stability"
+          },
+          {
+            "source": "demand_volatility",
+            "target": "production_schedule_stability"
+          },
+          {
+            "source": "demand_volatility",
+            "target": "factory_issues"
+          },
+          {
+            "source": "demand_volatility",
+            "target": "material_delay"
+          },
+          {
+            "source": "demand_volatility",
+            "target": "production_volume"
+          },
+          {
+            "source": "sales_order_quantity",
+            "target": "delivery_to_distributor"
+          },
+          {
+            "source": "production_volume",
+            "target": "vehicle_fill_rate"
+          },
+          {
+            "source": "production_volume",
+            "target": "material_delay"
+          },
+          {
+            "source": "factory_issues",
+            "target": "production_schedule_stability"
+          },
+          {
+            "source": "factory_issues",
+            "target": "delivery_to_distributor"
+          },
+          {
+            "source": "factory_issues",
+            "target": "vehicle_fill_rate"
+          },
+          {
+            "source": "vehicle_fill_rate",
+            "target": "delivery_to_distributor"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "ollama_llama",
+      "prior_name": "ollama_llama_prior_0",
+      "params": {
+        "lambda": 0.1
+      },
+      "shd": 8,
+      "precision": 0.38,
+      "recall": 0.56,
+      "f1": 0.45,
+      "n_edges_est": 13,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "machine_downtime"
+          },
+          {
+            "id": "demand_volatility"
+          },
+          {
+            "id": "material_delay"
+          },
+          {
+            "id": "sales_order_quantity"
+          },
+          {
+            "id": "production_schedule_stability"
+          },
+          {
+            "id": "production_volume"
+          },
+          {
+            "id": "factory_issues"
+          },
+          {
+            "id": "vehicle_fill_rate"
+          },
+          {
+            "id": "delivery_to_distributor"
+          }
+        ],
+        "links": [
+          {
+            "source": "machine_downtime",
+            "target": "production_schedule_stability"
+          },
+          {
+            "source": "demand_volatility",
+            "target": "production_schedule_stability"
+          },
+          {
+            "source": "demand_volatility",
+            "target": "material_delay"
+          },
+          {
+            "source": "demand_volatility",
+            "target": "machine_downtime"
+          },
+          {
+            "source": "demand_volatility",
+            "target": "factory_issues"
+          },
+          {
+            "source": "sales_order_quantity",
+            "target": "delivery_to_distributor"
+          },
+          {
+            "source": "production_volume",
+            "target": "material_delay"
+          },
+          {
+            "source": "production_volume",
+            "target": "demand_volatility"
+          },
+          {
+            "source": "factory_issues",
+            "target": "production_schedule_stability"
+          },
+          {
+            "source": "factory_issues",
+            "target": "machine_downtime"
+          },
+          {
+            "source": "factory_issues",
+            "target": "delivery_to_distributor"
+          },
+          {
+            "source": "vehicle_fill_rate",
+            "target": "production_volume"
+          },
+          {
+            "source": "vehicle_fill_rate",
+            "target": "delivery_to_distributor"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "ollama_llama",
+      "prior_name": "ollama_llama_prior_0",
+      "params": {
+        "lambda": 0.5
+      },
+      "shd": 8,
+      "precision": 0.38,
+      "recall": 0.56,
+      "f1": 0.45,
+      "n_edges_est": 13,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "machine_downtime"
+          },
+          {
+            "id": "demand_volatility"
+          },
+          {
+            "id": "material_delay"
+          },
+          {
+            "id": "sales_order_quantity"
+          },
+          {
+            "id": "production_schedule_stability"
+          },
+          {
+            "id": "production_volume"
+          },
+          {
+            "id": "factory_issues"
+          },
+          {
+            "id": "vehicle_fill_rate"
+          },
+          {
+            "id": "delivery_to_distributor"
+          }
+        ],
+        "links": [
+          {
+            "source": "machine_downtime",
+            "target": "production_schedule_stability"
+          },
+          {
+            "source": "demand_volatility",
+            "target": "production_schedule_stability"
+          },
+          {
+            "source": "demand_volatility",
+            "target": "material_delay"
+          },
+          {
+            "source": "demand_volatility",
+            "target": "machine_downtime"
+          },
+          {
+            "source": "demand_volatility",
+            "target": "factory_issues"
+          },
+          {
+            "source": "sales_order_quantity",
+            "target": "delivery_to_distributor"
+          },
+          {
+            "source": "production_volume",
+            "target": "material_delay"
+          },
+          {
+            "source": "production_volume",
+            "target": "demand_volatility"
+          },
+          {
+            "source": "factory_issues",
+            "target": "production_schedule_stability"
+          },
+          {
+            "source": "factory_issues",
+            "target": "machine_downtime"
+          },
+          {
+            "source": "factory_issues",
+            "target": "delivery_to_distributor"
+          },
+          {
+            "source": "vehicle_fill_rate",
+            "target": "production_volume"
+          },
+          {
+            "source": "vehicle_fill_rate",
+            "target": "delivery_to_distributor"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "ollama_llama",
+      "prior_name": "ollama_llama_prior_0",
+      "params": {
+        "lambda": 0.9
+      },
+      "shd": 8,
+      "precision": 0.38,
+      "recall": 0.56,
+      "f1": 0.45,
+      "n_edges_est": 13,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "machine_downtime"
+          },
+          {
+            "id": "demand_volatility"
+          },
+          {
+            "id": "material_delay"
+          },
+          {
+            "id": "sales_order_quantity"
+          },
+          {
+            "id": "production_schedule_stability"
+          },
+          {
+            "id": "production_volume"
+          },
+          {
+            "id": "factory_issues"
+          },
+          {
+            "id": "vehicle_fill_rate"
+          },
+          {
+            "id": "delivery_to_distributor"
+          }
+        ],
+        "links": [
+          {
+            "source": "machine_downtime",
+            "target": "production_schedule_stability"
+          },
+          {
+            "source": "demand_volatility",
+            "target": "production_schedule_stability"
+          },
+          {
+            "source": "demand_volatility",
+            "target": "material_delay"
+          },
+          {
+            "source": "demand_volatility",
+            "target": "machine_downtime"
+          },
+          {
+            "source": "demand_volatility",
+            "target": "factory_issues"
+          },
+          {
+            "source": "sales_order_quantity",
+            "target": "delivery_to_distributor"
+          },
+          {
+            "source": "production_volume",
+            "target": "material_delay"
+          },
+          {
+            "source": "production_volume",
+            "target": "demand_volatility"
+          },
+          {
+            "source": "factory_issues",
+            "target": "production_schedule_stability"
+          },
+          {
+            "source": "factory_issues",
+            "target": "machine_downtime"
+          },
+          {
+            "source": "factory_issues",
+            "target": "delivery_to_distributor"
+          },
+          {
+            "source": "vehicle_fill_rate",
+            "target": "production_volume"
+          },
+          {
+            "source": "vehicle_fill_rate",
+            "target": "delivery_to_distributor"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "ollama_llama_consensus",
+      "prior_name": "ollama_llama_consensus_prior",
+      "params": {
+        "lambda": 0.1
+      },
+      "shd": 3,
+      "precision": 0.73,
+      "recall": 0.89,
+      "f1": 0.8,
+      "n_edges_est": 11,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "machine_downtime"
+          },
+          {
+            "id": "demand_volatility"
+          },
+          {
+            "id": "material_delay"
+          },
+          {
+            "id": "sales_order_quantity"
+          },
+          {
+            "id": "production_schedule_stability"
+          },
+          {
+            "id": "production_volume"
+          },
+          {
+            "id": "factory_issues"
+          },
+          {
+            "id": "vehicle_fill_rate"
+          },
+          {
+            "id": "delivery_to_distributor"
+          }
+        ],
+        "links": [
+          {
+            "source": "demand_volatility",
+            "target": "machine_downtime"
+          },
+          {
+            "source": "demand_volatility",
+            "target": "production_volume"
+          },
+          {
+            "source": "demand_volatility",
+            "target": "production_schedule_stability"
+          },
+          {
+            "source": "material_delay",
+            "target": "production_volume"
+          },
+          {
+            "source": "sales_order_quantity",
+            "target": "delivery_to_distributor"
+          },
+          {
+            "source": "production_schedule_stability",
+            "target": "factory_issues"
+          },
+          {
+            "source": "production_schedule_stability",
+            "target": "machine_downtime"
+          },
+          {
+            "source": "production_volume",
+            "target": "vehicle_fill_rate"
+          },
+          {
+            "source": "factory_issues",
+            "target": "delivery_to_distributor"
+          },
+          {
+            "source": "factory_issues",
+            "target": "vehicle_fill_rate"
+          },
+          {
+            "source": "vehicle_fill_rate",
+            "target": "delivery_to_distributor"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "ollama_llama_consensus",
+      "prior_name": "ollama_llama_consensus_prior",
+      "params": {
+        "lambda": 0.5
+      },
+      "shd": 3,
+      "precision": 0.73,
+      "recall": 0.89,
+      "f1": 0.8,
+      "n_edges_est": 11,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "machine_downtime"
+          },
+          {
+            "id": "demand_volatility"
+          },
+          {
+            "id": "material_delay"
+          },
+          {
+            "id": "sales_order_quantity"
+          },
+          {
+            "id": "production_schedule_stability"
+          },
+          {
+            "id": "production_volume"
+          },
+          {
+            "id": "factory_issues"
+          },
+          {
+            "id": "vehicle_fill_rate"
+          },
+          {
+            "id": "delivery_to_distributor"
+          }
+        ],
+        "links": [
+          {
+            "source": "demand_volatility",
+            "target": "machine_downtime"
+          },
+          {
+            "source": "demand_volatility",
+            "target": "production_volume"
+          },
+          {
+            "source": "demand_volatility",
+            "target": "production_schedule_stability"
+          },
+          {
+            "source": "material_delay",
+            "target": "production_volume"
+          },
+          {
+            "source": "sales_order_quantity",
+            "target": "delivery_to_distributor"
+          },
+          {
+            "source": "production_schedule_stability",
+            "target": "factory_issues"
+          },
+          {
+            "source": "production_schedule_stability",
+            "target": "machine_downtime"
+          },
+          {
+            "source": "production_volume",
+            "target": "vehicle_fill_rate"
+          },
+          {
+            "source": "factory_issues",
+            "target": "delivery_to_distributor"
+          },
+          {
+            "source": "factory_issues",
+            "target": "vehicle_fill_rate"
+          },
+          {
+            "source": "vehicle_fill_rate",
+            "target": "delivery_to_distributor"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "ollama_llama_consensus",
+      "prior_name": "ollama_llama_consensus_prior",
+      "params": {
+        "lambda": 0.9
+      },
+      "shd": 3,
+      "precision": 0.73,
+      "recall": 0.89,
+      "f1": 0.8,
+      "n_edges_est": 11,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "machine_downtime"
+          },
+          {
+            "id": "demand_volatility"
+          },
+          {
+            "id": "material_delay"
+          },
+          {
+            "id": "sales_order_quantity"
+          },
+          {
+            "id": "production_schedule_stability"
+          },
+          {
+            "id": "production_volume"
+          },
+          {
+            "id": "factory_issues"
+          },
+          {
+            "id": "vehicle_fill_rate"
+          },
+          {
+            "id": "delivery_to_distributor"
+          }
+        ],
+        "links": [
+          {
+            "source": "demand_volatility",
+            "target": "machine_downtime"
+          },
+          {
+            "source": "demand_volatility",
+            "target": "production_volume"
+          },
+          {
+            "source": "demand_volatility",
+            "target": "production_schedule_stability"
+          },
+          {
+            "source": "material_delay",
+            "target": "production_volume"
+          },
+          {
+            "source": "sales_order_quantity",
+            "target": "delivery_to_distributor"
+          },
+          {
+            "source": "production_schedule_stability",
+            "target": "factory_issues"
+          },
+          {
+            "source": "production_schedule_stability",
+            "target": "machine_downtime"
+          },
+          {
+            "source": "production_volume",
+            "target": "vehicle_fill_rate"
+          },
+          {
+            "source": "factory_issues",
+            "target": "delivery_to_distributor"
+          },
+          {
+            "source": "factory_issues",
+            "target": "vehicle_fill_rate"
+          },
+          {
+            "source": "vehicle_fill_rate",
+            "target": "delivery_to_distributor"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "ollama_qwen",
+      "prior_name": "ollama_qwen_prior_1",
+      "params": {
+        "lambda": 0.1
+      },
+      "shd": 4,
+      "precision": 0.6,
+      "recall": 0.67,
+      "f1": 0.63,
+      "n_edges_est": 10,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "machine_downtime"
+          },
+          {
+            "id": "demand_volatility"
+          },
+          {
+            "id": "material_delay"
+          },
+          {
+            "id": "sales_order_quantity"
+          },
+          {
+            "id": "production_schedule_stability"
+          },
+          {
+            "id": "production_volume"
+          },
+          {
+            "id": "factory_issues"
+          },
+          {
+            "id": "vehicle_fill_rate"
+          },
+          {
+            "id": "delivery_to_distributor"
+          }
+        ],
+        "links": [
+          {
+            "source": "machine_downtime",
+            "target": "production_schedule_stability"
+          },
+          {
+            "source": "demand_volatility",
+            "target": "production_schedule_stability"
+          },
+          {
+            "source": "material_delay",
+            "target": "demand_volatility"
+          },
+          {
+            "source": "sales_order_quantity",
+            "target": "delivery_to_distributor"
+          },
+          {
+            "source": "production_schedule_stability",
+            "target": "factory_issues"
+          },
+          {
+            "source": "production_volume",
+            "target": "material_delay"
+          },
+          {
+            "source": "production_volume",
+            "target": "demand_volatility"
+          },
+          {
+            "source": "factory_issues",
+            "target": "delivery_to_distributor"
+          },
+          {
+            "source": "vehicle_fill_rate",
+            "target": "production_volume"
+          },
+          {
+            "source": "vehicle_fill_rate",
+            "target": "delivery_to_distributor"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "ollama_qwen",
+      "prior_name": "ollama_qwen_prior_1",
+      "params": {
+        "lambda": 0.5
+      },
+      "shd": 4,
+      "precision": 0.6,
+      "recall": 0.67,
+      "f1": 0.63,
+      "n_edges_est": 10,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "machine_downtime"
+          },
+          {
+            "id": "demand_volatility"
+          },
+          {
+            "id": "material_delay"
+          },
+          {
+            "id": "sales_order_quantity"
+          },
+          {
+            "id": "production_schedule_stability"
+          },
+          {
+            "id": "production_volume"
+          },
+          {
+            "id": "factory_issues"
+          },
+          {
+            "id": "vehicle_fill_rate"
+          },
+          {
+            "id": "delivery_to_distributor"
+          }
+        ],
+        "links": [
+          {
+            "source": "machine_downtime",
+            "target": "production_schedule_stability"
+          },
+          {
+            "source": "demand_volatility",
+            "target": "production_schedule_stability"
+          },
+          {
+            "source": "material_delay",
+            "target": "demand_volatility"
+          },
+          {
+            "source": "sales_order_quantity",
+            "target": "delivery_to_distributor"
+          },
+          {
+            "source": "production_schedule_stability",
+            "target": "factory_issues"
+          },
+          {
+            "source": "production_volume",
+            "target": "material_delay"
+          },
+          {
+            "source": "production_volume",
+            "target": "demand_volatility"
+          },
+          {
+            "source": "factory_issues",
+            "target": "delivery_to_distributor"
+          },
+          {
+            "source": "vehicle_fill_rate",
+            "target": "production_volume"
+          },
+          {
+            "source": "vehicle_fill_rate",
+            "target": "delivery_to_distributor"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "ollama_qwen",
+      "prior_name": "ollama_qwen_prior_1",
+      "params": {
+        "lambda": 0.9
+      },
+      "shd": 4,
+      "precision": 0.6,
+      "recall": 0.67,
+      "f1": 0.63,
+      "n_edges_est": 10,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "machine_downtime"
+          },
+          {
+            "id": "demand_volatility"
+          },
+          {
+            "id": "material_delay"
+          },
+          {
+            "id": "sales_order_quantity"
+          },
+          {
+            "id": "production_schedule_stability"
+          },
+          {
+            "id": "production_volume"
+          },
+          {
+            "id": "factory_issues"
+          },
+          {
+            "id": "vehicle_fill_rate"
+          },
+          {
+            "id": "delivery_to_distributor"
+          }
+        ],
+        "links": [
+          {
+            "source": "machine_downtime",
+            "target": "production_schedule_stability"
+          },
+          {
+            "source": "demand_volatility",
+            "target": "production_schedule_stability"
+          },
+          {
+            "source": "material_delay",
+            "target": "demand_volatility"
+          },
+          {
+            "source": "sales_order_quantity",
+            "target": "delivery_to_distributor"
+          },
+          {
+            "source": "production_schedule_stability",
+            "target": "factory_issues"
+          },
+          {
+            "source": "production_volume",
+            "target": "material_delay"
+          },
+          {
+            "source": "production_volume",
+            "target": "demand_volatility"
+          },
+          {
+            "source": "factory_issues",
+            "target": "delivery_to_distributor"
+          },
+          {
+            "source": "vehicle_fill_rate",
+            "target": "production_volume"
+          },
+          {
+            "source": "vehicle_fill_rate",
+            "target": "delivery_to_distributor"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "ollama_qwen_consensus",
+      "prior_name": "ollama_qwen_consensus_prior",
+      "params": {
+        "lambda": 0.1
+      },
+      "shd": 4,
+      "precision": 0.67,
+      "recall": 0.89,
+      "f1": 0.76,
+      "n_edges_est": 12,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "machine_downtime"
+          },
+          {
+            "id": "demand_volatility"
+          },
+          {
+            "id": "material_delay"
+          },
+          {
+            "id": "sales_order_quantity"
+          },
+          {
+            "id": "production_schedule_stability"
+          },
+          {
+            "id": "production_volume"
+          },
+          {
+            "id": "factory_issues"
+          },
+          {
+            "id": "vehicle_fill_rate"
+          },
+          {
+            "id": "delivery_to_distributor"
+          }
+        ],
+        "links": [
+          {
+            "source": "machine_downtime",
+            "target": "production_schedule_stability"
+          },
+          {
+            "source": "demand_volatility",
+            "target": "production_schedule_stability"
+          },
+          {
+            "source": "demand_volatility",
+            "target": "production_volume"
+          },
+          {
+            "source": "material_delay",
+            "target": "vehicle_fill_rate"
+          },
+          {
+            "source": "material_delay",
+            "target": "production_volume"
+          },
+          {
+            "source": "material_delay",
+            "target": "sales_order_quantity"
+          },
+          {
+            "source": "production_schedule_stability",
+            "target": "factory_issues"
+          },
+          {
+            "source": "production_volume",
+            "target": "vehicle_fill_rate"
+          },
+          {
+            "source": "factory_issues",
+            "target": "delivery_to_distributor"
+          },
+          {
+            "source": "factory_issues",
+            "target": "sales_order_quantity"
+          },
+          {
+            "source": "vehicle_fill_rate",
+            "target": "delivery_to_distributor"
+          },
+          {
+            "source": "delivery_to_distributor",
+            "target": "sales_order_quantity"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "ollama_qwen_consensus",
+      "prior_name": "ollama_qwen_consensus_prior",
+      "params": {
+        "lambda": 0.5
+      },
+      "shd": 4,
+      "precision": 0.67,
+      "recall": 0.89,
+      "f1": 0.76,
+      "n_edges_est": 12,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "machine_downtime"
+          },
+          {
+            "id": "demand_volatility"
+          },
+          {
+            "id": "material_delay"
+          },
+          {
+            "id": "sales_order_quantity"
+          },
+          {
+            "id": "production_schedule_stability"
+          },
+          {
+            "id": "production_volume"
+          },
+          {
+            "id": "factory_issues"
+          },
+          {
+            "id": "vehicle_fill_rate"
+          },
+          {
+            "id": "delivery_to_distributor"
+          }
+        ],
+        "links": [
+          {
+            "source": "machine_downtime",
+            "target": "production_schedule_stability"
+          },
+          {
+            "source": "demand_volatility",
+            "target": "production_schedule_stability"
+          },
+          {
+            "source": "demand_volatility",
+            "target": "production_volume"
+          },
+          {
+            "source": "material_delay",
+            "target": "vehicle_fill_rate"
+          },
+          {
+            "source": "material_delay",
+            "target": "production_volume"
+          },
+          {
+            "source": "material_delay",
+            "target": "sales_order_quantity"
+          },
+          {
+            "source": "production_schedule_stability",
+            "target": "factory_issues"
+          },
+          {
+            "source": "production_volume",
+            "target": "vehicle_fill_rate"
+          },
+          {
+            "source": "factory_issues",
+            "target": "delivery_to_distributor"
+          },
+          {
+            "source": "factory_issues",
+            "target": "sales_order_quantity"
+          },
+          {
+            "source": "vehicle_fill_rate",
+            "target": "delivery_to_distributor"
+          },
+          {
+            "source": "delivery_to_distributor",
+            "target": "sales_order_quantity"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "ollama_qwen_consensus",
+      "prior_name": "ollama_qwen_consensus_prior",
+      "params": {
+        "lambda": 0.9
+      },
+      "shd": 4,
+      "precision": 0.67,
+      "recall": 0.89,
+      "f1": 0.76,
+      "n_edges_est": 12,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "machine_downtime"
+          },
+          {
+            "id": "demand_volatility"
+          },
+          {
+            "id": "material_delay"
+          },
+          {
+            "id": "sales_order_quantity"
+          },
+          {
+            "id": "production_schedule_stability"
+          },
+          {
+            "id": "production_volume"
+          },
+          {
+            "id": "factory_issues"
+          },
+          {
+            "id": "vehicle_fill_rate"
+          },
+          {
+            "id": "delivery_to_distributor"
+          }
+        ],
+        "links": [
+          {
+            "source": "machine_downtime",
+            "target": "production_schedule_stability"
+          },
+          {
+            "source": "demand_volatility",
+            "target": "production_schedule_stability"
+          },
+          {
+            "source": "demand_volatility",
+            "target": "production_volume"
+          },
+          {
+            "source": "material_delay",
+            "target": "vehicle_fill_rate"
+          },
+          {
+            "source": "material_delay",
+            "target": "production_volume"
+          },
+          {
+            "source": "material_delay",
+            "target": "sales_order_quantity"
+          },
+          {
+            "source": "production_schedule_stability",
+            "target": "factory_issues"
+          },
+          {
+            "source": "production_volume",
+            "target": "vehicle_fill_rate"
+          },
+          {
+            "source": "factory_issues",
+            "target": "delivery_to_distributor"
+          },
+          {
+            "source": "factory_issues",
+            "target": "sales_order_quantity"
+          },
+          {
+            "source": "vehicle_fill_rate",
+            "target": "delivery_to_distributor"
+          },
+          {
+            "source": "delivery_to_distributor",
+            "target": "sales_order_quantity"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "gemini",
+      "prior_name": "gemini_prior_1",
+      "params": {
+        "lambda": 0.1
+      },
+      "shd": 3,
+      "precision": 0.73,
+      "recall": 0.89,
+      "f1": 0.8,
+      "n_edges_est": 11,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "machine_downtime"
+          },
+          {
+            "id": "demand_volatility"
+          },
+          {
+            "id": "material_delay"
+          },
+          {
+            "id": "sales_order_quantity"
+          },
+          {
+            "id": "production_schedule_stability"
+          },
+          {
+            "id": "production_volume"
+          },
+          {
+            "id": "factory_issues"
+          },
+          {
+            "id": "vehicle_fill_rate"
+          },
+          {
+            "id": "delivery_to_distributor"
+          }
+        ],
+        "links": [
+          {
+            "source": "demand_volatility",
+            "target": "machine_downtime"
+          },
+          {
+            "source": "demand_volatility",
+            "target": "production_volume"
+          },
+          {
+            "source": "demand_volatility",
+            "target": "production_schedule_stability"
+          },
+          {
+            "source": "material_delay",
+            "target": "production_volume"
+          },
+          {
+            "source": "sales_order_quantity",
+            "target": "delivery_to_distributor"
+          },
+          {
+            "source": "production_schedule_stability",
+            "target": "factory_issues"
+          },
+          {
+            "source": "production_schedule_stability",
+            "target": "machine_downtime"
+          },
+          {
+            "source": "production_volume",
+            "target": "vehicle_fill_rate"
+          },
+          {
+            "source": "factory_issues",
+            "target": "delivery_to_distributor"
+          },
+          {
+            "source": "factory_issues",
+            "target": "vehicle_fill_rate"
+          },
+          {
+            "source": "vehicle_fill_rate",
+            "target": "delivery_to_distributor"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "gemini",
+      "prior_name": "gemini_prior_1",
+      "params": {
+        "lambda": 0.5
+      },
+      "shd": 3,
+      "precision": 0.73,
+      "recall": 0.89,
+      "f1": 0.8,
+      "n_edges_est": 11,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "machine_downtime"
+          },
+          {
+            "id": "demand_volatility"
+          },
+          {
+            "id": "material_delay"
+          },
+          {
+            "id": "sales_order_quantity"
+          },
+          {
+            "id": "production_schedule_stability"
+          },
+          {
+            "id": "production_volume"
+          },
+          {
+            "id": "factory_issues"
+          },
+          {
+            "id": "vehicle_fill_rate"
+          },
+          {
+            "id": "delivery_to_distributor"
+          }
+        ],
+        "links": [
+          {
+            "source": "demand_volatility",
+            "target": "machine_downtime"
+          },
+          {
+            "source": "demand_volatility",
+            "target": "production_volume"
+          },
+          {
+            "source": "demand_volatility",
+            "target": "production_schedule_stability"
+          },
+          {
+            "source": "material_delay",
+            "target": "production_volume"
+          },
+          {
+            "source": "sales_order_quantity",
+            "target": "delivery_to_distributor"
+          },
+          {
+            "source": "production_schedule_stability",
+            "target": "factory_issues"
+          },
+          {
+            "source": "production_schedule_stability",
+            "target": "machine_downtime"
+          },
+          {
+            "source": "production_volume",
+            "target": "vehicle_fill_rate"
+          },
+          {
+            "source": "factory_issues",
+            "target": "delivery_to_distributor"
+          },
+          {
+            "source": "factory_issues",
+            "target": "vehicle_fill_rate"
+          },
+          {
+            "source": "vehicle_fill_rate",
+            "target": "delivery_to_distributor"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "gemini",
+      "prior_name": "gemini_prior_1",
+      "params": {
+        "lambda": 0.9
+      },
+      "shd": 3,
+      "precision": 0.73,
+      "recall": 0.89,
+      "f1": 0.8,
+      "n_edges_est": 11,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "machine_downtime"
+          },
+          {
+            "id": "demand_volatility"
+          },
+          {
+            "id": "material_delay"
+          },
+          {
+            "id": "sales_order_quantity"
+          },
+          {
+            "id": "production_schedule_stability"
+          },
+          {
+            "id": "production_volume"
+          },
+          {
+            "id": "factory_issues"
+          },
+          {
+            "id": "vehicle_fill_rate"
+          },
+          {
+            "id": "delivery_to_distributor"
+          }
+        ],
+        "links": [
+          {
+            "source": "demand_volatility",
+            "target": "machine_downtime"
+          },
+          {
+            "source": "demand_volatility",
+            "target": "production_volume"
+          },
+          {
+            "source": "demand_volatility",
+            "target": "production_schedule_stability"
+          },
+          {
+            "source": "material_delay",
+            "target": "production_volume"
+          },
+          {
+            "source": "sales_order_quantity",
+            "target": "delivery_to_distributor"
+          },
+          {
+            "source": "production_schedule_stability",
+            "target": "factory_issues"
+          },
+          {
+            "source": "production_schedule_stability",
+            "target": "machine_downtime"
+          },
+          {
+            "source": "production_volume",
+            "target": "vehicle_fill_rate"
+          },
+          {
+            "source": "factory_issues",
+            "target": "delivery_to_distributor"
+          },
+          {
+            "source": "factory_issues",
+            "target": "vehicle_fill_rate"
+          },
+          {
+            "source": "vehicle_fill_rate",
+            "target": "delivery_to_distributor"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "gemini_consensus",
+      "prior_name": "gemini_consensus_prior",
+      "params": {
+        "lambda": 0.1
+      },
+      "shd": 3,
+      "precision": 0.73,
+      "recall": 0.89,
+      "f1": 0.8,
+      "n_edges_est": 11,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "machine_downtime"
+          },
+          {
+            "id": "demand_volatility"
+          },
+          {
+            "id": "material_delay"
+          },
+          {
+            "id": "sales_order_quantity"
+          },
+          {
+            "id": "production_schedule_stability"
+          },
+          {
+            "id": "production_volume"
+          },
+          {
+            "id": "factory_issues"
+          },
+          {
+            "id": "vehicle_fill_rate"
+          },
+          {
+            "id": "delivery_to_distributor"
+          }
+        ],
+        "links": [
+          {
+            "source": "demand_volatility",
+            "target": "machine_downtime"
+          },
+          {
+            "source": "demand_volatility",
+            "target": "production_volume"
+          },
+          {
+            "source": "demand_volatility",
+            "target": "production_schedule_stability"
+          },
+          {
+            "source": "material_delay",
+            "target": "production_volume"
+          },
+          {
+            "source": "sales_order_quantity",
+            "target": "delivery_to_distributor"
+          },
+          {
+            "source": "production_schedule_stability",
+            "target": "factory_issues"
+          },
+          {
+            "source": "production_schedule_stability",
+            "target": "machine_downtime"
+          },
+          {
+            "source": "production_volume",
+            "target": "vehicle_fill_rate"
+          },
+          {
+            "source": "factory_issues",
+            "target": "delivery_to_distributor"
+          },
+          {
+            "source": "factory_issues",
+            "target": "vehicle_fill_rate"
+          },
+          {
+            "source": "vehicle_fill_rate",
+            "target": "delivery_to_distributor"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "gemini_consensus",
+      "prior_name": "gemini_consensus_prior",
+      "params": {
+        "lambda": 0.5
+      },
+      "shd": 3,
+      "precision": 0.73,
+      "recall": 0.89,
+      "f1": 0.8,
+      "n_edges_est": 11,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "machine_downtime"
+          },
+          {
+            "id": "demand_volatility"
+          },
+          {
+            "id": "material_delay"
+          },
+          {
+            "id": "sales_order_quantity"
+          },
+          {
+            "id": "production_schedule_stability"
+          },
+          {
+            "id": "production_volume"
+          },
+          {
+            "id": "factory_issues"
+          },
+          {
+            "id": "vehicle_fill_rate"
+          },
+          {
+            "id": "delivery_to_distributor"
+          }
+        ],
+        "links": [
+          {
+            "source": "demand_volatility",
+            "target": "machine_downtime"
+          },
+          {
+            "source": "demand_volatility",
+            "target": "production_volume"
+          },
+          {
+            "source": "demand_volatility",
+            "target": "production_schedule_stability"
+          },
+          {
+            "source": "material_delay",
+            "target": "production_volume"
+          },
+          {
+            "source": "sales_order_quantity",
+            "target": "delivery_to_distributor"
+          },
+          {
+            "source": "production_schedule_stability",
+            "target": "factory_issues"
+          },
+          {
+            "source": "production_schedule_stability",
+            "target": "machine_downtime"
+          },
+          {
+            "source": "production_volume",
+            "target": "vehicle_fill_rate"
+          },
+          {
+            "source": "factory_issues",
+            "target": "delivery_to_distributor"
+          },
+          {
+            "source": "factory_issues",
+            "target": "vehicle_fill_rate"
+          },
+          {
+            "source": "vehicle_fill_rate",
+            "target": "delivery_to_distributor"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "gemini_consensus",
+      "prior_name": "gemini_consensus_prior",
+      "params": {
+        "lambda": 0.9
+      },
+      "shd": 3,
+      "precision": 0.73,
+      "recall": 0.89,
+      "f1": 0.8,
+      "n_edges_est": 11,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "machine_downtime"
+          },
+          {
+            "id": "demand_volatility"
+          },
+          {
+            "id": "material_delay"
+          },
+          {
+            "id": "sales_order_quantity"
+          },
+          {
+            "id": "production_schedule_stability"
+          },
+          {
+            "id": "production_volume"
+          },
+          {
+            "id": "factory_issues"
+          },
+          {
+            "id": "vehicle_fill_rate"
+          },
+          {
+            "id": "delivery_to_distributor"
+          }
+        ],
+        "links": [
+          {
+            "source": "demand_volatility",
+            "target": "machine_downtime"
+          },
+          {
+            "source": "demand_volatility",
+            "target": "production_volume"
+          },
+          {
+            "source": "demand_volatility",
+            "target": "production_schedule_stability"
+          },
+          {
+            "source": "material_delay",
+            "target": "production_volume"
+          },
+          {
+            "source": "sales_order_quantity",
+            "target": "delivery_to_distributor"
+          },
+          {
+            "source": "production_schedule_stability",
+            "target": "factory_issues"
+          },
+          {
+            "source": "production_schedule_stability",
+            "target": "machine_downtime"
+          },
+          {
+            "source": "production_volume",
+            "target": "vehicle_fill_rate"
+          },
+          {
+            "source": "factory_issues",
+            "target": "delivery_to_distributor"
+          },
+          {
+            "source": "factory_issues",
+            "target": "vehicle_fill_rate"
+          },
+          {
+            "source": "vehicle_fill_rate",
+            "target": "delivery_to_distributor"
+          }
+        ]
+      }
+    }
+  ]
+}

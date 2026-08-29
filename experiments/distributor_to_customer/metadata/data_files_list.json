@@ -1,0 +1,227 @@
+[
+  {
+    "name": "syn_data_3_250.csv",
+    "seed": 3,
+    "num_rows": 250
+  },
+  {
+    "name": "syn_data_3_1000.csv",
+    "seed": 3,
+    "num_rows": 1000
+  },
+  {
+    "name": "syn_data_3_5000.csv",
+    "seed": 3,
+    "num_rows": 5000
+  },
+  {
+    "name": "syn_data_42_250.csv",
+    "seed": 42,
+    "num_rows": 250
+  },
+  {
+    "name": "syn_data_42_1000.csv",
+    "seed": 42,
+    "num_rows": 1000
+  },
+  {
+    "name": "syn_data_42_5000.csv",
+    "seed": 42,
+    "num_rows": 5000
+  },
+  {
+    "name": "syn_data_5_250.csv",
+    "seed": 5,
+    "num_rows": 250
+  },
+  {
+    "name": "syn_data_5_1000.csv",
+    "seed": 5,
+    "num_rows": 1000
+  },
+  {
+    "name": "syn_data_5_5000.csv",
+    "seed": 5,
+    "num_rows": 5000
+  },
+  {
+    "name": "syn_data_7_250.csv",
+    "seed": 7,
+    "num_rows": 250
+  },
+  {
+    "name": "syn_data_7_1000.csv",
+    "seed": 7,
+    "num_rows": 1000
+  },
+  {
+    "name": "syn_data_7_5000.csv",
+    "seed": 7,
+    "num_rows": 5000
+  },
+  {
+    "name": "syn_data_11_250.csv",
+    "seed": 11,
+    "num_rows": 250
+  },
+  {
+    "name": "syn_data_11_1000.csv",
+    "seed": 11,
+    "num_rows": 1000
+  },
+  {
+    "name": "syn_data_11_5000.csv",
+    "seed": 11,
+    "num_rows": 5000
+  },
+  {
+    "name": "syn_data_17_250.csv",
+    "seed": 17,
+    "num_rows": 250
+  },
+  {
+    "name": "syn_data_17_1000.csv",
+    "seed": 17,
+    "num_rows": 1000
+  },
+  {
+    "name": "syn_data_17_5000.csv",
+    "seed": 17,
+    "num_rows": 5000
+  },
+  {
+    "name": "syn_data_23_250.csv",
+    "seed": 23,
+    "num_rows": 250
+  },
+  {
+    "name": "syn_data_23_1000.csv",
+    "seed": 23,
+    "num_rows": 1000
+  },
+  {
+    "name": "syn_data_23_5000.csv",
+    "seed": 23,
+    "num_rows": 5000
+  },
+  {
+    "name": "syn_data_29_250.csv",
+    "seed": 29,
+    "num_rows": 250
+  },
+  {
+    "name": "syn_data_29_1000.csv",
+    "seed": 29,
+    "num_rows": 1000
+  },
+  {
+    "name": "syn_data_29_5000.csv",
+    "seed": 29,
+    "num_rows": 5000
+  },
+  {
+    "name": "syn_data_41_250.csv",
+    "seed": 41,
+    "num_rows": 250
+  },
+  {
+    "name": "syn_data_41_1000.csv",
+    "seed": 41,
+    "num_rows": 1000
+  },
+  {
+    "name": "syn_data_41_5000.csv",
+    "seed": 41,
+    "num_rows": 5000
+  },
+  {
+    "name": "syn_data_53_250.csv",
+    "seed": 53,
+    "num_rows": 250
+  },
+  {
+    "name": "syn_data_53_1000.csv",
+    "seed": 53,
+    "num_rows": 1000
+  },
+  {
+    "name": "syn_data_53_5000.csv",
+    "seed": 53,
+    "num_rows": 5000
+  },
+  {
+    "name": "syn_data_67_250.csv",
+    "seed": 67,
+    "num_rows": 250
+  },
+  {
+    "name": "syn_data_67_1000.csv",
+    "seed": 67,
+    "num_rows": 1000
+  },
+  {
+    "name": "syn_data_67_5000.csv",
+    "seed": 67,
+    "num_rows": 5000
+  },
+  {
+    "name": "syn_data_79_250.csv",
+    "seed": 79,
+    "num_rows": 250
+  },
+  {
+    "name": "syn_data_79_1000.csv",
+    "seed": 79,
+    "num_rows": 1000
+  },
+  {
+    "name": "syn_data_79_5000.csv",
+    "seed": 79,
+    "num_rows": 5000
+  },
+  {
+    "name": "syn_data_89_250.csv",
+    "seed": 89,
+    "num_rows": 250
+  },
+  {
+    "name": "syn_data_89_1000.csv",
+    "seed": 89,
+    "num_rows": 1000
+  },
+  {
+    "name": "syn_data_89_5000.csv",
+    "seed": 89,
+    "num_rows": 5000
+  },
+  {
+    "name": "syn_data_97_250.csv",
+    "seed": 97,
+    "num_rows": 250
+  },
+  {
+    "name": "syn_data_97_1000.csv",
+    "seed": 97,
+    "num_rows": 1000
+  },
+  {
+    "name": "syn_data_97_5000.csv",
+    "seed": 97,
+    "num_rows": 5000
+  },
+  {
+    "name": "syn_data_101_250.csv",
+    "seed": 101,
+    "num_rows": 250
+  },
+  {
+    "name": "syn_data_101_1000.csv",
+    "seed": 101,
+    "num_rows": 1000
+  },
+  {
+    "name": "syn_data_101_5000.csv",
+    "seed": 101,
+    "num_rows": 5000
+  }
+]

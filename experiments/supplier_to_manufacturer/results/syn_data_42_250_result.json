@@ -1,0 +1,3756 @@
+{
+  "name": "syn_data_42_250.csv",
+  "seed": 42,
+  "num_rows": 250,
+  "runs": [
+    {
+      "algo": "PC",
+      "type": "Baseline",
+      "prior_name": null,
+      "shd": 11,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "n_edges_est": 0,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "geopolitical_disruption"
+          },
+          {
+            "id": "supplier_financial_health"
+          },
+          {
+            "id": "supplier_distance"
+          },
+          {
+            "id": "supplier_risk_score"
+          },
+          {
+            "id": "po_cycle_time"
+          },
+          {
+            "id": "lead_time_variability"
+          },
+          {
+            "id": "safety_stock_held"
+          },
+          {
+            "id": "raw_material_delay"
+          },
+          {
+            "id": "production_schedule_instability"
+          },
+          {
+            "id": "inventory_holding_cost"
+          }
+        ],
+        "links": []
+      }
+    },
+    {
+      "algo": "PC",
+      "type": "perfect",
+      "prior_name": "perfect_prior",
+      "shd": 4,
+      "precision": 1.0,
+      "recall": 0.64,
+      "f1": 0.78,
+      "n_edges_est": 7,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "geopolitical_disruption"
+          },
+          {
+            "id": "supplier_financial_health"
+          },
+          {
+            "id": "supplier_distance"
+          },
+          {
+            "id": "supplier_risk_score"
+          },
+          {
+            "id": "po_cycle_time"
+          },
+          {
+            "id": "lead_time_variability"
+          },
+          {
+            "id": "safety_stock_held"
+          },
+          {
+            "id": "raw_material_delay"
+          },
+          {
+            "id": "production_schedule_instability"
+          },
+          {
+            "id": "inventory_holding_cost"
+          }
+        ],
+        "links": [
+          {
+            "source": "geopolitical_disruption",
+            "target": "po_cycle_time"
+          },
+          {
+            "source": "supplier_financial_health",
+            "target": "supplier_risk_score"
+          },
+          {
+            "source": "lead_time_variability",
+            "target": "safety_stock_held"
+          },
+          {
+            "source": "lead_time_variability",
+            "target": "raw_material_delay"
+          },
+          {
+            "source": "safety_stock_held",
+            "target": "raw_material_delay"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "production_schedule_instability"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "inventory_holding_cost"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "PC",
+      "type": "random",
+      "prior_name": "random_prior_2",
+      "shd": 10,
+      "precision": 0.14,
+      "recall": 0.09,
+      "f1": 0.11,
+      "n_edges_est": 7,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "geopolitical_disruption"
+          },
+          {
+            "id": "supplier_financial_health"
+          },
+          {
+            "id": "supplier_distance"
+          },
+          {
+            "id": "supplier_risk_score"
+          },
+          {
+            "id": "po_cycle_time"
+          },
+          {
+            "id": "lead_time_variability"
+          },
+          {
+            "id": "safety_stock_held"
+          },
+          {
+            "id": "raw_material_delay"
+          },
+          {
+            "id": "production_schedule_instability"
+          },
+          {
+            "id": "inventory_holding_cost"
+          }
+        ],
+        "links": [
+          {
+            "source": "geopolitical_disruption",
+            "target": "po_cycle_time"
+          },
+          {
+            "source": "supplier_risk_score",
+            "target": "supplier_financial_health"
+          },
+          {
+            "source": "safety_stock_held",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "safety_stock_held"
+          },
+          {
+            "source": "production_schedule_instability",
+            "target": "raw_material_delay"
+          },
+          {
+            "source": "inventory_holding_cost",
+            "target": "raw_material_delay"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "PC",
+      "type": "ollama_llama",
+      "prior_name": "ollama_llama_prior_0",
+      "shd": 6,
+      "precision": 1.0,
+      "recall": 0.45,
+      "f1": 0.62,
+      "n_edges_est": 5,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "geopolitical_disruption"
+          },
+          {
+            "id": "supplier_financial_health"
+          },
+          {
+            "id": "supplier_distance"
+          },
+          {
+            "id": "supplier_risk_score"
+          },
+          {
+            "id": "po_cycle_time"
+          },
+          {
+            "id": "lead_time_variability"
+          },
+          {
+            "id": "safety_stock_held"
+          },
+          {
+            "id": "raw_material_delay"
+          },
+          {
+            "id": "production_schedule_instability"
+          },
+          {
+            "id": "inventory_holding_cost"
+          }
+        ],
+        "links": [
+          {
+            "source": "geopolitical_disruption",
+            "target": "po_cycle_time"
+          },
+          {
+            "source": "lead_time_variability",
+            "target": "raw_material_delay"
+          },
+          {
+            "source": "safety_stock_held",
+            "target": "raw_material_delay"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "production_schedule_instability"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "inventory_holding_cost"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "PC",
+      "type": "ollama_llama_consensus",
+      "prior_name": "ollama_llama_consensus_prior",
+      "shd": 6,
+      "precision": 0.83,
+      "recall": 0.45,
+      "f1": 0.59,
+      "n_edges_est": 6,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "geopolitical_disruption"
+          },
+          {
+            "id": "supplier_financial_health"
+          },
+          {
+            "id": "supplier_distance"
+          },
+          {
+            "id": "supplier_risk_score"
+          },
+          {
+            "id": "po_cycle_time"
+          },
+          {
+            "id": "lead_time_variability"
+          },
+          {
+            "id": "safety_stock_held"
+          },
+          {
+            "id": "raw_material_delay"
+          },
+          {
+            "id": "production_schedule_instability"
+          },
+          {
+            "id": "inventory_holding_cost"
+          }
+        ],
+        "links": [
+          {
+            "source": "geopolitical_disruption",
+            "target": "po_cycle_time"
+          },
+          {
+            "source": "supplier_risk_score",
+            "target": "supplier_financial_health"
+          },
+          {
+            "source": "lead_time_variability",
+            "target": "safety_stock_held"
+          },
+          {
+            "source": "lead_time_variability",
+            "target": "raw_material_delay"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "production_schedule_instability"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "inventory_holding_cost"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "PC",
+      "type": "ollama_qwen",
+      "prior_name": "ollama_qwen_prior_0",
+      "shd": 4,
+      "precision": 1.0,
+      "recall": 0.64,
+      "f1": 0.78,
+      "n_edges_est": 7,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "geopolitical_disruption"
+          },
+          {
+            "id": "supplier_financial_health"
+          },
+          {
+            "id": "supplier_distance"
+          },
+          {
+            "id": "supplier_risk_score"
+          },
+          {
+            "id": "po_cycle_time"
+          },
+          {
+            "id": "lead_time_variability"
+          },
+          {
+            "id": "safety_stock_held"
+          },
+          {
+            "id": "raw_material_delay"
+          },
+          {
+            "id": "production_schedule_instability"
+          },
+          {
+            "id": "inventory_holding_cost"
+          }
+        ],
+        "links": [
+          {
+            "source": "geopolitical_disruption",
+            "target": "po_cycle_time"
+          },
+          {
+            "source": "supplier_financial_health",
+            "target": "supplier_risk_score"
+          },
+          {
+            "source": "lead_time_variability",
+            "target": "safety_stock_held"
+          },
+          {
+            "source": "lead_time_variability",
+            "target": "raw_material_delay"
+          },
+          {
+            "source": "safety_stock_held",
+            "target": "raw_material_delay"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "production_schedule_instability"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "inventory_holding_cost"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "PC",
+      "type": "ollama_qwen_consensus",
+      "prior_name": "ollama_qwen_consensus_prior",
+      "shd": 5,
+      "precision": 0.86,
+      "recall": 0.55,
+      "f1": 0.67,
+      "n_edges_est": 7,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "geopolitical_disruption"
+          },
+          {
+            "id": "supplier_financial_health"
+          },
+          {
+            "id": "supplier_distance"
+          },
+          {
+            "id": "supplier_risk_score"
+          },
+          {
+            "id": "po_cycle_time"
+          },
+          {
+            "id": "lead_time_variability"
+          },
+          {
+            "id": "safety_stock_held"
+          },
+          {
+            "id": "raw_material_delay"
+          },
+          {
+            "id": "production_schedule_instability"
+          },
+          {
+            "id": "inventory_holding_cost"
+          }
+        ],
+        "links": [
+          {
+            "source": "geopolitical_disruption",
+            "target": "po_cycle_time"
+          },
+          {
+            "source": "supplier_financial_health",
+            "target": "supplier_risk_score"
+          },
+          {
+            "source": "lead_time_variability",
+            "target": "safety_stock_held"
+          },
+          {
+            "source": "lead_time_variability",
+            "target": "raw_material_delay"
+          },
+          {
+            "source": "safety_stock_held",
+            "target": "raw_material_delay"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "inventory_holding_cost"
+          },
+          {
+            "source": "production_schedule_instability",
+            "target": "raw_material_delay"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "PC",
+      "type": "gemini",
+      "prior_name": "gemini_prior_2",
+      "shd": 6,
+      "precision": 0.71,
+      "recall": 0.45,
+      "f1": 0.56,
+      "n_edges_est": 7,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "geopolitical_disruption"
+          },
+          {
+            "id": "supplier_financial_health"
+          },
+          {
+            "id": "supplier_distance"
+          },
+          {
+            "id": "supplier_risk_score"
+          },
+          {
+            "id": "po_cycle_time"
+          },
+          {
+            "id": "lead_time_variability"
+          },
+          {
+            "id": "safety_stock_held"
+          },
+          {
+            "id": "raw_material_delay"
+          },
+          {
+            "id": "production_schedule_instability"
+          },
+          {
+            "id": "inventory_holding_cost"
+          }
+        ],
+        "links": [
+          {
+            "source": "geopolitical_disruption",
+            "target": "po_cycle_time"
+          },
+          {
+            "source": "supplier_financial_health",
+            "target": "supplier_risk_score"
+          },
+          {
+            "source": "lead_time_variability",
+            "target": "safety_stock_held"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "safety_stock_held"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "production_schedule_instability"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "inventory_holding_cost"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "PC",
+      "type": "gemini_consensus",
+      "prior_name": "gemini_consensus_prior",
+      "shd": 6,
+      "precision": 0.71,
+      "recall": 0.45,
+      "f1": 0.56,
+      "n_edges_est": 7,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "geopolitical_disruption"
+          },
+          {
+            "id": "supplier_financial_health"
+          },
+          {
+            "id": "supplier_distance"
+          },
+          {
+            "id": "supplier_risk_score"
+          },
+          {
+            "id": "po_cycle_time"
+          },
+          {
+            "id": "lead_time_variability"
+          },
+          {
+            "id": "safety_stock_held"
+          },
+          {
+            "id": "raw_material_delay"
+          },
+          {
+            "id": "production_schedule_instability"
+          },
+          {
+            "id": "inventory_holding_cost"
+          }
+        ],
+        "links": [
+          {
+            "source": "geopolitical_disruption",
+            "target": "po_cycle_time"
+          },
+          {
+            "source": "supplier_financial_health",
+            "target": "supplier_risk_score"
+          },
+          {
+            "source": "lead_time_variability",
+            "target": "safety_stock_held"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "safety_stock_held"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "production_schedule_instability"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "inventory_holding_cost"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "PC",
+      "type": "cerebras",
+      "prior_name": "cerebras_prior_0",
+      "shd": 6,
+      "precision": 0.71,
+      "recall": 0.45,
+      "f1": 0.56,
+      "n_edges_est": 7,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "geopolitical_disruption"
+          },
+          {
+            "id": "supplier_financial_health"
+          },
+          {
+            "id": "supplier_distance"
+          },
+          {
+            "id": "supplier_risk_score"
+          },
+          {
+            "id": "po_cycle_time"
+          },
+          {
+            "id": "lead_time_variability"
+          },
+          {
+            "id": "safety_stock_held"
+          },
+          {
+            "id": "raw_material_delay"
+          },
+          {
+            "id": "production_schedule_instability"
+          },
+          {
+            "id": "inventory_holding_cost"
+          }
+        ],
+        "links": [
+          {
+            "source": "geopolitical_disruption",
+            "target": "po_cycle_time"
+          },
+          {
+            "source": "supplier_financial_health",
+            "target": "supplier_risk_score"
+          },
+          {
+            "source": "lead_time_variability",
+            "target": "safety_stock_held"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "safety_stock_held"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "production_schedule_instability"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "inventory_holding_cost"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "PC",
+      "type": "cerebras_consensus",
+      "prior_name": "cerebras_consensus_prior",
+      "shd": 6,
+      "precision": 0.83,
+      "recall": 0.45,
+      "f1": 0.59,
+      "n_edges_est": 6,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "geopolitical_disruption"
+          },
+          {
+            "id": "supplier_financial_health"
+          },
+          {
+            "id": "supplier_distance"
+          },
+          {
+            "id": "supplier_risk_score"
+          },
+          {
+            "id": "po_cycle_time"
+          },
+          {
+            "id": "lead_time_variability"
+          },
+          {
+            "id": "safety_stock_held"
+          },
+          {
+            "id": "raw_material_delay"
+          },
+          {
+            "id": "production_schedule_instability"
+          },
+          {
+            "id": "inventory_holding_cost"
+          }
+        ],
+        "links": [
+          {
+            "source": "geopolitical_disruption",
+            "target": "po_cycle_time"
+          },
+          {
+            "source": "supplier_financial_health",
+            "target": "supplier_risk_score"
+          },
+          {
+            "source": "lead_time_variability",
+            "target": "safety_stock_held"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "safety_stock_held"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "production_schedule_instability"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "inventory_holding_cost"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "Baseline",
+      "prior_name": null,
+      "shd": 3,
+      "precision": 0.73,
+      "recall": 0.73,
+      "f1": 0.73,
+      "n_edges_est": 11,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "geopolitical_disruption"
+          },
+          {
+            "id": "supplier_financial_health"
+          },
+          {
+            "id": "supplier_distance"
+          },
+          {
+            "id": "supplier_risk_score"
+          },
+          {
+            "id": "po_cycle_time"
+          },
+          {
+            "id": "lead_time_variability"
+          },
+          {
+            "id": "safety_stock_held"
+          },
+          {
+            "id": "raw_material_delay"
+          },
+          {
+            "id": "production_schedule_instability"
+          },
+          {
+            "id": "inventory_holding_cost"
+          }
+        ],
+        "links": [
+          {
+            "source": "geopolitical_disruption",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "supplier_distance",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "supplier_risk_score",
+            "target": "supplier_financial_health"
+          },
+          {
+            "source": "supplier_risk_score",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "po_cycle_time",
+            "target": "geopolitical_disruption"
+          },
+          {
+            "source": "po_cycle_time",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "lead_time_variability",
+            "target": "safety_stock_held"
+          },
+          {
+            "source": "lead_time_variability",
+            "target": "raw_material_delay"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "production_schedule_instability"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "inventory_holding_cost"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "safety_stock_held"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "perfect",
+      "prior_name": "perfect_prior",
+      "params": {
+        "lambda": 0.1
+      },
+      "shd": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "n_edges_est": 11,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "geopolitical_disruption"
+          },
+          {
+            "id": "supplier_financial_health"
+          },
+          {
+            "id": "supplier_distance"
+          },
+          {
+            "id": "supplier_risk_score"
+          },
+          {
+            "id": "po_cycle_time"
+          },
+          {
+            "id": "lead_time_variability"
+          },
+          {
+            "id": "safety_stock_held"
+          },
+          {
+            "id": "raw_material_delay"
+          },
+          {
+            "id": "production_schedule_instability"
+          },
+          {
+            "id": "inventory_holding_cost"
+          }
+        ],
+        "links": [
+          {
+            "source": "geopolitical_disruption",
+            "target": "po_cycle_time"
+          },
+          {
+            "source": "geopolitical_disruption",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "supplier_financial_health",
+            "target": "supplier_risk_score"
+          },
+          {
+            "source": "supplier_distance",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "supplier_risk_score",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "po_cycle_time",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "lead_time_variability",
+            "target": "safety_stock_held"
+          },
+          {
+            "source": "lead_time_variability",
+            "target": "raw_material_delay"
+          },
+          {
+            "source": "safety_stock_held",
+            "target": "raw_material_delay"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "inventory_holding_cost"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "production_schedule_instability"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "perfect",
+      "prior_name": "perfect_prior",
+      "params": {
+        "lambda": 0.5
+      },
+      "shd": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "n_edges_est": 11,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "geopolitical_disruption"
+          },
+          {
+            "id": "supplier_financial_health"
+          },
+          {
+            "id": "supplier_distance"
+          },
+          {
+            "id": "supplier_risk_score"
+          },
+          {
+            "id": "po_cycle_time"
+          },
+          {
+            "id": "lead_time_variability"
+          },
+          {
+            "id": "safety_stock_held"
+          },
+          {
+            "id": "raw_material_delay"
+          },
+          {
+            "id": "production_schedule_instability"
+          },
+          {
+            "id": "inventory_holding_cost"
+          }
+        ],
+        "links": [
+          {
+            "source": "geopolitical_disruption",
+            "target": "po_cycle_time"
+          },
+          {
+            "source": "geopolitical_disruption",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "supplier_financial_health",
+            "target": "supplier_risk_score"
+          },
+          {
+            "source": "supplier_distance",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "supplier_risk_score",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "po_cycle_time",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "lead_time_variability",
+            "target": "safety_stock_held"
+          },
+          {
+            "source": "lead_time_variability",
+            "target": "raw_material_delay"
+          },
+          {
+            "source": "safety_stock_held",
+            "target": "raw_material_delay"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "inventory_holding_cost"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "production_schedule_instability"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "perfect",
+      "prior_name": "perfect_prior",
+      "params": {
+        "lambda": 0.9
+      },
+      "shd": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "n_edges_est": 11,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "geopolitical_disruption"
+          },
+          {
+            "id": "supplier_financial_health"
+          },
+          {
+            "id": "supplier_distance"
+          },
+          {
+            "id": "supplier_risk_score"
+          },
+          {
+            "id": "po_cycle_time"
+          },
+          {
+            "id": "lead_time_variability"
+          },
+          {
+            "id": "safety_stock_held"
+          },
+          {
+            "id": "raw_material_delay"
+          },
+          {
+            "id": "production_schedule_instability"
+          },
+          {
+            "id": "inventory_holding_cost"
+          }
+        ],
+        "links": [
+          {
+            "source": "geopolitical_disruption",
+            "target": "po_cycle_time"
+          },
+          {
+            "source": "geopolitical_disruption",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "supplier_financial_health",
+            "target": "supplier_risk_score"
+          },
+          {
+            "source": "supplier_distance",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "supplier_risk_score",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "po_cycle_time",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "lead_time_variability",
+            "target": "safety_stock_held"
+          },
+          {
+            "source": "lead_time_variability",
+            "target": "raw_material_delay"
+          },
+          {
+            "source": "safety_stock_held",
+            "target": "raw_material_delay"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "inventory_holding_cost"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "production_schedule_instability"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "random",
+      "prior_name": "random_prior_2",
+      "params": {
+        "lambda": 0.1
+      },
+      "shd": 16,
+      "precision": 0.14,
+      "recall": 0.18,
+      "f1": 0.16,
+      "n_edges_est": 14,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "geopolitical_disruption"
+          },
+          {
+            "id": "supplier_financial_health"
+          },
+          {
+            "id": "supplier_distance"
+          },
+          {
+            "id": "supplier_risk_score"
+          },
+          {
+            "id": "po_cycle_time"
+          },
+          {
+            "id": "lead_time_variability"
+          },
+          {
+            "id": "safety_stock_held"
+          },
+          {
+            "id": "raw_material_delay"
+          },
+          {
+            "id": "production_schedule_instability"
+          },
+          {
+            "id": "inventory_holding_cost"
+          }
+        ],
+        "links": [
+          {
+            "source": "geopolitical_disruption",
+            "target": "po_cycle_time"
+          },
+          {
+            "source": "geopolitical_disruption",
+            "target": "safety_stock_held"
+          },
+          {
+            "source": "geopolitical_disruption",
+            "target": "production_schedule_instability"
+          },
+          {
+            "source": "supplier_distance",
+            "target": "safety_stock_held"
+          },
+          {
+            "source": "supplier_risk_score",
+            "target": "supplier_financial_health"
+          },
+          {
+            "source": "supplier_risk_score",
+            "target": "safety_stock_held"
+          },
+          {
+            "source": "safety_stock_held",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "safety_stock_held",
+            "target": "raw_material_delay"
+          },
+          {
+            "source": "safety_stock_held",
+            "target": "po_cycle_time"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "production_schedule_instability",
+            "target": "raw_material_delay"
+          },
+          {
+            "source": "production_schedule_instability",
+            "target": "inventory_holding_cost"
+          },
+          {
+            "source": "inventory_holding_cost",
+            "target": "raw_material_delay"
+          },
+          {
+            "source": "inventory_holding_cost",
+            "target": "supplier_distance"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "random",
+      "prior_name": "random_prior_2",
+      "params": {
+        "lambda": 0.5
+      },
+      "shd": 16,
+      "precision": 0.14,
+      "recall": 0.18,
+      "f1": 0.16,
+      "n_edges_est": 14,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "geopolitical_disruption"
+          },
+          {
+            "id": "supplier_financial_health"
+          },
+          {
+            "id": "supplier_distance"
+          },
+          {
+            "id": "supplier_risk_score"
+          },
+          {
+            "id": "po_cycle_time"
+          },
+          {
+            "id": "lead_time_variability"
+          },
+          {
+            "id": "safety_stock_held"
+          },
+          {
+            "id": "raw_material_delay"
+          },
+          {
+            "id": "production_schedule_instability"
+          },
+          {
+            "id": "inventory_holding_cost"
+          }
+        ],
+        "links": [
+          {
+            "source": "geopolitical_disruption",
+            "target": "po_cycle_time"
+          },
+          {
+            "source": "geopolitical_disruption",
+            "target": "safety_stock_held"
+          },
+          {
+            "source": "geopolitical_disruption",
+            "target": "production_schedule_instability"
+          },
+          {
+            "source": "supplier_distance",
+            "target": "safety_stock_held"
+          },
+          {
+            "source": "supplier_risk_score",
+            "target": "supplier_financial_health"
+          },
+          {
+            "source": "supplier_risk_score",
+            "target": "safety_stock_held"
+          },
+          {
+            "source": "safety_stock_held",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "safety_stock_held",
+            "target": "raw_material_delay"
+          },
+          {
+            "source": "safety_stock_held",
+            "target": "po_cycle_time"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "production_schedule_instability",
+            "target": "raw_material_delay"
+          },
+          {
+            "source": "production_schedule_instability",
+            "target": "inventory_holding_cost"
+          },
+          {
+            "source": "inventory_holding_cost",
+            "target": "raw_material_delay"
+          },
+          {
+            "source": "inventory_holding_cost",
+            "target": "supplier_distance"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "random",
+      "prior_name": "random_prior_2",
+      "params": {
+        "lambda": 0.9
+      },
+      "shd": 16,
+      "precision": 0.14,
+      "recall": 0.18,
+      "f1": 0.16,
+      "n_edges_est": 14,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "geopolitical_disruption"
+          },
+          {
+            "id": "supplier_financial_health"
+          },
+          {
+            "id": "supplier_distance"
+          },
+          {
+            "id": "supplier_risk_score"
+          },
+          {
+            "id": "po_cycle_time"
+          },
+          {
+            "id": "lead_time_variability"
+          },
+          {
+            "id": "safety_stock_held"
+          },
+          {
+            "id": "raw_material_delay"
+          },
+          {
+            "id": "production_schedule_instability"
+          },
+          {
+            "id": "inventory_holding_cost"
+          }
+        ],
+        "links": [
+          {
+            "source": "geopolitical_disruption",
+            "target": "po_cycle_time"
+          },
+          {
+            "source": "geopolitical_disruption",
+            "target": "safety_stock_held"
+          },
+          {
+            "source": "geopolitical_disruption",
+            "target": "production_schedule_instability"
+          },
+          {
+            "source": "supplier_distance",
+            "target": "safety_stock_held"
+          },
+          {
+            "source": "supplier_risk_score",
+            "target": "supplier_financial_health"
+          },
+          {
+            "source": "supplier_risk_score",
+            "target": "safety_stock_held"
+          },
+          {
+            "source": "safety_stock_held",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "safety_stock_held",
+            "target": "raw_material_delay"
+          },
+          {
+            "source": "safety_stock_held",
+            "target": "po_cycle_time"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "production_schedule_instability",
+            "target": "raw_material_delay"
+          },
+          {
+            "source": "production_schedule_instability",
+            "target": "inventory_holding_cost"
+          },
+          {
+            "source": "inventory_holding_cost",
+            "target": "raw_material_delay"
+          },
+          {
+            "source": "inventory_holding_cost",
+            "target": "supplier_distance"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "ollama_llama",
+      "prior_name": "ollama_llama_prior_0",
+      "params": {
+        "lambda": 0.1
+      },
+      "shd": 1,
+      "precision": 0.91,
+      "recall": 0.91,
+      "f1": 0.91,
+      "n_edges_est": 11,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "geopolitical_disruption"
+          },
+          {
+            "id": "supplier_financial_health"
+          },
+          {
+            "id": "supplier_distance"
+          },
+          {
+            "id": "supplier_risk_score"
+          },
+          {
+            "id": "po_cycle_time"
+          },
+          {
+            "id": "lead_time_variability"
+          },
+          {
+            "id": "safety_stock_held"
+          },
+          {
+            "id": "raw_material_delay"
+          },
+          {
+            "id": "production_schedule_instability"
+          },
+          {
+            "id": "inventory_holding_cost"
+          }
+        ],
+        "links": [
+          {
+            "source": "geopolitical_disruption",
+            "target": "po_cycle_time"
+          },
+          {
+            "source": "geopolitical_disruption",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "supplier_distance",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "supplier_risk_score",
+            "target": "supplier_financial_health"
+          },
+          {
+            "source": "supplier_risk_score",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "po_cycle_time",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "lead_time_variability",
+            "target": "safety_stock_held"
+          },
+          {
+            "source": "lead_time_variability",
+            "target": "raw_material_delay"
+          },
+          {
+            "source": "safety_stock_held",
+            "target": "raw_material_delay"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "inventory_holding_cost"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "production_schedule_instability"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "ollama_llama",
+      "prior_name": "ollama_llama_prior_0",
+      "params": {
+        "lambda": 0.5
+      },
+      "shd": 1,
+      "precision": 0.91,
+      "recall": 0.91,
+      "f1": 0.91,
+      "n_edges_est": 11,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "geopolitical_disruption"
+          },
+          {
+            "id": "supplier_financial_health"
+          },
+          {
+            "id": "supplier_distance"
+          },
+          {
+            "id": "supplier_risk_score"
+          },
+          {
+            "id": "po_cycle_time"
+          },
+          {
+            "id": "lead_time_variability"
+          },
+          {
+            "id": "safety_stock_held"
+          },
+          {
+            "id": "raw_material_delay"
+          },
+          {
+            "id": "production_schedule_instability"
+          },
+          {
+            "id": "inventory_holding_cost"
+          }
+        ],
+        "links": [
+          {
+            "source": "geopolitical_disruption",
+            "target": "po_cycle_time"
+          },
+          {
+            "source": "geopolitical_disruption",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "supplier_distance",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "supplier_risk_score",
+            "target": "supplier_financial_health"
+          },
+          {
+            "source": "supplier_risk_score",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "po_cycle_time",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "lead_time_variability",
+            "target": "safety_stock_held"
+          },
+          {
+            "source": "lead_time_variability",
+            "target": "raw_material_delay"
+          },
+          {
+            "source": "safety_stock_held",
+            "target": "raw_material_delay"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "inventory_holding_cost"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "production_schedule_instability"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "ollama_llama",
+      "prior_name": "ollama_llama_prior_0",
+      "params": {
+        "lambda": 0.9
+      },
+      "shd": 1,
+      "precision": 0.91,
+      "recall": 0.91,
+      "f1": 0.91,
+      "n_edges_est": 11,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "geopolitical_disruption"
+          },
+          {
+            "id": "supplier_financial_health"
+          },
+          {
+            "id": "supplier_distance"
+          },
+          {
+            "id": "supplier_risk_score"
+          },
+          {
+            "id": "po_cycle_time"
+          },
+          {
+            "id": "lead_time_variability"
+          },
+          {
+            "id": "safety_stock_held"
+          },
+          {
+            "id": "raw_material_delay"
+          },
+          {
+            "id": "production_schedule_instability"
+          },
+          {
+            "id": "inventory_holding_cost"
+          }
+        ],
+        "links": [
+          {
+            "source": "geopolitical_disruption",
+            "target": "po_cycle_time"
+          },
+          {
+            "source": "geopolitical_disruption",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "supplier_distance",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "supplier_risk_score",
+            "target": "supplier_financial_health"
+          },
+          {
+            "source": "supplier_risk_score",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "po_cycle_time",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "lead_time_variability",
+            "target": "safety_stock_held"
+          },
+          {
+            "source": "lead_time_variability",
+            "target": "raw_material_delay"
+          },
+          {
+            "source": "safety_stock_held",
+            "target": "raw_material_delay"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "inventory_holding_cost"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "production_schedule_instability"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "ollama_llama_consensus",
+      "prior_name": "ollama_llama_consensus_prior",
+      "params": {
+        "lambda": 0.1
+      },
+      "shd": 2,
+      "precision": 0.82,
+      "recall": 0.82,
+      "f1": 0.82,
+      "n_edges_est": 11,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "geopolitical_disruption"
+          },
+          {
+            "id": "supplier_financial_health"
+          },
+          {
+            "id": "supplier_distance"
+          },
+          {
+            "id": "supplier_risk_score"
+          },
+          {
+            "id": "po_cycle_time"
+          },
+          {
+            "id": "lead_time_variability"
+          },
+          {
+            "id": "safety_stock_held"
+          },
+          {
+            "id": "raw_material_delay"
+          },
+          {
+            "id": "production_schedule_instability"
+          },
+          {
+            "id": "inventory_holding_cost"
+          }
+        ],
+        "links": [
+          {
+            "source": "geopolitical_disruption",
+            "target": "po_cycle_time"
+          },
+          {
+            "source": "geopolitical_disruption",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "supplier_distance",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "supplier_risk_score",
+            "target": "supplier_financial_health"
+          },
+          {
+            "source": "supplier_risk_score",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "po_cycle_time",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "lead_time_variability",
+            "target": "safety_stock_held"
+          },
+          {
+            "source": "lead_time_variability",
+            "target": "raw_material_delay"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "inventory_holding_cost"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "production_schedule_instability"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "safety_stock_held"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "ollama_llama_consensus",
+      "prior_name": "ollama_llama_consensus_prior",
+      "params": {
+        "lambda": 0.5
+      },
+      "shd": 2,
+      "precision": 0.82,
+      "recall": 0.82,
+      "f1": 0.82,
+      "n_edges_est": 11,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "geopolitical_disruption"
+          },
+          {
+            "id": "supplier_financial_health"
+          },
+          {
+            "id": "supplier_distance"
+          },
+          {
+            "id": "supplier_risk_score"
+          },
+          {
+            "id": "po_cycle_time"
+          },
+          {
+            "id": "lead_time_variability"
+          },
+          {
+            "id": "safety_stock_held"
+          },
+          {
+            "id": "raw_material_delay"
+          },
+          {
+            "id": "production_schedule_instability"
+          },
+          {
+            "id": "inventory_holding_cost"
+          }
+        ],
+        "links": [
+          {
+            "source": "geopolitical_disruption",
+            "target": "po_cycle_time"
+          },
+          {
+            "source": "geopolitical_disruption",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "supplier_distance",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "supplier_risk_score",
+            "target": "supplier_financial_health"
+          },
+          {
+            "source": "supplier_risk_score",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "po_cycle_time",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "lead_time_variability",
+            "target": "safety_stock_held"
+          },
+          {
+            "source": "lead_time_variability",
+            "target": "raw_material_delay"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "inventory_holding_cost"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "production_schedule_instability"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "safety_stock_held"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "ollama_llama_consensus",
+      "prior_name": "ollama_llama_consensus_prior",
+      "params": {
+        "lambda": 0.9
+      },
+      "shd": 2,
+      "precision": 0.82,
+      "recall": 0.82,
+      "f1": 0.82,
+      "n_edges_est": 11,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "geopolitical_disruption"
+          },
+          {
+            "id": "supplier_financial_health"
+          },
+          {
+            "id": "supplier_distance"
+          },
+          {
+            "id": "supplier_risk_score"
+          },
+          {
+            "id": "po_cycle_time"
+          },
+          {
+            "id": "lead_time_variability"
+          },
+          {
+            "id": "safety_stock_held"
+          },
+          {
+            "id": "raw_material_delay"
+          },
+          {
+            "id": "production_schedule_instability"
+          },
+          {
+            "id": "inventory_holding_cost"
+          }
+        ],
+        "links": [
+          {
+            "source": "geopolitical_disruption",
+            "target": "po_cycle_time"
+          },
+          {
+            "source": "geopolitical_disruption",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "supplier_distance",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "supplier_risk_score",
+            "target": "supplier_financial_health"
+          },
+          {
+            "source": "supplier_risk_score",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "po_cycle_time",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "lead_time_variability",
+            "target": "safety_stock_held"
+          },
+          {
+            "source": "lead_time_variability",
+            "target": "raw_material_delay"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "inventory_holding_cost"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "production_schedule_instability"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "safety_stock_held"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "ollama_qwen",
+      "prior_name": "ollama_qwen_prior_0",
+      "params": {
+        "lambda": 0.1
+      },
+      "shd": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "n_edges_est": 11,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "geopolitical_disruption"
+          },
+          {
+            "id": "supplier_financial_health"
+          },
+          {
+            "id": "supplier_distance"
+          },
+          {
+            "id": "supplier_risk_score"
+          },
+          {
+            "id": "po_cycle_time"
+          },
+          {
+            "id": "lead_time_variability"
+          },
+          {
+            "id": "safety_stock_held"
+          },
+          {
+            "id": "raw_material_delay"
+          },
+          {
+            "id": "production_schedule_instability"
+          },
+          {
+            "id": "inventory_holding_cost"
+          }
+        ],
+        "links": [
+          {
+            "source": "geopolitical_disruption",
+            "target": "po_cycle_time"
+          },
+          {
+            "source": "geopolitical_disruption",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "supplier_financial_health",
+            "target": "supplier_risk_score"
+          },
+          {
+            "source": "supplier_distance",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "supplier_risk_score",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "po_cycle_time",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "lead_time_variability",
+            "target": "safety_stock_held"
+          },
+          {
+            "source": "lead_time_variability",
+            "target": "raw_material_delay"
+          },
+          {
+            "source": "safety_stock_held",
+            "target": "raw_material_delay"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "inventory_holding_cost"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "production_schedule_instability"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "ollama_qwen",
+      "prior_name": "ollama_qwen_prior_0",
+      "params": {
+        "lambda": 0.5
+      },
+      "shd": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "n_edges_est": 11,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "geopolitical_disruption"
+          },
+          {
+            "id": "supplier_financial_health"
+          },
+          {
+            "id": "supplier_distance"
+          },
+          {
+            "id": "supplier_risk_score"
+          },
+          {
+            "id": "po_cycle_time"
+          },
+          {
+            "id": "lead_time_variability"
+          },
+          {
+            "id": "safety_stock_held"
+          },
+          {
+            "id": "raw_material_delay"
+          },
+          {
+            "id": "production_schedule_instability"
+          },
+          {
+            "id": "inventory_holding_cost"
+          }
+        ],
+        "links": [
+          {
+            "source": "geopolitical_disruption",
+            "target": "po_cycle_time"
+          },
+          {
+            "source": "geopolitical_disruption",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "supplier_financial_health",
+            "target": "supplier_risk_score"
+          },
+          {
+            "source": "supplier_distance",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "supplier_risk_score",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "po_cycle_time",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "lead_time_variability",
+            "target": "safety_stock_held"
+          },
+          {
+            "source": "lead_time_variability",
+            "target": "raw_material_delay"
+          },
+          {
+            "source": "safety_stock_held",
+            "target": "raw_material_delay"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "inventory_holding_cost"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "production_schedule_instability"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "ollama_qwen",
+      "prior_name": "ollama_qwen_prior_0",
+      "params": {
+        "lambda": 0.9
+      },
+      "shd": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "n_edges_est": 11,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "geopolitical_disruption"
+          },
+          {
+            "id": "supplier_financial_health"
+          },
+          {
+            "id": "supplier_distance"
+          },
+          {
+            "id": "supplier_risk_score"
+          },
+          {
+            "id": "po_cycle_time"
+          },
+          {
+            "id": "lead_time_variability"
+          },
+          {
+            "id": "safety_stock_held"
+          },
+          {
+            "id": "raw_material_delay"
+          },
+          {
+            "id": "production_schedule_instability"
+          },
+          {
+            "id": "inventory_holding_cost"
+          }
+        ],
+        "links": [
+          {
+            "source": "geopolitical_disruption",
+            "target": "po_cycle_time"
+          },
+          {
+            "source": "geopolitical_disruption",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "supplier_financial_health",
+            "target": "supplier_risk_score"
+          },
+          {
+            "source": "supplier_distance",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "supplier_risk_score",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "po_cycle_time",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "lead_time_variability",
+            "target": "safety_stock_held"
+          },
+          {
+            "source": "lead_time_variability",
+            "target": "raw_material_delay"
+          },
+          {
+            "source": "safety_stock_held",
+            "target": "raw_material_delay"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "inventory_holding_cost"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "production_schedule_instability"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "ollama_qwen_consensus",
+      "prior_name": "ollama_qwen_consensus_prior",
+      "params": {
+        "lambda": 0.1
+      },
+      "shd": 3,
+      "precision": 0.77,
+      "recall": 0.91,
+      "f1": 0.83,
+      "n_edges_est": 13,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "geopolitical_disruption"
+          },
+          {
+            "id": "supplier_financial_health"
+          },
+          {
+            "id": "supplier_distance"
+          },
+          {
+            "id": "supplier_risk_score"
+          },
+          {
+            "id": "po_cycle_time"
+          },
+          {
+            "id": "lead_time_variability"
+          },
+          {
+            "id": "safety_stock_held"
+          },
+          {
+            "id": "raw_material_delay"
+          },
+          {
+            "id": "production_schedule_instability"
+          },
+          {
+            "id": "inventory_holding_cost"
+          }
+        ],
+        "links": [
+          {
+            "source": "geopolitical_disruption",
+            "target": "po_cycle_time"
+          },
+          {
+            "source": "geopolitical_disruption",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "supplier_financial_health",
+            "target": "supplier_risk_score"
+          },
+          {
+            "source": "supplier_distance",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "supplier_distance",
+            "target": "production_schedule_instability"
+          },
+          {
+            "source": "supplier_risk_score",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "po_cycle_time",
+            "target": "production_schedule_instability"
+          },
+          {
+            "source": "po_cycle_time",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "lead_time_variability",
+            "target": "safety_stock_held"
+          },
+          {
+            "source": "lead_time_variability",
+            "target": "raw_material_delay"
+          },
+          {
+            "source": "safety_stock_held",
+            "target": "raw_material_delay"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "inventory_holding_cost"
+          },
+          {
+            "source": "production_schedule_instability",
+            "target": "raw_material_delay"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "ollama_qwen_consensus",
+      "prior_name": "ollama_qwen_consensus_prior",
+      "params": {
+        "lambda": 0.5
+      },
+      "shd": 3,
+      "precision": 0.77,
+      "recall": 0.91,
+      "f1": 0.83,
+      "n_edges_est": 13,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "geopolitical_disruption"
+          },
+          {
+            "id": "supplier_financial_health"
+          },
+          {
+            "id": "supplier_distance"
+          },
+          {
+            "id": "supplier_risk_score"
+          },
+          {
+            "id": "po_cycle_time"
+          },
+          {
+            "id": "lead_time_variability"
+          },
+          {
+            "id": "safety_stock_held"
+          },
+          {
+            "id": "raw_material_delay"
+          },
+          {
+            "id": "production_schedule_instability"
+          },
+          {
+            "id": "inventory_holding_cost"
+          }
+        ],
+        "links": [
+          {
+            "source": "geopolitical_disruption",
+            "target": "po_cycle_time"
+          },
+          {
+            "source": "geopolitical_disruption",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "supplier_financial_health",
+            "target": "supplier_risk_score"
+          },
+          {
+            "source": "supplier_distance",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "supplier_distance",
+            "target": "production_schedule_instability"
+          },
+          {
+            "source": "supplier_risk_score",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "po_cycle_time",
+            "target": "production_schedule_instability"
+          },
+          {
+            "source": "po_cycle_time",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "lead_time_variability",
+            "target": "safety_stock_held"
+          },
+          {
+            "source": "lead_time_variability",
+            "target": "raw_material_delay"
+          },
+          {
+            "source": "safety_stock_held",
+            "target": "raw_material_delay"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "inventory_holding_cost"
+          },
+          {
+            "source": "production_schedule_instability",
+            "target": "raw_material_delay"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "ollama_qwen_consensus",
+      "prior_name": "ollama_qwen_consensus_prior",
+      "params": {
+        "lambda": 0.9
+      },
+      "shd": 3,
+      "precision": 0.77,
+      "recall": 0.91,
+      "f1": 0.83,
+      "n_edges_est": 13,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "geopolitical_disruption"
+          },
+          {
+            "id": "supplier_financial_health"
+          },
+          {
+            "id": "supplier_distance"
+          },
+          {
+            "id": "supplier_risk_score"
+          },
+          {
+            "id": "po_cycle_time"
+          },
+          {
+            "id": "lead_time_variability"
+          },
+          {
+            "id": "safety_stock_held"
+          },
+          {
+            "id": "raw_material_delay"
+          },
+          {
+            "id": "production_schedule_instability"
+          },
+          {
+            "id": "inventory_holding_cost"
+          }
+        ],
+        "links": [
+          {
+            "source": "geopolitical_disruption",
+            "target": "po_cycle_time"
+          },
+          {
+            "source": "geopolitical_disruption",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "supplier_financial_health",
+            "target": "supplier_risk_score"
+          },
+          {
+            "source": "supplier_distance",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "supplier_distance",
+            "target": "production_schedule_instability"
+          },
+          {
+            "source": "supplier_risk_score",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "po_cycle_time",
+            "target": "production_schedule_instability"
+          },
+          {
+            "source": "po_cycle_time",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "lead_time_variability",
+            "target": "safety_stock_held"
+          },
+          {
+            "source": "lead_time_variability",
+            "target": "raw_material_delay"
+          },
+          {
+            "source": "safety_stock_held",
+            "target": "raw_material_delay"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "inventory_holding_cost"
+          },
+          {
+            "source": "production_schedule_instability",
+            "target": "raw_material_delay"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "gemini",
+      "prior_name": "gemini_prior_2",
+      "params": {
+        "lambda": 0.1
+      },
+      "shd": 4,
+      "precision": 0.75,
+      "recall": 0.82,
+      "f1": 0.78,
+      "n_edges_est": 12,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "geopolitical_disruption"
+          },
+          {
+            "id": "supplier_financial_health"
+          },
+          {
+            "id": "supplier_distance"
+          },
+          {
+            "id": "supplier_risk_score"
+          },
+          {
+            "id": "po_cycle_time"
+          },
+          {
+            "id": "lead_time_variability"
+          },
+          {
+            "id": "safety_stock_held"
+          },
+          {
+            "id": "raw_material_delay"
+          },
+          {
+            "id": "production_schedule_instability"
+          },
+          {
+            "id": "inventory_holding_cost"
+          }
+        ],
+        "links": [
+          {
+            "source": "geopolitical_disruption",
+            "target": "po_cycle_time"
+          },
+          {
+            "source": "geopolitical_disruption",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "geopolitical_disruption",
+            "target": "raw_material_delay"
+          },
+          {
+            "source": "supplier_financial_health",
+            "target": "supplier_risk_score"
+          },
+          {
+            "source": "supplier_distance",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "supplier_distance",
+            "target": "raw_material_delay"
+          },
+          {
+            "source": "supplier_risk_score",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "po_cycle_time",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "lead_time_variability",
+            "target": "safety_stock_held"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "inventory_holding_cost"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "production_schedule_instability"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "safety_stock_held"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "gemini",
+      "prior_name": "gemini_prior_2",
+      "params": {
+        "lambda": 0.5
+      },
+      "shd": 4,
+      "precision": 0.75,
+      "recall": 0.82,
+      "f1": 0.78,
+      "n_edges_est": 12,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "geopolitical_disruption"
+          },
+          {
+            "id": "supplier_financial_health"
+          },
+          {
+            "id": "supplier_distance"
+          },
+          {
+            "id": "supplier_risk_score"
+          },
+          {
+            "id": "po_cycle_time"
+          },
+          {
+            "id": "lead_time_variability"
+          },
+          {
+            "id": "safety_stock_held"
+          },
+          {
+            "id": "raw_material_delay"
+          },
+          {
+            "id": "production_schedule_instability"
+          },
+          {
+            "id": "inventory_holding_cost"
+          }
+        ],
+        "links": [
+          {
+            "source": "geopolitical_disruption",
+            "target": "po_cycle_time"
+          },
+          {
+            "source": "geopolitical_disruption",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "geopolitical_disruption",
+            "target": "raw_material_delay"
+          },
+          {
+            "source": "supplier_financial_health",
+            "target": "supplier_risk_score"
+          },
+          {
+            "source": "supplier_distance",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "supplier_distance",
+            "target": "raw_material_delay"
+          },
+          {
+            "source": "supplier_risk_score",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "po_cycle_time",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "lead_time_variability",
+            "target": "safety_stock_held"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "inventory_holding_cost"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "production_schedule_instability"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "safety_stock_held"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "gemini",
+      "prior_name": "gemini_prior_2",
+      "params": {
+        "lambda": 0.9
+      },
+      "shd": 4,
+      "precision": 0.69,
+      "recall": 0.82,
+      "f1": 0.75,
+      "n_edges_est": 13,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "geopolitical_disruption"
+          },
+          {
+            "id": "supplier_financial_health"
+          },
+          {
+            "id": "supplier_distance"
+          },
+          {
+            "id": "supplier_risk_score"
+          },
+          {
+            "id": "po_cycle_time"
+          },
+          {
+            "id": "lead_time_variability"
+          },
+          {
+            "id": "safety_stock_held"
+          },
+          {
+            "id": "raw_material_delay"
+          },
+          {
+            "id": "production_schedule_instability"
+          },
+          {
+            "id": "inventory_holding_cost"
+          }
+        ],
+        "links": [
+          {
+            "source": "geopolitical_disruption",
+            "target": "po_cycle_time"
+          },
+          {
+            "source": "geopolitical_disruption",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "geopolitical_disruption",
+            "target": "raw_material_delay"
+          },
+          {
+            "source": "supplier_financial_health",
+            "target": "supplier_risk_score"
+          },
+          {
+            "source": "supplier_distance",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "supplier_distance",
+            "target": "raw_material_delay"
+          },
+          {
+            "source": "supplier_risk_score",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "po_cycle_time",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "lead_time_variability",
+            "target": "safety_stock_held"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "inventory_holding_cost"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "production_schedule_instability"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "safety_stock_held"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "lead_time_variability"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "gemini_consensus",
+      "prior_name": "gemini_consensus_prior",
+      "params": {
+        "lambda": 0.1
+      },
+      "shd": 4,
+      "precision": 0.75,
+      "recall": 0.82,
+      "f1": 0.78,
+      "n_edges_est": 12,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "geopolitical_disruption"
+          },
+          {
+            "id": "supplier_financial_health"
+          },
+          {
+            "id": "supplier_distance"
+          },
+          {
+            "id": "supplier_risk_score"
+          },
+          {
+            "id": "po_cycle_time"
+          },
+          {
+            "id": "lead_time_variability"
+          },
+          {
+            "id": "safety_stock_held"
+          },
+          {
+            "id": "raw_material_delay"
+          },
+          {
+            "id": "production_schedule_instability"
+          },
+          {
+            "id": "inventory_holding_cost"
+          }
+        ],
+        "links": [
+          {
+            "source": "geopolitical_disruption",
+            "target": "po_cycle_time"
+          },
+          {
+            "source": "geopolitical_disruption",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "geopolitical_disruption",
+            "target": "raw_material_delay"
+          },
+          {
+            "source": "supplier_financial_health",
+            "target": "supplier_risk_score"
+          },
+          {
+            "source": "supplier_distance",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "supplier_distance",
+            "target": "raw_material_delay"
+          },
+          {
+            "source": "supplier_risk_score",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "po_cycle_time",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "lead_time_variability",
+            "target": "safety_stock_held"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "inventory_holding_cost"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "production_schedule_instability"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "safety_stock_held"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "gemini_consensus",
+      "prior_name": "gemini_consensus_prior",
+      "params": {
+        "lambda": 0.5
+      },
+      "shd": 4,
+      "precision": 0.75,
+      "recall": 0.82,
+      "f1": 0.78,
+      "n_edges_est": 12,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "geopolitical_disruption"
+          },
+          {
+            "id": "supplier_financial_health"
+          },
+          {
+            "id": "supplier_distance"
+          },
+          {
+            "id": "supplier_risk_score"
+          },
+          {
+            "id": "po_cycle_time"
+          },
+          {
+            "id": "lead_time_variability"
+          },
+          {
+            "id": "safety_stock_held"
+          },
+          {
+            "id": "raw_material_delay"
+          },
+          {
+            "id": "production_schedule_instability"
+          },
+          {
+            "id": "inventory_holding_cost"
+          }
+        ],
+        "links": [
+          {
+            "source": "geopolitical_disruption",
+            "target": "po_cycle_time"
+          },
+          {
+            "source": "geopolitical_disruption",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "geopolitical_disruption",
+            "target": "raw_material_delay"
+          },
+          {
+            "source": "supplier_financial_health",
+            "target": "supplier_risk_score"
+          },
+          {
+            "source": "supplier_distance",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "supplier_distance",
+            "target": "raw_material_delay"
+          },
+          {
+            "source": "supplier_risk_score",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "po_cycle_time",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "lead_time_variability",
+            "target": "safety_stock_held"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "inventory_holding_cost"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "production_schedule_instability"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "safety_stock_held"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "gemini_consensus",
+      "prior_name": "gemini_consensus_prior",
+      "params": {
+        "lambda": 0.9
+      },
+      "shd": 4,
+      "precision": 0.75,
+      "recall": 0.82,
+      "f1": 0.78,
+      "n_edges_est": 12,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "geopolitical_disruption"
+          },
+          {
+            "id": "supplier_financial_health"
+          },
+          {
+            "id": "supplier_distance"
+          },
+          {
+            "id": "supplier_risk_score"
+          },
+          {
+            "id": "po_cycle_time"
+          },
+          {
+            "id": "lead_time_variability"
+          },
+          {
+            "id": "safety_stock_held"
+          },
+          {
+            "id": "raw_material_delay"
+          },
+          {
+            "id": "production_schedule_instability"
+          },
+          {
+            "id": "inventory_holding_cost"
+          }
+        ],
+        "links": [
+          {
+            "source": "geopolitical_disruption",
+            "target": "po_cycle_time"
+          },
+          {
+            "source": "geopolitical_disruption",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "geopolitical_disruption",
+            "target": "raw_material_delay"
+          },
+          {
+            "source": "supplier_financial_health",
+            "target": "supplier_risk_score"
+          },
+          {
+            "source": "supplier_distance",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "supplier_distance",
+            "target": "raw_material_delay"
+          },
+          {
+            "source": "supplier_risk_score",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "po_cycle_time",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "lead_time_variability",
+            "target": "safety_stock_held"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "inventory_holding_cost"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "production_schedule_instability"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "safety_stock_held"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "cerebras",
+      "prior_name": "cerebras_prior_0",
+      "params": {
+        "lambda": 0.1
+      },
+      "shd": 4,
+      "precision": 0.75,
+      "recall": 0.82,
+      "f1": 0.78,
+      "n_edges_est": 12,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "geopolitical_disruption"
+          },
+          {
+            "id": "supplier_financial_health"
+          },
+          {
+            "id": "supplier_distance"
+          },
+          {
+            "id": "supplier_risk_score"
+          },
+          {
+            "id": "po_cycle_time"
+          },
+          {
+            "id": "lead_time_variability"
+          },
+          {
+            "id": "safety_stock_held"
+          },
+          {
+            "id": "raw_material_delay"
+          },
+          {
+            "id": "production_schedule_instability"
+          },
+          {
+            "id": "inventory_holding_cost"
+          }
+        ],
+        "links": [
+          {
+            "source": "geopolitical_disruption",
+            "target": "po_cycle_time"
+          },
+          {
+            "source": "geopolitical_disruption",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "geopolitical_disruption",
+            "target": "raw_material_delay"
+          },
+          {
+            "source": "supplier_financial_health",
+            "target": "supplier_risk_score"
+          },
+          {
+            "source": "supplier_distance",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "supplier_distance",
+            "target": "raw_material_delay"
+          },
+          {
+            "source": "supplier_risk_score",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "po_cycle_time",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "lead_time_variability",
+            "target": "safety_stock_held"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "inventory_holding_cost"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "production_schedule_instability"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "safety_stock_held"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "cerebras",
+      "prior_name": "cerebras_prior_0",
+      "params": {
+        "lambda": 0.5
+      },
+      "shd": 4,
+      "precision": 0.75,
+      "recall": 0.82,
+      "f1": 0.78,
+      "n_edges_est": 12,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "geopolitical_disruption"
+          },
+          {
+            "id": "supplier_financial_health"
+          },
+          {
+            "id": "supplier_distance"
+          },
+          {
+            "id": "supplier_risk_score"
+          },
+          {
+            "id": "po_cycle_time"
+          },
+          {
+            "id": "lead_time_variability"
+          },
+          {
+            "id": "safety_stock_held"
+          },
+          {
+            "id": "raw_material_delay"
+          },
+          {
+            "id": "production_schedule_instability"
+          },
+          {
+            "id": "inventory_holding_cost"
+          }
+        ],
+        "links": [
+          {
+            "source": "geopolitical_disruption",
+            "target": "po_cycle_time"
+          },
+          {
+            "source": "geopolitical_disruption",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "geopolitical_disruption",
+            "target": "raw_material_delay"
+          },
+          {
+            "source": "supplier_financial_health",
+            "target": "supplier_risk_score"
+          },
+          {
+            "source": "supplier_distance",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "supplier_distance",
+            "target": "raw_material_delay"
+          },
+          {
+            "source": "supplier_risk_score",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "po_cycle_time",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "lead_time_variability",
+            "target": "safety_stock_held"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "inventory_holding_cost"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "production_schedule_instability"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "safety_stock_held"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "cerebras",
+      "prior_name": "cerebras_prior_0",
+      "params": {
+        "lambda": 0.9
+      },
+      "shd": 4,
+      "precision": 0.75,
+      "recall": 0.82,
+      "f1": 0.78,
+      "n_edges_est": 12,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "geopolitical_disruption"
+          },
+          {
+            "id": "supplier_financial_health"
+          },
+          {
+            "id": "supplier_distance"
+          },
+          {
+            "id": "supplier_risk_score"
+          },
+          {
+            "id": "po_cycle_time"
+          },
+          {
+            "id": "lead_time_variability"
+          },
+          {
+            "id": "safety_stock_held"
+          },
+          {
+            "id": "raw_material_delay"
+          },
+          {
+            "id": "production_schedule_instability"
+          },
+          {
+            "id": "inventory_holding_cost"
+          }
+        ],
+        "links": [
+          {
+            "source": "geopolitical_disruption",
+            "target": "po_cycle_time"
+          },
+          {
+            "source": "geopolitical_disruption",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "geopolitical_disruption",
+            "target": "raw_material_delay"
+          },
+          {
+            "source": "supplier_financial_health",
+            "target": "supplier_risk_score"
+          },
+          {
+            "source": "supplier_distance",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "supplier_distance",
+            "target": "raw_material_delay"
+          },
+          {
+            "source": "supplier_risk_score",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "po_cycle_time",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "lead_time_variability",
+            "target": "safety_stock_held"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "inventory_holding_cost"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "production_schedule_instability"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "safety_stock_held"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "cerebras_consensus",
+      "prior_name": "cerebras_consensus_prior",
+      "params": {
+        "lambda": 0.1
+      },
+      "shd": 1,
+      "precision": 0.91,
+      "recall": 0.91,
+      "f1": 0.91,
+      "n_edges_est": 11,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "geopolitical_disruption"
+          },
+          {
+            "id": "supplier_financial_health"
+          },
+          {
+            "id": "supplier_distance"
+          },
+          {
+            "id": "supplier_risk_score"
+          },
+          {
+            "id": "po_cycle_time"
+          },
+          {
+            "id": "lead_time_variability"
+          },
+          {
+            "id": "safety_stock_held"
+          },
+          {
+            "id": "raw_material_delay"
+          },
+          {
+            "id": "production_schedule_instability"
+          },
+          {
+            "id": "inventory_holding_cost"
+          }
+        ],
+        "links": [
+          {
+            "source": "geopolitical_disruption",
+            "target": "po_cycle_time"
+          },
+          {
+            "source": "geopolitical_disruption",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "supplier_financial_health",
+            "target": "supplier_risk_score"
+          },
+          {
+            "source": "supplier_distance",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "supplier_risk_score",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "po_cycle_time",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "lead_time_variability",
+            "target": "safety_stock_held"
+          },
+          {
+            "source": "lead_time_variability",
+            "target": "raw_material_delay"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "inventory_holding_cost"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "production_schedule_instability"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "safety_stock_held"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "cerebras_consensus",
+      "prior_name": "cerebras_consensus_prior",
+      "params": {
+        "lambda": 0.5
+      },
+      "shd": 1,
+      "precision": 0.91,
+      "recall": 0.91,
+      "f1": 0.91,
+      "n_edges_est": 11,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "geopolitical_disruption"
+          },
+          {
+            "id": "supplier_financial_health"
+          },
+          {
+            "id": "supplier_distance"
+          },
+          {
+            "id": "supplier_risk_score"
+          },
+          {
+            "id": "po_cycle_time"
+          },
+          {
+            "id": "lead_time_variability"
+          },
+          {
+            "id": "safety_stock_held"
+          },
+          {
+            "id": "raw_material_delay"
+          },
+          {
+            "id": "production_schedule_instability"
+          },
+          {
+            "id": "inventory_holding_cost"
+          }
+        ],
+        "links": [
+          {
+            "source": "geopolitical_disruption",
+            "target": "po_cycle_time"
+          },
+          {
+            "source": "geopolitical_disruption",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "supplier_financial_health",
+            "target": "supplier_risk_score"
+          },
+          {
+            "source": "supplier_distance",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "supplier_risk_score",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "po_cycle_time",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "lead_time_variability",
+            "target": "safety_stock_held"
+          },
+          {
+            "source": "lead_time_variability",
+            "target": "raw_material_delay"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "inventory_holding_cost"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "production_schedule_instability"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "safety_stock_held"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "cerebras_consensus",
+      "prior_name": "cerebras_consensus_prior",
+      "params": {
+        "lambda": 0.9
+      },
+      "shd": 1,
+      "precision": 0.91,
+      "recall": 0.91,
+      "f1": 0.91,
+      "n_edges_est": 11,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "geopolitical_disruption"
+          },
+          {
+            "id": "supplier_financial_health"
+          },
+          {
+            "id": "supplier_distance"
+          },
+          {
+            "id": "supplier_risk_score"
+          },
+          {
+            "id": "po_cycle_time"
+          },
+          {
+            "id": "lead_time_variability"
+          },
+          {
+            "id": "safety_stock_held"
+          },
+          {
+            "id": "raw_material_delay"
+          },
+          {
+            "id": "production_schedule_instability"
+          },
+          {
+            "id": "inventory_holding_cost"
+          }
+        ],
+        "links": [
+          {
+            "source": "geopolitical_disruption",
+            "target": "po_cycle_time"
+          },
+          {
+            "source": "geopolitical_disruption",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "supplier_financial_health",
+            "target": "supplier_risk_score"
+          },
+          {
+            "source": "supplier_distance",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "supplier_risk_score",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "po_cycle_time",
+            "target": "lead_time_variability"
+          },
+          {
+            "source": "lead_time_variability",
+            "target": "safety_stock_held"
+          },
+          {
+            "source": "lead_time_variability",
+            "target": "raw_material_delay"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "inventory_holding_cost"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "production_schedule_instability"
+          },
+          {
+            "source": "raw_material_delay",
+            "target": "safety_stock_held"
+          }
+        ]
+      }
+    }
+  ]
+}

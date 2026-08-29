@@ -1,0 +1,1527 @@
+[
+  {
+    "name": "data_62897.csv",
+    "seed": null,
+    "n_rows": 62897,
+    "lambda": null,
+    "algo": "HC",
+    "type": "Baseline",
+    "prior_name": null,
+    "shd": null,
+    "precision": null,
+    "recall": null,
+    "f1": null,
+    "dag_json": {
+      "nodes": [
+        {
+          "id": "shipping_mode_speed"
+        },
+        {
+          "id": "scheduled_ship_days"
+        },
+        {
+          "id": "order_processing_time"
+        },
+        {
+          "id": "geographic_distance"
+        },
+        {
+          "id": "order_item_count"
+        },
+        {
+          "id": "total_quantity"
+        },
+        {
+          "id": "total_sales"
+        },
+        {
+          "id": "avg_discount_rate"
+        },
+        {
+          "id": "daily_order_volume"
+        },
+        {
+          "id": "region_weekly_orders"
+        },
+        {
+          "id": "delivery_delay"
+        }
+      ],
+      "links": [
+        {
+          "source": "scheduled_ship_days",
+          "target": "shipping_mode_speed"
+        },
+        {
+          "source": "scheduled_ship_days",
+          "target": "order_processing_time"
+        },
+        {
+          "source": "order_processing_time",
+          "target": "shipping_mode_speed"
+        },
+        {
+          "source": "order_item_count",
+          "target": "total_quantity"
+        },
+        {
+          "source": "order_item_count",
+          "target": "total_sales"
+        },
+        {
+          "source": "total_quantity",
+          "target": "total_sales"
+        },
+        {
+          "source": "daily_order_volume",
+          "target": "order_item_count"
+        },
+        {
+          "source": "daily_order_volume",
+          "target": "total_quantity"
+        },
+        {
+          "source": "daily_order_volume",
+          "target": "total_sales"
+        },
+        {
+          "source": "daily_order_volume",
+          "target": "region_weekly_orders"
+        },
+        {
+          "source": "region_weekly_orders",
+          "target": "total_sales"
+        },
+        {
+          "source": "delivery_delay",
+          "target": "order_processing_time"
+        },
+        {
+          "source": "delivery_delay",
+          "target": "shipping_mode_speed"
+        },
+        {
+          "source": "delivery_delay",
+          "target": "scheduled_ship_days"
+        }
+      ]
+    },
+    "falsification": {
+      "consistent_with_data": true,
+      "falsified": false,
+      "falsifiable": true,
+      "p_value_lmc": 0.0,
+      "p_value_tpa": 0.0,
+      "given_violations": 6,
+      "n_tests": 82,
+      "n_nodes": 11,
+      "n_edges": 14,
+      "n_rows_used": 5000
+    },
+    "bootstrap_stability": {
+      "edge_frequency": {
+        "scheduled_ship_days->order_processing_time": 0.86,
+        "scheduled_ship_days->shipping_mode_speed": 0.82,
+        "total_quantity->total_sales": 0.8,
+        "shipping_mode_speed->order_processing_time": 0.8,
+        "order_item_count->daily_order_volume": 0.76,
+        "scheduled_ship_days->delivery_delay": 0.76,
+        "order_item_count->total_sales": 0.72,
+        "total_quantity->order_item_count": 0.66,
+        "total_quantity->daily_order_volume": 0.66,
+        "total_sales->daily_order_volume": 0.64,
+        "region_weekly_orders->total_sales": 0.62,
+        "delivery_delay->shipping_mode_speed": 0.54,
+        "order_processing_time->delivery_delay": 0.54,
+        "delivery_delay->order_processing_time": 0.46,
+        "shipping_mode_speed->delivery_delay": 0.46,
+        "daily_order_volume->total_quantity": 0.34,
+        "order_item_count->total_quantity": 0.34,
+        "daily_order_volume->total_sales": 0.32,
+        "total_sales->order_item_count": 0.28,
+        "delivery_delay->scheduled_ship_days": 0.24,
+        "daily_order_volume->order_item_count": 0.24,
+        "total_sales->total_quantity": 0.2,
+        "order_processing_time->shipping_mode_speed": 0.2,
+        "shipping_mode_speed->scheduled_ship_days": 0.18,
+        "order_processing_time->scheduled_ship_days": 0.14,
+        "region_weekly_orders->order_item_count": 0.1,
+        "daily_order_volume->region_weekly_orders": 0.1,
+        "total_sales->region_weekly_orders": 0.06,
+        "region_weekly_orders->daily_order_volume": 0.04,
+        "order_item_count->shipping_mode_speed": 0.04,
+        "geographic_distance->total_quantity": 0.04,
+        "avg_discount_rate->order_processing_time": 0.02,
+        "total_quantity->shipping_mode_speed": 0.02,
+        "total_sales->delivery_delay": 0.02,
+        "order_processing_time->avg_discount_rate": 0.02,
+        "daily_order_volume->order_processing_time": 0.02,
+        "total_quantity->region_weekly_orders": 0.02,
+        "region_weekly_orders->delivery_delay": 0.02
+      },
+      "stable_edges": ["scheduled_ship_days->order_processing_time", "scheduled_ship_days->shipping_mode_speed", "shipping_mode_speed->order_processing_time", "total_quantity->total_sales"],
+      "node_frequency": {
+        "shipping_mode_speed": 1.0,
+        "scheduled_ship_days": 1.0,
+        "order_processing_time": 1.0,
+        "geographic_distance": 1.0,
+        "order_item_count": 1.0,
+        "total_quantity": 1.0,
+        "total_sales": 1.0,
+        "avg_discount_rate": 1.0,
+        "daily_order_volume": 1.0,
+        "region_weekly_orders": 1.0,
+        "delivery_delay": 1.0
+      },
+      "n_bootstrap": 50,
+      "threshold": 0.8
+    }
+  },
+  {
+    "name": "data_62897.csv",
+    "seed": null,
+    "n_rows": 62897,
+    "lambda": 0.1,
+    "algo": "HC",
+    "type": "ollama_llama_consensus",
+    "prior_name": "ollama_llama_consensus_prior",
+    "shd": null,
+    "precision": null,
+    "recall": null,
+    "f1": null,
+    "dag_json": {
+      "nodes": [
+        {
+          "id": "shipping_mode_speed"
+        },
+        {
+          "id": "scheduled_ship_days"
+        },
+        {
+          "id": "order_processing_time"
+        },
+        {
+          "id": "geographic_distance"
+        },
+        {
+          "id": "order_item_count"
+        },
+        {
+          "id": "total_quantity"
+        },
+        {
+          "id": "total_sales"
+        },
+        {
+          "id": "avg_discount_rate"
+        },
+        {
+          "id": "daily_order_volume"
+        },
+        {
+          "id": "region_weekly_orders"
+        },
+        {
+          "id": "delivery_delay"
+        }
+      ],
+      "links": [
+        {
+          "source": "shipping_mode_speed",
+          "target": "scheduled_ship_days"
+        },
+        {
+          "source": "shipping_mode_speed",
+          "target": "order_processing_time"
+        },
+        {
+          "source": "shipping_mode_speed",
+          "target": "delivery_delay"
+        },
+        {
+          "source": "scheduled_ship_days",
+          "target": "delivery_delay"
+        },
+        {
+          "source": "order_processing_time",
+          "target": "delivery_delay"
+        },
+        {
+          "source": "order_processing_time",
+          "target": "scheduled_ship_days"
+        },
+        {
+          "source": "total_quantity",
+          "target": "order_item_count"
+        },
+        {
+          "source": "total_quantity",
+          "target": "total_sales"
+        },
+        {
+          "source": "total_sales",
+          "target": "order_item_count"
+        },
+        {
+          "source": "daily_order_volume",
+          "target": "total_quantity"
+        },
+        {
+          "source": "daily_order_volume",
+          "target": "order_item_count"
+        },
+        {
+          "source": "daily_order_volume",
+          "target": "region_weekly_orders"
+        },
+        {
+          "source": "daily_order_volume",
+          "target": "total_sales"
+        },
+        {
+          "source": "region_weekly_orders",
+          "target": "total_sales"
+        },
+        {
+          "source": "region_weekly_orders",
+          "target": "order_item_count"
+        }
+      ]
+    },
+    "falsification": {
+      "consistent_with_data": true,
+      "falsified": false,
+      "falsifiable": true,
+      "p_value_lmc": 0.0,
+      "p_value_tpa": 0.0,
+      "given_violations": 5,
+      "n_tests": 80,
+      "n_nodes": 11,
+      "n_edges": 15,
+      "n_rows_used": 5000
+    },
+    "bootstrap_stability": {
+      "edge_frequency": {
+        "order_processing_time->delivery_delay": 1.0,
+        "daily_order_volume->total_quantity": 1.0,
+        "shipping_mode_speed->delivery_delay": 1.0,
+        "scheduled_ship_days->delivery_delay": 1.0,
+        "total_quantity->order_item_count": 1.0,
+        "shipping_mode_speed->scheduled_ship_days": 1.0,
+        "total_quantity->total_sales": 1.0,
+        "daily_order_volume->order_item_count": 1.0,
+        "shipping_mode_speed->order_processing_time": 1.0,
+        "total_sales->order_item_count": 1.0,
+        "order_processing_time->scheduled_ship_days": 1.0,
+        "region_weekly_orders->total_sales": 0.68,
+        "daily_order_volume->region_weekly_orders": 0.22,
+        "region_weekly_orders->order_item_count": 0.12,
+        "daily_order_volume->total_sales": 0.12,
+        "total_sales->delivery_delay": 0.02,
+        "scheduled_ship_days->total_sales": 0.02,
+        "order_processing_time->avg_discount_rate": 0.02,
+        "daily_order_volume->delivery_delay": 0.02,
+        "geographic_distance->total_quantity": 0.02,
+        "region_weekly_orders->delivery_delay": 0.02
+      },
+      "stable_edges": ["daily_order_volume->order_item_count", "daily_order_volume->total_quantity", "order_processing_time->delivery_delay", "order_processing_time->scheduled_ship_days", "scheduled_ship_days->delivery_delay", "shipping_mode_speed->delivery_delay", "shipping_mode_speed->order_processing_time", "shipping_mode_speed->scheduled_ship_days", "total_quantity->order_item_count", "total_quantity->total_sales", "total_sales->order_item_count"],
+      "node_frequency": {
+        "shipping_mode_speed": 1.0,
+        "scheduled_ship_days": 1.0,
+        "order_processing_time": 1.0,
+        "geographic_distance": 1.0,
+        "order_item_count": 1.0,
+        "total_quantity": 1.0,
+        "total_sales": 1.0,
+        "avg_discount_rate": 1.0,
+        "daily_order_volume": 1.0,
+        "region_weekly_orders": 1.0,
+        "delivery_delay": 1.0
+      },
+      "n_bootstrap": 50,
+      "threshold": 0.8
+    }
+  },
+  {
+    "name": "data_62897.csv",
+    "seed": null,
+    "n_rows": 62897,
+    "lambda": 0.1,
+    "algo": "HC",
+    "type": "ollama_qwen_consensus",
+    "prior_name": "ollama_qwen_consensus_prior",
+    "shd": null,
+    "precision": null,
+    "recall": null,
+    "f1": null,
+    "dag_json": {
+      "nodes": [
+        {
+          "id": "shipping_mode_speed"
+        },
+        {
+          "id": "scheduled_ship_days"
+        },
+        {
+          "id": "order_processing_time"
+        },
+        {
+          "id": "geographic_distance"
+        },
+        {
+          "id": "order_item_count"
+        },
+        {
+          "id": "total_quantity"
+        },
+        {
+          "id": "total_sales"
+        },
+        {
+          "id": "avg_discount_rate"
+        },
+        {
+          "id": "daily_order_volume"
+        },
+        {
+          "id": "region_weekly_orders"
+        },
+        {
+          "id": "delivery_delay"
+        }
+      ],
+      "links": [
+        {
+          "source": "shipping_mode_speed",
+          "target": "scheduled_ship_days"
+        },
+        {
+          "source": "shipping_mode_speed",
+          "target": "order_processing_time"
+        },
+        {
+          "source": "shipping_mode_speed",
+          "target": "delivery_delay"
+        },
+        {
+          "source": "scheduled_ship_days",
+          "target": "delivery_delay"
+        },
+        {
+          "source": "scheduled_ship_days",
+          "target": "order_processing_time"
+        },
+        {
+          "source": "order_processing_time",
+          "target": "delivery_delay"
+        },
+        {
+          "source": "order_item_count",
+          "target": "total_quantity"
+        },
+        {
+          "source": "order_item_count",
+          "target": "total_sales"
+        },
+        {
+          "source": "order_item_count",
+          "target": "region_weekly_orders"
+        },
+        {
+          "source": "total_sales",
+          "target": "total_quantity"
+        },
+        {
+          "source": "total_sales",
+          "target": "region_weekly_orders"
+        },
+        {
+          "source": "daily_order_volume",
+          "target": "order_item_count"
+        },
+        {
+          "source": "daily_order_volume",
+          "target": "total_quantity"
+        },
+        {
+          "source": "daily_order_volume",
+          "target": "total_sales"
+        },
+        {
+          "source": "daily_order_volume",
+          "target": "region_weekly_orders"
+        },
+        {
+          "source": "region_weekly_orders",
+          "target": "total_quantity"
+        }
+      ]
+    },
+    "falsification": {
+      "consistent_with_data": true,
+      "falsified": false,
+      "falsifiable": true,
+      "p_value_lmc": 0.0,
+      "p_value_tpa": 0.0,
+      "given_violations": 6,
+      "n_tests": 78,
+      "n_nodes": 11,
+      "n_edges": 16,
+      "n_rows_used": 5000
+    },
+    "bootstrap_stability": {
+      "edge_frequency": {
+        "order_processing_time->delivery_delay": 1.0,
+        "shipping_mode_speed->delivery_delay": 1.0,
+        "order_item_count->total_sales": 1.0,
+        "scheduled_ship_days->delivery_delay": 1.0,
+        "shipping_mode_speed->scheduled_ship_days": 1.0,
+        "shipping_mode_speed->order_processing_time": 1.0,
+        "scheduled_ship_days->order_processing_time": 1.0,
+        "daily_order_volume->total_sales": 0.74,
+        "order_item_count->daily_order_volume": 0.7,
+        "total_quantity->order_item_count": 0.66,
+        "daily_order_volume->total_quantity": 0.48,
+        "order_item_count->total_quantity": 0.34,
+        "total_sales->total_quantity": 0.34,
+        "daily_order_volume->order_item_count": 0.3,
+        "total_sales->daily_order_volume": 0.26,
+        "daily_order_volume->region_weekly_orders": 0.22,
+        "total_sales->region_weekly_orders": 0.16,
+        "order_item_count->region_weekly_orders": 0.08,
+        "geographic_distance->total_quantity": 0.04,
+        "delivery_delay->avg_discount_rate": 0.02,
+        "delivery_delay->order_item_count": 0.02,
+        "delivery_delay->total_quantity": 0.02,
+        "order_item_count->scheduled_ship_days": 0.02,
+        "total_sales->delivery_delay": 0.02,
+        "geographic_distance->daily_order_volume": 0.02,
+        "order_processing_time->avg_discount_rate": 0.02,
+        "daily_order_volume->delivery_delay": 0.02,
+        "region_weekly_orders->delivery_delay": 0.02
+      },
+      "stable_edges": ["order_item_count->total_sales", "order_processing_time->delivery_delay", "scheduled_ship_days->delivery_delay", "scheduled_ship_days->order_processing_time", "shipping_mode_speed->delivery_delay", "shipping_mode_speed->order_processing_time", "shipping_mode_speed->scheduled_ship_days"],
+      "node_frequency": {
+        "shipping_mode_speed": 1.0,
+        "scheduled_ship_days": 1.0,
+        "order_processing_time": 1.0,
+        "geographic_distance": 1.0,
+        "order_item_count": 1.0,
+        "total_quantity": 1.0,
+        "total_sales": 1.0,
+        "avg_discount_rate": 1.0,
+        "daily_order_volume": 1.0,
+        "region_weekly_orders": 1.0,
+        "delivery_delay": 1.0
+      },
+      "n_bootstrap": 50,
+      "threshold": 0.8
+    }
+  },
+  {
+    "name": "data_62897.csv",
+    "seed": null,
+    "n_rows": 62897,
+    "lambda": 0.1,
+    "algo": "HC",
+    "type": "gemini_consensus",
+    "prior_name": "gemini_consensus_prior",
+    "shd": null,
+    "precision": null,
+    "recall": null,
+    "f1": null,
+    "dag_json": {
+      "nodes": [
+        {
+          "id": "shipping_mode_speed"
+        },
+        {
+          "id": "scheduled_ship_days"
+        },
+        {
+          "id": "order_processing_time"
+        },
+        {
+          "id": "geographic_distance"
+        },
+        {
+          "id": "order_item_count"
+        },
+        {
+          "id": "total_quantity"
+        },
+        {
+          "id": "total_sales"
+        },
+        {
+          "id": "avg_discount_rate"
+        },
+        {
+          "id": "daily_order_volume"
+        },
+        {
+          "id": "region_weekly_orders"
+        },
+        {
+          "id": "delivery_delay"
+        }
+      ],
+      "links": [
+        {
+          "source": "shipping_mode_speed",
+          "target": "scheduled_ship_days"
+        },
+        {
+          "source": "shipping_mode_speed",
+          "target": "order_processing_time"
+        },
+        {
+          "source": "shipping_mode_speed",
+          "target": "delivery_delay"
+        },
+        {
+          "source": "scheduled_ship_days",
+          "target": "delivery_delay"
+        },
+        {
+          "source": "order_processing_time",
+          "target": "delivery_delay"
+        },
+        {
+          "source": "order_item_count",
+          "target": "total_quantity"
+        },
+        {
+          "source": "order_item_count",
+          "target": "total_sales"
+        },
+        {
+          "source": "total_quantity",
+          "target": "total_sales"
+        },
+        {
+          "source": "region_weekly_orders",
+          "target": "daily_order_volume"
+        }
+      ]
+    },
+    "falsification": {
+      "consistent_with_data": true,
+      "falsified": false,
+      "falsifiable": true,
+      "p_value_lmc": 0.0,
+      "p_value_tpa": 0.0,
+      "given_violations": 11,
+      "n_tests": 92,
+      "n_nodes": 11,
+      "n_edges": 9,
+      "n_rows_used": 5000
+    },
+    "bootstrap_stability": {
+      "edge_frequency": {
+        "order_processing_time->delivery_delay": 1.0,
+        "shipping_mode_speed->delivery_delay": 1.0,
+        "order_item_count->total_sales": 1.0,
+        "scheduled_ship_days->delivery_delay": 1.0,
+        "shipping_mode_speed->scheduled_ship_days": 1.0,
+        "total_quantity->total_sales": 1.0,
+        "shipping_mode_speed->order_processing_time": 1.0,
+        "order_item_count->total_quantity": 1.0,
+        "region_weekly_orders->daily_order_volume": 0.22,
+        "avg_discount_rate->order_processing_time": 0.02,
+        "order_item_count->scheduled_ship_days": 0.02,
+        "total_quantity->order_processing_time": 0.02,
+        "total_quantity->scheduled_ship_days": 0.02,
+        "total_sales->delivery_delay": 0.02,
+        "daily_order_volume->delivery_delay": 0.02,
+        "region_weekly_orders->delivery_delay": 0.02
+      },
+      "stable_edges": ["order_item_count->total_quantity", "order_item_count->total_sales", "order_processing_time->delivery_delay", "scheduled_ship_days->delivery_delay", "shipping_mode_speed->delivery_delay", "shipping_mode_speed->order_processing_time", "shipping_mode_speed->scheduled_ship_days", "total_quantity->total_sales"],
+      "node_frequency": {
+        "shipping_mode_speed": 1.0,
+        "scheduled_ship_days": 1.0,
+        "order_processing_time": 1.0,
+        "geographic_distance": 1.0,
+        "order_item_count": 1.0,
+        "total_quantity": 1.0,
+        "total_sales": 1.0,
+        "avg_discount_rate": 1.0,
+        "daily_order_volume": 1.0,
+        "region_weekly_orders": 1.0,
+        "delivery_delay": 1.0
+      },
+      "n_bootstrap": 50,
+      "threshold": 0.8
+    }
+  },
+  {
+    "name": "data_62897.csv",
+    "seed": null,
+    "n_rows": 62897,
+    "lambda": 0.1,
+    "algo": "HC",
+    "type": "cerebras_consensus",
+    "prior_name": "cerebras_consensus_prior",
+    "shd": null,
+    "precision": null,
+    "recall": null,
+    "f1": null,
+    "dag_json": {
+      "nodes": [
+        {
+          "id": "shipping_mode_speed"
+        },
+        {
+          "id": "scheduled_ship_days"
+        },
+        {
+          "id": "order_processing_time"
+        },
+        {
+          "id": "geographic_distance"
+        },
+        {
+          "id": "order_item_count"
+        },
+        {
+          "id": "total_quantity"
+        },
+        {
+          "id": "total_sales"
+        },
+        {
+          "id": "avg_discount_rate"
+        },
+        {
+          "id": "daily_order_volume"
+        },
+        {
+          "id": "region_weekly_orders"
+        },
+        {
+          "id": "delivery_delay"
+        }
+      ],
+      "links": [
+        {
+          "source": "shipping_mode_speed",
+          "target": "scheduled_ship_days"
+        },
+        {
+          "source": "shipping_mode_speed",
+          "target": "order_processing_time"
+        },
+        {
+          "source": "shipping_mode_speed",
+          "target": "delivery_delay"
+        },
+        {
+          "source": "scheduled_ship_days",
+          "target": "delivery_delay"
+        },
+        {
+          "source": "scheduled_ship_days",
+          "target": "order_processing_time"
+        },
+        {
+          "source": "order_processing_time",
+          "target": "delivery_delay"
+        },
+        {
+          "source": "order_item_count",
+          "target": "total_quantity"
+        },
+        {
+          "source": "order_item_count",
+          "target": "total_sales"
+        },
+        {
+          "source": "total_quantity",
+          "target": "total_sales"
+        },
+        {
+          "source": "daily_order_volume",
+          "target": "order_item_count"
+        },
+        {
+          "source": "daily_order_volume",
+          "target": "total_sales"
+        },
+        {
+          "source": "daily_order_volume",
+          "target": "total_quantity"
+        },
+        {
+          "source": "daily_order_volume",
+          "target": "region_weekly_orders"
+        },
+        {
+          "source": "region_weekly_orders",
+          "target": "total_sales"
+        }
+      ]
+    },
+    "falsification": {
+      "consistent_with_data": true,
+      "falsified": false,
+      "falsifiable": true,
+      "p_value_lmc": 0.0,
+      "p_value_tpa": 0.0,
+      "given_violations": 8,
+      "n_tests": 82,
+      "n_nodes": 11,
+      "n_edges": 14,
+      "n_rows_used": 5000
+    },
+    "bootstrap_stability": {
+      "edge_frequency": {
+        "order_processing_time->delivery_delay": 1.0,
+        "daily_order_volume->total_quantity": 1.0,
+        "shipping_mode_speed->delivery_delay": 1.0,
+        "order_item_count->total_sales": 1.0,
+        "scheduled_ship_days->delivery_delay": 1.0,
+        "shipping_mode_speed->scheduled_ship_days": 1.0,
+        "total_quantity->total_sales": 1.0,
+        "daily_order_volume->order_item_count": 1.0,
+        "daily_order_volume->total_sales": 1.0,
+        "shipping_mode_speed->order_processing_time": 1.0,
+        "order_item_count->total_quantity": 1.0,
+        "region_weekly_orders->total_sales": 0.78,
+        "scheduled_ship_days->order_processing_time": 0.52,
+        "order_processing_time->scheduled_ship_days": 0.48,
+        "daily_order_volume->region_weekly_orders": 0.2,
+        "geographic_distance->total_quantity": 0.04,
+        "avg_discount_rate->order_processing_time": 0.02,
+        "region_weekly_orders->order_item_count": 0.02,
+        "order_item_count->scheduled_ship_days": 0.02,
+        "total_quantity->scheduled_ship_days": 0.02,
+        "total_sales->delivery_delay": 0.02,
+        "shipping_mode_speed->total_sales": 0.02,
+        "region_weekly_orders->daily_order_volume": 0.02,
+        "daily_order_volume->delivery_delay": 0.02,
+        "region_weekly_orders->delivery_delay": 0.02
+      },
+      "stable_edges": ["daily_order_volume->order_item_count", "daily_order_volume->total_quantity", "daily_order_volume->total_sales", "order_item_count->total_quantity", "order_item_count->total_sales", "order_processing_time->delivery_delay", "scheduled_ship_days->delivery_delay", "shipping_mode_speed->delivery_delay", "shipping_mode_speed->order_processing_time", "shipping_mode_speed->scheduled_ship_days", "total_quantity->total_sales"],
+      "node_frequency": {
+        "shipping_mode_speed": 1.0,
+        "scheduled_ship_days": 1.0,
+        "order_processing_time": 1.0,
+        "geographic_distance": 1.0,
+        "order_item_count": 1.0,
+        "total_quantity": 1.0,
+        "total_sales": 1.0,
+        "avg_discount_rate": 1.0,
+        "daily_order_volume": 1.0,
+        "region_weekly_orders": 1.0,
+        "delivery_delay": 1.0
+      },
+      "n_bootstrap": 50,
+      "threshold": 0.8
+    }
+  },
+  {
+    "name": "data_62897.csv",
+    "seed": null,
+    "n_rows": 62897,
+    "lambda": null,
+    "algo": "PC",
+    "type": "Baseline",
+    "prior_name": null,
+    "shd": null,
+    "precision": null,
+    "recall": null,
+    "f1": null,
+    "dag_json": {
+      "nodes": [
+        {
+          "id": "shipping_mode_speed"
+        },
+        {
+          "id": "scheduled_ship_days"
+        },
+        {
+          "id": "order_processing_time"
+        },
+        {
+          "id": "geographic_distance"
+        },
+        {
+          "id": "order_item_count"
+        },
+        {
+          "id": "total_quantity"
+        },
+        {
+          "id": "total_sales"
+        },
+        {
+          "id": "avg_discount_rate"
+        },
+        {
+          "id": "daily_order_volume"
+        },
+        {
+          "id": "region_weekly_orders"
+        },
+        {
+          "id": "delivery_delay"
+        }
+      ],
+      "links": [
+        {
+          "source": "order_item_count",
+          "target": "total_sales"
+        },
+        {
+          "source": "total_quantity",
+          "target": "total_sales"
+        },
+        {
+          "source": "daily_order_volume",
+          "target": "total_sales"
+        },
+        {
+          "source": "region_weekly_orders",
+          "target": "total_sales"
+        }
+      ]
+    },
+    "falsification": {
+      "consistent_with_data": false,
+      "falsified": true,
+      "falsifiable": true,
+      "p_value_lmc": 0.08,
+      "p_value_tpa": 0.0,
+      "given_violations": 33,
+      "n_tests": 102,
+      "n_nodes": 11,
+      "n_edges": 4,
+      "n_rows_used": 5000
+    },
+    "bootstrap_stability": {
+      "edge_frequency": {
+        "daily_order_volume->order_item_count": 0.62,
+        "total_sales->order_item_count": 0.62,
+        "total_quantity->order_item_count": 0.6,
+        "region_weekly_orders->total_sales": 0.5,
+        "total_quantity->total_sales": 0.48,
+        "total_quantity->daily_order_volume": 0.42,
+        "region_weekly_orders->daily_order_volume": 0.32,
+        "order_item_count->total_sales": 0.18,
+        "order_item_count->daily_order_volume": 0.12,
+        "daily_order_volume->total_sales": 0.08,
+        "total_sales->daily_order_volume": 0.06,
+        "order_item_count->total_quantity": 0.06,
+        "daily_order_volume->total_quantity": 0.06,
+        "total_sales->total_quantity": 0.06,
+        "region_weekly_orders->total_quantity": 0.04,
+        "geographic_distance->daily_order_volume": 0.04,
+        "region_weekly_orders->order_item_count": 0.02,
+        "avg_discount_rate->total_sales": 0.02,
+        "avg_discount_rate->daily_order_volume": 0.02,
+        "geographic_distance->total_quantity": 0.02
+      },
+      "stable_edges": [],
+      "node_frequency": {
+        "shipping_mode_speed": 1.0,
+        "scheduled_ship_days": 1.0,
+        "order_processing_time": 1.0,
+        "geographic_distance": 1.0,
+        "order_item_count": 1.0,
+        "total_quantity": 1.0,
+        "total_sales": 1.0,
+        "avg_discount_rate": 1.0,
+        "daily_order_volume": 1.0,
+        "region_weekly_orders": 1.0,
+        "delivery_delay": 1.0
+      },
+      "n_bootstrap": 50,
+      "threshold": 0.8
+    }
+  },
+  {
+    "name": "data_62897.csv",
+    "seed": null,
+    "n_rows": 62897,
+    "lambda": null,
+    "algo": "PC",
+    "type": "ollama_llama_consensus",
+    "prior_name": "ollama_llama_consensus_prior",
+    "shd": null,
+    "precision": null,
+    "recall": null,
+    "f1": null,
+    "dag_json": {
+      "nodes": [
+        {
+          "id": "shipping_mode_speed"
+        },
+        {
+          "id": "scheduled_ship_days"
+        },
+        {
+          "id": "order_processing_time"
+        },
+        {
+          "id": "geographic_distance"
+        },
+        {
+          "id": "order_item_count"
+        },
+        {
+          "id": "total_quantity"
+        },
+        {
+          "id": "total_sales"
+        },
+        {
+          "id": "avg_discount_rate"
+        },
+        {
+          "id": "daily_order_volume"
+        },
+        {
+          "id": "region_weekly_orders"
+        },
+        {
+          "id": "delivery_delay"
+        }
+      ],
+      "links": [
+        {
+          "source": "shipping_mode_speed",
+          "target": "scheduled_ship_days"
+        },
+        {
+          "source": "shipping_mode_speed",
+          "target": "order_processing_time"
+        },
+        {
+          "source": "shipping_mode_speed",
+          "target": "delivery_delay"
+        },
+        {
+          "source": "scheduled_ship_days",
+          "target": "delivery_delay"
+        },
+        {
+          "source": "order_processing_time",
+          "target": "delivery_delay"
+        },
+        {
+          "source": "total_quantity",
+          "target": "order_item_count"
+        },
+        {
+          "source": "total_quantity",
+          "target": "total_sales"
+        },
+        {
+          "source": "total_sales",
+          "target": "order_item_count"
+        },
+        {
+          "source": "daily_order_volume",
+          "target": "order_item_count"
+        },
+        {
+          "source": "daily_order_volume",
+          "target": "total_quantity"
+        },
+        {
+          "source": "daily_order_volume",
+          "target": "total_sales"
+        },
+        {
+          "source": "daily_order_volume",
+          "target": "region_weekly_orders"
+        },
+        {
+          "source": "region_weekly_orders",
+          "target": "total_sales"
+        }
+      ]
+    },
+    "falsification": {
+      "consistent_with_data": true,
+      "falsified": false,
+      "falsifiable": true,
+      "p_value_lmc": 0.0,
+      "p_value_tpa": 0.0,
+      "given_violations": 5,
+      "n_tests": 83,
+      "n_nodes": 11,
+      "n_edges": 13,
+      "n_rows_used": 5000
+    },
+    "bootstrap_stability": {
+      "edge_frequency": {
+        "order_processing_time->delivery_delay": 1.0,
+        "daily_order_volume->total_quantity": 1.0,
+        "shipping_mode_speed->delivery_delay": 1.0,
+        "scheduled_ship_days->delivery_delay": 1.0,
+        "total_quantity->order_item_count": 1.0,
+        "shipping_mode_speed->scheduled_ship_days": 1.0,
+        "total_quantity->total_sales": 1.0,
+        "daily_order_volume->order_item_count": 1.0,
+        "shipping_mode_speed->order_processing_time": 1.0,
+        "total_sales->order_item_count": 1.0,
+        "region_weekly_orders->total_sales": 0.5,
+        "daily_order_volume->total_sales": 0.38,
+        "daily_order_volume->region_weekly_orders": 0.36,
+        "geographic_distance->avg_discount_rate": 0.04,
+        "region_weekly_orders->total_quantity": 0.04,
+        "region_weekly_orders->avg_discount_rate": 0.04,
+        "daily_order_volume->geographic_distance": 0.04,
+        "region_weekly_orders->order_item_count": 0.02,
+        "avg_discount_rate->total_sales": 0.02,
+        "daily_order_volume->avg_discount_rate": 0.02,
+        "geographic_distance->total_quantity": 0.02
+      },
+      "stable_edges": ["daily_order_volume->order_item_count", "daily_order_volume->total_quantity", "order_processing_time->delivery_delay", "scheduled_ship_days->delivery_delay", "shipping_mode_speed->delivery_delay", "shipping_mode_speed->order_processing_time", "shipping_mode_speed->scheduled_ship_days", "total_quantity->order_item_count", "total_quantity->total_sales", "total_sales->order_item_count"],
+      "node_frequency": {
+        "shipping_mode_speed": 1.0,
+        "scheduled_ship_days": 1.0,
+        "order_processing_time": 1.0,
+        "geographic_distance": 1.0,
+        "order_item_count": 1.0,
+        "total_quantity": 1.0,
+        "total_sales": 1.0,
+        "avg_discount_rate": 1.0,
+        "daily_order_volume": 1.0,
+        "region_weekly_orders": 1.0,
+        "delivery_delay": 1.0
+      },
+      "n_bootstrap": 50,
+      "threshold": 0.8
+    }
+  },
+  {
+    "name": "data_62897.csv",
+    "seed": null,
+    "n_rows": 62897,
+    "lambda": null,
+    "algo": "PC",
+    "type": "ollama_qwen_consensus",
+    "prior_name": "ollama_qwen_consensus_prior",
+    "shd": null,
+    "precision": null,
+    "recall": null,
+    "f1": null,
+    "dag_json": {
+      "nodes": [
+        {
+          "id": "shipping_mode_speed"
+        },
+        {
+          "id": "scheduled_ship_days"
+        },
+        {
+          "id": "order_processing_time"
+        },
+        {
+          "id": "geographic_distance"
+        },
+        {
+          "id": "order_item_count"
+        },
+        {
+          "id": "total_quantity"
+        },
+        {
+          "id": "total_sales"
+        },
+        {
+          "id": "avg_discount_rate"
+        },
+        {
+          "id": "daily_order_volume"
+        },
+        {
+          "id": "region_weekly_orders"
+        },
+        {
+          "id": "delivery_delay"
+        }
+      ],
+      "links": [
+        {
+          "source": "shipping_mode_speed",
+          "target": "scheduled_ship_days"
+        },
+        {
+          "source": "shipping_mode_speed",
+          "target": "order_processing_time"
+        },
+        {
+          "source": "shipping_mode_speed",
+          "target": "delivery_delay"
+        },
+        {
+          "source": "scheduled_ship_days",
+          "target": "order_processing_time"
+        },
+        {
+          "source": "scheduled_ship_days",
+          "target": "delivery_delay"
+        },
+        {
+          "source": "order_processing_time",
+          "target": "delivery_delay"
+        },
+        {
+          "source": "total_sales",
+          "target": "total_quantity"
+        },
+        {
+          "source": "total_sales",
+          "target": "region_weekly_orders"
+        },
+        {
+          "source": "daily_order_volume",
+          "target": "total_quantity"
+        },
+        {
+          "source": "daily_order_volume",
+          "target": "region_weekly_orders"
+        }
+      ]
+    },
+    "falsification": {
+      "consistent_with_data": true,
+      "falsified": false,
+      "falsifiable": true,
+      "p_value_lmc": 0.02,
+      "p_value_tpa": 0.0,
+      "given_violations": 19,
+      "n_tests": 90,
+      "n_nodes": 11,
+      "n_edges": 10,
+      "n_rows_used": 5000
+    },
+    "bootstrap_stability": {
+      "edge_frequency": {
+        "order_processing_time->delivery_delay": 1.0,
+        "daily_order_volume->total_quantity": 1.0,
+        "shipping_mode_speed->delivery_delay": 1.0,
+        "scheduled_ship_days->delivery_delay": 1.0,
+        "shipping_mode_speed->scheduled_ship_days": 1.0,
+        "shipping_mode_speed->order_processing_time": 1.0,
+        "scheduled_ship_days->order_processing_time": 1.0,
+        "total_sales->total_quantity": 1.0,
+        "daily_order_volume->order_item_count": 0.62,
+        "total_sales->order_item_count": 0.62,
+        "total_sales->region_weekly_orders": 0.5,
+        "daily_order_volume->region_weekly_orders": 0.36,
+        "order_item_count->total_quantity": 0.06,
+        "geographic_distance->region_weekly_orders": 0.04,
+        "geographic_distance->avg_discount_rate": 0.04,
+        "region_weekly_orders->total_quantity": 0.04,
+        "region_weekly_orders->avg_discount_rate": 0.04,
+        "geographic_distance->daily_order_volume": 0.04,
+        "total_quantity->order_item_count": 0.02,
+        "region_weekly_orders->order_item_count": 0.02,
+        "total_sales->avg_discount_rate": 0.02,
+        "daily_order_volume->avg_discount_rate": 0.02,
+        "geographic_distance->total_quantity": 0.02
+      },
+      "stable_edges": ["daily_order_volume->total_quantity", "order_processing_time->delivery_delay", "scheduled_ship_days->delivery_delay", "scheduled_ship_days->order_processing_time", "shipping_mode_speed->delivery_delay", "shipping_mode_speed->order_processing_time", "shipping_mode_speed->scheduled_ship_days", "total_sales->total_quantity"],
+      "node_frequency": {
+        "shipping_mode_speed": 1.0,
+        "scheduled_ship_days": 1.0,
+        "order_processing_time": 1.0,
+        "geographic_distance": 1.0,
+        "order_item_count": 1.0,
+        "total_quantity": 1.0,
+        "total_sales": 1.0,
+        "avg_discount_rate": 1.0,
+        "daily_order_volume": 1.0,
+        "region_weekly_orders": 1.0,
+        "delivery_delay": 1.0
+      },
+      "n_bootstrap": 50,
+      "threshold": 0.8
+    }
+  },
+  {
+    "name": "data_62897.csv",
+    "seed": null,
+    "n_rows": 62897,
+    "lambda": null,
+    "algo": "PC",
+    "type": "gemini_consensus",
+    "prior_name": "gemini_consensus_prior",
+    "shd": null,
+    "precision": null,
+    "recall": null,
+    "f1": null,
+    "dag_json": {
+      "nodes": [
+        {
+          "id": "shipping_mode_speed"
+        },
+        {
+          "id": "scheduled_ship_days"
+        },
+        {
+          "id": "order_processing_time"
+        },
+        {
+          "id": "geographic_distance"
+        },
+        {
+          "id": "order_item_count"
+        },
+        {
+          "id": "total_quantity"
+        },
+        {
+          "id": "total_sales"
+        },
+        {
+          "id": "avg_discount_rate"
+        },
+        {
+          "id": "daily_order_volume"
+        },
+        {
+          "id": "region_weekly_orders"
+        },
+        {
+          "id": "delivery_delay"
+        }
+      ],
+      "links": [
+        {
+          "source": "shipping_mode_speed",
+          "target": "scheduled_ship_days"
+        },
+        {
+          "source": "shipping_mode_speed",
+          "target": "order_processing_time"
+        },
+        {
+          "source": "shipping_mode_speed",
+          "target": "delivery_delay"
+        },
+        {
+          "source": "scheduled_ship_days",
+          "target": "delivery_delay"
+        },
+        {
+          "source": "order_processing_time",
+          "target": "delivery_delay"
+        },
+        {
+          "source": "order_item_count",
+          "target": "total_quantity"
+        },
+        {
+          "source": "order_item_count",
+          "target": "total_sales"
+        },
+        {
+          "source": "total_quantity",
+          "target": "total_sales"
+        },
+        {
+          "source": "region_weekly_orders",
+          "target": "daily_order_volume"
+        }
+      ]
+    },
+    "falsification": {
+      "consistent_with_data": true,
+      "falsified": false,
+      "falsifiable": true,
+      "p_value_lmc": 0.0,
+      "p_value_tpa": 0.0,
+      "given_violations": 14,
+      "n_tests": 92,
+      "n_nodes": 11,
+      "n_edges": 9,
+      "n_rows_used": 5000
+    },
+    "bootstrap_stability": {
+      "edge_frequency": {
+        "order_processing_time->delivery_delay": 1.0,
+        "shipping_mode_speed->delivery_delay": 1.0,
+        "order_item_count->total_sales": 1.0,
+        "scheduled_ship_days->delivery_delay": 1.0,
+        "shipping_mode_speed->scheduled_ship_days": 1.0,
+        "total_quantity->total_sales": 1.0,
+        "shipping_mode_speed->order_processing_time": 1.0,
+        "order_item_count->total_quantity": 1.0,
+        "region_weekly_orders->daily_order_volume": 0.56,
+        "region_weekly_orders->geographic_distance": 0.04,
+        "daily_order_volume->geographic_distance": 0.04,
+        "avg_discount_rate->total_sales": 0.04,
+        "total_sales->scheduled_ship_days": 0.02
+      },
+      "stable_edges": ["order_item_count->total_quantity", "order_item_count->total_sales", "order_processing_time->delivery_delay", "scheduled_ship_days->delivery_delay", "shipping_mode_speed->delivery_delay", "shipping_mode_speed->order_processing_time", "shipping_mode_speed->scheduled_ship_days", "total_quantity->total_sales"],
+      "node_frequency": {
+        "shipping_mode_speed": 1.0,
+        "scheduled_ship_days": 1.0,
+        "order_processing_time": 1.0,
+        "geographic_distance": 1.0,
+        "order_item_count": 1.0,
+        "total_quantity": 1.0,
+        "total_sales": 1.0,
+        "avg_discount_rate": 1.0,
+        "daily_order_volume": 1.0,
+        "region_weekly_orders": 1.0,
+        "delivery_delay": 1.0
+      },
+      "n_bootstrap": 50,
+      "threshold": 0.8
+    }
+  },
+  {
+    "name": "data_62897.csv",
+    "seed": null,
+    "n_rows": 62897,
+    "lambda": null,
+    "algo": "PC",
+    "type": "cerebras_consensus",
+    "prior_name": "cerebras_consensus_prior",
+    "shd": null,
+    "precision": null,
+    "recall": null,
+    "f1": null,
+    "dag_json": {
+      "nodes": [
+        {
+          "id": "shipping_mode_speed"
+        },
+        {
+          "id": "scheduled_ship_days"
+        },
+        {
+          "id": "order_processing_time"
+        },
+        {
+          "id": "geographic_distance"
+        },
+        {
+          "id": "order_item_count"
+        },
+        {
+          "id": "total_quantity"
+        },
+        {
+          "id": "total_sales"
+        },
+        {
+          "id": "avg_discount_rate"
+        },
+        {
+          "id": "daily_order_volume"
+        },
+        {
+          "id": "region_weekly_orders"
+        },
+        {
+          "id": "delivery_delay"
+        }
+      ],
+      "links": [
+        {
+          "source": "shipping_mode_speed",
+          "target": "scheduled_ship_days"
+        },
+        {
+          "source": "shipping_mode_speed",
+          "target": "order_processing_time"
+        },
+        {
+          "source": "shipping_mode_speed",
+          "target": "delivery_delay"
+        },
+        {
+          "source": "scheduled_ship_days",
+          "target": "delivery_delay"
+        },
+        {
+          "source": "order_processing_time",
+          "target": "delivery_delay"
+        },
+        {
+          "source": "order_item_count",
+          "target": "total_quantity"
+        },
+        {
+          "source": "order_item_count",
+          "target": "total_sales"
+        },
+        {
+          "source": "total_quantity",
+          "target": "total_sales"
+        },
+        {
+          "source": "daily_order_volume",
+          "target": "order_item_count"
+        },
+        {
+          "source": "daily_order_volume",
+          "target": "total_quantity"
+        },
+        {
+          "source": "daily_order_volume",
+          "target": "total_sales"
+        },
+        {
+          "source": "region_weekly_orders",
+          "target": "total_sales"
+        }
+      ]
+    },
+    "falsification": {
+      "consistent_with_data": true,
+      "falsified": false,
+      "falsifiable": true,
+      "p_value_lmc": 0.0,
+      "p_value_tpa": 0.0,
+      "given_violations": 7,
+      "n_tests": 86,
+      "n_nodes": 11,
+      "n_edges": 12,
+      "n_rows_used": 5000
+    },
+    "bootstrap_stability": {
+      "edge_frequency": {
+        "order_processing_time->delivery_delay": 1.0,
+        "daily_order_volume->total_quantity": 1.0,
+        "shipping_mode_speed->delivery_delay": 1.0,
+        "order_item_count->total_sales": 1.0,
+        "scheduled_ship_days->delivery_delay": 1.0,
+        "shipping_mode_speed->scheduled_ship_days": 1.0,
+        "total_quantity->total_sales": 1.0,
+        "daily_order_volume->order_item_count": 1.0,
+        "shipping_mode_speed->order_processing_time": 1.0,
+        "order_item_count->total_quantity": 1.0,
+        "region_weekly_orders->total_sales": 0.5,
+        "daily_order_volume->total_sales": 0.38,
+        "region_weekly_orders->total_quantity": 0.04,
+        "region_weekly_orders->order_item_count": 0.02,
+        "avg_discount_rate->total_sales": 0.02,
+        "geographic_distance->total_quantity": 0.02
+      },
+      "stable_edges": ["daily_order_volume->order_item_count", "daily_order_volume->total_quantity", "order_item_count->total_quantity", "order_item_count->total_sales", "order_processing_time->delivery_delay", "scheduled_ship_days->delivery_delay", "shipping_mode_speed->delivery_delay", "shipping_mode_speed->order_processing_time", "shipping_mode_speed->scheduled_ship_days", "total_quantity->total_sales"],
+      "node_frequency": {
+        "shipping_mode_speed": 1.0,
+        "scheduled_ship_days": 1.0,
+        "order_processing_time": 1.0,
+        "geographic_distance": 1.0,
+        "order_item_count": 1.0,
+        "total_quantity": 1.0,
+        "total_sales": 1.0,
+        "avg_discount_rate": 1.0,
+        "daily_order_volume": 1.0,
+        "region_weekly_orders": 1.0,
+        "delivery_delay": 1.0
+      },
+      "n_bootstrap": 50,
+      "threshold": 0.8
+    }
+  }
+]

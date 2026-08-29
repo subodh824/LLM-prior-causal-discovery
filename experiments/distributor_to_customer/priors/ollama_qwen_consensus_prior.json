@@ -1,0 +1,41 @@
+{
+  "name": "ollama_qwen_consensus_prior",
+  "type": "ollama_qwen",
+  "edges_with_probability": [
+    ["delivery_delay", "actual_transit_time", 0.2],
+    ["fulfillment_center_congestion", "delivery_delay", 0.166667],
+    ["fulfillment_center_congestion", "shipping_mode", 0.25],
+    ["geographic_distance", "delivery_delay", 0.3],
+    ["late_delivery_risk", "actual_transit_time", 0.266667],
+    ["order_item_quantity", "fulfillment_center_congestion", 0.233333],
+    ["order_item_quantity", "late_delivery_risk", 0.133333],
+    ["order_processing_time", "customer_satisfaction", 0.066667],
+    ["order_processing_time", "profit_ratio", 0.166667],
+    ["order_volume_peak_season", "actual_transit_time", 0.166667],
+    ["order_volume_peak_season", "profit_ratio", 0.05],
+    ["weather_severity", "customer_satisfaction", 0.1],
+    ["weather_severity", "order_volume_peak_season", 0.133333],
+    ["weather_severity", "shipping_mode", 0.2]
+  ],
+  "forbidden_edges": [],
+  "tier_ordering": [
+    ["actual_transit_time", 8],
+    ["churn_repeat_purchase_risk", 10],
+    ["customer_satisfaction", 4],
+    ["delivery_delay", 6],
+    ["fulfillment_center_congestion", 5],
+    ["late_delivery_risk", 7],
+    ["order_discount_rate", 8],
+    ["order_item_quantity", 2],
+    ["order_processing_time", 8],
+    ["order_volume_peak_season", 2],
+    ["profit_ratio", 6],
+    ["scheduled_transit_time", 8],
+    ["shipping_mode", 6],
+    ["traffic_congestion", 6],
+    ["weather_severity", 2]
+  ],
+  "rationale": {
+    "_": "consensus of 3 priors; forbidden = majority vote; tiers = rounded mean"
+  }
+}

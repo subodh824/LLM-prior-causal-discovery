@@ -1,0 +1,135 @@
+[
+  {
+    "name": "random_prior_0",
+    "type": "random",
+    "fco": null,
+    "tere": null,
+    "tene": null
+  },
+  {
+    "name": "random_prior_1",
+    "type": "random",
+    "fco": null,
+    "tere": null,
+    "tene": null
+  },
+  {
+    "name": "random_prior_2",
+    "type": "random",
+    "fco": null,
+    "tere": null,
+    "tene": null
+  },
+  {
+    "name": "ollama_llama_prior_0",
+    "type": "ollama_llama",
+    "fco": null,
+    "tere": null,
+    "tene": null
+  },
+  {
+    "name": "ollama_llama_prior_1",
+    "type": "ollama_llama",
+    "fco": null,
+    "tere": null,
+    "tene": null
+  },
+  {
+    "name": "ollama_llama_prior_2",
+    "type": "ollama_llama",
+    "fco": null,
+    "tere": null,
+    "tene": null
+  },
+  {
+    "name": "ollama_llama_consensus_prior",
+    "type": "ollama_llama",
+    "fco": null,
+    "tere": null,
+    "tene": null
+  },
+  {
+    "name": "ollama_qwen_prior_0",
+    "type": "ollama_qwen",
+    "fco": null,
+    "tere": null,
+    "tene": null
+  },
+  {
+    "name": "ollama_qwen_prior_1",
+    "type": "ollama_qwen",
+    "fco": null,
+    "tere": null,
+    "tene": null
+  },
+  {
+    "name": "ollama_qwen_prior_2",
+    "type": "ollama_qwen",
+    "fco": null,
+    "tere": null,
+    "tene": null
+  },
+  {
+    "name": "ollama_qwen_consensus_prior",
+    "type": "ollama_qwen",
+    "fco": null,
+    "tere": null,
+    "tene": null
+  },
+  {
+    "name": "gemini_prior_0",
+    "type": "gemini",
+    "fco": null,
+    "tere": null,
+    "tene": null
+  },
+  {
+    "name": "gemini_prior_1",
+    "type": "gemini",
+    "fco": null,
+    "tere": null,
+    "tene": null
+  },
+  {
+    "name": "gemini_prior_2",
+    "type": "gemini",
+    "fco": null,
+    "tere": null,
+    "tene": null
+  },
+  {
+    "name": "gemini_consensus_prior",
+    "type": "gemini",
+    "fco": null,
+    "tere": null,
+    "tene": null
+  },
+  {
+    "name": "cerebras_prior_0",
+    "type": "cerebras",
+    "fco": null,
+    "tere": null,
+    "tene": null
+  },
+  {
+    "name": "cerebras_prior_1",
+    "type": "cerebras",
+    "fco": null,
+    "tere": null,
+    "tene": null
+  },
+  {
+    "name": "cerebras_prior_2",
+    "type": "cerebras",
+    "fco": null,
+    "tere": null,
+    "tene": null
+  },
+  {
+    "name": "cerebras_consensus_prior",
+    "type": "cerebras",
+    "fco": null,
+    "tere": null,
+    "tene": null
+  }
+]

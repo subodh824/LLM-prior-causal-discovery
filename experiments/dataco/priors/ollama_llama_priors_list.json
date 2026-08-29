@@ -1,0 +1,88 @@
+[
+  {
+    "edges_with_probability": [
+      ["daily_order_volume", "shipping_mode_speed", 0.8],
+      ["geographic_distance", "scheduled_ship_days", 0.7],
+      ["order_item_count", "total_quantity", 0.6],
+      ["total_sales", "avg_discount_rate", 0.5],
+      ["region_weekly_orders", "daily_order_volume", 0.4],
+      ["shipping_mode_speed", "delivery_delay", 0.3],
+      ["scheduled_ship_days", "order_processing_time", 0.2]
+    ],
+    "forbidden_edges": [
+      ["shipping_mode_speed", "geographic_distance"],
+      ["order_item_count", "avg_discount_rate"]
+    ],
+    "tier_ordering": [
+      ["daily_order_volume", 1],
+      ["region_weekly_orders", 2],
+      ["geographic_distance", 3],
+      ["shipping_mode_speed", 4],
+      ["scheduled_ship_days", 5],
+      ["order_item_count", 6],
+      ["total_quantity", 7],
+      ["total_sales", 8],
+      ["avg_discount_rate", 9],
+      ["delivery_delay", 10]
+    ],
+    "name": "ollama_llama_prior_0",
+    "type": "ollama_llama"
+  },
+  {
+    "edges_with_probability": [
+      ["geographic_distance", "order_processing_time", 0.8],
+      ["daily_order_volume", "region_weekly_orders", 0.7],
+      ["total_quantity", "shipping_mode_speed", 0.6],
+      ["total_sales", "avg_discount_rate", 0.6],
+      ["scheduled_ship_days", "delivery_delay", 0.5],
+      ["order_item_count", "total_quantity", 0.8]
+    ],
+    "forbidden_edges": [],
+    "tier_ordering": [
+      ["geographic_distance", 0],
+      ["daily_order_volume", 1],
+      ["region_weekly_orders", 2],
+      ["total_quantity", 3],
+      ["shipping_mode_speed", 4],
+      ["scheduled_ship_days", 5],
+      ["order_processing_time", 6],
+      ["avg_discount_rate", 7],
+      ["total_sales", 8],
+      ["order_item_count", 9],
+      ["delivery_delay", 10]
+    ],
+    "name": "ollama_llama_prior_1",
+    "type": "ollama_llama"
+  },
+  {
+    "edges_with_probability": [
+      ["order_item_count", "total_quantity", 0.8],
+      ["order_item_count", "total_sales", 0.85],
+      ["region_weekly_orders", "daily_order_volume", 0.6],
+      ["region_weekly_orders", "delivery_delay", 0.4],
+      ["avg_discount_rate", "total_sales", 0.5],
+      ["geographic_distance", "scheduled_ship_days", 0.3],
+      ["shipping_mode_speed", "scheduled_ship_days", 0.7],
+      ["order_processing_time", "scheduled_ship_days", 0.9],
+      ["daily_order_volume", "delivery_delay", 0.2]
+    ],
+    "forbidden_edges": [
+      ["total_quantity", "avg_discount_rate"],
+      ["total_sales", "order_item_count"]
+    ],
+    "tier_ordering": [
+      ["region_weekly_orders", 1],
+      ["daily_order_volume", 1],
+      ["geographic_distance", 2],
+      ["shipping_mode_speed", 2],
+      ["scheduled_ship_days", 3],
+      ["order_processing_time", 3],
+      ["avg_discount_rate", 4],
+      ["total_quantity", 5],
+      ["total_sales", 5],
+      ["delivery_delay", 6]
+    ],
+    "name": "ollama_llama_prior_2",
+    "type": "ollama_llama"
+  }
+]

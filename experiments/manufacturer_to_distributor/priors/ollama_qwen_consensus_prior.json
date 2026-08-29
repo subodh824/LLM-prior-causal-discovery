@@ -1,0 +1,32 @@
+{
+  "name": "ollama_qwen_consensus_prior",
+  "type": "ollama_qwen",
+  "edges_with_probability": [
+    ["demand_volatility", "machine_downtime", 0.366667],
+    ["demand_volatility", "vehicle_fill_rate", 0.133333],
+    ["factory_issues", "sales_order_quantity", 0.133333],
+    ["machine_downtime", "production_schedule_stability", 0.083333],
+    ["material_delay", "production_schedule_stability", 0.266667],
+    ["material_delay", "production_volume", 0.1],
+    ["production_schedule_stability", "factory_issues", 0.233333],
+    ["production_schedule_stability", "production_volume", 0.2],
+    ["sales_order_quantity", "production_schedule_stability", 0.3],
+    ["vehicle_fill_rate", "delivery_to_distributor", 0.266667],
+    ["vehicle_fill_rate", "production_volume", 0.25]
+  ],
+  "forbidden_edges": [],
+  "tier_ordering": [
+    ["delivery_to_distributor", 6],
+    ["demand_volatility", 3],
+    ["factory_issues", 3],
+    ["machine_downtime", 2],
+    ["material_delay", 1],
+    ["production_schedule_stability", 3],
+    ["production_volume", 4],
+    ["sales_order_quantity", 7],
+    ["vehicle_fill_rate", 4]
+  ],
+  "rationale": {
+    "_": "consensus of 3 priors; forbidden = majority vote; tiers = rounded mean"
+  }
+}

@@ -1,0 +1,108 @@
+[
+  {
+    "name": "random_prior_0",
+    "type": "random",
+    "edges_with_probability": [
+      ["order_processing_time", "total_sales", 0.434],
+      ["geographic_distance", "total_quantity", 0.72],
+      ["geographic_distance", "region_weekly_orders", 0.494],
+      ["order_item_count", "delivery_delay", 0.32],
+      ["total_quantity", "order_processing_time", 0.551],
+      ["avg_discount_rate", "shipping_mode_speed", 0.758],
+      ["region_weekly_orders", "scheduled_ship_days", 0.613],
+      ["region_weekly_orders", "avg_discount_rate", 0.22],
+      ["delivery_delay", "scheduled_ship_days", 0.146],
+      ["delivery_delay", "geographic_distance", 0.574],
+      ["delivery_delay", "avg_discount_rate", 0.635]
+    ],
+    "forbidden_edges": [],
+    "tier_ordering": [
+      ["shipping_mode_speed", 3],
+      ["scheduled_ship_days", 0],
+      ["order_processing_time", 2],
+      ["geographic_distance", 0],
+      ["order_item_count", 0],
+      ["total_quantity", 0],
+      ["total_sales", 1],
+      ["avg_discount_rate", 1],
+      ["daily_order_volume", 0],
+      ["region_weekly_orders", 3],
+      ["delivery_delay", 1]
+    ],
+    "rationale": {
+      "_": "RANDOM CONTROL"
+    }
+  },
+  {
+    "name": "random_prior_1",
+    "type": "random",
+    "edges_with_probability": [
+      ["shipping_mode_speed", "scheduled_ship_days", 0.847],
+      ["shipping_mode_speed", "daily_order_volume", 0.028],
+      ["scheduled_ship_days", "order_processing_time", 0.445],
+      ["scheduled_ship_days", "avg_discount_rate", 0.025],
+      ["order_processing_time", "geographic_distance", 0.222],
+      ["geographic_distance", "shipping_mode_speed", 0.838],
+      ["geographic_distance", "avg_discount_rate", 0.333],
+      ["order_item_count", "delivery_delay", 0.243],
+      ["total_sales", "geographic_distance", 0.043],
+      ["daily_order_volume", "order_processing_time", 0.784],
+      ["region_weekly_orders", "shipping_mode_speed", 0.87],
+      ["delivery_delay", "scheduled_ship_days", 0.23]
+    ],
+    "forbidden_edges": [],
+    "tier_ordering": [
+      ["shipping_mode_speed", 0],
+      ["scheduled_ship_days", 0],
+      ["order_processing_time", 0],
+      ["geographic_distance", 3],
+      ["order_item_count", 0],
+      ["total_quantity", 2],
+      ["total_sales", 1],
+      ["avg_discount_rate", 2],
+      ["daily_order_volume", 0],
+      ["region_weekly_orders", 1],
+      ["delivery_delay", 2]
+    ],
+    "rationale": {
+      "_": "RANDOM CONTROL"
+    }
+  },
+  {
+    "name": "random_prior_2",
+    "type": "random",
+    "edges_with_probability": [
+      ["shipping_mode_speed", "geographic_distance", 0.085],
+      ["scheduled_ship_days", "delivery_delay", 0.027],
+      ["order_processing_time", "daily_order_volume", 0.325],
+      ["order_processing_time", "region_weekly_orders", 0.51],
+      ["avg_discount_rate", "daily_order_volume", 0.82],
+      ["daily_order_volume", "order_processing_time", 0.653],
+      ["daily_order_volume", "total_sales", 0.522],
+      ["region_weekly_orders", "geographic_distance", 0.362],
+      ["region_weekly_orders", "total_sales", 0.955],
+      ["region_weekly_orders", "avg_discount_rate", 0.729],
+      ["region_weekly_orders", "daily_order_volume", 0.256],
+      ["delivery_delay", "order_item_count", 0.99],
+      ["delivery_delay", "total_sales", 0.344],
+      ["delivery_delay", "region_weekly_orders", 0.337]
+    ],
+    "forbidden_edges": [],
+    "tier_ordering": [
+      ["shipping_mode_speed", 0],
+      ["scheduled_ship_days", 2],
+      ["order_processing_time", 3],
+      ["geographic_distance", 0],
+      ["order_item_count", 2],
+      ["total_quantity", 3],
+      ["total_sales", 1],
+      ["avg_discount_rate", 3],
+      ["daily_order_volume", 1],
+      ["region_weekly_orders", 0],
+      ["delivery_delay", 2]
+    ],
+    "rationale": {
+      "_": "RANDOM CONTROL"
+    }
+  }
+]

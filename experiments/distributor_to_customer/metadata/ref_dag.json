@@ -1,0 +1,126 @@
+{
+  "nodes": [
+    {
+      "id": "order_volume_peak_season"
+    },
+    {
+      "id": "weather_severity"
+    },
+    {
+      "id": "geographic_distance"
+    },
+    {
+      "id": "order_item_quantity"
+    },
+    {
+      "id": "order_processing_time"
+    },
+    {
+      "id": "fulfillment_center_congestion"
+    },
+    {
+      "id": "shipping_mode"
+    },
+    {
+      "id": "scheduled_transit_time"
+    },
+    {
+      "id": "traffic_congestion"
+    },
+    {
+      "id": "actual_transit_time"
+    },
+    {
+      "id": "delivery_delay"
+    },
+    {
+      "id": "late_delivery_risk"
+    },
+    {
+      "id": "order_discount_rate"
+    },
+    {
+      "id": "customer_satisfaction"
+    },
+    {
+      "id": "profit_ratio"
+    },
+    {
+      "id": "churn_repeat_purchase_risk"
+    }
+  ],
+  "links": [
+    {
+      "source": "order_volume_peak_season",
+      "target": "order_item_quantity"
+    },
+    {
+      "source": "order_volume_peak_season",
+      "target": "fulfillment_center_congestion"
+    },
+    {
+      "source": "weather_severity",
+      "target": "actual_transit_time"
+    },
+    {
+      "source": "weather_severity",
+      "target": "traffic_congestion"
+    },
+    {
+      "source": "geographic_distance",
+      "target": "actual_transit_time"
+    },
+    {
+      "source": "geographic_distance",
+      "target": "shipping_mode"
+    },
+    {
+      "source": "order_item_quantity",
+      "target": "fulfillment_center_congestion"
+    },
+    {
+      "source": "order_processing_time",
+      "target": "delivery_delay"
+    },
+    {
+      "source": "fulfillment_center_congestion",
+      "target": "scheduled_transit_time"
+    },
+    {
+      "source": "shipping_mode",
+      "target": "scheduled_transit_time"
+    },
+    {
+      "source": "shipping_mode",
+      "target": "actual_transit_time"
+    },
+    {
+      "source": "scheduled_transit_time",
+      "target": "delivery_delay"
+    },
+    {
+      "source": "traffic_congestion",
+      "target": "actual_transit_time"
+    },
+    {
+      "source": "actual_transit_time",
+      "target": "delivery_delay"
+    },
+    {
+      "source": "delivery_delay",
+      "target": "late_delivery_risk"
+    },
+    {
+      "source": "delivery_delay",
+      "target": "customer_satisfaction"
+    },
+    {
+      "source": "order_discount_rate",
+      "target": "profit_ratio"
+    },
+    {
+      "source": "customer_satisfaction",
+      "target": "churn_repeat_purchase_risk"
+    }
+  ]
+}

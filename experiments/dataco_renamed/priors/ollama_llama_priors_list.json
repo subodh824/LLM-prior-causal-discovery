@@ -1,0 +1,91 @@
+[
+  {
+    "edges_with_probability": [
+      ["zone_weekly_bookings", "same_day_workload", 0.9],
+      ["line_count", "unit_total", 1.0],
+      ["consignment_value", "mean_markdown", 0.8],
+      ["serve_distance_km", "promised_transit_days", 0.7],
+      ["handling_lead_days", "arrival_slip_days", 0.6],
+      ["service_tier", "promised_transit_days", 1.0]
+    ],
+    "forbidden_edges": [
+      ["mean_markdown", "zone_weekly_bookings"],
+      ["unit_total", "serve_distance_km"]
+    ],
+    "tier_ordering": [
+      ["zone_weekly_bookings", 0],
+      ["same_day_workload", 0],
+      ["line_count", 1],
+      ["consignment_value", 1],
+      ["mean_markdown", 2],
+      ["serve_distance_km", 2],
+      ["promised_transit_days", 3],
+      ["handling_lead_days", 4],
+      ["service_tier", 5],
+      ["arrival_slip_days", 6]
+    ],
+    "name": "ollama_llama_prior_0",
+    "type": "ollama_llama"
+  },
+  {
+    "edges_with_probability": [
+      ["same_day_workload", "line_count", 0.7],
+      ["zone_weekly_bookings", "line_count", 0.6],
+      ["line_count", "unit_total", 0.8],
+      ["unit_total", "consignment_value", 0.9],
+      ["mean_markdown", "consignment_value", 0.4],
+      ["serve_distance_km", "handling_lead_days", 0.3],
+      ["promised_transit_days", "arrival_slip_days", 0.7],
+      ["service_tier", "promised_transit_days", 0.5],
+      ["handling_lead_days", "arrival_slip_days", 0.6]
+    ],
+    "forbidden_edges": [
+      ["zone_weekly_bookings", "same_day_workload"],
+      ["line_count", "mean_markdown"],
+      ["unit_total", "serve_distance_km"]
+    ],
+    "tier_ordering": [
+      ["service_tier", 0],
+      ["promised_transit_days", 1],
+      ["handling_lead_days", 1],
+      ["serve_distance_km", 2],
+      ["line_count", 3],
+      ["unit_total", 4],
+      ["consignment_value", 5],
+      ["mean_markdown", 6],
+      ["same_day_workload", 7],
+      ["zone_weekly_bookings", 8],
+      ["arrival_slip_days", 9]
+    ],
+    "name": "ollama_llama_prior_1",
+    "type": "ollama_llama"
+  },
+  {
+    "edges_with_probability": [
+      ["line_count", "unit_total", 0.8],
+      ["unit_total", "consignment_value", 0.9],
+      ["mean_markdown", "consignment_value", 0.6],
+      ["serve_distance_km", "handling_lead_days", 0.4],
+      ["same_day_workload", "zone_weekly_bookings", 0.7]
+    ],
+    "forbidden_edges": [
+      ["arrival_slip_days", "promised_transit_days"],
+      ["line_count", "mean_markdown"]
+    ],
+    "tier_ordering": [
+      ["serve_distance_km", 2],
+      ["same_day_workload", 1],
+      ["zone_weekly_bookings", 1],
+      ["handling_lead_days", 0],
+      ["promised_transit_days", 0],
+      ["line_count", 3],
+      ["unit_total", 3],
+      ["consignment_value", 4],
+      ["mean_markdown", 5],
+      ["service_tier", 6],
+      ["arrival_slip_days", 7]
+    ],
+    "name": "ollama_llama_prior_2",
+    "type": "ollama_llama"
+  }
+]

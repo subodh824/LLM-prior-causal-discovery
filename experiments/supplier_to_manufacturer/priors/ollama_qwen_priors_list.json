@@ -1,0 +1,78 @@
+[
+  {
+    "edges_with_probability": [
+      ["geopolitical_disruption", "supplier_financial_health", 0.3],
+      ["supplier_financial_health", "supplier_distance", 0.5],
+      ["supplier_distance", "supplier_risk_score", 0.6],
+      ["supplier_risk_score", "po_cycle_time", 0.4],
+      ["po_cycle_time", "lead_time_variability", 0.7],
+      ["lead_time_variability", "safety_stock_held", 0.8],
+      ["safety_stock_held", "raw_material_delay", 0.6],
+      ["production_schedule_instability", "supplier_financial_health", 0.5],
+      ["inventory_holding_cost", "production_schedule_instability", 0.7]
+    ],
+    "forbidden_edges": [],
+    "tier_ordering": [
+      ["geopolitical_disruption", 2],
+      ["supplier_financial_health", 1],
+      ["supplier_distance", 3],
+      ["supplier_risk_score", 4],
+      ["po_cycle_time", 5],
+      ["lead_time_variability", 6],
+      ["safety_stock_held", 7],
+      ["raw_material_delay", 8],
+      ["production_schedule_instability", 9],
+      ["inventory_holding_cost", 10]
+    ],
+    "name": "ollama_qwen_prior_0",
+    "type": "ollama_qwen"
+  },
+  {
+    "edges_with_probability": [
+      ["geopolitical_disruption", "supplier_financial_health", 0.3],
+      ["supplier_financial_health", "supplier_distance", 0.5],
+      ["supplier_financial_health", "supplier_risk_score", 0.6],
+      ["supply_chain_tightness", "lead_time_variability", 0.7],
+      ["supply_chain_tightness", "safety_stock_held", 0.8],
+      ["production_schedule_instability", "raw_material_delay", 0.9]
+    ],
+    "forbidden_edges": [
+      ["supplier_distance", "geopolitical_disruption"],
+      ["supplier_financial_health", "raw_material_delay"],
+      ["lead_time_variability", "safety_stock_held"]
+    ],
+    "tier_ordering": [
+      ["geopolitical_disruption", 1],
+      ["supply_chain_tightness", 2],
+      ["production_schedule_instability", 3]
+    ],
+    "name": "ollama_qwen_prior_1",
+    "type": "ollama_qwen"
+  },
+  {
+    "edges_with_probability": [
+      ["geopolitical_disruption", "supplier_financial_health", 0.25],
+      ["geopolitical_disruption", "supplier_distance", 0.3],
+      ["geopolitical_disruption", "supplier_risk_score", 0.4],
+      ["supplier_financial_health", "raw_material_delay", 0.15],
+      ["supplier_financial_health", "production_schedule_instability", 0.2],
+      ["supplier_distance", "lead_time_variability", 0.1],
+      ["supplier_distance", "safety_stock_held", 0.3],
+      ["supplier_risk_score", "production_schedule_instability", 0.35],
+      ["raw_material_delay", "supply_chain_efficiency", 0.25]
+    ],
+    "forbidden_edges": [
+      ["po_cycle_time", "geopolitical_disruption"],
+      ["lead_time_variability", "supplier_financial_health"]
+    ],
+    "tier_ordering": [
+      ["geopolitical_disruption", 1],
+      ["supplier_distance", 2],
+      ["supplier_risk_score", 3],
+      ["production_schedule_instability", 4],
+      ["inventory_holding_cost", 5]
+    ],
+    "name": "ollama_qwen_prior_2",
+    "type": "ollama_qwen"
+  }
+]

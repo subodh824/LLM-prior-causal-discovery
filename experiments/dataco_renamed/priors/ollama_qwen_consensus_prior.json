@@ -1,0 +1,36 @@
+{
+  "name": "ollama_qwen_consensus_prior",
+  "type": "ollama_qwen",
+  "edges_with_probability": [
+    ["consignment_value", "service_tier", 0.2],
+    ["handling_lead_days", "mean_markdown", 0.233333],
+    ["same_day_workload", "arrival_slip_days", 0.116667],
+    ["same_day_workload", "line_count", 0.233333],
+    ["serve_distance_km", "line_count", 0.266667],
+    ["service_tier", "arrival_slip_days", 0.3],
+    ["service_tier", "line_count", 0.233333],
+    ["unit_total", "consignment_value", 0.3],
+    ["unit_total", "mean_markdown", 0.233333],
+    ["unit_total", "serve_distance_km", 0.433333],
+    ["zone_weekly_bookings", "arrival_slip_days", 0.083333],
+    ["zone_weekly_bookings", "line_count", 0.216667]
+  ],
+  "forbidden_edges": [],
+  "tier_ordering": [
+    ["arrival_slip_days", 3],
+    ["consignment_value", 5],
+    ["handle_handling_lead_days", 7],
+    ["handling_lead_days", 4],
+    ["line_count", 5],
+    ["mean_markdown", 10],
+    ["promise_transit_days", 2],
+    ["same_day_workload", 4],
+    ["serve_distance_km", 6],
+    ["service_tier", 2],
+    ["unit_total", 4],
+    ["zone_weekly_bookings", 3]
+  ],
+  "rationale": {
+    "_": "consensus of 3 priors; forbidden = majority vote; tiers = rounded mean"
+  }
+}

@@ -1,0 +1,4414 @@
+[
+  {
+    "name": "syn_data_11_250.csv",
+    "seed": 11,
+    "n_rows": 250,
+    "lambda": null,
+    "algo": "HC",
+    "type": "Baseline",
+    "prior_name": null,
+    "shd": 1,
+    "precision": 0.9,
+    "recall": 1.0,
+    "f1": 0.95,
+    "dag_json": {
+      "nodes": [
+        {
+          "id": "machine_downtime"
+        },
+        {
+          "id": "demand_volatility"
+        },
+        {
+          "id": "material_delay"
+        },
+        {
+          "id": "sales_order_quantity"
+        },
+        {
+          "id": "production_schedule_stability"
+        },
+        {
+          "id": "production_volume"
+        },
+        {
+          "id": "factory_issues"
+        },
+        {
+          "id": "vehicle_fill_rate"
+        },
+        {
+          "id": "delivery_to_distributor"
+        }
+      ],
+      "links": [
+        {
+          "source": "machine_downtime",
+          "target": "production_schedule_stability"
+        },
+        {
+          "source": "demand_volatility",
+          "target": "production_schedule_stability"
+        },
+        {
+          "source": "demand_volatility",
+          "target": "production_volume"
+        },
+        {
+          "source": "material_delay",
+          "target": "production_volume"
+        },
+        {
+          "source": "sales_order_quantity",
+          "target": "delivery_to_distributor"
+        },
+        {
+          "source": "production_schedule_stability",
+          "target": "factory_issues"
+        },
+        {
+          "source": "production_schedule_stability",
+          "target": "material_delay"
+        },
+        {
+          "source": "production_volume",
+          "target": "vehicle_fill_rate"
+        },
+        {
+          "source": "factory_issues",
+          "target": "delivery_to_distributor"
+        },
+        {
+          "source": "vehicle_fill_rate",
+          "target": "delivery_to_distributor"
+        }
+      ]
+    },
+    "attribution": {
+      "decomposition": [
+        {
+          "node": "delivery_to_distributor",
+          "share_pct": 25.3
+        },
+        {
+          "node": "machine_downtime",
+          "share_pct": 17.4
+        },
+        {
+          "node": "sales_order_quantity",
+          "share_pct": 12.8
+        },
+        {
+          "node": "factory_issues",
+          "share_pct": 11.4
+        },
+        {
+          "node": "material_delay",
+          "share_pct": 11.0
+        },
+        {
+          "node": "production_schedule_stability",
+          "share_pct": 6.6
+        },
+        {
+          "node": "demand_volatility",
+          "share_pct": 6.1
+        },
+        {
+          "node": "production_volume",
+          "share_pct": 4.9
+        },
+        {
+          "node": "vehicle_fill_rate",
+          "share_pct": 4.4
+        }
+      ],
+      "drivers": [
+        {
+          "source": "factory_issues",
+          "target": "delivery_to_distributor",
+          "strength": 0.4789528381035741,
+          "share_of_variance_pct": 26.4
+        },
+        {
+          "source": "sales_order_quantity",
+          "target": "delivery_to_distributor",
+          "strength": 0.24725743364923924,
+          "share_of_variance_pct": 13.6
+        },
+        {
+          "source": "vehicle_fill_rate",
+          "target": "delivery_to_distributor",
+          "strength": 0.08767737778411983,
+          "share_of_variance_pct": 4.8
+        }
+      ]
+    },
+    "injected_cause_recovery": [
+      {
+        "injected_cause": "machine_downtime",
+        "rank": 1,
+        "top1": true,
+        "top3": true
+      },
+      {
+        "injected_cause": "demand_volatility",
+        "rank": 1,
+        "top1": true,
+        "top3": true
+      }
+    ],
+    "target": "delivery_to_distributor",
+    "target_stats": {
+      "mean": 3.010519143164014,
+      "median": 2.9429491389433045,
+      "std": 1.347100436096651,
+      "min": 0.0,
+      "max": 6.758997103901438,
+      "p10": 1.3119311627708024,
+      "p90": 4.7326877957883475,
+      "current_value": 2.9429491389433045
+    },
+    "interventions": [
+      {
+        "lever": "production_schedule_stability",
+        "hops_to_target": 2,
+        "stats": {
+          "mean": 69.36509649131386,
+          "median": 71.34094966583936,
+          "std": 11.747246615921583,
+          "min": 28.604413113321957,
+          "max": 98.07655542815344,
+          "p10": 55.15493127819823,
+          "p90": 83.65049071746593,
+          "current_value": 71.34094966583936
+        },
+        "intervention": {
+          "target": "delivery_to_distributor",
+          "new_value": 55.15493127819823,
+          "baseline_mean": 3.010519143164014,
+          "intervened_mean": 3.777471619225711,
+          "effect": 0.766952476061697
+        },
+        "shift": {
+          "target": "delivery_to_distributor",
+          "delta": -11.747246615921583,
+          "baseline_mean": 3.010519143164014,
+          "intervened_mean": 3.577665203102461,
+          "effect": 0.5671460599384472
+        }
+      },
+      {
+        "lever": "production_volume",
+        "hops_to_target": 2,
+        "stats": {
+          "mean": 807.8893749177606,
+          "median": 825.3629575579641,
+          "std": 114.81398756201652,
+          "min": 375.2688279198086,
+          "max": 1070.103036600848,
+          "p10": 670.7254263824431,
+          "p90": 947.8174375244505,
+          "current_value": 825.3629575579641
+        },
+        "intervention": {
+          "target": "delivery_to_distributor",
+          "new_value": 670.7254263824431,
+          "baseline_mean": 3.010519143164014,
+          "intervened_mean": 3.320760010658878,
+          "effect": 0.31024086749486424
+        },
+        "shift": {
+          "target": "delivery_to_distributor",
+          "delta": -114.81398756201652,
+          "baseline_mean": 3.010519143164014,
+          "intervened_mean": 3.1435564620999057,
+          "effect": 0.13303731893589177
+        }
+      }
+    ]
+  },
+  {
+    "name": "syn_data_41_250.csv",
+    "seed": 41,
+    "n_rows": 250,
+    "lambda": 0.1,
+    "algo": "HC",
+    "type": "ollama_llama_consensus",
+    "prior_name": "ollama_llama_consensus_prior",
+    "shd": 2,
+    "precision": 0.8,
+    "recall": 0.89,
+    "f1": 0.84,
+    "dag_json": {
+      "nodes": [
+        {
+          "id": "machine_downtime"
+        },
+        {
+          "id": "demand_volatility"
+        },
+        {
+          "id": "material_delay"
+        },
+        {
+          "id": "sales_order_quantity"
+        },
+        {
+          "id": "production_schedule_stability"
+        },
+        {
+          "id": "production_volume"
+        },
+        {
+          "id": "factory_issues"
+        },
+        {
+          "id": "vehicle_fill_rate"
+        },
+        {
+          "id": "delivery_to_distributor"
+        }
+      ],
+      "links": [
+        {
+          "source": "demand_volatility",
+          "target": "machine_downtime"
+        },
+        {
+          "source": "demand_volatility",
+          "target": "production_volume"
+        },
+        {
+          "source": "demand_volatility",
+          "target": "production_schedule_stability"
+        },
+        {
+          "source": "material_delay",
+          "target": "production_volume"
+        },
+        {
+          "source": "sales_order_quantity",
+          "target": "delivery_to_distributor"
+        },
+        {
+          "source": "production_schedule_stability",
+          "target": "factory_issues"
+        },
+        {
+          "source": "production_schedule_stability",
+          "target": "machine_downtime"
+        },
+        {
+          "source": "production_volume",
+          "target": "vehicle_fill_rate"
+        },
+        {
+          "source": "factory_issues",
+          "target": "delivery_to_distributor"
+        },
+        {
+          "source": "vehicle_fill_rate",
+          "target": "delivery_to_distributor"
+        }
+      ]
+    },
+    "attribution": {
+      "decomposition": [
+        {
+          "node": "production_schedule_stability",
+          "share_pct": 29.3
+        },
+        {
+          "node": "delivery_to_distributor",
+          "share_pct": 22.9
+        },
+        {
+          "node": "demand_volatility",
+          "share_pct": 13.3
+        },
+        {
+          "node": "factory_issues",
+          "share_pct": 12.1
+        },
+        {
+          "node": "sales_order_quantity",
+          "share_pct": 7.7
+        },
+        {
+          "node": "material_delay",
+          "share_pct": 7.5
+        },
+        {
+          "node": "vehicle_fill_rate",
+          "share_pct": 4.2
+        },
+        {
+          "node": "production_volume",
+          "share_pct": 3.0
+        }
+      ],
+      "drivers": [
+        {
+          "source": "factory_issues",
+          "target": "delivery_to_distributor",
+          "strength": 1.198784435993641,
+          "share_of_variance_pct": 47.7
+        },
+        {
+          "source": "sales_order_quantity",
+          "target": "delivery_to_distributor",
+          "strength": 0.16866883927529808,
+          "share_of_variance_pct": 6.7
+        },
+        {
+          "source": "vehicle_fill_rate",
+          "target": "delivery_to_distributor",
+          "strength": 0.09269578283122573,
+          "share_of_variance_pct": 3.7
+        }
+      ]
+    },
+    "injected_cause_recovery": [
+      {
+        "injected_cause": "machine_downtime",
+        "rank": 99,
+        "top1": false,
+        "top3": false
+      },
+      {
+        "injected_cause": "demand_volatility",
+        "rank": 1,
+        "top1": true,
+        "top3": true
+      }
+    ],
+    "target": "delivery_to_distributor",
+    "target_stats": {
+      "mean": 3.037371433266706,
+      "median": 2.9869403028024943,
+      "std": 1.5847317783881476,
+      "min": 0.0,
+      "max": 7.918412843942279,
+      "p10": 1.1607564444710692,
+      "p90": 5.100813255854138,
+      "current_value": 2.9869403028024943
+    },
+    "interventions": [
+      {
+        "lever": "production_schedule_stability",
+        "hops_to_target": 2,
+        "stats": {
+          "mean": 68.80789280004983,
+          "median": 71.79171286120663,
+          "std": 14.954723344132308,
+          "min": 0.0,
+          "max": 95.54739760049073,
+          "p10": 49.45041112047586,
+          "p90": 85.11617306812464,
+          "current_value": 71.79171286120663
+        },
+        "intervention": {
+          "target": "delivery_to_distributor",
+          "new_value": 49.45041112047586,
+          "baseline_mean": 3.037371433266706,
+          "intervened_mean": 4.333033166166603,
+          "effect": 1.2956617328998967
+        },
+        "shift": {
+          "target": "delivery_to_distributor",
+          "delta": -14.954723344132308,
+          "baseline_mean": 3.037371433266706,
+          "intervened_mean": 4.058218311402322,
+          "effect": 1.020846878135616
+        }
+      },
+      {
+        "lever": "production_volume",
+        "hops_to_target": 2,
+        "stats": {
+          "mean": 803.0110236785281,
+          "median": 808.419654991561,
+          "std": 104.06880344608885,
+          "min": 473.5848675425465,
+          "max": 1025.6723019855815,
+          "p10": 683.6412856060364,
+          "p90": 931.0711848232468,
+          "current_value": 808.419654991561
+        },
+        "intervention": {
+          "target": "delivery_to_distributor",
+          "new_value": 683.6412856060364,
+          "baseline_mean": 3.037371433266706,
+          "intervened_mean": 3.475622797970839,
+          "effect": 0.4382513647041333
+        },
+        "shift": {
+          "target": "delivery_to_distributor",
+          "delta": -104.06880344608885,
+          "baseline_mean": 3.037371433266706,
+          "intervened_mean": 3.3235971587315,
+          "effect": 0.28622572546479397
+        }
+      }
+    ]
+  },
+  {
+    "name": "syn_data_41_250.csv",
+    "seed": 41,
+    "n_rows": 250,
+    "lambda": 0.1,
+    "algo": "HC",
+    "type": "gemini_consensus",
+    "prior_name": "gemini_consensus_prior",
+    "shd": 2,
+    "precision": 0.8,
+    "recall": 0.89,
+    "f1": 0.84,
+    "dag_json": {
+      "nodes": [
+        {
+          "id": "machine_downtime"
+        },
+        {
+          "id": "demand_volatility"
+        },
+        {
+          "id": "material_delay"
+        },
+        {
+          "id": "sales_order_quantity"
+        },
+        {
+          "id": "production_schedule_stability"
+        },
+        {
+          "id": "production_volume"
+        },
+        {
+          "id": "factory_issues"
+        },
+        {
+          "id": "vehicle_fill_rate"
+        },
+        {
+          "id": "delivery_to_distributor"
+        }
+      ],
+      "links": [
+        {
+          "source": "demand_volatility",
+          "target": "machine_downtime"
+        },
+        {
+          "source": "demand_volatility",
+          "target": "production_volume"
+        },
+        {
+          "source": "demand_volatility",
+          "target": "production_schedule_stability"
+        },
+        {
+          "source": "material_delay",
+          "target": "production_volume"
+        },
+        {
+          "source": "sales_order_quantity",
+          "target": "delivery_to_distributor"
+        },
+        {
+          "source": "production_schedule_stability",
+          "target": "factory_issues"
+        },
+        {
+          "source": "production_schedule_stability",
+          "target": "machine_downtime"
+        },
+        {
+          "source": "production_volume",
+          "target": "vehicle_fill_rate"
+        },
+        {
+          "source": "factory_issues",
+          "target": "delivery_to_distributor"
+        },
+        {
+          "source": "vehicle_fill_rate",
+          "target": "delivery_to_distributor"
+        }
+      ]
+    },
+    "attribution": {
+      "decomposition": [
+        {
+          "node": "production_schedule_stability",
+          "share_pct": 27.8
+        },
+        {
+          "node": "delivery_to_distributor",
+          "share_pct": 25.3
+        },
+        {
+          "node": "demand_volatility",
+          "share_pct": 15.0
+        },
+        {
+          "node": "factory_issues",
+          "share_pct": 10.8
+        },
+        {
+          "node": "sales_order_quantity",
+          "share_pct": 8.2
+        },
+        {
+          "node": "material_delay",
+          "share_pct": 5.7
+        },
+        {
+          "node": "vehicle_fill_rate",
+          "share_pct": 4.9
+        },
+        {
+          "node": "production_volume",
+          "share_pct": 2.2
+        }
+      ],
+      "drivers": [
+        {
+          "source": "factory_issues",
+          "target": "delivery_to_distributor",
+          "strength": 1.1908319283000337,
+          "share_of_variance_pct": 47.4
+        },
+        {
+          "source": "sales_order_quantity",
+          "target": "delivery_to_distributor",
+          "strength": 0.166497310272395,
+          "share_of_variance_pct": 6.6
+        },
+        {
+          "source": "vehicle_fill_rate",
+          "target": "delivery_to_distributor",
+          "strength": 0.07961402115890946,
+          "share_of_variance_pct": 3.2
+        }
+      ]
+    },
+    "injected_cause_recovery": [
+      {
+        "injected_cause": "machine_downtime",
+        "rank": 99,
+        "top1": false,
+        "top3": false
+      },
+      {
+        "injected_cause": "demand_volatility",
+        "rank": 1,
+        "top1": true,
+        "top3": true
+      }
+    ],
+    "target": "delivery_to_distributor",
+    "target_stats": {
+      "mean": 3.037371433266706,
+      "median": 2.9869403028024943,
+      "std": 1.5847317783881476,
+      "min": 0.0,
+      "max": 7.918412843942279,
+      "p10": 1.1607564444710692,
+      "p90": 5.100813255854138,
+      "current_value": 2.9869403028024943
+    },
+    "interventions": [
+      {
+        "lever": "production_schedule_stability",
+        "hops_to_target": 2,
+        "stats": {
+          "mean": 68.80789280004983,
+          "median": 71.79171286120663,
+          "std": 14.954723344132308,
+          "min": 0.0,
+          "max": 95.54739760049073,
+          "p10": 49.45041112047586,
+          "p90": 85.11617306812464,
+          "current_value": 71.79171286120663
+        },
+        "intervention": {
+          "target": "delivery_to_distributor",
+          "new_value": 49.45041112047586,
+          "baseline_mean": 3.037371433266706,
+          "intervened_mean": 4.213447343207205,
+          "effect": 1.1760759099404994
+        },
+        "shift": {
+          "target": "delivery_to_distributor",
+          "delta": -14.954723344132308,
+          "baseline_mean": 3.037371433266706,
+          "intervened_mean": 4.045205790855939,
+          "effect": 1.0078343575892332
+        }
+      },
+      {
+        "lever": "production_volume",
+        "hops_to_target": 2,
+        "stats": {
+          "mean": 803.0110236785281,
+          "median": 808.419654991561,
+          "std": 104.06880344608885,
+          "min": 473.5848675425465,
+          "max": 1025.6723019855815,
+          "p10": 683.6412856060364,
+          "p90": 931.0711848232468,
+          "current_value": 808.419654991561
+        },
+        "intervention": {
+          "target": "delivery_to_distributor",
+          "new_value": 683.6412856060364,
+          "baseline_mean": 3.037371433266706,
+          "intervened_mean": 3.3193087900402616,
+          "effect": 0.2819373567735557
+        },
+        "shift": {
+          "target": "delivery_to_distributor",
+          "delta": -104.06880344608885,
+          "baseline_mean": 3.037371433266706,
+          "intervened_mean": 3.2215936946426593,
+          "effect": 0.18422226137595343
+        }
+      }
+    ]
+  },
+  {
+    "name": "syn_data_101_250.csv",
+    "seed": 101,
+    "n_rows": 250,
+    "lambda": 0.1,
+    "algo": "HC",
+    "type": "ollama_qwen_consensus",
+    "prior_name": "ollama_qwen_consensus_prior",
+    "shd": 2,
+    "precision": 0.88,
+    "recall": 0.78,
+    "f1": 0.82,
+    "dag_json": {
+      "nodes": [
+        {
+          "id": "machine_downtime"
+        },
+        {
+          "id": "demand_volatility"
+        },
+        {
+          "id": "material_delay"
+        },
+        {
+          "id": "sales_order_quantity"
+        },
+        {
+          "id": "production_schedule_stability"
+        },
+        {
+          "id": "production_volume"
+        },
+        {
+          "id": "factory_issues"
+        },
+        {
+          "id": "vehicle_fill_rate"
+        },
+        {
+          "id": "delivery_to_distributor"
+        }
+      ],
+      "links": [
+        {
+          "source": "machine_downtime",
+          "target": "production_schedule_stability"
+        },
+        {
+          "source": "demand_volatility",
+          "target": "production_schedule_stability"
+        },
+        {
+          "source": "demand_volatility",
+          "target": "production_volume"
+        },
+        {
+          "source": "material_delay",
+          "target": "production_volume"
+        },
+        {
+          "source": "production_schedule_stability",
+          "target": "factory_issues"
+        },
+        {
+          "source": "production_volume",
+          "target": "vehicle_fill_rate"
+        },
+        {
+          "source": "factory_issues",
+          "target": "delivery_to_distributor"
+        },
+        {
+          "source": "delivery_to_distributor",
+          "target": "sales_order_quantity"
+        }
+      ]
+    },
+    "attribution": {
+      "decomposition": [
+        {
+          "node": "machine_downtime",
+          "share_pct": 31.5
+        },
+        {
+          "node": "delivery_to_distributor",
+          "share_pct": 28.6
+        },
+        {
+          "node": "factory_issues",
+          "share_pct": 15.1
+        },
+        {
+          "node": "production_schedule_stability",
+          "share_pct": 12.8
+        },
+        {
+          "node": "demand_volatility",
+          "share_pct": 11.9
+        }
+      ],
+      "drivers": [
+        {
+          "source": "factory_issues",
+          "target": "delivery_to_distributor",
+          "strength": 0.9510811478879544,
+          "share_of_variance_pct": 46.7
+        },
+        {
+          "source": "production_schedule_stability",
+          "target": "factory_issues",
+          "strength": 89.7920461825779,
+          "share_of_variance_pct": 64.3
+        }
+      ]
+    },
+    "injected_cause_recovery": [
+      {
+        "injected_cause": "machine_downtime",
+        "rank": 1,
+        "top1": true,
+        "top3": true
+      },
+      {
+        "injected_cause": "demand_volatility",
+        "rank": 1,
+        "top1": true,
+        "top3": true
+      }
+    ],
+    "target": "delivery_to_distributor",
+    "target_stats": {
+      "mean": 2.968420264951636,
+      "median": 2.9240266793885255,
+      "std": 1.4269665005925596,
+      "min": 0.0,
+      "max": 7.021142850395015,
+      "p10": 1.1777377276472458,
+      "p90": 4.869788236328208,
+      "current_value": 2.9240266793885255
+    },
+    "interventions": [
+      {
+        "lever": "production_schedule_stability",
+        "hops_to_target": 2,
+        "stats": {
+          "mean": 69.21349812430364,
+          "median": 70.93511170692895,
+          "std": 13.599034702331982,
+          "min": 29.940424707504107,
+          "max": 98.01754358879457,
+          "p10": 50.36549672966831,
+          "p90": 84.91040251997978,
+          "current_value": 70.93511170692895
+        },
+        "intervention": {
+          "target": "delivery_to_distributor",
+          "new_value": 50.36549672966831,
+          "baseline_mean": 2.968420264951636,
+          "intervened_mean": 4.174678769021071,
+          "effect": 1.2062585040694351
+        },
+        "shift": {
+          "target": "delivery_to_distributor",
+          "delta": -13.599034702331982,
+          "baseline_mean": 2.968420264951636,
+          "intervened_mean": 3.8575096283729793,
+          "effect": 0.8890893634213435
+        }
+      }
+    ]
+  },
+  {
+    "name": "syn_data_41_250.csv",
+    "seed": 41,
+    "n_rows": 250,
+    "lambda": 0.1,
+    "algo": "HC",
+    "type": "perfect",
+    "prior_name": "perfect_prior",
+    "shd": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "dag_json": {
+      "nodes": [
+        {
+          "id": "machine_downtime"
+        },
+        {
+          "id": "demand_volatility"
+        },
+        {
+          "id": "material_delay"
+        },
+        {
+          "id": "sales_order_quantity"
+        },
+        {
+          "id": "production_schedule_stability"
+        },
+        {
+          "id": "production_volume"
+        },
+        {
+          "id": "factory_issues"
+        },
+        {
+          "id": "vehicle_fill_rate"
+        },
+        {
+          "id": "delivery_to_distributor"
+        }
+      ],
+      "links": [
+        {
+          "source": "machine_downtime",
+          "target": "production_schedule_stability"
+        },
+        {
+          "source": "demand_volatility",
+          "target": "production_schedule_stability"
+        },
+        {
+          "source": "demand_volatility",
+          "target": "production_volume"
+        },
+        {
+          "source": "material_delay",
+          "target": "production_volume"
+        },
+        {
+          "source": "sales_order_quantity",
+          "target": "delivery_to_distributor"
+        },
+        {
+          "source": "production_schedule_stability",
+          "target": "factory_issues"
+        },
+        {
+          "source": "production_volume",
+          "target": "vehicle_fill_rate"
+        },
+        {
+          "source": "factory_issues",
+          "target": "delivery_to_distributor"
+        },
+        {
+          "source": "vehicle_fill_rate",
+          "target": "delivery_to_distributor"
+        }
+      ]
+    },
+    "attribution": {
+      "decomposition": [
+        {
+          "node": "delivery_to_distributor",
+          "share_pct": 24.3
+        },
+        {
+          "node": "machine_downtime",
+          "share_pct": 18.0
+        },
+        {
+          "node": "demand_volatility",
+          "share_pct": 13.8
+        },
+        {
+          "node": "factory_issues",
+          "share_pct": 9.8
+        },
+        {
+          "node": "production_schedule_stability",
+          "share_pct": 9.5
+        },
+        {
+          "node": "sales_order_quantity",
+          "share_pct": 9.1
+        },
+        {
+          "node": "vehicle_fill_rate",
+          "share_pct": 6.9
+        },
+        {
+          "node": "material_delay",
+          "share_pct": 6.1
+        },
+        {
+          "node": "production_volume",
+          "share_pct": 2.5
+        }
+      ],
+      "drivers": [
+        {
+          "source": "factory_issues",
+          "target": "delivery_to_distributor",
+          "strength": 1.1676421322884576,
+          "share_of_variance_pct": 46.5
+        },
+        {
+          "source": "sales_order_quantity",
+          "target": "delivery_to_distributor",
+          "strength": 0.17288719915610717,
+          "share_of_variance_pct": 6.9
+        },
+        {
+          "source": "vehicle_fill_rate",
+          "target": "delivery_to_distributor",
+          "strength": 0.08377028266190834,
+          "share_of_variance_pct": 3.3
+        }
+      ]
+    },
+    "injected_cause_recovery": [
+      {
+        "injected_cause": "machine_downtime",
+        "rank": 1,
+        "top1": true,
+        "top3": true
+      },
+      {
+        "injected_cause": "demand_volatility",
+        "rank": 1,
+        "top1": true,
+        "top3": true
+      }
+    ],
+    "target": "delivery_to_distributor",
+    "target_stats": {
+      "mean": 3.037371433266706,
+      "median": 2.9869403028024943,
+      "std": 1.5847317783881476,
+      "min": 0.0,
+      "max": 7.918412843942279,
+      "p10": 1.1607564444710692,
+      "p90": 5.100813255854138,
+      "current_value": 2.9869403028024943
+    },
+    "interventions": [
+      {
+        "lever": "production_schedule_stability",
+        "hops_to_target": 2,
+        "stats": {
+          "mean": 68.80789280004983,
+          "median": 71.79171286120663,
+          "std": 14.954723344132308,
+          "min": 0.0,
+          "max": 95.54739760049073,
+          "p10": 49.45041112047586,
+          "p90": 85.11617306812464,
+          "current_value": 71.79171286120663
+        },
+        "intervention": {
+          "target": "delivery_to_distributor",
+          "new_value": 49.45041112047586,
+          "baseline_mean": 3.037371433266706,
+          "intervened_mean": 4.3273729419822775,
+          "effect": 1.2900015087155716
+        },
+        "shift": {
+          "target": "delivery_to_distributor",
+          "delta": -14.954723344132308,
+          "baseline_mean": 3.037371433266706,
+          "intervened_mean": 4.150276019477946,
+          "effect": 1.1129045862112403
+        }
+      },
+      {
+        "lever": "production_volume",
+        "hops_to_target": 2,
+        "stats": {
+          "mean": 803.0110236785281,
+          "median": 808.419654991561,
+          "std": 104.06880344608885,
+          "min": 473.5848675425465,
+          "max": 1025.6723019855815,
+          "p10": 683.6412856060364,
+          "p90": 931.0711848232468,
+          "current_value": 808.419654991561
+        },
+        "intervention": {
+          "target": "delivery_to_distributor",
+          "new_value": 683.6412856060364,
+          "baseline_mean": 3.037371433266706,
+          "intervened_mean": 3.2007417566110496,
+          "effect": 0.16337032334434376
+        },
+        "shift": {
+          "target": "delivery_to_distributor",
+          "delta": -104.06880344608885,
+          "baseline_mean": 3.037371433266706,
+          "intervened_mean": 3.0884815811387742,
+          "effect": 0.05111014787206836
+        }
+      }
+    ]
+  },
+  {
+    "name": "syn_data_41_5000.csv",
+    "seed": 41,
+    "n_rows": 5000,
+    "lambda": null,
+    "algo": "HC",
+    "type": "Baseline",
+    "prior_name": null,
+    "shd": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "dag_json": {
+      "nodes": [
+        {
+          "id": "machine_downtime"
+        },
+        {
+          "id": "demand_volatility"
+        },
+        {
+          "id": "material_delay"
+        },
+        {
+          "id": "sales_order_quantity"
+        },
+        {
+          "id": "production_schedule_stability"
+        },
+        {
+          "id": "production_volume"
+        },
+        {
+          "id": "factory_issues"
+        },
+        {
+          "id": "vehicle_fill_rate"
+        },
+        {
+          "id": "delivery_to_distributor"
+        }
+      ],
+      "links": [
+        {
+          "source": "machine_downtime",
+          "target": "production_schedule_stability"
+        },
+        {
+          "source": "demand_volatility",
+          "target": "production_schedule_stability"
+        },
+        {
+          "source": "demand_volatility",
+          "target": "production_volume"
+        },
+        {
+          "source": "material_delay",
+          "target": "production_volume"
+        },
+        {
+          "source": "sales_order_quantity",
+          "target": "delivery_to_distributor"
+        },
+        {
+          "source": "production_schedule_stability",
+          "target": "factory_issues"
+        },
+        {
+          "source": "production_volume",
+          "target": "vehicle_fill_rate"
+        },
+        {
+          "source": "factory_issues",
+          "target": "delivery_to_distributor"
+        },
+        {
+          "source": "vehicle_fill_rate",
+          "target": "delivery_to_distributor"
+        }
+      ]
+    },
+    "attribution": {
+      "decomposition": [
+        {
+          "node": "machine_downtime",
+          "share_pct": 25.0
+        },
+        {
+          "node": "delivery_to_distributor",
+          "share_pct": 23.8
+        },
+        {
+          "node": "factory_issues",
+          "share_pct": 13.4
+        },
+        {
+          "node": "sales_order_quantity",
+          "share_pct": 9.3
+        },
+        {
+          "node": "demand_volatility",
+          "share_pct": 9.2
+        },
+        {
+          "node": "production_schedule_stability",
+          "share_pct": 7.3
+        },
+        {
+          "node": "material_delay",
+          "share_pct": 4.4
+        },
+        {
+          "node": "vehicle_fill_rate",
+          "share_pct": 4.1
+        },
+        {
+          "node": "production_volume",
+          "share_pct": 3.5
+        }
+      ],
+      "drivers": [
+        {
+          "source": "factory_issues",
+          "target": "delivery_to_distributor",
+          "strength": 0.7544991659876197,
+          "share_of_variance_pct": 38.4
+        },
+        {
+          "source": "sales_order_quantity",
+          "target": "delivery_to_distributor",
+          "strength": 0.10935184311551811,
+          "share_of_variance_pct": 5.6
+        },
+        {
+          "source": "vehicle_fill_rate",
+          "target": "delivery_to_distributor",
+          "strength": 0.06561579233867289,
+          "share_of_variance_pct": 3.3
+        }
+      ]
+    },
+    "injected_cause_recovery": [
+      {
+        "injected_cause": "machine_downtime",
+        "rank": 1,
+        "top1": true,
+        "top3": true
+      },
+      {
+        "injected_cause": "demand_volatility",
+        "rank": 1,
+        "top1": true,
+        "top3": true
+      }
+    ],
+    "target": "delivery_to_distributor",
+    "target_stats": {
+      "mean": 2.986068803549643,
+      "median": 2.952003619357969,
+      "std": 1.4009946334594319,
+      "min": 0.0,
+      "max": 9.528524165463311,
+      "p10": 1.1659341168870465,
+      "p90": 4.771921570789327,
+      "current_value": 2.952003619357969
+    },
+    "interventions": [
+      {
+        "lever": "production_schedule_stability",
+        "hops_to_target": 2,
+        "stats": {
+          "mean": 69.36723908426454,
+          "median": 70.9378511898912,
+          "std": 13.217444474172131,
+          "min": 0.0,
+          "max": 100.0,
+          "p10": 52.502968851376835,
+          "p90": 84.25288441081966,
+          "current_value": 70.9378511898912
+        },
+        "intervention": {
+          "target": "delivery_to_distributor",
+          "new_value": 52.502968851376835,
+          "baseline_mean": 2.986068803549643,
+          "intervened_mean": 3.9255126016340642,
+          "effect": 0.939443798084421
+        },
+        "shift": {
+          "target": "delivery_to_distributor",
+          "delta": -13.217444474172131,
+          "baseline_mean": 2.986068803549643,
+          "intervened_mean": 3.6898651357045855,
+          "effect": 0.7037963321549423
+        }
+      },
+      {
+        "lever": "production_volume",
+        "hops_to_target": 2,
+        "stats": {
+          "mean": 806.7723605258138,
+          "median": 816.2201121426696,
+          "std": 108.50459910779334,
+          "min": 315.67484639154696,
+          "max": 1116.1006309917866,
+          "p10": 663.6322572509731,
+          "p90": 938.2121277531122,
+          "current_value": 816.2201121426696
+        },
+        "intervention": {
+          "target": "delivery_to_distributor",
+          "new_value": 663.6322572509731,
+          "baseline_mean": 2.986068803549643,
+          "intervened_mean": 3.2316787322748612,
+          "effect": 0.24560992872521803
+        },
+        "shift": {
+          "target": "delivery_to_distributor",
+          "delta": -108.50459910779334,
+          "baseline_mean": 2.986068803549643,
+          "intervened_mean": 3.1756337826820555,
+          "effect": 0.18956497913241233
+        }
+      }
+    ]
+  },
+  {
+    "name": "syn_data_97_5000.csv",
+    "seed": 97,
+    "n_rows": 5000,
+    "lambda": 0.1,
+    "algo": "HC",
+    "type": "gemini_consensus",
+    "prior_name": "gemini_consensus_prior",
+    "shd": 2,
+    "precision": 0.8,
+    "recall": 0.89,
+    "f1": 0.84,
+    "dag_json": {
+      "nodes": [
+        {
+          "id": "machine_downtime"
+        },
+        {
+          "id": "demand_volatility"
+        },
+        {
+          "id": "material_delay"
+        },
+        {
+          "id": "sales_order_quantity"
+        },
+        {
+          "id": "production_schedule_stability"
+        },
+        {
+          "id": "production_volume"
+        },
+        {
+          "id": "factory_issues"
+        },
+        {
+          "id": "vehicle_fill_rate"
+        },
+        {
+          "id": "delivery_to_distributor"
+        }
+      ],
+      "links": [
+        {
+          "source": "demand_volatility",
+          "target": "machine_downtime"
+        },
+        {
+          "source": "demand_volatility",
+          "target": "production_volume"
+        },
+        {
+          "source": "demand_volatility",
+          "target": "production_schedule_stability"
+        },
+        {
+          "source": "material_delay",
+          "target": "production_volume"
+        },
+        {
+          "source": "sales_order_quantity",
+          "target": "delivery_to_distributor"
+        },
+        {
+          "source": "production_schedule_stability",
+          "target": "factory_issues"
+        },
+        {
+          "source": "production_schedule_stability",
+          "target": "machine_downtime"
+        },
+        {
+          "source": "production_volume",
+          "target": "vehicle_fill_rate"
+        },
+        {
+          "source": "factory_issues",
+          "target": "delivery_to_distributor"
+        },
+        {
+          "source": "vehicle_fill_rate",
+          "target": "delivery_to_distributor"
+        }
+      ]
+    },
+    "attribution": {
+      "decomposition": [
+        {
+          "node": "delivery_to_distributor",
+          "share_pct": 28.0
+        },
+        {
+          "node": "production_schedule_stability",
+          "share_pct": 27.7
+        },
+        {
+          "node": "factory_issues",
+          "share_pct": 11.7
+        },
+        {
+          "node": "sales_order_quantity",
+          "share_pct": 11.0
+        },
+        {
+          "node": "demand_volatility",
+          "share_pct": 9.4
+        },
+        {
+          "node": "material_delay",
+          "share_pct": 5.0
+        },
+        {
+          "node": "vehicle_fill_rate",
+          "share_pct": 4.3
+        },
+        {
+          "node": "production_volume",
+          "share_pct": 2.9
+        }
+      ],
+      "drivers": [
+        {
+          "source": "factory_issues",
+          "target": "delivery_to_distributor",
+          "strength": 0.7787337227026716,
+          "share_of_variance_pct": 39.8
+        },
+        {
+          "source": "sales_order_quantity",
+          "target": "delivery_to_distributor",
+          "strength": 0.10429833183027773,
+          "share_of_variance_pct": 5.3
+        },
+        {
+          "source": "vehicle_fill_rate",
+          "target": "delivery_to_distributor",
+          "strength": 0.06535111009261169,
+          "share_of_variance_pct": 3.3
+        }
+      ]
+    },
+    "injected_cause_recovery": [
+      {
+        "injected_cause": "machine_downtime",
+        "rank": 99,
+        "top1": false,
+        "top3": false
+      },
+      {
+        "injected_cause": "demand_volatility",
+        "rank": 1,
+        "top1": true,
+        "top3": true
+      }
+    ],
+    "target": "delivery_to_distributor",
+    "target_stats": {
+      "mean": 3.008372767219544,
+      "median": 2.958885334165642,
+      "std": 1.3992444274765166,
+      "min": 0.0,
+      "max": 8.434285521114216,
+      "p10": 1.239623089919552,
+      "p90": 4.839010573606503,
+      "current_value": 2.958885334165642
+    },
+    "interventions": [
+      {
+        "lever": "production_schedule_stability",
+        "hops_to_target": 2,
+        "stats": {
+          "mean": 68.8975734250479,
+          "median": 70.50554055549244,
+          "std": 13.491587542924071,
+          "min": 0.0,
+          "max": 100.0,
+          "p10": 51.28897638917727,
+          "p90": 84.2730550146467,
+          "current_value": 70.50554055549244
+        },
+        "intervention": {
+          "target": "delivery_to_distributor",
+          "new_value": 51.28897638917727,
+          "baseline_mean": 3.008372767219544,
+          "intervened_mean": 3.984112024360706,
+          "effect": 0.975739257141162
+        },
+        "shift": {
+          "target": "delivery_to_distributor",
+          "delta": -13.491587542924071,
+          "baseline_mean": 3.008372767219544,
+          "intervened_mean": 3.763131117135967,
+          "effect": 0.7547583499164232
+        }
+      },
+      {
+        "lever": "production_volume",
+        "hops_to_target": 2,
+        "stats": {
+          "mean": 805.3365003741293,
+          "median": 813.7375815058006,
+          "std": 107.64278183240515,
+          "min": 188.7446948409758,
+          "max": 1142.85455312566,
+          "p10": 670.0949751388825,
+          "p90": 931.1971858253896,
+          "current_value": 813.7375815058006
+        },
+        "intervention": {
+          "target": "delivery_to_distributor",
+          "new_value": 670.0949751388825,
+          "baseline_mean": 3.008372767219544,
+          "intervened_mean": 3.2427662342052863,
+          "effect": 0.23439346698574237
+        },
+        "shift": {
+          "target": "delivery_to_distributor",
+          "delta": -107.64278183240515,
+          "baseline_mean": 3.008372767219544,
+          "intervened_mean": 3.194660601331394,
+          "effect": 0.1862878341118499
+        }
+      }
+    ]
+  },
+  {
+    "name": "syn_data_5_5000.csv",
+    "seed": 5,
+    "n_rows": 5000,
+    "lambda": 0.1,
+    "algo": "HC",
+    "type": "ollama_llama_consensus",
+    "prior_name": "ollama_llama_consensus_prior",
+    "shd": 2,
+    "precision": 0.8,
+    "recall": 0.89,
+    "f1": 0.84,
+    "dag_json": {
+      "nodes": [
+        {
+          "id": "machine_downtime"
+        },
+        {
+          "id": "demand_volatility"
+        },
+        {
+          "id": "material_delay"
+        },
+        {
+          "id": "sales_order_quantity"
+        },
+        {
+          "id": "production_schedule_stability"
+        },
+        {
+          "id": "production_volume"
+        },
+        {
+          "id": "factory_issues"
+        },
+        {
+          "id": "vehicle_fill_rate"
+        },
+        {
+          "id": "delivery_to_distributor"
+        }
+      ],
+      "links": [
+        {
+          "source": "demand_volatility",
+          "target": "machine_downtime"
+        },
+        {
+          "source": "demand_volatility",
+          "target": "production_volume"
+        },
+        {
+          "source": "demand_volatility",
+          "target": "production_schedule_stability"
+        },
+        {
+          "source": "material_delay",
+          "target": "production_volume"
+        },
+        {
+          "source": "sales_order_quantity",
+          "target": "delivery_to_distributor"
+        },
+        {
+          "source": "production_schedule_stability",
+          "target": "factory_issues"
+        },
+        {
+          "source": "production_schedule_stability",
+          "target": "machine_downtime"
+        },
+        {
+          "source": "production_volume",
+          "target": "vehicle_fill_rate"
+        },
+        {
+          "source": "factory_issues",
+          "target": "delivery_to_distributor"
+        },
+        {
+          "source": "vehicle_fill_rate",
+          "target": "delivery_to_distributor"
+        }
+      ]
+    },
+    "attribution": {
+      "decomposition": [
+        {
+          "node": "delivery_to_distributor",
+          "share_pct": 30.0
+        },
+        {
+          "node": "production_schedule_stability",
+          "share_pct": 24.0
+        },
+        {
+          "node": "sales_order_quantity",
+          "share_pct": 11.9
+        },
+        {
+          "node": "factory_issues",
+          "share_pct": 10.8
+        },
+        {
+          "node": "demand_volatility",
+          "share_pct": 9.2
+        },
+        {
+          "node": "vehicle_fill_rate",
+          "share_pct": 6.8
+        },
+        {
+          "node": "material_delay",
+          "share_pct": 4.6
+        },
+        {
+          "node": "production_volume",
+          "share_pct": 2.8
+        }
+      ],
+      "drivers": [
+        {
+          "source": "factory_issues",
+          "target": "delivery_to_distributor",
+          "strength": 0.7065741312543098,
+          "share_of_variance_pct": 37.7
+        },
+        {
+          "source": "sales_order_quantity",
+          "target": "delivery_to_distributor",
+          "strength": 0.1133329280625513,
+          "share_of_variance_pct": 6.0
+        },
+        {
+          "source": "vehicle_fill_rate",
+          "target": "delivery_to_distributor",
+          "strength": 0.052194079190892514,
+          "share_of_variance_pct": 2.8
+        }
+      ]
+    },
+    "injected_cause_recovery": [
+      {
+        "injected_cause": "machine_downtime",
+        "rank": 99,
+        "top1": false,
+        "top3": false
+      },
+      {
+        "injected_cause": "demand_volatility",
+        "rank": 1,
+        "top1": true,
+        "top3": true
+      }
+    ],
+    "target": "delivery_to_distributor",
+    "target_stats": {
+      "mean": 3.0058258009591388,
+      "median": 2.954878642295551,
+      "std": 1.3697507034748329,
+      "min": 0.0,
+      "max": 8.815308860489814,
+      "p10": 1.2459210242942593,
+      "p90": 4.79754364976354,
+      "current_value": 2.954878642295551
+    },
+    "interventions": [
+      {
+        "lever": "production_schedule_stability",
+        "hops_to_target": 2,
+        "stats": {
+          "mean": 68.7543945082102,
+          "median": 70.36230367374093,
+          "std": 13.32278759725147,
+          "min": 0.0,
+          "max": 100.0,
+          "p10": 51.24285242526212,
+          "p90": 84.07547843160178,
+          "current_value": 70.36230367374093
+        },
+        "intervention": {
+          "target": "delivery_to_distributor",
+          "new_value": 51.24285242526212,
+          "baseline_mean": 3.0058258009591388,
+          "intervened_mean": 3.912679195996153,
+          "effect": 0.9068533950370141
+        },
+        "shift": {
+          "target": "delivery_to_distributor",
+          "delta": -13.32278759725147,
+          "baseline_mean": 3.0058258009591388,
+          "intervened_mean": 3.729772201128109,
+          "effect": 0.7239464001689702
+        }
+      },
+      {
+        "lever": "production_volume",
+        "hops_to_target": 2,
+        "stats": {
+          "mean": 804.5505575473087,
+          "median": 811.522902951117,
+          "std": 107.5483088040819,
+          "min": 290.2332659547225,
+          "max": 1150.514005851544,
+          "p10": 666.330759733372,
+          "p90": 932.183046428687,
+          "current_value": 811.522902951117
+        },
+        "intervention": {
+          "target": "delivery_to_distributor",
+          "new_value": 666.330759733372,
+          "baseline_mean": 3.0058258009591388,
+          "intervened_mean": 3.2296285154210196,
+          "effect": 0.22380271446188083
+        },
+        "shift": {
+          "target": "delivery_to_distributor",
+          "delta": -107.5483088040819,
+          "baseline_mean": 3.0058258009591388,
+          "intervened_mean": 3.1527786294829463,
+          "effect": 0.14695282852380753
+        }
+      }
+    ]
+  },
+  {
+    "name": "syn_data_11_5000.csv",
+    "seed": 11,
+    "n_rows": 5000,
+    "lambda": 0.1,
+    "algo": "HC",
+    "type": "ollama_qwen_consensus",
+    "prior_name": "ollama_qwen_consensus_prior",
+    "shd": 3,
+    "precision": 0.73,
+    "recall": 0.89,
+    "f1": 0.8,
+    "dag_json": {
+      "nodes": [
+        {
+          "id": "machine_downtime"
+        },
+        {
+          "id": "demand_volatility"
+        },
+        {
+          "id": "material_delay"
+        },
+        {
+          "id": "sales_order_quantity"
+        },
+        {
+          "id": "production_schedule_stability"
+        },
+        {
+          "id": "production_volume"
+        },
+        {
+          "id": "factory_issues"
+        },
+        {
+          "id": "vehicle_fill_rate"
+        },
+        {
+          "id": "delivery_to_distributor"
+        }
+      ],
+      "links": [
+        {
+          "source": "machine_downtime",
+          "target": "production_schedule_stability"
+        },
+        {
+          "source": "demand_volatility",
+          "target": "production_schedule_stability"
+        },
+        {
+          "source": "demand_volatility",
+          "target": "production_volume"
+        },
+        {
+          "source": "material_delay",
+          "target": "production_volume"
+        },
+        {
+          "source": "production_schedule_stability",
+          "target": "factory_issues"
+        },
+        {
+          "source": "production_volume",
+          "target": "vehicle_fill_rate"
+        },
+        {
+          "source": "factory_issues",
+          "target": "delivery_to_distributor"
+        },
+        {
+          "source": "factory_issues",
+          "target": "sales_order_quantity"
+        },
+        {
+          "source": "vehicle_fill_rate",
+          "target": "delivery_to_distributor"
+        },
+        {
+          "source": "vehicle_fill_rate",
+          "target": "sales_order_quantity"
+        },
+        {
+          "source": "delivery_to_distributor",
+          "target": "sales_order_quantity"
+        }
+      ]
+    },
+    "attribution": {
+      "decomposition": [
+        {
+          "node": "delivery_to_distributor",
+          "share_pct": 32.0
+        },
+        {
+          "node": "machine_downtime",
+          "share_pct": 28.7
+        },
+        {
+          "node": "factory_issues",
+          "share_pct": 11.4
+        },
+        {
+          "node": "production_schedule_stability",
+          "share_pct": 8.0
+        },
+        {
+          "node": "demand_volatility",
+          "share_pct": 8.0
+        },
+        {
+          "node": "material_delay",
+          "share_pct": 4.5
+        },
+        {
+          "node": "vehicle_fill_rate",
+          "share_pct": 3.9
+        },
+        {
+          "node": "production_volume",
+          "share_pct": 3.4
+        }
+      ],
+      "drivers": [
+        {
+          "source": "factory_issues",
+          "target": "delivery_to_distributor",
+          "strength": 0.8069317747470448,
+          "share_of_variance_pct": 40.3
+        },
+        {
+          "source": "vehicle_fill_rate",
+          "target": "delivery_to_distributor",
+          "strength": 0.051710117993119316,
+          "share_of_variance_pct": 2.6
+        }
+      ]
+    },
+    "injected_cause_recovery": [
+      {
+        "injected_cause": "machine_downtime",
+        "rank": 1,
+        "top1": true,
+        "top3": true
+      },
+      {
+        "injected_cause": "demand_volatility",
+        "rank": 1,
+        "top1": true,
+        "top3": true
+      }
+    ],
+    "target": "delivery_to_distributor",
+    "target_stats": {
+      "mean": 2.9980648694029153,
+      "median": 2.9417262360322125,
+      "std": 1.414343686361302,
+      "min": 0.0,
+      "max": 8.380721141252586,
+      "p10": 1.2116676859487463,
+      "p90": 4.836271542821063,
+      "current_value": 2.9417262360322125
+    },
+    "interventions": [
+      {
+        "lever": "production_schedule_stability",
+        "hops_to_target": 2,
+        "stats": {
+          "mean": 68.64755433857708,
+          "median": 70.28860799428122,
+          "std": 13.642004888182548,
+          "min": 0.0,
+          "max": 100.0,
+          "p10": 51.3592654704361,
+          "p90": 84.03060602677954,
+          "current_value": 70.28860799428122
+        },
+        "intervention": {
+          "target": "delivery_to_distributor",
+          "new_value": 51.3592654704361,
+          "baseline_mean": 2.9980648694029153,
+          "intervened_mean": 3.969814529552228,
+          "effect": 0.9717496601493125
+        },
+        "shift": {
+          "target": "delivery_to_distributor",
+          "delta": -13.642004888182548,
+          "baseline_mean": 2.9980648694029153,
+          "intervened_mean": 3.730078212643729,
+          "effect": 0.7320133432408138
+        }
+      },
+      {
+        "lever": "production_volume",
+        "hops_to_target": 2,
+        "stats": {
+          "mean": 807.2631343741591,
+          "median": 816.0585081922341,
+          "std": 106.627082301216,
+          "min": 140.07123670507855,
+          "max": 1098.1012834442242,
+          "p10": 668.6913322950966,
+          "p90": 936.0486882963284,
+          "current_value": 816.0585081922341
+        },
+        "intervention": {
+          "target": "delivery_to_distributor",
+          "new_value": 668.6913322950966,
+          "baseline_mean": 2.9980648694029153,
+          "intervened_mean": 3.2186929358473346,
+          "effect": 0.22062806644441935
+        },
+        "shift": {
+          "target": "delivery_to_distributor",
+          "delta": -106.627082301216,
+          "baseline_mean": 2.9980648694029153,
+          "intervened_mean": 3.1848119468984355,
+          "effect": 0.18674707749552022
+        }
+      }
+    ]
+  },
+  {
+    "name": "syn_data_97_5000.csv",
+    "seed": 97,
+    "n_rows": 5000,
+    "lambda": 0.1,
+    "algo": "HC",
+    "type": "perfect",
+    "prior_name": "perfect_prior",
+    "shd": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "dag_json": {
+      "nodes": [
+        {
+          "id": "machine_downtime"
+        },
+        {
+          "id": "demand_volatility"
+        },
+        {
+          "id": "material_delay"
+        },
+        {
+          "id": "sales_order_quantity"
+        },
+        {
+          "id": "production_schedule_stability"
+        },
+        {
+          "id": "production_volume"
+        },
+        {
+          "id": "factory_issues"
+        },
+        {
+          "id": "vehicle_fill_rate"
+        },
+        {
+          "id": "delivery_to_distributor"
+        }
+      ],
+      "links": [
+        {
+          "source": "machine_downtime",
+          "target": "production_schedule_stability"
+        },
+        {
+          "source": "demand_volatility",
+          "target": "production_schedule_stability"
+        },
+        {
+          "source": "demand_volatility",
+          "target": "production_volume"
+        },
+        {
+          "source": "material_delay",
+          "target": "production_volume"
+        },
+        {
+          "source": "sales_order_quantity",
+          "target": "delivery_to_distributor"
+        },
+        {
+          "source": "production_schedule_stability",
+          "target": "factory_issues"
+        },
+        {
+          "source": "production_volume",
+          "target": "vehicle_fill_rate"
+        },
+        {
+          "source": "factory_issues",
+          "target": "delivery_to_distributor"
+        },
+        {
+          "source": "vehicle_fill_rate",
+          "target": "delivery_to_distributor"
+        }
+      ]
+    },
+    "attribution": {
+      "decomposition": [
+        {
+          "node": "delivery_to_distributor",
+          "share_pct": 25.2
+        },
+        {
+          "node": "machine_downtime",
+          "share_pct": 25.1
+        },
+        {
+          "node": "factory_issues",
+          "share_pct": 10.5
+        },
+        {
+          "node": "sales_order_quantity",
+          "share_pct": 8.9
+        },
+        {
+          "node": "production_schedule_stability",
+          "share_pct": 8.4
+        },
+        {
+          "node": "demand_volatility",
+          "share_pct": 8.3
+        },
+        {
+          "node": "material_delay",
+          "share_pct": 5.1
+        },
+        {
+          "node": "vehicle_fill_rate",
+          "share_pct": 4.4
+        },
+        {
+          "node": "production_volume",
+          "share_pct": 4.0
+        }
+      ],
+      "drivers": [
+        {
+          "source": "factory_issues",
+          "target": "delivery_to_distributor",
+          "strength": 0.7117836186713848,
+          "share_of_variance_pct": 36.4
+        },
+        {
+          "source": "sales_order_quantity",
+          "target": "delivery_to_distributor",
+          "strength": 0.09941805982084992,
+          "share_of_variance_pct": 5.1
+        },
+        {
+          "source": "vehicle_fill_rate",
+          "target": "delivery_to_distributor",
+          "strength": 0.07315397968074192,
+          "share_of_variance_pct": 3.7
+        }
+      ]
+    },
+    "injected_cause_recovery": [
+      {
+        "injected_cause": "machine_downtime",
+        "rank": 1,
+        "top1": true,
+        "top3": true
+      },
+      {
+        "injected_cause": "demand_volatility",
+        "rank": 1,
+        "top1": true,
+        "top3": true
+      }
+    ],
+    "target": "delivery_to_distributor",
+    "target_stats": {
+      "mean": 3.008372767219544,
+      "median": 2.958885334165642,
+      "std": 1.3992444274765166,
+      "min": 0.0,
+      "max": 8.434285521114216,
+      "p10": 1.239623089919552,
+      "p90": 4.839010573606503,
+      "current_value": 2.958885334165642
+    },
+    "interventions": [
+      {
+        "lever": "production_schedule_stability",
+        "hops_to_target": 2,
+        "stats": {
+          "mean": 68.8975734250479,
+          "median": 70.50554055549244,
+          "std": 13.491587542924071,
+          "min": 0.0,
+          "max": 100.0,
+          "p10": 51.28897638917727,
+          "p90": 84.2730550146467,
+          "current_value": 70.50554055549244
+        },
+        "intervention": {
+          "target": "delivery_to_distributor",
+          "new_value": 51.28897638917727,
+          "baseline_mean": 3.008372767219544,
+          "intervened_mean": 3.9702370108482063,
+          "effect": 0.9618642436286624
+        },
+        "shift": {
+          "target": "delivery_to_distributor",
+          "delta": -13.491587542924071,
+          "baseline_mean": 3.008372767219544,
+          "intervened_mean": 3.734019168943933,
+          "effect": 0.7256464017243891
+        }
+      },
+      {
+        "lever": "production_volume",
+        "hops_to_target": 2,
+        "stats": {
+          "mean": 805.3365003741293,
+          "median": 813.7375815058006,
+          "std": 107.64278183240515,
+          "min": 188.7446948409758,
+          "max": 1142.85455312566,
+          "p10": 670.0949751388825,
+          "p90": 931.1971858253896,
+          "current_value": 813.7375815058006
+        },
+        "intervention": {
+          "target": "delivery_to_distributor",
+          "new_value": 670.0949751388825,
+          "baseline_mean": 3.008372767219544,
+          "intervened_mean": 3.2503276806362424,
+          "effect": 0.2419549134166985
+        },
+        "shift": {
+          "target": "delivery_to_distributor",
+          "delta": -107.64278183240515,
+          "baseline_mean": 3.008372767219544,
+          "intervened_mean": 3.2458825144641246,
+          "effect": 0.23750974724458063
+        }
+      }
+    ]
+  },
+  {
+    "name": "syn_data_41_250.csv",
+    "seed": 41,
+    "n_rows": 250,
+    "lambda": null,
+    "algo": "PC",
+    "type": "Baseline",
+    "prior_name": null,
+    "shd": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "dag_json": {
+      "nodes": [
+        {
+          "id": "machine_downtime"
+        },
+        {
+          "id": "demand_volatility"
+        },
+        {
+          "id": "material_delay"
+        },
+        {
+          "id": "sales_order_quantity"
+        },
+        {
+          "id": "production_schedule_stability"
+        },
+        {
+          "id": "production_volume"
+        },
+        {
+          "id": "factory_issues"
+        },
+        {
+          "id": "vehicle_fill_rate"
+        },
+        {
+          "id": "delivery_to_distributor"
+        }
+      ],
+      "links": [
+        {
+          "source": "machine_downtime",
+          "target": "production_schedule_stability"
+        },
+        {
+          "source": "demand_volatility",
+          "target": "production_schedule_stability"
+        },
+        {
+          "source": "demand_volatility",
+          "target": "production_volume"
+        },
+        {
+          "source": "material_delay",
+          "target": "production_volume"
+        },
+        {
+          "source": "sales_order_quantity",
+          "target": "delivery_to_distributor"
+        },
+        {
+          "source": "production_schedule_stability",
+          "target": "factory_issues"
+        },
+        {
+          "source": "production_volume",
+          "target": "vehicle_fill_rate"
+        },
+        {
+          "source": "factory_issues",
+          "target": "delivery_to_distributor"
+        },
+        {
+          "source": "vehicle_fill_rate",
+          "target": "delivery_to_distributor"
+        }
+      ]
+    },
+    "attribution": {
+      "decomposition": [
+        {
+          "node": "delivery_to_distributor",
+          "share_pct": 25.1
+        },
+        {
+          "node": "machine_downtime",
+          "share_pct": 23.5
+        },
+        {
+          "node": "demand_volatility",
+          "share_pct": 13.1
+        },
+        {
+          "node": "sales_order_quantity",
+          "share_pct": 9.2
+        },
+        {
+          "node": "factory_issues",
+          "share_pct": 8.9
+        },
+        {
+          "node": "production_schedule_stability",
+          "share_pct": 8.0
+        },
+        {
+          "node": "material_delay",
+          "share_pct": 5.5
+        },
+        {
+          "node": "vehicle_fill_rate",
+          "share_pct": 4.9
+        },
+        {
+          "node": "production_volume",
+          "share_pct": 1.9
+        }
+      ],
+      "drivers": [
+        {
+          "source": "factory_issues",
+          "target": "delivery_to_distributor",
+          "strength": 1.177982427358094,
+          "share_of_variance_pct": 46.9
+        },
+        {
+          "source": "sales_order_quantity",
+          "target": "delivery_to_distributor",
+          "strength": 0.16735213931688933,
+          "share_of_variance_pct": 6.7
+        },
+        {
+          "source": "vehicle_fill_rate",
+          "target": "delivery_to_distributor",
+          "strength": 0.09008912514023934,
+          "share_of_variance_pct": 3.6
+        }
+      ]
+    },
+    "injected_cause_recovery": [
+      {
+        "injected_cause": "machine_downtime",
+        "rank": 1,
+        "top1": true,
+        "top3": true
+      },
+      {
+        "injected_cause": "demand_volatility",
+        "rank": 1,
+        "top1": true,
+        "top3": true
+      }
+    ],
+    "target": "delivery_to_distributor",
+    "target_stats": {
+      "mean": 3.037371433266706,
+      "median": 2.9869403028024943,
+      "std": 1.5847317783881476,
+      "min": 0.0,
+      "max": 7.918412843942279,
+      "p10": 1.1607564444710692,
+      "p90": 5.100813255854138,
+      "current_value": 2.9869403028024943
+    },
+    "interventions": [
+      {
+        "lever": "production_schedule_stability",
+        "hops_to_target": 2,
+        "stats": {
+          "mean": 68.80789280004983,
+          "median": 71.79171286120663,
+          "std": 14.954723344132308,
+          "min": 0.0,
+          "max": 95.54739760049073,
+          "p10": 49.45041112047586,
+          "p90": 85.11617306812464,
+          "current_value": 71.79171286120663
+        },
+        "intervention": {
+          "target": "delivery_to_distributor",
+          "new_value": 49.45041112047586,
+          "baseline_mean": 3.037371433266706,
+          "intervened_mean": 4.386766102641961,
+          "effect": 1.3493946693752554
+        },
+        "shift": {
+          "target": "delivery_to_distributor",
+          "delta": -14.954723344132308,
+          "baseline_mean": 3.037371433266706,
+          "intervened_mean": 3.9065012940401247,
+          "effect": 0.8691298607734188
+        }
+      },
+      {
+        "lever": "production_volume",
+        "hops_to_target": 2,
+        "stats": {
+          "mean": 803.0110236785281,
+          "median": 808.419654991561,
+          "std": 104.06880344608885,
+          "min": 473.5848675425465,
+          "max": 1025.6723019855815,
+          "p10": 683.6412856060364,
+          "p90": 931.0711848232468,
+          "current_value": 808.419654991561
+        },
+        "intervention": {
+          "target": "delivery_to_distributor",
+          "new_value": 683.6412856060364,
+          "baseline_mean": 3.037371433266706,
+          "intervened_mean": 3.4186727145480345,
+          "effect": 0.38130128128132856
+        },
+        "shift": {
+          "target": "delivery_to_distributor",
+          "delta": -104.06880344608885,
+          "baseline_mean": 3.037371433266706,
+          "intervened_mean": 3.177068026230613,
+          "effect": 0.13969659296390713
+        }
+      }
+    ]
+  },
+  {
+    "name": "syn_data_41_250.csv",
+    "seed": 41,
+    "n_rows": 250,
+    "lambda": null,
+    "algo": "PC",
+    "type": "ollama_llama_consensus",
+    "prior_name": "ollama_llama_consensus_prior",
+    "shd": 1,
+    "precision": 0.89,
+    "recall": 0.89,
+    "f1": 0.89,
+    "dag_json": {
+      "nodes": [
+        {
+          "id": "machine_downtime"
+        },
+        {
+          "id": "demand_volatility"
+        },
+        {
+          "id": "material_delay"
+        },
+        {
+          "id": "sales_order_quantity"
+        },
+        {
+          "id": "production_schedule_stability"
+        },
+        {
+          "id": "production_volume"
+        },
+        {
+          "id": "factory_issues"
+        },
+        {
+          "id": "vehicle_fill_rate"
+        },
+        {
+          "id": "delivery_to_distributor"
+        }
+      ],
+      "links": [
+        {
+          "source": "demand_volatility",
+          "target": "production_schedule_stability"
+        },
+        {
+          "source": "demand_volatility",
+          "target": "production_volume"
+        },
+        {
+          "source": "material_delay",
+          "target": "production_volume"
+        },
+        {
+          "source": "sales_order_quantity",
+          "target": "delivery_to_distributor"
+        },
+        {
+          "source": "production_schedule_stability",
+          "target": "machine_downtime"
+        },
+        {
+          "source": "production_schedule_stability",
+          "target": "factory_issues"
+        },
+        {
+          "source": "production_volume",
+          "target": "vehicle_fill_rate"
+        },
+        {
+          "source": "factory_issues",
+          "target": "delivery_to_distributor"
+        },
+        {
+          "source": "vehicle_fill_rate",
+          "target": "delivery_to_distributor"
+        }
+      ]
+    },
+    "attribution": {
+      "decomposition": [
+        {
+          "node": "delivery_to_distributor",
+          "share_pct": 26.8
+        },
+        {
+          "node": "production_schedule_stability",
+          "share_pct": 23.7
+        },
+        {
+          "node": "demand_volatility",
+          "share_pct": 14.5
+        },
+        {
+          "node": "factory_issues",
+          "share_pct": 12.8
+        },
+        {
+          "node": "sales_order_quantity",
+          "share_pct": 6.6
+        },
+        {
+          "node": "vehicle_fill_rate",
+          "share_pct": 6.6
+        },
+        {
+          "node": "material_delay",
+          "share_pct": 5.9
+        },
+        {
+          "node": "production_volume",
+          "share_pct": 3.3
+        }
+      ],
+      "drivers": [
+        {
+          "source": "factory_issues",
+          "target": "delivery_to_distributor",
+          "strength": 1.2311468819623617,
+          "share_of_variance_pct": 49.0
+        },
+        {
+          "source": "sales_order_quantity",
+          "target": "delivery_to_distributor",
+          "strength": 0.14577807464377415,
+          "share_of_variance_pct": 5.8
+        },
+        {
+          "source": "vehicle_fill_rate",
+          "target": "delivery_to_distributor",
+          "strength": 0.09738611697477578,
+          "share_of_variance_pct": 3.9
+        }
+      ]
+    },
+    "injected_cause_recovery": [
+      {
+        "injected_cause": "machine_downtime",
+        "rank": 99,
+        "top1": false,
+        "top3": false
+      },
+      {
+        "injected_cause": "demand_volatility",
+        "rank": 1,
+        "top1": true,
+        "top3": true
+      }
+    ],
+    "target": "delivery_to_distributor",
+    "target_stats": {
+      "mean": 3.037371433266706,
+      "median": 2.9869403028024943,
+      "std": 1.5847317783881476,
+      "min": 0.0,
+      "max": 7.918412843942279,
+      "p10": 1.1607564444710692,
+      "p90": 5.100813255854138,
+      "current_value": 2.9869403028024943
+    },
+    "interventions": [
+      {
+        "lever": "production_schedule_stability",
+        "hops_to_target": 2,
+        "stats": {
+          "mean": 68.80789280004983,
+          "median": 71.79171286120663,
+          "std": 14.954723344132308,
+          "min": 0.0,
+          "max": 95.54739760049073,
+          "p10": 49.45041112047586,
+          "p90": 85.11617306812464,
+          "current_value": 71.79171286120663
+        },
+        "intervention": {
+          "target": "delivery_to_distributor",
+          "new_value": 49.45041112047586,
+          "baseline_mean": 3.037371433266706,
+          "intervened_mean": 4.313625166569768,
+          "effect": 1.276253733303062
+        },
+        "shift": {
+          "target": "delivery_to_distributor",
+          "delta": -14.954723344132308,
+          "baseline_mean": 3.037371433266706,
+          "intervened_mean": 4.0739474604183625,
+          "effect": 1.0365760271516566
+        }
+      },
+      {
+        "lever": "production_volume",
+        "hops_to_target": 2,
+        "stats": {
+          "mean": 803.0110236785281,
+          "median": 808.419654991561,
+          "std": 104.06880344608885,
+          "min": 473.5848675425465,
+          "max": 1025.6723019855815,
+          "p10": 683.6412856060364,
+          "p90": 931.0711848232468,
+          "current_value": 808.419654991561
+        },
+        "intervention": {
+          "target": "delivery_to_distributor",
+          "new_value": 683.6412856060364,
+          "baseline_mean": 3.037371433266706,
+          "intervened_mean": 3.365297183861104,
+          "effect": 0.3279257505943982
+        },
+        "shift": {
+          "target": "delivery_to_distributor",
+          "delta": -104.06880344608885,
+          "baseline_mean": 3.037371433266706,
+          "intervened_mean": 3.210628867117813,
+          "effect": 0.17325743385110703
+        }
+      }
+    ]
+  },
+  {
+    "name": "syn_data_41_250.csv",
+    "seed": 41,
+    "n_rows": 250,
+    "lambda": null,
+    "algo": "PC",
+    "type": "ollama_qwen_consensus",
+    "prior_name": "ollama_qwen_consensus_prior",
+    "shd": 1,
+    "precision": 0.89,
+    "recall": 0.89,
+    "f1": 0.89,
+    "dag_json": {
+      "nodes": [
+        {
+          "id": "machine_downtime"
+        },
+        {
+          "id": "demand_volatility"
+        },
+        {
+          "id": "material_delay"
+        },
+        {
+          "id": "sales_order_quantity"
+        },
+        {
+          "id": "production_schedule_stability"
+        },
+        {
+          "id": "production_volume"
+        },
+        {
+          "id": "factory_issues"
+        },
+        {
+          "id": "vehicle_fill_rate"
+        },
+        {
+          "id": "delivery_to_distributor"
+        }
+      ],
+      "links": [
+        {
+          "source": "machine_downtime",
+          "target": "production_schedule_stability"
+        },
+        {
+          "source": "demand_volatility",
+          "target": "production_schedule_stability"
+        },
+        {
+          "source": "demand_volatility",
+          "target": "production_volume"
+        },
+        {
+          "source": "material_delay",
+          "target": "production_volume"
+        },
+        {
+          "source": "production_schedule_stability",
+          "target": "factory_issues"
+        },
+        {
+          "source": "production_volume",
+          "target": "vehicle_fill_rate"
+        },
+        {
+          "source": "factory_issues",
+          "target": "delivery_to_distributor"
+        },
+        {
+          "source": "vehicle_fill_rate",
+          "target": "delivery_to_distributor"
+        },
+        {
+          "source": "delivery_to_distributor",
+          "target": "sales_order_quantity"
+        }
+      ]
+    },
+    "attribution": {
+      "decomposition": [
+        {
+          "node": "delivery_to_distributor",
+          "share_pct": 25.2
+        },
+        {
+          "node": "machine_downtime",
+          "share_pct": 22.4
+        },
+        {
+          "node": "factory_issues",
+          "share_pct": 14.5
+        },
+        {
+          "node": "demand_volatility",
+          "share_pct": 13.8
+        },
+        {
+          "node": "production_schedule_stability",
+          "share_pct": 9.9
+        },
+        {
+          "node": "vehicle_fill_rate",
+          "share_pct": 6.7
+        },
+        {
+          "node": "material_delay",
+          "share_pct": 5.3
+        },
+        {
+          "node": "production_volume",
+          "share_pct": 2.1
+        }
+      ],
+      "drivers": [
+        {
+          "source": "factory_issues",
+          "target": "delivery_to_distributor",
+          "strength": 1.197576053017639,
+          "share_of_variance_pct": 47.7
+        },
+        {
+          "source": "vehicle_fill_rate",
+          "target": "delivery_to_distributor",
+          "strength": 0.1163500808728777,
+          "share_of_variance_pct": 4.6
+        }
+      ]
+    },
+    "injected_cause_recovery": [
+      {
+        "injected_cause": "machine_downtime",
+        "rank": 1,
+        "top1": true,
+        "top3": true
+      },
+      {
+        "injected_cause": "demand_volatility",
+        "rank": 1,
+        "top1": true,
+        "top3": true
+      }
+    ],
+    "target": "delivery_to_distributor",
+    "target_stats": {
+      "mean": 3.037371433266706,
+      "median": 2.9869403028024943,
+      "std": 1.5847317783881476,
+      "min": 0.0,
+      "max": 7.918412843942279,
+      "p10": 1.1607564444710692,
+      "p90": 5.100813255854138,
+      "current_value": 2.9869403028024943
+    },
+    "interventions": [
+      {
+        "lever": "production_schedule_stability",
+        "hops_to_target": 2,
+        "stats": {
+          "mean": 68.80789280004983,
+          "median": 71.79171286120663,
+          "std": 14.954723344132308,
+          "min": 0.0,
+          "max": 95.54739760049073,
+          "p10": 49.45041112047586,
+          "p90": 85.11617306812464,
+          "current_value": 71.79171286120663
+        },
+        "intervention": {
+          "target": "delivery_to_distributor",
+          "new_value": 49.45041112047586,
+          "baseline_mean": 3.037371433266706,
+          "intervened_mean": 4.2239568263389415,
+          "effect": 1.1865853930722357
+        },
+        "shift": {
+          "target": "delivery_to_distributor",
+          "delta": -14.954723344132308,
+          "baseline_mean": 3.037371433266706,
+          "intervened_mean": 3.8968047385154114,
+          "effect": 0.8594333052487055
+        }
+      },
+      {
+        "lever": "production_volume",
+        "hops_to_target": 2,
+        "stats": {
+          "mean": 803.0110236785281,
+          "median": 808.419654991561,
+          "std": 104.06880344608885,
+          "min": 473.5848675425465,
+          "max": 1025.6723019855815,
+          "p10": 683.6412856060364,
+          "p90": 931.0711848232468,
+          "current_value": 808.419654991561
+        },
+        "intervention": {
+          "target": "delivery_to_distributor",
+          "new_value": 683.6412856060364,
+          "baseline_mean": 3.037371433266706,
+          "intervened_mean": 3.2985263406852066,
+          "effect": 0.26115490741850067
+        },
+        "shift": {
+          "target": "delivery_to_distributor",
+          "delta": -104.06880344608885,
+          "baseline_mean": 3.037371433266706,
+          "intervened_mean": 3.2477229024821668,
+          "effect": 0.21035146921546088
+        }
+      }
+    ]
+  },
+  {
+    "name": "syn_data_41_250.csv",
+    "seed": 41,
+    "n_rows": 250,
+    "lambda": null,
+    "algo": "PC",
+    "type": "gemini_consensus",
+    "prior_name": "gemini_consensus_prior",
+    "shd": 1,
+    "precision": 0.89,
+    "recall": 0.89,
+    "f1": 0.89,
+    "dag_json": {
+      "nodes": [
+        {
+          "id": "machine_downtime"
+        },
+        {
+          "id": "demand_volatility"
+        },
+        {
+          "id": "material_delay"
+        },
+        {
+          "id": "sales_order_quantity"
+        },
+        {
+          "id": "production_schedule_stability"
+        },
+        {
+          "id": "production_volume"
+        },
+        {
+          "id": "factory_issues"
+        },
+        {
+          "id": "vehicle_fill_rate"
+        },
+        {
+          "id": "delivery_to_distributor"
+        }
+      ],
+      "links": [
+        {
+          "source": "demand_volatility",
+          "target": "production_schedule_stability"
+        },
+        {
+          "source": "demand_volatility",
+          "target": "production_volume"
+        },
+        {
+          "source": "material_delay",
+          "target": "production_volume"
+        },
+        {
+          "source": "sales_order_quantity",
+          "target": "delivery_to_distributor"
+        },
+        {
+          "source": "production_schedule_stability",
+          "target": "machine_downtime"
+        },
+        {
+          "source": "production_schedule_stability",
+          "target": "factory_issues"
+        },
+        {
+          "source": "production_volume",
+          "target": "vehicle_fill_rate"
+        },
+        {
+          "source": "factory_issues",
+          "target": "delivery_to_distributor"
+        },
+        {
+          "source": "vehicle_fill_rate",
+          "target": "delivery_to_distributor"
+        }
+      ]
+    },
+    "attribution": {
+      "decomposition": [
+        {
+          "node": "production_schedule_stability",
+          "share_pct": 25.6
+        },
+        {
+          "node": "delivery_to_distributor",
+          "share_pct": 24.7
+        },
+        {
+          "node": "demand_volatility",
+          "share_pct": 13.5
+        },
+        {
+          "node": "factory_issues",
+          "share_pct": 10.8
+        },
+        {
+          "node": "sales_order_quantity",
+          "share_pct": 9.5
+        },
+        {
+          "node": "vehicle_fill_rate",
+          "share_pct": 7.2
+        },
+        {
+          "node": "material_delay",
+          "share_pct": 5.6
+        },
+        {
+          "node": "production_volume",
+          "share_pct": 3.1
+        }
+      ],
+      "drivers": [
+        {
+          "source": "factory_issues",
+          "target": "delivery_to_distributor",
+          "strength": 1.2084069338207735,
+          "share_of_variance_pct": 48.1
+        },
+        {
+          "source": "sales_order_quantity",
+          "target": "delivery_to_distributor",
+          "strength": 0.16323359469516452,
+          "share_of_variance_pct": 6.5
+        },
+        {
+          "source": "vehicle_fill_rate",
+          "target": "delivery_to_distributor",
+          "strength": 0.09195166933850606,
+          "share_of_variance_pct": 3.7
+        }
+      ]
+    },
+    "injected_cause_recovery": [
+      {
+        "injected_cause": "machine_downtime",
+        "rank": 99,
+        "top1": false,
+        "top3": false
+      },
+      {
+        "injected_cause": "demand_volatility",
+        "rank": 1,
+        "top1": true,
+        "top3": true
+      }
+    ],
+    "target": "delivery_to_distributor",
+    "target_stats": {
+      "mean": 3.037371433266706,
+      "median": 2.9869403028024943,
+      "std": 1.5847317783881476,
+      "min": 0.0,
+      "max": 7.918412843942279,
+      "p10": 1.1607564444710692,
+      "p90": 5.100813255854138,
+      "current_value": 2.9869403028024943
+    },
+    "interventions": [
+      {
+        "lever": "production_schedule_stability",
+        "hops_to_target": 2,
+        "stats": {
+          "mean": 68.80789280004983,
+          "median": 71.79171286120663,
+          "std": 14.954723344132308,
+          "min": 0.0,
+          "max": 95.54739760049073,
+          "p10": 49.45041112047586,
+          "p90": 85.11617306812464,
+          "current_value": 71.79171286120663
+        },
+        "intervention": {
+          "target": "delivery_to_distributor",
+          "new_value": 49.45041112047586,
+          "baseline_mean": 3.037371433266706,
+          "intervened_mean": 4.27471171473403,
+          "effect": 1.2373402814673242
+        },
+        "shift": {
+          "target": "delivery_to_distributor",
+          "delta": -14.954723344132308,
+          "baseline_mean": 3.037371433266706,
+          "intervened_mean": 3.9568695582077837,
+          "effect": 0.9194981249410779
+        }
+      },
+      {
+        "lever": "production_volume",
+        "hops_to_target": 2,
+        "stats": {
+          "mean": 803.0110236785281,
+          "median": 808.419654991561,
+          "std": 104.06880344608885,
+          "min": 473.5848675425465,
+          "max": 1025.6723019855815,
+          "p10": 683.6412856060364,
+          "p90": 931.0711848232468,
+          "current_value": 808.419654991561
+        },
+        "intervention": {
+          "target": "delivery_to_distributor",
+          "new_value": 683.6412856060364,
+          "baseline_mean": 3.037371433266706,
+          "intervened_mean": 3.374986303326418,
+          "effect": 0.33761487005971214
+        },
+        "shift": {
+          "target": "delivery_to_distributor",
+          "delta": -104.06880344608885,
+          "baseline_mean": 3.037371433266706,
+          "intervened_mean": 3.3980174987637595,
+          "effect": 0.3606460654970536
+        }
+      }
+    ]
+  },
+  {
+    "name": "syn_data_41_250.csv",
+    "seed": 41,
+    "n_rows": 250,
+    "lambda": null,
+    "algo": "PC",
+    "type": "perfect",
+    "prior_name": "perfect_prior",
+    "shd": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "dag_json": {
+      "nodes": [
+        {
+          "id": "machine_downtime"
+        },
+        {
+          "id": "demand_volatility"
+        },
+        {
+          "id": "material_delay"
+        },
+        {
+          "id": "sales_order_quantity"
+        },
+        {
+          "id": "production_schedule_stability"
+        },
+        {
+          "id": "production_volume"
+        },
+        {
+          "id": "factory_issues"
+        },
+        {
+          "id": "vehicle_fill_rate"
+        },
+        {
+          "id": "delivery_to_distributor"
+        }
+      ],
+      "links": [
+        {
+          "source": "machine_downtime",
+          "target": "production_schedule_stability"
+        },
+        {
+          "source": "demand_volatility",
+          "target": "production_schedule_stability"
+        },
+        {
+          "source": "demand_volatility",
+          "target": "production_volume"
+        },
+        {
+          "source": "material_delay",
+          "target": "production_volume"
+        },
+        {
+          "source": "sales_order_quantity",
+          "target": "delivery_to_distributor"
+        },
+        {
+          "source": "production_schedule_stability",
+          "target": "factory_issues"
+        },
+        {
+          "source": "production_volume",
+          "target": "vehicle_fill_rate"
+        },
+        {
+          "source": "factory_issues",
+          "target": "delivery_to_distributor"
+        },
+        {
+          "source": "vehicle_fill_rate",
+          "target": "delivery_to_distributor"
+        }
+      ]
+    },
+    "attribution": {
+      "decomposition": [
+        {
+          "node": "delivery_to_distributor",
+          "share_pct": 24.8
+        },
+        {
+          "node": "machine_downtime",
+          "share_pct": 21.2
+        },
+        {
+          "node": "factory_issues",
+          "share_pct": 12.2
+        },
+        {
+          "node": "demand_volatility",
+          "share_pct": 11.8
+        },
+        {
+          "node": "sales_order_quantity",
+          "share_pct": 10.0
+        },
+        {
+          "node": "production_schedule_stability",
+          "share_pct": 8.0
+        },
+        {
+          "node": "material_delay",
+          "share_pct": 5.1
+        },
+        {
+          "node": "vehicle_fill_rate",
+          "share_pct": 4.5
+        },
+        {
+          "node": "production_volume",
+          "share_pct": 2.4
+        }
+      ],
+      "drivers": [
+        {
+          "source": "factory_issues",
+          "target": "delivery_to_distributor",
+          "strength": 1.169096944080039,
+          "share_of_variance_pct": 46.6
+        },
+        {
+          "source": "sales_order_quantity",
+          "target": "delivery_to_distributor",
+          "strength": 0.16514908851703722,
+          "share_of_variance_pct": 6.6
+        },
+        {
+          "source": "vehicle_fill_rate",
+          "target": "delivery_to_distributor",
+          "strength": 0.0855312680983975,
+          "share_of_variance_pct": 3.4
+        }
+      ]
+    },
+    "injected_cause_recovery": [
+      {
+        "injected_cause": "machine_downtime",
+        "rank": 1,
+        "top1": true,
+        "top3": true
+      },
+      {
+        "injected_cause": "demand_volatility",
+        "rank": 1,
+        "top1": true,
+        "top3": true
+      }
+    ],
+    "target": "delivery_to_distributor",
+    "target_stats": {
+      "mean": 3.037371433266706,
+      "median": 2.9869403028024943,
+      "std": 1.5847317783881476,
+      "min": 0.0,
+      "max": 7.918412843942279,
+      "p10": 1.1607564444710692,
+      "p90": 5.100813255854138,
+      "current_value": 2.9869403028024943
+    },
+    "interventions": [
+      {
+        "lever": "production_schedule_stability",
+        "hops_to_target": 2,
+        "stats": {
+          "mean": 68.80789280004983,
+          "median": 71.79171286120663,
+          "std": 14.954723344132308,
+          "min": 0.0,
+          "max": 95.54739760049073,
+          "p10": 49.45041112047586,
+          "p90": 85.11617306812464,
+          "current_value": 71.79171286120663
+        },
+        "intervention": {
+          "target": "delivery_to_distributor",
+          "new_value": 49.45041112047586,
+          "baseline_mean": 3.037371433266706,
+          "intervened_mean": 4.256371385606493,
+          "effect": 1.2189999523397872
+        },
+        "shift": {
+          "target": "delivery_to_distributor",
+          "delta": -14.954723344132308,
+          "baseline_mean": 3.037371433266706,
+          "intervened_mean": 3.897320953422071,
+          "effect": 0.8599495201553653
+        }
+      },
+      {
+        "lever": "production_volume",
+        "hops_to_target": 2,
+        "stats": {
+          "mean": 803.0110236785281,
+          "median": 808.419654991561,
+          "std": 104.06880344608885,
+          "min": 473.5848675425465,
+          "max": 1025.6723019855815,
+          "p10": 683.6412856060364,
+          "p90": 931.0711848232468,
+          "current_value": 808.419654991561
+        },
+        "intervention": {
+          "target": "delivery_to_distributor",
+          "new_value": 683.6412856060364,
+          "baseline_mean": 3.037371433266706,
+          "intervened_mean": 3.3970661154393365,
+          "effect": 0.35969468217263056
+        },
+        "shift": {
+          "target": "delivery_to_distributor",
+          "delta": -104.06880344608885,
+          "baseline_mean": 3.037371433266706,
+          "intervened_mean": 3.226303756651837,
+          "effect": 0.188932323385131
+        }
+      }
+    ]
+  },
+  {
+    "name": "syn_data_97_5000.csv",
+    "seed": 97,
+    "n_rows": 5000,
+    "lambda": null,
+    "algo": "PC",
+    "type": "Baseline",
+    "prior_name": null,
+    "shd": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "dag_json": {
+      "nodes": [
+        {
+          "id": "machine_downtime"
+        },
+        {
+          "id": "demand_volatility"
+        },
+        {
+          "id": "material_delay"
+        },
+        {
+          "id": "sales_order_quantity"
+        },
+        {
+          "id": "production_schedule_stability"
+        },
+        {
+          "id": "production_volume"
+        },
+        {
+          "id": "factory_issues"
+        },
+        {
+          "id": "vehicle_fill_rate"
+        },
+        {
+          "id": "delivery_to_distributor"
+        }
+      ],
+      "links": [
+        {
+          "source": "machine_downtime",
+          "target": "production_schedule_stability"
+        },
+        {
+          "source": "demand_volatility",
+          "target": "production_schedule_stability"
+        },
+        {
+          "source": "demand_volatility",
+          "target": "production_volume"
+        },
+        {
+          "source": "material_delay",
+          "target": "production_volume"
+        },
+        {
+          "source": "sales_order_quantity",
+          "target": "delivery_to_distributor"
+        },
+        {
+          "source": "production_schedule_stability",
+          "target": "factory_issues"
+        },
+        {
+          "source": "production_volume",
+          "target": "vehicle_fill_rate"
+        },
+        {
+          "source": "factory_issues",
+          "target": "delivery_to_distributor"
+        },
+        {
+          "source": "vehicle_fill_rate",
+          "target": "delivery_to_distributor"
+        }
+      ]
+    },
+    "attribution": {
+      "decomposition": [
+        {
+          "node": "delivery_to_distributor",
+          "share_pct": 28.7
+        },
+        {
+          "node": "machine_downtime",
+          "share_pct": 24.1
+        },
+        {
+          "node": "factory_issues",
+          "share_pct": 9.8
+        },
+        {
+          "node": "sales_order_quantity",
+          "share_pct": 9.3
+        },
+        {
+          "node": "demand_volatility",
+          "share_pct": 8.0
+        },
+        {
+          "node": "production_schedule_stability",
+          "share_pct": 7.2
+        },
+        {
+          "node": "vehicle_fill_rate",
+          "share_pct": 4.7
+        },
+        {
+          "node": "material_delay",
+          "share_pct": 4.5
+        },
+        {
+          "node": "production_volume",
+          "share_pct": 3.7
+        }
+      ],
+      "drivers": [
+        {
+          "source": "factory_issues",
+          "target": "delivery_to_distributor",
+          "strength": 0.7727963726224985,
+          "share_of_variance_pct": 39.5
+        },
+        {
+          "source": "sales_order_quantity",
+          "target": "delivery_to_distributor",
+          "strength": 0.11125235574345729,
+          "share_of_variance_pct": 5.7
+        },
+        {
+          "source": "vehicle_fill_rate",
+          "target": "delivery_to_distributor",
+          "strength": 0.05450536954288466,
+          "share_of_variance_pct": 2.8
+        }
+      ]
+    },
+    "injected_cause_recovery": [
+      {
+        "injected_cause": "machine_downtime",
+        "rank": 1,
+        "top1": true,
+        "top3": true
+      },
+      {
+        "injected_cause": "demand_volatility",
+        "rank": 1,
+        "top1": true,
+        "top3": true
+      }
+    ],
+    "target": "delivery_to_distributor",
+    "target_stats": {
+      "mean": 3.008372767219544,
+      "median": 2.958885334165642,
+      "std": 1.3992444274765166,
+      "min": 0.0,
+      "max": 8.434285521114216,
+      "p10": 1.239623089919552,
+      "p90": 4.839010573606503,
+      "current_value": 2.958885334165642
+    },
+    "interventions": [
+      {
+        "lever": "production_schedule_stability",
+        "hops_to_target": 2,
+        "stats": {
+          "mean": 68.8975734250479,
+          "median": 70.50554055549244,
+          "std": 13.491587542924071,
+          "min": 0.0,
+          "max": 100.0,
+          "p10": 51.28897638917727,
+          "p90": 84.2730550146467,
+          "current_value": 70.50554055549244
+        },
+        "intervention": {
+          "target": "delivery_to_distributor",
+          "new_value": 51.28897638917727,
+          "baseline_mean": 3.008372767219544,
+          "intervened_mean": 3.9917222925379146,
+          "effect": 0.9833495253183706
+        },
+        "shift": {
+          "target": "delivery_to_distributor",
+          "delta": -13.491587542924071,
+          "baseline_mean": 3.008372767219544,
+          "intervened_mean": 3.7526399454656647,
+          "effect": 0.7442671782461208
+        }
+      },
+      {
+        "lever": "production_volume",
+        "hops_to_target": 2,
+        "stats": {
+          "mean": 805.3365003741293,
+          "median": 813.7375815058006,
+          "std": 107.64278183240515,
+          "min": 188.7446948409758,
+          "max": 1142.85455312566,
+          "p10": 670.0949751388825,
+          "p90": 931.1971858253896,
+          "current_value": 813.7375815058006
+        },
+        "intervention": {
+          "target": "delivery_to_distributor",
+          "new_value": 670.0949751388825,
+          "baseline_mean": 3.008372767219544,
+          "intervened_mean": 3.282048246643145,
+          "effect": 0.27367547942360115
+        },
+        "shift": {
+          "target": "delivery_to_distributor",
+          "delta": -107.64278183240515,
+          "baseline_mean": 3.008372767219544,
+          "intervened_mean": 3.2174412580512093,
+          "effect": 0.20906849083166534
+        }
+      }
+    ]
+  },
+  {
+    "name": "syn_data_97_5000.csv",
+    "seed": 97,
+    "n_rows": 5000,
+    "lambda": null,
+    "algo": "PC",
+    "type": "ollama_llama_consensus",
+    "prior_name": "ollama_llama_consensus_prior",
+    "shd": 1,
+    "precision": 0.89,
+    "recall": 0.89,
+    "f1": 0.89,
+    "dag_json": {
+      "nodes": [
+        {
+          "id": "machine_downtime"
+        },
+        {
+          "id": "demand_volatility"
+        },
+        {
+          "id": "material_delay"
+        },
+        {
+          "id": "sales_order_quantity"
+        },
+        {
+          "id": "production_schedule_stability"
+        },
+        {
+          "id": "production_volume"
+        },
+        {
+          "id": "factory_issues"
+        },
+        {
+          "id": "vehicle_fill_rate"
+        },
+        {
+          "id": "delivery_to_distributor"
+        }
+      ],
+      "links": [
+        {
+          "source": "demand_volatility",
+          "target": "production_schedule_stability"
+        },
+        {
+          "source": "demand_volatility",
+          "target": "production_volume"
+        },
+        {
+          "source": "material_delay",
+          "target": "production_volume"
+        },
+        {
+          "source": "sales_order_quantity",
+          "target": "delivery_to_distributor"
+        },
+        {
+          "source": "production_schedule_stability",
+          "target": "machine_downtime"
+        },
+        {
+          "source": "production_schedule_stability",
+          "target": "factory_issues"
+        },
+        {
+          "source": "production_volume",
+          "target": "vehicle_fill_rate"
+        },
+        {
+          "source": "factory_issues",
+          "target": "delivery_to_distributor"
+        },
+        {
+          "source": "vehicle_fill_rate",
+          "target": "delivery_to_distributor"
+        }
+      ]
+    },
+    "attribution": {
+      "decomposition": [
+        {
+          "node": "delivery_to_distributor",
+          "share_pct": 28.5
+        },
+        {
+          "node": "production_schedule_stability",
+          "share_pct": 26.9
+        },
+        {
+          "node": "factory_issues",
+          "share_pct": 12.3
+        },
+        {
+          "node": "sales_order_quantity",
+          "share_pct": 10.0
+        },
+        {
+          "node": "demand_volatility",
+          "share_pct": 9.0
+        },
+        {
+          "node": "material_delay",
+          "share_pct": 5.0
+        },
+        {
+          "node": "vehicle_fill_rate",
+          "share_pct": 4.4
+        },
+        {
+          "node": "production_volume",
+          "share_pct": 3.9
+        }
+      ],
+      "drivers": [
+        {
+          "source": "factory_issues",
+          "target": "delivery_to_distributor",
+          "strength": 0.8002103863137396,
+          "share_of_variance_pct": 40.9
+        },
+        {
+          "source": "sales_order_quantity",
+          "target": "delivery_to_distributor",
+          "strength": 0.1162304327620761,
+          "share_of_variance_pct": 5.9
+        },
+        {
+          "source": "vehicle_fill_rate",
+          "target": "delivery_to_distributor",
+          "strength": 0.05832774961612112,
+          "share_of_variance_pct": 3.0
+        }
+      ]
+    },
+    "injected_cause_recovery": [
+      {
+        "injected_cause": "machine_downtime",
+        "rank": 99,
+        "top1": false,
+        "top3": false
+      },
+      {
+        "injected_cause": "demand_volatility",
+        "rank": 1,
+        "top1": true,
+        "top3": true
+      }
+    ],
+    "target": "delivery_to_distributor",
+    "target_stats": {
+      "mean": 3.008372767219544,
+      "median": 2.958885334165642,
+      "std": 1.3992444274765166,
+      "min": 0.0,
+      "max": 8.434285521114216,
+      "p10": 1.239623089919552,
+      "p90": 4.839010573606503,
+      "current_value": 2.958885334165642
+    },
+    "interventions": [
+      {
+        "lever": "production_schedule_stability",
+        "hops_to_target": 2,
+        "stats": {
+          "mean": 68.8975734250479,
+          "median": 70.50554055549244,
+          "std": 13.491587542924071,
+          "min": 0.0,
+          "max": 100.0,
+          "p10": 51.28897638917727,
+          "p90": 84.2730550146467,
+          "current_value": 70.50554055549244
+        },
+        "intervention": {
+          "target": "delivery_to_distributor",
+          "new_value": 51.28897638917727,
+          "baseline_mean": 3.008372767219544,
+          "intervened_mean": 3.9708322334856776,
+          "effect": 0.9624594662661337
+        },
+        "shift": {
+          "target": "delivery_to_distributor",
+          "delta": -13.491587542924071,
+          "baseline_mean": 3.008372767219544,
+          "intervened_mean": 3.767218744689366,
+          "effect": 0.758845977469822
+        }
+      },
+      {
+        "lever": "production_volume",
+        "hops_to_target": 2,
+        "stats": {
+          "mean": 805.3365003741293,
+          "median": 813.7375815058006,
+          "std": 107.64278183240515,
+          "min": 188.7446948409758,
+          "max": 1142.85455312566,
+          "p10": 670.0949751388825,
+          "p90": 931.1971858253896,
+          "current_value": 813.7375815058006
+        },
+        "intervention": {
+          "target": "delivery_to_distributor",
+          "new_value": 670.0949751388825,
+          "baseline_mean": 3.008372767219544,
+          "intervened_mean": 3.27803169290659,
+          "effect": 0.26965892568704586
+        },
+        "shift": {
+          "target": "delivery_to_distributor",
+          "delta": -107.64278183240515,
+          "baseline_mean": 3.008372767219544,
+          "intervened_mean": 3.1795275662334057,
+          "effect": 0.17115479901386177
+        }
+      }
+    ]
+  },
+  {
+    "name": "syn_data_97_5000.csv",
+    "seed": 97,
+    "n_rows": 5000,
+    "lambda": null,
+    "algo": "PC",
+    "type": "ollama_qwen_consensus",
+    "prior_name": "ollama_qwen_consensus_prior",
+    "shd": 1,
+    "precision": 0.89,
+    "recall": 0.89,
+    "f1": 0.89,
+    "dag_json": {
+      "nodes": [
+        {
+          "id": "machine_downtime"
+        },
+        {
+          "id": "demand_volatility"
+        },
+        {
+          "id": "material_delay"
+        },
+        {
+          "id": "sales_order_quantity"
+        },
+        {
+          "id": "production_schedule_stability"
+        },
+        {
+          "id": "production_volume"
+        },
+        {
+          "id": "factory_issues"
+        },
+        {
+          "id": "vehicle_fill_rate"
+        },
+        {
+          "id": "delivery_to_distributor"
+        }
+      ],
+      "links": [
+        {
+          "source": "machine_downtime",
+          "target": "production_schedule_stability"
+        },
+        {
+          "source": "demand_volatility",
+          "target": "production_schedule_stability"
+        },
+        {
+          "source": "demand_volatility",
+          "target": "production_volume"
+        },
+        {
+          "source": "material_delay",
+          "target": "production_volume"
+        },
+        {
+          "source": "production_schedule_stability",
+          "target": "factory_issues"
+        },
+        {
+          "source": "production_volume",
+          "target": "vehicle_fill_rate"
+        },
+        {
+          "source": "factory_issues",
+          "target": "delivery_to_distributor"
+        },
+        {
+          "source": "vehicle_fill_rate",
+          "target": "delivery_to_distributor"
+        },
+        {
+          "source": "delivery_to_distributor",
+          "target": "sales_order_quantity"
+        }
+      ]
+    },
+    "attribution": {
+      "decomposition": [
+        {
+          "node": "delivery_to_distributor",
+          "share_pct": 30.0
+        },
+        {
+          "node": "machine_downtime",
+          "share_pct": 27.4
+        },
+        {
+          "node": "factory_issues",
+          "share_pct": 11.1
+        },
+        {
+          "node": "demand_volatility",
+          "share_pct": 9.5
+        },
+        {
+          "node": "production_schedule_stability",
+          "share_pct": 7.6
+        },
+        {
+          "node": "material_delay",
+          "share_pct": 5.3
+        },
+        {
+          "node": "vehicle_fill_rate",
+          "share_pct": 5.2
+        },
+        {
+          "node": "production_volume",
+          "share_pct": 4.0
+        }
+      ],
+      "drivers": [
+        {
+          "source": "factory_issues",
+          "target": "delivery_to_distributor",
+          "strength": 0.7778584275389862,
+          "share_of_variance_pct": 39.7
+        },
+        {
+          "source": "vehicle_fill_rate",
+          "target": "delivery_to_distributor",
+          "strength": 0.08448004781336471,
+          "share_of_variance_pct": 4.3
+        }
+      ]
+    },
+    "injected_cause_recovery": [
+      {
+        "injected_cause": "machine_downtime",
+        "rank": 1,
+        "top1": true,
+        "top3": true
+      },
+      {
+        "injected_cause": "demand_volatility",
+        "rank": 1,
+        "top1": true,
+        "top3": true
+      }
+    ],
+    "target": "delivery_to_distributor",
+    "target_stats": {
+      "mean": 3.008372767219544,
+      "median": 2.958885334165642,
+      "std": 1.3992444274765166,
+      "min": 0.0,
+      "max": 8.434285521114216,
+      "p10": 1.239623089919552,
+      "p90": 4.839010573606503,
+      "current_value": 2.958885334165642
+    },
+    "interventions": [
+      {
+        "lever": "production_schedule_stability",
+        "hops_to_target": 2,
+        "stats": {
+          "mean": 68.8975734250479,
+          "median": 70.50554055549244,
+          "std": 13.491587542924071,
+          "min": 0.0,
+          "max": 100.0,
+          "p10": 51.28897638917727,
+          "p90": 84.2730550146467,
+          "current_value": 70.50554055549244
+        },
+        "intervention": {
+          "target": "delivery_to_distributor",
+          "new_value": 51.28897638917727,
+          "baseline_mean": 3.008372767219544,
+          "intervened_mean": 3.9568691466350674,
+          "effect": 0.9484963794155234
+        },
+        "shift": {
+          "target": "delivery_to_distributor",
+          "delta": -13.491587542924071,
+          "baseline_mean": 3.008372767219544,
+          "intervened_mean": 3.7134695788307597,
+          "effect": 0.7050968116112157
+        }
+      },
+      {
+        "lever": "production_volume",
+        "hops_to_target": 2,
+        "stats": {
+          "mean": 805.3365003741293,
+          "median": 813.7375815058006,
+          "std": 107.64278183240515,
+          "min": 188.7446948409758,
+          "max": 1142.85455312566,
+          "p10": 670.0949751388825,
+          "p90": 931.1971858253896,
+          "current_value": 813.7375815058006
+        },
+        "intervention": {
+          "target": "delivery_to_distributor",
+          "new_value": 670.0949751388825,
+          "baseline_mean": 3.008372767219544,
+          "intervened_mean": 3.2520956546303843,
+          "effect": 0.24372288741084036
+        },
+        "shift": {
+          "target": "delivery_to_distributor",
+          "delta": -107.64278183240515,
+          "baseline_mean": 3.008372767219544,
+          "intervened_mean": 3.2231140089531443,
+          "effect": 0.21474124173360032
+        }
+      }
+    ]
+  },
+  {
+    "name": "syn_data_97_5000.csv",
+    "seed": 97,
+    "n_rows": 5000,
+    "lambda": null,
+    "algo": "PC",
+    "type": "gemini_consensus",
+    "prior_name": "gemini_consensus_prior",
+    "shd": 1,
+    "precision": 0.89,
+    "recall": 0.89,
+    "f1": 0.89,
+    "dag_json": {
+      "nodes": [
+        {
+          "id": "machine_downtime"
+        },
+        {
+          "id": "demand_volatility"
+        },
+        {
+          "id": "material_delay"
+        },
+        {
+          "id": "sales_order_quantity"
+        },
+        {
+          "id": "production_schedule_stability"
+        },
+        {
+          "id": "production_volume"
+        },
+        {
+          "id": "factory_issues"
+        },
+        {
+          "id": "vehicle_fill_rate"
+        },
+        {
+          "id": "delivery_to_distributor"
+        }
+      ],
+      "links": [
+        {
+          "source": "demand_volatility",
+          "target": "production_schedule_stability"
+        },
+        {
+          "source": "demand_volatility",
+          "target": "production_volume"
+        },
+        {
+          "source": "material_delay",
+          "target": "production_volume"
+        },
+        {
+          "source": "sales_order_quantity",
+          "target": "delivery_to_distributor"
+        },
+        {
+          "source": "production_schedule_stability",
+          "target": "machine_downtime"
+        },
+        {
+          "source": "production_schedule_stability",
+          "target": "factory_issues"
+        },
+        {
+          "source": "production_volume",
+          "target": "vehicle_fill_rate"
+        },
+        {
+          "source": "factory_issues",
+          "target": "delivery_to_distributor"
+        },
+        {
+          "source": "vehicle_fill_rate",
+          "target": "delivery_to_distributor"
+        }
+      ]
+    },
+    "attribution": {
+      "decomposition": [
+        {
+          "node": "delivery_to_distributor",
+          "share_pct": 29.5
+        },
+        {
+          "node": "production_schedule_stability",
+          "share_pct": 27.7
+        },
+        {
+          "node": "factory_issues",
+          "share_pct": 10.5
+        },
+        {
+          "node": "sales_order_quantity",
+          "share_pct": 10.0
+        },
+        {
+          "node": "demand_volatility",
+          "share_pct": 7.4
+        },
+        {
+          "node": "material_delay",
+          "share_pct": 5.7
+        },
+        {
+          "node": "vehicle_fill_rate",
+          "share_pct": 4.8
+        },
+        {
+          "node": "production_volume",
+          "share_pct": 4.4
+        }
+      ],
+      "drivers": [
+        {
+          "source": "factory_issues",
+          "target": "delivery_to_distributor",
+          "strength": 0.7577393607917049,
+          "share_of_variance_pct": 38.7
+        },
+        {
+          "source": "sales_order_quantity",
+          "target": "delivery_to_distributor",
+          "strength": 0.12282590540339408,
+          "share_of_variance_pct": 6.3
+        },
+        {
+          "source": "vehicle_fill_rate",
+          "target": "delivery_to_distributor",
+          "strength": 0.05623963833677387,
+          "share_of_variance_pct": 2.9
+        }
+      ]
+    },
+    "injected_cause_recovery": [
+      {
+        "injected_cause": "machine_downtime",
+        "rank": 99,
+        "top1": false,
+        "top3": false
+      },
+      {
+        "injected_cause": "demand_volatility",
+        "rank": 1,
+        "top1": true,
+        "top3": true
+      }
+    ],
+    "target": "delivery_to_distributor",
+    "target_stats": {
+      "mean": 3.008372767219544,
+      "median": 2.958885334165642,
+      "std": 1.3992444274765166,
+      "min": 0.0,
+      "max": 8.434285521114216,
+      "p10": 1.239623089919552,
+      "p90": 4.839010573606503,
+      "current_value": 2.958885334165642
+    },
+    "interventions": [
+      {
+        "lever": "production_schedule_stability",
+        "hops_to_target": 2,
+        "stats": {
+          "mean": 68.8975734250479,
+          "median": 70.50554055549244,
+          "std": 13.491587542924071,
+          "min": 0.0,
+          "max": 100.0,
+          "p10": 51.28897638917727,
+          "p90": 84.2730550146467,
+          "current_value": 70.50554055549244
+        },
+        "intervention": {
+          "target": "delivery_to_distributor",
+          "new_value": 51.28897638917727,
+          "baseline_mean": 3.008372767219544,
+          "intervened_mean": 4.013854871630132,
+          "effect": 1.005482104410588
+        },
+        "shift": {
+          "target": "delivery_to_distributor",
+          "delta": -13.491587542924071,
+          "baseline_mean": 3.008372767219544,
+          "intervened_mean": 3.7261539727602146,
+          "effect": 0.7177812055406707
+        }
+      },
+      {
+        "lever": "production_volume",
+        "hops_to_target": 2,
+        "stats": {
+          "mean": 805.3365003741293,
+          "median": 813.7375815058006,
+          "std": 107.64278183240515,
+          "min": 188.7446948409758,
+          "max": 1142.85455312566,
+          "p10": 670.0949751388825,
+          "p90": 931.1971858253896,
+          "current_value": 813.7375815058006
+        },
+        "intervention": {
+          "target": "delivery_to_distributor",
+          "new_value": 670.0949751388825,
+          "baseline_mean": 3.008372767219544,
+          "intervened_mean": 3.2555261247399643,
+          "effect": 0.24715335752042034
+        },
+        "shift": {
+          "target": "delivery_to_distributor",
+          "delta": -107.64278183240515,
+          "baseline_mean": 3.008372767219544,
+          "intervened_mean": 3.216556112591414,
+          "effect": 0.20818334537187022
+        }
+      }
+    ]
+  },
+  {
+    "name": "syn_data_97_5000.csv",
+    "seed": 97,
+    "n_rows": 5000,
+    "lambda": null,
+    "algo": "PC",
+    "type": "perfect",
+    "prior_name": "perfect_prior",
+    "shd": 0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "dag_json": {
+      "nodes": [
+        {
+          "id": "machine_downtime"
+        },
+        {
+          "id": "demand_volatility"
+        },
+        {
+          "id": "material_delay"
+        },
+        {
+          "id": "sales_order_quantity"
+        },
+        {
+          "id": "production_schedule_stability"
+        },
+        {
+          "id": "production_volume"
+        },
+        {
+          "id": "factory_issues"
+        },
+        {
+          "id": "vehicle_fill_rate"
+        },
+        {
+          "id": "delivery_to_distributor"
+        }
+      ],
+      "links": [
+        {
+          "source": "machine_downtime",
+          "target": "production_schedule_stability"
+        },
+        {
+          "source": "demand_volatility",
+          "target": "production_schedule_stability"
+        },
+        {
+          "source": "demand_volatility",
+          "target": "production_volume"
+        },
+        {
+          "source": "material_delay",
+          "target": "production_volume"
+        },
+        {
+          "source": "sales_order_quantity",
+          "target": "delivery_to_distributor"
+        },
+        {
+          "source": "production_schedule_stability",
+          "target": "factory_issues"
+        },
+        {
+          "source": "production_volume",
+          "target": "vehicle_fill_rate"
+        },
+        {
+          "source": "factory_issues",
+          "target": "delivery_to_distributor"
+        },
+        {
+          "source": "vehicle_fill_rate",
+          "target": "delivery_to_distributor"
+        }
+      ]
+    },
+    "attribution": {
+      "decomposition": [
+        {
+          "node": "machine_downtime",
+          "share_pct": 25.6
+        },
+        {
+          "node": "delivery_to_distributor",
+          "share_pct": 24.7
+        },
+        {
+          "node": "factory_issues",
+          "share_pct": 11.0
+        },
+        {
+          "node": "demand_volatility",
+          "share_pct": 8.7
+        },
+        {
+          "node": "sales_order_quantity",
+          "share_pct": 8.0
+        },
+        {
+          "node": "production_schedule_stability",
+          "share_pct": 8.0
+        },
+        {
+          "node": "material_delay",
+          "share_pct": 4.9
+        },
+        {
+          "node": "vehicle_fill_rate",
+          "share_pct": 4.6
+        },
+        {
+          "node": "production_volume",
+          "share_pct": 4.5
+        }
+      ],
+      "drivers": [
+        {
+          "source": "factory_issues",
+          "target": "delivery_to_distributor",
+          "strength": 0.7635871549297325,
+          "share_of_variance_pct": 39.0
+        },
+        {
+          "source": "sales_order_quantity",
+          "target": "delivery_to_distributor",
+          "strength": 0.10978252280482823,
+          "share_of_variance_pct": 5.6
+        },
+        {
+          "source": "vehicle_fill_rate",
+          "target": "delivery_to_distributor",
+          "strength": 0.06032592146317664,
+          "share_of_variance_pct": 3.1
+        }
+      ]
+    },
+    "injected_cause_recovery": [
+      {
+        "injected_cause": "machine_downtime",
+        "rank": 1,
+        "top1": true,
+        "top3": true
+      },
+      {
+        "injected_cause": "demand_volatility",
+        "rank": 1,
+        "top1": true,
+        "top3": true
+      }
+    ],
+    "target": "delivery_to_distributor",
+    "target_stats": {
+      "mean": 3.008372767219544,
+      "median": 2.958885334165642,
+      "std": 1.3992444274765166,
+      "min": 0.0,
+      "max": 8.434285521114216,
+      "p10": 1.239623089919552,
+      "p90": 4.839010573606503,
+      "current_value": 2.958885334165642
+    },
+    "interventions": [
+      {
+        "lever": "production_schedule_stability",
+        "hops_to_target": 2,
+        "stats": {
+          "mean": 68.8975734250479,
+          "median": 70.50554055549244,
+          "std": 13.491587542924071,
+          "min": 0.0,
+          "max": 100.0,
+          "p10": 51.28897638917727,
+          "p90": 84.2730550146467,
+          "current_value": 70.50554055549244
+        },
+        "intervention": {
+          "target": "delivery_to_distributor",
+          "new_value": 51.28897638917727,
+          "baseline_mean": 3.008372767219544,
+          "intervened_mean": 4.009333182738164,
+          "effect": 1.00096041551862
+        },
+        "shift": {
+          "target": "delivery_to_distributor",
+          "delta": -13.491587542924071,
+          "baseline_mean": 3.008372767219544,
+          "intervened_mean": 3.791583275444168,
+          "effect": 0.7832105082246241
+        }
+      },
+      {
+        "lever": "production_volume",
+        "hops_to_target": 2,
+        "stats": {
+          "mean": 805.3365003741293,
+          "median": 813.7375815058006,
+          "std": 107.64278183240515,
+          "min": 188.7446948409758,
+          "max": 1142.85455312566,
+          "p10": 670.0949751388825,
+          "p90": 931.1971858253896,
+          "current_value": 813.7375815058006
+        },
+        "intervention": {
+          "target": "delivery_to_distributor",
+          "new_value": 670.0949751388825,
+          "baseline_mean": 3.008372767219544,
+          "intervened_mean": 3.2748274088144127,
+          "effect": 0.26645464159486876
+        },
+        "shift": {
+          "target": "delivery_to_distributor",
+          "delta": -107.64278183240515,
+          "baseline_mean": 3.008372767219544,
+          "intervened_mean": 3.242101752615084,
+          "effect": 0.23372898539554
+        }
+      }
+    ]
+  }
+]

@@ -1,0 +1,3934 @@
+{
+  "name": "data_62897.csv",
+  "seed": null,
+  "num_rows": 62897,
+  "runs": [
+    {
+      "algo": "PC",
+      "type": "Baseline",
+      "prior_name": null,
+      "shd": null,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "n_edges_est": 4,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "shipping_mode_speed"
+          },
+          {
+            "id": "scheduled_ship_days"
+          },
+          {
+            "id": "order_processing_time"
+          },
+          {
+            "id": "geographic_distance"
+          },
+          {
+            "id": "order_item_count"
+          },
+          {
+            "id": "total_quantity"
+          },
+          {
+            "id": "total_sales"
+          },
+          {
+            "id": "avg_discount_rate"
+          },
+          {
+            "id": "daily_order_volume"
+          },
+          {
+            "id": "region_weekly_orders"
+          },
+          {
+            "id": "delivery_delay"
+          }
+        ],
+        "links": [
+          {
+            "source": "order_item_count",
+            "target": "total_sales"
+          },
+          {
+            "source": "total_quantity",
+            "target": "total_sales"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "total_sales"
+          },
+          {
+            "source": "region_weekly_orders",
+            "target": "total_sales"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "PC",
+      "type": "random",
+      "prior_name": "random_prior_2",
+      "shd": null,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "n_edges_est": 12,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "shipping_mode_speed"
+          },
+          {
+            "id": "scheduled_ship_days"
+          },
+          {
+            "id": "order_processing_time"
+          },
+          {
+            "id": "geographic_distance"
+          },
+          {
+            "id": "order_item_count"
+          },
+          {
+            "id": "total_quantity"
+          },
+          {
+            "id": "total_sales"
+          },
+          {
+            "id": "avg_discount_rate"
+          },
+          {
+            "id": "daily_order_volume"
+          },
+          {
+            "id": "region_weekly_orders"
+          },
+          {
+            "id": "delivery_delay"
+          }
+        ],
+        "links": [
+          {
+            "source": "shipping_mode_speed",
+            "target": "scheduled_ship_days"
+          },
+          {
+            "source": "shipping_mode_speed",
+            "target": "order_processing_time"
+          },
+          {
+            "source": "shipping_mode_speed",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "scheduled_ship_days",
+            "target": "order_processing_time"
+          },
+          {
+            "source": "order_item_count",
+            "target": "total_quantity"
+          },
+          {
+            "source": "total_sales",
+            "target": "order_item_count"
+          },
+          {
+            "source": "total_sales",
+            "target": "total_quantity"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "order_item_count"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "total_quantity"
+          },
+          {
+            "source": "region_weekly_orders",
+            "target": "total_sales"
+          },
+          {
+            "source": "region_weekly_orders",
+            "target": "daily_order_volume"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "order_processing_time"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "PC",
+      "type": "ollama_llama",
+      "prior_name": "ollama_llama_prior_1",
+      "shd": null,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "n_edges_est": 14,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "shipping_mode_speed"
+          },
+          {
+            "id": "scheduled_ship_days"
+          },
+          {
+            "id": "order_processing_time"
+          },
+          {
+            "id": "geographic_distance"
+          },
+          {
+            "id": "order_item_count"
+          },
+          {
+            "id": "total_quantity"
+          },
+          {
+            "id": "total_sales"
+          },
+          {
+            "id": "avg_discount_rate"
+          },
+          {
+            "id": "daily_order_volume"
+          },
+          {
+            "id": "region_weekly_orders"
+          },
+          {
+            "id": "delivery_delay"
+          }
+        ],
+        "links": [
+          {
+            "source": "shipping_mode_speed",
+            "target": "scheduled_ship_days"
+          },
+          {
+            "source": "shipping_mode_speed",
+            "target": "order_processing_time"
+          },
+          {
+            "source": "shipping_mode_speed",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "scheduled_ship_days",
+            "target": "order_processing_time"
+          },
+          {
+            "source": "scheduled_ship_days",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "total_quantity",
+            "target": "order_item_count"
+          },
+          {
+            "source": "total_quantity",
+            "target": "total_sales"
+          },
+          {
+            "source": "total_sales",
+            "target": "order_item_count"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "order_item_count"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "total_quantity"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "total_sales"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "region_weekly_orders"
+          },
+          {
+            "source": "region_weekly_orders",
+            "target": "total_sales"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "PC",
+      "type": "ollama_llama_consensus",
+      "prior_name": "ollama_llama_consensus_prior",
+      "shd": null,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "n_edges_est": 13,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "shipping_mode_speed"
+          },
+          {
+            "id": "scheduled_ship_days"
+          },
+          {
+            "id": "order_processing_time"
+          },
+          {
+            "id": "geographic_distance"
+          },
+          {
+            "id": "order_item_count"
+          },
+          {
+            "id": "total_quantity"
+          },
+          {
+            "id": "total_sales"
+          },
+          {
+            "id": "avg_discount_rate"
+          },
+          {
+            "id": "daily_order_volume"
+          },
+          {
+            "id": "region_weekly_orders"
+          },
+          {
+            "id": "delivery_delay"
+          }
+        ],
+        "links": [
+          {
+            "source": "shipping_mode_speed",
+            "target": "scheduled_ship_days"
+          },
+          {
+            "source": "shipping_mode_speed",
+            "target": "order_processing_time"
+          },
+          {
+            "source": "shipping_mode_speed",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "scheduled_ship_days",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "total_quantity",
+            "target": "order_item_count"
+          },
+          {
+            "source": "total_quantity",
+            "target": "total_sales"
+          },
+          {
+            "source": "total_sales",
+            "target": "order_item_count"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "order_item_count"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "total_quantity"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "total_sales"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "region_weekly_orders"
+          },
+          {
+            "source": "region_weekly_orders",
+            "target": "total_sales"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "PC",
+      "type": "ollama_qwen",
+      "prior_name": "ollama_qwen_prior_1",
+      "shd": null,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "n_edges_est": 5,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "shipping_mode_speed"
+          },
+          {
+            "id": "scheduled_ship_days"
+          },
+          {
+            "id": "order_processing_time"
+          },
+          {
+            "id": "geographic_distance"
+          },
+          {
+            "id": "order_item_count"
+          },
+          {
+            "id": "total_quantity"
+          },
+          {
+            "id": "total_sales"
+          },
+          {
+            "id": "avg_discount_rate"
+          },
+          {
+            "id": "daily_order_volume"
+          },
+          {
+            "id": "region_weekly_orders"
+          },
+          {
+            "id": "delivery_delay"
+          }
+        ],
+        "links": [
+          {
+            "source": "order_item_count",
+            "target": "total_sales"
+          },
+          {
+            "source": "total_quantity",
+            "target": "total_sales"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "total_sales"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "region_weekly_orders"
+          },
+          {
+            "source": "region_weekly_orders",
+            "target": "total_sales"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "PC",
+      "type": "ollama_qwen_consensus",
+      "prior_name": "ollama_qwen_consensus_prior",
+      "shd": null,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "n_edges_est": 10,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "shipping_mode_speed"
+          },
+          {
+            "id": "scheduled_ship_days"
+          },
+          {
+            "id": "order_processing_time"
+          },
+          {
+            "id": "geographic_distance"
+          },
+          {
+            "id": "order_item_count"
+          },
+          {
+            "id": "total_quantity"
+          },
+          {
+            "id": "total_sales"
+          },
+          {
+            "id": "avg_discount_rate"
+          },
+          {
+            "id": "daily_order_volume"
+          },
+          {
+            "id": "region_weekly_orders"
+          },
+          {
+            "id": "delivery_delay"
+          }
+        ],
+        "links": [
+          {
+            "source": "shipping_mode_speed",
+            "target": "scheduled_ship_days"
+          },
+          {
+            "source": "shipping_mode_speed",
+            "target": "order_processing_time"
+          },
+          {
+            "source": "shipping_mode_speed",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "scheduled_ship_days",
+            "target": "order_processing_time"
+          },
+          {
+            "source": "scheduled_ship_days",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "total_sales",
+            "target": "total_quantity"
+          },
+          {
+            "source": "total_sales",
+            "target": "region_weekly_orders"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "total_quantity"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "region_weekly_orders"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "PC",
+      "type": "gemini",
+      "prior_name": "gemini_prior_1",
+      "shd": null,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "n_edges_est": 13,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "shipping_mode_speed"
+          },
+          {
+            "id": "scheduled_ship_days"
+          },
+          {
+            "id": "order_processing_time"
+          },
+          {
+            "id": "geographic_distance"
+          },
+          {
+            "id": "order_item_count"
+          },
+          {
+            "id": "total_quantity"
+          },
+          {
+            "id": "total_sales"
+          },
+          {
+            "id": "avg_discount_rate"
+          },
+          {
+            "id": "daily_order_volume"
+          },
+          {
+            "id": "region_weekly_orders"
+          },
+          {
+            "id": "delivery_delay"
+          }
+        ],
+        "links": [
+          {
+            "source": "shipping_mode_speed",
+            "target": "scheduled_ship_days"
+          },
+          {
+            "source": "shipping_mode_speed",
+            "target": "order_processing_time"
+          },
+          {
+            "source": "shipping_mode_speed",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "scheduled_ship_days",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "order_item_count",
+            "target": "total_quantity"
+          },
+          {
+            "source": "order_item_count",
+            "target": "total_sales"
+          },
+          {
+            "source": "total_quantity",
+            "target": "total_sales"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "order_item_count"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "total_quantity"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "total_sales"
+          },
+          {
+            "source": "region_weekly_orders",
+            "target": "total_sales"
+          },
+          {
+            "source": "region_weekly_orders",
+            "target": "daily_order_volume"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "PC",
+      "type": "gemini_consensus",
+      "prior_name": "gemini_consensus_prior",
+      "shd": null,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "n_edges_est": 9,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "shipping_mode_speed"
+          },
+          {
+            "id": "scheduled_ship_days"
+          },
+          {
+            "id": "order_processing_time"
+          },
+          {
+            "id": "geographic_distance"
+          },
+          {
+            "id": "order_item_count"
+          },
+          {
+            "id": "total_quantity"
+          },
+          {
+            "id": "total_sales"
+          },
+          {
+            "id": "avg_discount_rate"
+          },
+          {
+            "id": "daily_order_volume"
+          },
+          {
+            "id": "region_weekly_orders"
+          },
+          {
+            "id": "delivery_delay"
+          }
+        ],
+        "links": [
+          {
+            "source": "shipping_mode_speed",
+            "target": "scheduled_ship_days"
+          },
+          {
+            "source": "shipping_mode_speed",
+            "target": "order_processing_time"
+          },
+          {
+            "source": "shipping_mode_speed",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "scheduled_ship_days",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "order_item_count",
+            "target": "total_quantity"
+          },
+          {
+            "source": "order_item_count",
+            "target": "total_sales"
+          },
+          {
+            "source": "total_quantity",
+            "target": "total_sales"
+          },
+          {
+            "source": "region_weekly_orders",
+            "target": "daily_order_volume"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "PC",
+      "type": "cerebras",
+      "prior_name": "cerebras_prior_1",
+      "shd": null,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "n_edges_est": 12,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "shipping_mode_speed"
+          },
+          {
+            "id": "scheduled_ship_days"
+          },
+          {
+            "id": "order_processing_time"
+          },
+          {
+            "id": "geographic_distance"
+          },
+          {
+            "id": "order_item_count"
+          },
+          {
+            "id": "total_quantity"
+          },
+          {
+            "id": "total_sales"
+          },
+          {
+            "id": "avg_discount_rate"
+          },
+          {
+            "id": "daily_order_volume"
+          },
+          {
+            "id": "region_weekly_orders"
+          },
+          {
+            "id": "delivery_delay"
+          }
+        ],
+        "links": [
+          {
+            "source": "shipping_mode_speed",
+            "target": "scheduled_ship_days"
+          },
+          {
+            "source": "shipping_mode_speed",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "scheduled_ship_days",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "scheduled_ship_days"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "order_item_count",
+            "target": "total_quantity"
+          },
+          {
+            "source": "order_item_count",
+            "target": "total_sales"
+          },
+          {
+            "source": "total_quantity",
+            "target": "total_sales"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "order_item_count"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "total_quantity"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "total_sales"
+          },
+          {
+            "source": "region_weekly_orders",
+            "target": "total_sales"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "PC",
+      "type": "cerebras_consensus",
+      "prior_name": "cerebras_consensus_prior",
+      "shd": null,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "n_edges_est": 12,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "shipping_mode_speed"
+          },
+          {
+            "id": "scheduled_ship_days"
+          },
+          {
+            "id": "order_processing_time"
+          },
+          {
+            "id": "geographic_distance"
+          },
+          {
+            "id": "order_item_count"
+          },
+          {
+            "id": "total_quantity"
+          },
+          {
+            "id": "total_sales"
+          },
+          {
+            "id": "avg_discount_rate"
+          },
+          {
+            "id": "daily_order_volume"
+          },
+          {
+            "id": "region_weekly_orders"
+          },
+          {
+            "id": "delivery_delay"
+          }
+        ],
+        "links": [
+          {
+            "source": "shipping_mode_speed",
+            "target": "scheduled_ship_days"
+          },
+          {
+            "source": "shipping_mode_speed",
+            "target": "order_processing_time"
+          },
+          {
+            "source": "shipping_mode_speed",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "scheduled_ship_days",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "order_item_count",
+            "target": "total_quantity"
+          },
+          {
+            "source": "order_item_count",
+            "target": "total_sales"
+          },
+          {
+            "source": "total_quantity",
+            "target": "total_sales"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "order_item_count"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "total_quantity"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "total_sales"
+          },
+          {
+            "source": "region_weekly_orders",
+            "target": "total_sales"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "Baseline",
+      "prior_name": null,
+      "shd": null,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "n_edges_est": 14,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "shipping_mode_speed"
+          },
+          {
+            "id": "scheduled_ship_days"
+          },
+          {
+            "id": "order_processing_time"
+          },
+          {
+            "id": "geographic_distance"
+          },
+          {
+            "id": "order_item_count"
+          },
+          {
+            "id": "total_quantity"
+          },
+          {
+            "id": "total_sales"
+          },
+          {
+            "id": "avg_discount_rate"
+          },
+          {
+            "id": "daily_order_volume"
+          },
+          {
+            "id": "region_weekly_orders"
+          },
+          {
+            "id": "delivery_delay"
+          }
+        ],
+        "links": [
+          {
+            "source": "scheduled_ship_days",
+            "target": "shipping_mode_speed"
+          },
+          {
+            "source": "scheduled_ship_days",
+            "target": "order_processing_time"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "shipping_mode_speed"
+          },
+          {
+            "source": "order_item_count",
+            "target": "total_quantity"
+          },
+          {
+            "source": "order_item_count",
+            "target": "total_sales"
+          },
+          {
+            "source": "total_quantity",
+            "target": "total_sales"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "order_item_count"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "total_quantity"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "total_sales"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "region_weekly_orders"
+          },
+          {
+            "source": "region_weekly_orders",
+            "target": "total_sales"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "order_processing_time"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "shipping_mode_speed"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "scheduled_ship_days"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "random",
+      "prior_name": "random_prior_2",
+      "params": {
+        "lambda": 0.1
+      },
+      "shd": null,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "n_edges_est": 16,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "shipping_mode_speed"
+          },
+          {
+            "id": "scheduled_ship_days"
+          },
+          {
+            "id": "order_processing_time"
+          },
+          {
+            "id": "geographic_distance"
+          },
+          {
+            "id": "order_item_count"
+          },
+          {
+            "id": "total_quantity"
+          },
+          {
+            "id": "total_sales"
+          },
+          {
+            "id": "avg_discount_rate"
+          },
+          {
+            "id": "daily_order_volume"
+          },
+          {
+            "id": "region_weekly_orders"
+          },
+          {
+            "id": "delivery_delay"
+          }
+        ],
+        "links": [
+          {
+            "source": "shipping_mode_speed",
+            "target": "scheduled_ship_days"
+          },
+          {
+            "source": "shipping_mode_speed",
+            "target": "order_processing_time"
+          },
+          {
+            "source": "shipping_mode_speed",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "scheduled_ship_days",
+            "target": "order_processing_time"
+          },
+          {
+            "source": "scheduled_ship_days",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "order_item_count",
+            "target": "total_quantity"
+          },
+          {
+            "source": "total_sales",
+            "target": "order_item_count"
+          },
+          {
+            "source": "total_sales",
+            "target": "total_quantity"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "order_item_count"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "total_sales"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "total_quantity"
+          },
+          {
+            "source": "region_weekly_orders",
+            "target": "order_item_count"
+          },
+          {
+            "source": "region_weekly_orders",
+            "target": "daily_order_volume"
+          },
+          {
+            "source": "region_weekly_orders",
+            "target": "total_sales"
+          },
+          {
+            "source": "region_weekly_orders",
+            "target": "total_quantity"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "order_processing_time"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "random",
+      "prior_name": "random_prior_2",
+      "params": {
+        "lambda": 0.5
+      },
+      "shd": null,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "n_edges_est": 16,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "shipping_mode_speed"
+          },
+          {
+            "id": "scheduled_ship_days"
+          },
+          {
+            "id": "order_processing_time"
+          },
+          {
+            "id": "geographic_distance"
+          },
+          {
+            "id": "order_item_count"
+          },
+          {
+            "id": "total_quantity"
+          },
+          {
+            "id": "total_sales"
+          },
+          {
+            "id": "avg_discount_rate"
+          },
+          {
+            "id": "daily_order_volume"
+          },
+          {
+            "id": "region_weekly_orders"
+          },
+          {
+            "id": "delivery_delay"
+          }
+        ],
+        "links": [
+          {
+            "source": "shipping_mode_speed",
+            "target": "scheduled_ship_days"
+          },
+          {
+            "source": "shipping_mode_speed",
+            "target": "order_processing_time"
+          },
+          {
+            "source": "shipping_mode_speed",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "scheduled_ship_days",
+            "target": "order_processing_time"
+          },
+          {
+            "source": "scheduled_ship_days",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "order_item_count",
+            "target": "total_quantity"
+          },
+          {
+            "source": "total_sales",
+            "target": "order_item_count"
+          },
+          {
+            "source": "total_sales",
+            "target": "total_quantity"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "order_item_count"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "total_sales"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "total_quantity"
+          },
+          {
+            "source": "region_weekly_orders",
+            "target": "order_item_count"
+          },
+          {
+            "source": "region_weekly_orders",
+            "target": "total_sales"
+          },
+          {
+            "source": "region_weekly_orders",
+            "target": "daily_order_volume"
+          },
+          {
+            "source": "region_weekly_orders",
+            "target": "total_quantity"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "order_processing_time"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "random",
+      "prior_name": "random_prior_2",
+      "params": {
+        "lambda": 0.9
+      },
+      "shd": null,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "n_edges_est": 16,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "shipping_mode_speed"
+          },
+          {
+            "id": "scheduled_ship_days"
+          },
+          {
+            "id": "order_processing_time"
+          },
+          {
+            "id": "geographic_distance"
+          },
+          {
+            "id": "order_item_count"
+          },
+          {
+            "id": "total_quantity"
+          },
+          {
+            "id": "total_sales"
+          },
+          {
+            "id": "avg_discount_rate"
+          },
+          {
+            "id": "daily_order_volume"
+          },
+          {
+            "id": "region_weekly_orders"
+          },
+          {
+            "id": "delivery_delay"
+          }
+        ],
+        "links": [
+          {
+            "source": "shipping_mode_speed",
+            "target": "scheduled_ship_days"
+          },
+          {
+            "source": "shipping_mode_speed",
+            "target": "order_processing_time"
+          },
+          {
+            "source": "shipping_mode_speed",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "scheduled_ship_days",
+            "target": "order_processing_time"
+          },
+          {
+            "source": "scheduled_ship_days",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "order_item_count",
+            "target": "total_quantity"
+          },
+          {
+            "source": "total_sales",
+            "target": "order_item_count"
+          },
+          {
+            "source": "total_sales",
+            "target": "total_quantity"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "order_item_count"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "total_sales"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "total_quantity"
+          },
+          {
+            "source": "region_weekly_orders",
+            "target": "order_item_count"
+          },
+          {
+            "source": "region_weekly_orders",
+            "target": "total_sales"
+          },
+          {
+            "source": "region_weekly_orders",
+            "target": "daily_order_volume"
+          },
+          {
+            "source": "region_weekly_orders",
+            "target": "total_quantity"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "order_processing_time"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "ollama_llama",
+      "prior_name": "ollama_llama_prior_1",
+      "params": {
+        "lambda": 0.1
+      },
+      "shd": null,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "n_edges_est": 15,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "shipping_mode_speed"
+          },
+          {
+            "id": "scheduled_ship_days"
+          },
+          {
+            "id": "order_processing_time"
+          },
+          {
+            "id": "geographic_distance"
+          },
+          {
+            "id": "order_item_count"
+          },
+          {
+            "id": "total_quantity"
+          },
+          {
+            "id": "total_sales"
+          },
+          {
+            "id": "avg_discount_rate"
+          },
+          {
+            "id": "daily_order_volume"
+          },
+          {
+            "id": "region_weekly_orders"
+          },
+          {
+            "id": "delivery_delay"
+          }
+        ],
+        "links": [
+          {
+            "source": "shipping_mode_speed",
+            "target": "scheduled_ship_days"
+          },
+          {
+            "source": "shipping_mode_speed",
+            "target": "order_processing_time"
+          },
+          {
+            "source": "shipping_mode_speed",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "scheduled_ship_days",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "scheduled_ship_days",
+            "target": "order_processing_time"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "total_quantity",
+            "target": "order_item_count"
+          },
+          {
+            "source": "total_quantity",
+            "target": "total_sales"
+          },
+          {
+            "source": "total_sales",
+            "target": "order_item_count"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "total_quantity"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "order_item_count"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "region_weekly_orders"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "total_sales"
+          },
+          {
+            "source": "region_weekly_orders",
+            "target": "total_sales"
+          },
+          {
+            "source": "region_weekly_orders",
+            "target": "order_item_count"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "ollama_llama",
+      "prior_name": "ollama_llama_prior_1",
+      "params": {
+        "lambda": 0.5
+      },
+      "shd": null,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "n_edges_est": 15,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "shipping_mode_speed"
+          },
+          {
+            "id": "scheduled_ship_days"
+          },
+          {
+            "id": "order_processing_time"
+          },
+          {
+            "id": "geographic_distance"
+          },
+          {
+            "id": "order_item_count"
+          },
+          {
+            "id": "total_quantity"
+          },
+          {
+            "id": "total_sales"
+          },
+          {
+            "id": "avg_discount_rate"
+          },
+          {
+            "id": "daily_order_volume"
+          },
+          {
+            "id": "region_weekly_orders"
+          },
+          {
+            "id": "delivery_delay"
+          }
+        ],
+        "links": [
+          {
+            "source": "shipping_mode_speed",
+            "target": "scheduled_ship_days"
+          },
+          {
+            "source": "shipping_mode_speed",
+            "target": "order_processing_time"
+          },
+          {
+            "source": "shipping_mode_speed",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "scheduled_ship_days",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "scheduled_ship_days",
+            "target": "order_processing_time"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "total_quantity",
+            "target": "order_item_count"
+          },
+          {
+            "source": "total_quantity",
+            "target": "total_sales"
+          },
+          {
+            "source": "total_sales",
+            "target": "order_item_count"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "total_quantity"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "order_item_count"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "region_weekly_orders"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "total_sales"
+          },
+          {
+            "source": "region_weekly_orders",
+            "target": "total_sales"
+          },
+          {
+            "source": "region_weekly_orders",
+            "target": "order_item_count"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "ollama_llama",
+      "prior_name": "ollama_llama_prior_1",
+      "params": {
+        "lambda": 0.9
+      },
+      "shd": null,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "n_edges_est": 15,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "shipping_mode_speed"
+          },
+          {
+            "id": "scheduled_ship_days"
+          },
+          {
+            "id": "order_processing_time"
+          },
+          {
+            "id": "geographic_distance"
+          },
+          {
+            "id": "order_item_count"
+          },
+          {
+            "id": "total_quantity"
+          },
+          {
+            "id": "total_sales"
+          },
+          {
+            "id": "avg_discount_rate"
+          },
+          {
+            "id": "daily_order_volume"
+          },
+          {
+            "id": "region_weekly_orders"
+          },
+          {
+            "id": "delivery_delay"
+          }
+        ],
+        "links": [
+          {
+            "source": "shipping_mode_speed",
+            "target": "scheduled_ship_days"
+          },
+          {
+            "source": "shipping_mode_speed",
+            "target": "order_processing_time"
+          },
+          {
+            "source": "shipping_mode_speed",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "scheduled_ship_days",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "scheduled_ship_days",
+            "target": "order_processing_time"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "total_quantity",
+            "target": "order_item_count"
+          },
+          {
+            "source": "total_quantity",
+            "target": "total_sales"
+          },
+          {
+            "source": "total_sales",
+            "target": "order_item_count"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "total_quantity"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "order_item_count"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "region_weekly_orders"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "total_sales"
+          },
+          {
+            "source": "region_weekly_orders",
+            "target": "total_sales"
+          },
+          {
+            "source": "region_weekly_orders",
+            "target": "order_item_count"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "ollama_llama_consensus",
+      "prior_name": "ollama_llama_consensus_prior",
+      "params": {
+        "lambda": 0.1
+      },
+      "shd": null,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "n_edges_est": 15,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "shipping_mode_speed"
+          },
+          {
+            "id": "scheduled_ship_days"
+          },
+          {
+            "id": "order_processing_time"
+          },
+          {
+            "id": "geographic_distance"
+          },
+          {
+            "id": "order_item_count"
+          },
+          {
+            "id": "total_quantity"
+          },
+          {
+            "id": "total_sales"
+          },
+          {
+            "id": "avg_discount_rate"
+          },
+          {
+            "id": "daily_order_volume"
+          },
+          {
+            "id": "region_weekly_orders"
+          },
+          {
+            "id": "delivery_delay"
+          }
+        ],
+        "links": [
+          {
+            "source": "shipping_mode_speed",
+            "target": "scheduled_ship_days"
+          },
+          {
+            "source": "shipping_mode_speed",
+            "target": "order_processing_time"
+          },
+          {
+            "source": "shipping_mode_speed",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "scheduled_ship_days",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "scheduled_ship_days"
+          },
+          {
+            "source": "total_quantity",
+            "target": "order_item_count"
+          },
+          {
+            "source": "total_quantity",
+            "target": "total_sales"
+          },
+          {
+            "source": "total_sales",
+            "target": "order_item_count"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "total_quantity"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "order_item_count"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "region_weekly_orders"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "total_sales"
+          },
+          {
+            "source": "region_weekly_orders",
+            "target": "total_sales"
+          },
+          {
+            "source": "region_weekly_orders",
+            "target": "order_item_count"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "ollama_llama_consensus",
+      "prior_name": "ollama_llama_consensus_prior",
+      "params": {
+        "lambda": 0.5
+      },
+      "shd": null,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "n_edges_est": 15,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "shipping_mode_speed"
+          },
+          {
+            "id": "scheduled_ship_days"
+          },
+          {
+            "id": "order_processing_time"
+          },
+          {
+            "id": "geographic_distance"
+          },
+          {
+            "id": "order_item_count"
+          },
+          {
+            "id": "total_quantity"
+          },
+          {
+            "id": "total_sales"
+          },
+          {
+            "id": "avg_discount_rate"
+          },
+          {
+            "id": "daily_order_volume"
+          },
+          {
+            "id": "region_weekly_orders"
+          },
+          {
+            "id": "delivery_delay"
+          }
+        ],
+        "links": [
+          {
+            "source": "shipping_mode_speed",
+            "target": "scheduled_ship_days"
+          },
+          {
+            "source": "shipping_mode_speed",
+            "target": "order_processing_time"
+          },
+          {
+            "source": "shipping_mode_speed",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "scheduled_ship_days",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "scheduled_ship_days"
+          },
+          {
+            "source": "total_quantity",
+            "target": "order_item_count"
+          },
+          {
+            "source": "total_quantity",
+            "target": "total_sales"
+          },
+          {
+            "source": "total_sales",
+            "target": "order_item_count"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "total_quantity"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "order_item_count"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "region_weekly_orders"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "total_sales"
+          },
+          {
+            "source": "region_weekly_orders",
+            "target": "total_sales"
+          },
+          {
+            "source": "region_weekly_orders",
+            "target": "order_item_count"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "ollama_llama_consensus",
+      "prior_name": "ollama_llama_consensus_prior",
+      "params": {
+        "lambda": 0.9
+      },
+      "shd": null,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "n_edges_est": 15,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "shipping_mode_speed"
+          },
+          {
+            "id": "scheduled_ship_days"
+          },
+          {
+            "id": "order_processing_time"
+          },
+          {
+            "id": "geographic_distance"
+          },
+          {
+            "id": "order_item_count"
+          },
+          {
+            "id": "total_quantity"
+          },
+          {
+            "id": "total_sales"
+          },
+          {
+            "id": "avg_discount_rate"
+          },
+          {
+            "id": "daily_order_volume"
+          },
+          {
+            "id": "region_weekly_orders"
+          },
+          {
+            "id": "delivery_delay"
+          }
+        ],
+        "links": [
+          {
+            "source": "shipping_mode_speed",
+            "target": "scheduled_ship_days"
+          },
+          {
+            "source": "shipping_mode_speed",
+            "target": "order_processing_time"
+          },
+          {
+            "source": "shipping_mode_speed",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "scheduled_ship_days",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "scheduled_ship_days"
+          },
+          {
+            "source": "total_quantity",
+            "target": "order_item_count"
+          },
+          {
+            "source": "total_quantity",
+            "target": "total_sales"
+          },
+          {
+            "source": "total_sales",
+            "target": "order_item_count"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "total_quantity"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "order_item_count"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "region_weekly_orders"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "total_sales"
+          },
+          {
+            "source": "region_weekly_orders",
+            "target": "total_sales"
+          },
+          {
+            "source": "region_weekly_orders",
+            "target": "order_item_count"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "ollama_qwen",
+      "prior_name": "ollama_qwen_prior_1",
+      "params": {
+        "lambda": 0.1
+      },
+      "shd": null,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "n_edges_est": 14,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "shipping_mode_speed"
+          },
+          {
+            "id": "scheduled_ship_days"
+          },
+          {
+            "id": "order_processing_time"
+          },
+          {
+            "id": "geographic_distance"
+          },
+          {
+            "id": "order_item_count"
+          },
+          {
+            "id": "total_quantity"
+          },
+          {
+            "id": "total_sales"
+          },
+          {
+            "id": "avg_discount_rate"
+          },
+          {
+            "id": "daily_order_volume"
+          },
+          {
+            "id": "region_weekly_orders"
+          },
+          {
+            "id": "delivery_delay"
+          }
+        ],
+        "links": [
+          {
+            "source": "scheduled_ship_days",
+            "target": "shipping_mode_speed"
+          },
+          {
+            "source": "scheduled_ship_days",
+            "target": "order_processing_time"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "shipping_mode_speed"
+          },
+          {
+            "source": "order_item_count",
+            "target": "total_quantity"
+          },
+          {
+            "source": "order_item_count",
+            "target": "total_sales"
+          },
+          {
+            "source": "total_quantity",
+            "target": "total_sales"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "order_item_count"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "total_quantity"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "total_sales"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "region_weekly_orders"
+          },
+          {
+            "source": "region_weekly_orders",
+            "target": "total_sales"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "order_processing_time"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "shipping_mode_speed"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "scheduled_ship_days"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "ollama_qwen",
+      "prior_name": "ollama_qwen_prior_1",
+      "params": {
+        "lambda": 0.5
+      },
+      "shd": null,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "n_edges_est": 14,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "shipping_mode_speed"
+          },
+          {
+            "id": "scheduled_ship_days"
+          },
+          {
+            "id": "order_processing_time"
+          },
+          {
+            "id": "geographic_distance"
+          },
+          {
+            "id": "order_item_count"
+          },
+          {
+            "id": "total_quantity"
+          },
+          {
+            "id": "total_sales"
+          },
+          {
+            "id": "avg_discount_rate"
+          },
+          {
+            "id": "daily_order_volume"
+          },
+          {
+            "id": "region_weekly_orders"
+          },
+          {
+            "id": "delivery_delay"
+          }
+        ],
+        "links": [
+          {
+            "source": "scheduled_ship_days",
+            "target": "shipping_mode_speed"
+          },
+          {
+            "source": "scheduled_ship_days",
+            "target": "order_processing_time"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "shipping_mode_speed"
+          },
+          {
+            "source": "order_item_count",
+            "target": "total_quantity"
+          },
+          {
+            "source": "order_item_count",
+            "target": "total_sales"
+          },
+          {
+            "source": "total_quantity",
+            "target": "total_sales"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "order_item_count"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "total_quantity"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "total_sales"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "region_weekly_orders"
+          },
+          {
+            "source": "region_weekly_orders",
+            "target": "total_sales"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "order_processing_time"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "shipping_mode_speed"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "scheduled_ship_days"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "ollama_qwen",
+      "prior_name": "ollama_qwen_prior_1",
+      "params": {
+        "lambda": 0.9
+      },
+      "shd": null,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "n_edges_est": 14,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "shipping_mode_speed"
+          },
+          {
+            "id": "scheduled_ship_days"
+          },
+          {
+            "id": "order_processing_time"
+          },
+          {
+            "id": "geographic_distance"
+          },
+          {
+            "id": "order_item_count"
+          },
+          {
+            "id": "total_quantity"
+          },
+          {
+            "id": "total_sales"
+          },
+          {
+            "id": "avg_discount_rate"
+          },
+          {
+            "id": "daily_order_volume"
+          },
+          {
+            "id": "region_weekly_orders"
+          },
+          {
+            "id": "delivery_delay"
+          }
+        ],
+        "links": [
+          {
+            "source": "scheduled_ship_days",
+            "target": "shipping_mode_speed"
+          },
+          {
+            "source": "scheduled_ship_days",
+            "target": "order_processing_time"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "shipping_mode_speed"
+          },
+          {
+            "source": "order_item_count",
+            "target": "total_quantity"
+          },
+          {
+            "source": "order_item_count",
+            "target": "total_sales"
+          },
+          {
+            "source": "total_quantity",
+            "target": "total_sales"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "order_item_count"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "total_quantity"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "total_sales"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "region_weekly_orders"
+          },
+          {
+            "source": "region_weekly_orders",
+            "target": "total_sales"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "order_processing_time"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "shipping_mode_speed"
+          },
+          {
+            "source": "delivery_delay",
+            "target": "scheduled_ship_days"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "ollama_qwen_consensus",
+      "prior_name": "ollama_qwen_consensus_prior",
+      "params": {
+        "lambda": 0.1
+      },
+      "shd": null,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "n_edges_est": 16,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "shipping_mode_speed"
+          },
+          {
+            "id": "scheduled_ship_days"
+          },
+          {
+            "id": "order_processing_time"
+          },
+          {
+            "id": "geographic_distance"
+          },
+          {
+            "id": "order_item_count"
+          },
+          {
+            "id": "total_quantity"
+          },
+          {
+            "id": "total_sales"
+          },
+          {
+            "id": "avg_discount_rate"
+          },
+          {
+            "id": "daily_order_volume"
+          },
+          {
+            "id": "region_weekly_orders"
+          },
+          {
+            "id": "delivery_delay"
+          }
+        ],
+        "links": [
+          {
+            "source": "shipping_mode_speed",
+            "target": "scheduled_ship_days"
+          },
+          {
+            "source": "shipping_mode_speed",
+            "target": "order_processing_time"
+          },
+          {
+            "source": "shipping_mode_speed",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "scheduled_ship_days",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "scheduled_ship_days",
+            "target": "order_processing_time"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "order_item_count",
+            "target": "total_quantity"
+          },
+          {
+            "source": "order_item_count",
+            "target": "total_sales"
+          },
+          {
+            "source": "order_item_count",
+            "target": "region_weekly_orders"
+          },
+          {
+            "source": "total_sales",
+            "target": "total_quantity"
+          },
+          {
+            "source": "total_sales",
+            "target": "region_weekly_orders"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "order_item_count"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "total_quantity"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "total_sales"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "region_weekly_orders"
+          },
+          {
+            "source": "region_weekly_orders",
+            "target": "total_quantity"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "ollama_qwen_consensus",
+      "prior_name": "ollama_qwen_consensus_prior",
+      "params": {
+        "lambda": 0.5
+      },
+      "shd": null,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "n_edges_est": 16,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "shipping_mode_speed"
+          },
+          {
+            "id": "scheduled_ship_days"
+          },
+          {
+            "id": "order_processing_time"
+          },
+          {
+            "id": "geographic_distance"
+          },
+          {
+            "id": "order_item_count"
+          },
+          {
+            "id": "total_quantity"
+          },
+          {
+            "id": "total_sales"
+          },
+          {
+            "id": "avg_discount_rate"
+          },
+          {
+            "id": "daily_order_volume"
+          },
+          {
+            "id": "region_weekly_orders"
+          },
+          {
+            "id": "delivery_delay"
+          }
+        ],
+        "links": [
+          {
+            "source": "shipping_mode_speed",
+            "target": "scheduled_ship_days"
+          },
+          {
+            "source": "shipping_mode_speed",
+            "target": "order_processing_time"
+          },
+          {
+            "source": "shipping_mode_speed",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "scheduled_ship_days",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "scheduled_ship_days",
+            "target": "order_processing_time"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "order_item_count",
+            "target": "total_quantity"
+          },
+          {
+            "source": "order_item_count",
+            "target": "total_sales"
+          },
+          {
+            "source": "order_item_count",
+            "target": "region_weekly_orders"
+          },
+          {
+            "source": "total_sales",
+            "target": "total_quantity"
+          },
+          {
+            "source": "total_sales",
+            "target": "region_weekly_orders"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "order_item_count"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "total_quantity"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "total_sales"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "region_weekly_orders"
+          },
+          {
+            "source": "region_weekly_orders",
+            "target": "total_quantity"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "ollama_qwen_consensus",
+      "prior_name": "ollama_qwen_consensus_prior",
+      "params": {
+        "lambda": 0.9
+      },
+      "shd": null,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "n_edges_est": 16,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "shipping_mode_speed"
+          },
+          {
+            "id": "scheduled_ship_days"
+          },
+          {
+            "id": "order_processing_time"
+          },
+          {
+            "id": "geographic_distance"
+          },
+          {
+            "id": "order_item_count"
+          },
+          {
+            "id": "total_quantity"
+          },
+          {
+            "id": "total_sales"
+          },
+          {
+            "id": "avg_discount_rate"
+          },
+          {
+            "id": "daily_order_volume"
+          },
+          {
+            "id": "region_weekly_orders"
+          },
+          {
+            "id": "delivery_delay"
+          }
+        ],
+        "links": [
+          {
+            "source": "shipping_mode_speed",
+            "target": "scheduled_ship_days"
+          },
+          {
+            "source": "shipping_mode_speed",
+            "target": "order_processing_time"
+          },
+          {
+            "source": "shipping_mode_speed",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "scheduled_ship_days",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "scheduled_ship_days",
+            "target": "order_processing_time"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "order_item_count",
+            "target": "total_quantity"
+          },
+          {
+            "source": "order_item_count",
+            "target": "total_sales"
+          },
+          {
+            "source": "order_item_count",
+            "target": "region_weekly_orders"
+          },
+          {
+            "source": "total_sales",
+            "target": "total_quantity"
+          },
+          {
+            "source": "total_sales",
+            "target": "region_weekly_orders"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "order_item_count"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "total_quantity"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "total_sales"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "region_weekly_orders"
+          },
+          {
+            "source": "region_weekly_orders",
+            "target": "total_quantity"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "gemini",
+      "prior_name": "gemini_prior_1",
+      "params": {
+        "lambda": 0.1
+      },
+      "shd": null,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "n_edges_est": 14,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "shipping_mode_speed"
+          },
+          {
+            "id": "scheduled_ship_days"
+          },
+          {
+            "id": "order_processing_time"
+          },
+          {
+            "id": "geographic_distance"
+          },
+          {
+            "id": "order_item_count"
+          },
+          {
+            "id": "total_quantity"
+          },
+          {
+            "id": "total_sales"
+          },
+          {
+            "id": "avg_discount_rate"
+          },
+          {
+            "id": "daily_order_volume"
+          },
+          {
+            "id": "region_weekly_orders"
+          },
+          {
+            "id": "delivery_delay"
+          }
+        ],
+        "links": [
+          {
+            "source": "shipping_mode_speed",
+            "target": "scheduled_ship_days"
+          },
+          {
+            "source": "shipping_mode_speed",
+            "target": "order_processing_time"
+          },
+          {
+            "source": "shipping_mode_speed",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "scheduled_ship_days",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "scheduled_ship_days",
+            "target": "order_processing_time"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "order_item_count",
+            "target": "total_quantity"
+          },
+          {
+            "source": "order_item_count",
+            "target": "total_sales"
+          },
+          {
+            "source": "total_quantity",
+            "target": "total_sales"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "order_item_count"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "total_sales"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "total_quantity"
+          },
+          {
+            "source": "region_weekly_orders",
+            "target": "total_sales"
+          },
+          {
+            "source": "region_weekly_orders",
+            "target": "daily_order_volume"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "gemini",
+      "prior_name": "gemini_prior_1",
+      "params": {
+        "lambda": 0.5
+      },
+      "shd": null,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "n_edges_est": 14,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "shipping_mode_speed"
+          },
+          {
+            "id": "scheduled_ship_days"
+          },
+          {
+            "id": "order_processing_time"
+          },
+          {
+            "id": "geographic_distance"
+          },
+          {
+            "id": "order_item_count"
+          },
+          {
+            "id": "total_quantity"
+          },
+          {
+            "id": "total_sales"
+          },
+          {
+            "id": "avg_discount_rate"
+          },
+          {
+            "id": "daily_order_volume"
+          },
+          {
+            "id": "region_weekly_orders"
+          },
+          {
+            "id": "delivery_delay"
+          }
+        ],
+        "links": [
+          {
+            "source": "shipping_mode_speed",
+            "target": "scheduled_ship_days"
+          },
+          {
+            "source": "shipping_mode_speed",
+            "target": "order_processing_time"
+          },
+          {
+            "source": "shipping_mode_speed",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "scheduled_ship_days",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "scheduled_ship_days",
+            "target": "order_processing_time"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "order_item_count",
+            "target": "total_quantity"
+          },
+          {
+            "source": "order_item_count",
+            "target": "total_sales"
+          },
+          {
+            "source": "total_quantity",
+            "target": "total_sales"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "order_item_count"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "total_sales"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "total_quantity"
+          },
+          {
+            "source": "region_weekly_orders",
+            "target": "total_sales"
+          },
+          {
+            "source": "region_weekly_orders",
+            "target": "daily_order_volume"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "gemini",
+      "prior_name": "gemini_prior_1",
+      "params": {
+        "lambda": 0.9
+      },
+      "shd": null,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "n_edges_est": 14,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "shipping_mode_speed"
+          },
+          {
+            "id": "scheduled_ship_days"
+          },
+          {
+            "id": "order_processing_time"
+          },
+          {
+            "id": "geographic_distance"
+          },
+          {
+            "id": "order_item_count"
+          },
+          {
+            "id": "total_quantity"
+          },
+          {
+            "id": "total_sales"
+          },
+          {
+            "id": "avg_discount_rate"
+          },
+          {
+            "id": "daily_order_volume"
+          },
+          {
+            "id": "region_weekly_orders"
+          },
+          {
+            "id": "delivery_delay"
+          }
+        ],
+        "links": [
+          {
+            "source": "shipping_mode_speed",
+            "target": "scheduled_ship_days"
+          },
+          {
+            "source": "shipping_mode_speed",
+            "target": "order_processing_time"
+          },
+          {
+            "source": "shipping_mode_speed",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "scheduled_ship_days",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "scheduled_ship_days",
+            "target": "order_processing_time"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "order_item_count",
+            "target": "total_quantity"
+          },
+          {
+            "source": "order_item_count",
+            "target": "total_sales"
+          },
+          {
+            "source": "total_quantity",
+            "target": "total_sales"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "order_item_count"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "total_sales"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "total_quantity"
+          },
+          {
+            "source": "region_weekly_orders",
+            "target": "total_sales"
+          },
+          {
+            "source": "region_weekly_orders",
+            "target": "daily_order_volume"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "gemini_consensus",
+      "prior_name": "gemini_consensus_prior",
+      "params": {
+        "lambda": 0.1
+      },
+      "shd": null,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "n_edges_est": 9,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "shipping_mode_speed"
+          },
+          {
+            "id": "scheduled_ship_days"
+          },
+          {
+            "id": "order_processing_time"
+          },
+          {
+            "id": "geographic_distance"
+          },
+          {
+            "id": "order_item_count"
+          },
+          {
+            "id": "total_quantity"
+          },
+          {
+            "id": "total_sales"
+          },
+          {
+            "id": "avg_discount_rate"
+          },
+          {
+            "id": "daily_order_volume"
+          },
+          {
+            "id": "region_weekly_orders"
+          },
+          {
+            "id": "delivery_delay"
+          }
+        ],
+        "links": [
+          {
+            "source": "shipping_mode_speed",
+            "target": "scheduled_ship_days"
+          },
+          {
+            "source": "shipping_mode_speed",
+            "target": "order_processing_time"
+          },
+          {
+            "source": "shipping_mode_speed",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "scheduled_ship_days",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "order_item_count",
+            "target": "total_quantity"
+          },
+          {
+            "source": "order_item_count",
+            "target": "total_sales"
+          },
+          {
+            "source": "total_quantity",
+            "target": "total_sales"
+          },
+          {
+            "source": "region_weekly_orders",
+            "target": "daily_order_volume"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "gemini_consensus",
+      "prior_name": "gemini_consensus_prior",
+      "params": {
+        "lambda": 0.5
+      },
+      "shd": null,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "n_edges_est": 9,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "shipping_mode_speed"
+          },
+          {
+            "id": "scheduled_ship_days"
+          },
+          {
+            "id": "order_processing_time"
+          },
+          {
+            "id": "geographic_distance"
+          },
+          {
+            "id": "order_item_count"
+          },
+          {
+            "id": "total_quantity"
+          },
+          {
+            "id": "total_sales"
+          },
+          {
+            "id": "avg_discount_rate"
+          },
+          {
+            "id": "daily_order_volume"
+          },
+          {
+            "id": "region_weekly_orders"
+          },
+          {
+            "id": "delivery_delay"
+          }
+        ],
+        "links": [
+          {
+            "source": "shipping_mode_speed",
+            "target": "scheduled_ship_days"
+          },
+          {
+            "source": "shipping_mode_speed",
+            "target": "order_processing_time"
+          },
+          {
+            "source": "shipping_mode_speed",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "scheduled_ship_days",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "order_item_count",
+            "target": "total_quantity"
+          },
+          {
+            "source": "order_item_count",
+            "target": "total_sales"
+          },
+          {
+            "source": "total_quantity",
+            "target": "total_sales"
+          },
+          {
+            "source": "region_weekly_orders",
+            "target": "daily_order_volume"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "gemini_consensus",
+      "prior_name": "gemini_consensus_prior",
+      "params": {
+        "lambda": 0.9
+      },
+      "shd": null,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "n_edges_est": 9,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "shipping_mode_speed"
+          },
+          {
+            "id": "scheduled_ship_days"
+          },
+          {
+            "id": "order_processing_time"
+          },
+          {
+            "id": "geographic_distance"
+          },
+          {
+            "id": "order_item_count"
+          },
+          {
+            "id": "total_quantity"
+          },
+          {
+            "id": "total_sales"
+          },
+          {
+            "id": "avg_discount_rate"
+          },
+          {
+            "id": "daily_order_volume"
+          },
+          {
+            "id": "region_weekly_orders"
+          },
+          {
+            "id": "delivery_delay"
+          }
+        ],
+        "links": [
+          {
+            "source": "shipping_mode_speed",
+            "target": "scheduled_ship_days"
+          },
+          {
+            "source": "shipping_mode_speed",
+            "target": "order_processing_time"
+          },
+          {
+            "source": "shipping_mode_speed",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "scheduled_ship_days",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "order_item_count",
+            "target": "total_quantity"
+          },
+          {
+            "source": "order_item_count",
+            "target": "total_sales"
+          },
+          {
+            "source": "total_quantity",
+            "target": "total_sales"
+          },
+          {
+            "source": "region_weekly_orders",
+            "target": "daily_order_volume"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "cerebras",
+      "prior_name": "cerebras_prior_1",
+      "params": {
+        "lambda": 0.1
+      },
+      "shd": null,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "n_edges_est": 13,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "shipping_mode_speed"
+          },
+          {
+            "id": "scheduled_ship_days"
+          },
+          {
+            "id": "order_processing_time"
+          },
+          {
+            "id": "geographic_distance"
+          },
+          {
+            "id": "order_item_count"
+          },
+          {
+            "id": "total_quantity"
+          },
+          {
+            "id": "total_sales"
+          },
+          {
+            "id": "avg_discount_rate"
+          },
+          {
+            "id": "daily_order_volume"
+          },
+          {
+            "id": "region_weekly_orders"
+          },
+          {
+            "id": "delivery_delay"
+          }
+        ],
+        "links": [
+          {
+            "source": "shipping_mode_speed",
+            "target": "scheduled_ship_days"
+          },
+          {
+            "source": "shipping_mode_speed",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "scheduled_ship_days",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "shipping_mode_speed"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "scheduled_ship_days"
+          },
+          {
+            "source": "order_item_count",
+            "target": "total_quantity"
+          },
+          {
+            "source": "order_item_count",
+            "target": "total_sales"
+          },
+          {
+            "source": "total_quantity",
+            "target": "total_sales"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "order_item_count"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "total_sales"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "total_quantity"
+          },
+          {
+            "source": "region_weekly_orders",
+            "target": "total_sales"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "cerebras",
+      "prior_name": "cerebras_prior_1",
+      "params": {
+        "lambda": 0.5
+      },
+      "shd": null,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "n_edges_est": 13,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "shipping_mode_speed"
+          },
+          {
+            "id": "scheduled_ship_days"
+          },
+          {
+            "id": "order_processing_time"
+          },
+          {
+            "id": "geographic_distance"
+          },
+          {
+            "id": "order_item_count"
+          },
+          {
+            "id": "total_quantity"
+          },
+          {
+            "id": "total_sales"
+          },
+          {
+            "id": "avg_discount_rate"
+          },
+          {
+            "id": "daily_order_volume"
+          },
+          {
+            "id": "region_weekly_orders"
+          },
+          {
+            "id": "delivery_delay"
+          }
+        ],
+        "links": [
+          {
+            "source": "shipping_mode_speed",
+            "target": "scheduled_ship_days"
+          },
+          {
+            "source": "shipping_mode_speed",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "scheduled_ship_days",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "shipping_mode_speed"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "scheduled_ship_days"
+          },
+          {
+            "source": "order_item_count",
+            "target": "total_quantity"
+          },
+          {
+            "source": "order_item_count",
+            "target": "total_sales"
+          },
+          {
+            "source": "total_quantity",
+            "target": "total_sales"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "order_item_count"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "total_sales"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "total_quantity"
+          },
+          {
+            "source": "region_weekly_orders",
+            "target": "total_sales"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "cerebras",
+      "prior_name": "cerebras_prior_1",
+      "params": {
+        "lambda": 0.9
+      },
+      "shd": null,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "n_edges_est": 13,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "shipping_mode_speed"
+          },
+          {
+            "id": "scheduled_ship_days"
+          },
+          {
+            "id": "order_processing_time"
+          },
+          {
+            "id": "geographic_distance"
+          },
+          {
+            "id": "order_item_count"
+          },
+          {
+            "id": "total_quantity"
+          },
+          {
+            "id": "total_sales"
+          },
+          {
+            "id": "avg_discount_rate"
+          },
+          {
+            "id": "daily_order_volume"
+          },
+          {
+            "id": "region_weekly_orders"
+          },
+          {
+            "id": "delivery_delay"
+          }
+        ],
+        "links": [
+          {
+            "source": "shipping_mode_speed",
+            "target": "scheduled_ship_days"
+          },
+          {
+            "source": "shipping_mode_speed",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "scheduled_ship_days",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "shipping_mode_speed"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "scheduled_ship_days"
+          },
+          {
+            "source": "order_item_count",
+            "target": "total_quantity"
+          },
+          {
+            "source": "order_item_count",
+            "target": "total_sales"
+          },
+          {
+            "source": "total_quantity",
+            "target": "total_sales"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "order_item_count"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "total_sales"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "total_quantity"
+          },
+          {
+            "source": "region_weekly_orders",
+            "target": "total_sales"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "cerebras_consensus",
+      "prior_name": "cerebras_consensus_prior",
+      "params": {
+        "lambda": 0.1
+      },
+      "shd": null,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "n_edges_est": 14,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "shipping_mode_speed"
+          },
+          {
+            "id": "scheduled_ship_days"
+          },
+          {
+            "id": "order_processing_time"
+          },
+          {
+            "id": "geographic_distance"
+          },
+          {
+            "id": "order_item_count"
+          },
+          {
+            "id": "total_quantity"
+          },
+          {
+            "id": "total_sales"
+          },
+          {
+            "id": "avg_discount_rate"
+          },
+          {
+            "id": "daily_order_volume"
+          },
+          {
+            "id": "region_weekly_orders"
+          },
+          {
+            "id": "delivery_delay"
+          }
+        ],
+        "links": [
+          {
+            "source": "shipping_mode_speed",
+            "target": "scheduled_ship_days"
+          },
+          {
+            "source": "shipping_mode_speed",
+            "target": "order_processing_time"
+          },
+          {
+            "source": "shipping_mode_speed",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "scheduled_ship_days",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "scheduled_ship_days",
+            "target": "order_processing_time"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "order_item_count",
+            "target": "total_quantity"
+          },
+          {
+            "source": "order_item_count",
+            "target": "total_sales"
+          },
+          {
+            "source": "total_quantity",
+            "target": "total_sales"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "order_item_count"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "total_sales"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "total_quantity"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "region_weekly_orders"
+          },
+          {
+            "source": "region_weekly_orders",
+            "target": "total_sales"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "cerebras_consensus",
+      "prior_name": "cerebras_consensus_prior",
+      "params": {
+        "lambda": 0.5
+      },
+      "shd": null,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "n_edges_est": 14,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "shipping_mode_speed"
+          },
+          {
+            "id": "scheduled_ship_days"
+          },
+          {
+            "id": "order_processing_time"
+          },
+          {
+            "id": "geographic_distance"
+          },
+          {
+            "id": "order_item_count"
+          },
+          {
+            "id": "total_quantity"
+          },
+          {
+            "id": "total_sales"
+          },
+          {
+            "id": "avg_discount_rate"
+          },
+          {
+            "id": "daily_order_volume"
+          },
+          {
+            "id": "region_weekly_orders"
+          },
+          {
+            "id": "delivery_delay"
+          }
+        ],
+        "links": [
+          {
+            "source": "shipping_mode_speed",
+            "target": "scheduled_ship_days"
+          },
+          {
+            "source": "shipping_mode_speed",
+            "target": "order_processing_time"
+          },
+          {
+            "source": "shipping_mode_speed",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "scheduled_ship_days",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "scheduled_ship_days",
+            "target": "order_processing_time"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "order_item_count",
+            "target": "total_quantity"
+          },
+          {
+            "source": "order_item_count",
+            "target": "total_sales"
+          },
+          {
+            "source": "total_quantity",
+            "target": "total_sales"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "order_item_count"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "total_sales"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "total_quantity"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "region_weekly_orders"
+          },
+          {
+            "source": "region_weekly_orders",
+            "target": "total_sales"
+          }
+        ]
+      }
+    },
+    {
+      "algo": "HC",
+      "type": "cerebras_consensus",
+      "prior_name": "cerebras_consensus_prior",
+      "params": {
+        "lambda": 0.9
+      },
+      "shd": null,
+      "precision": null,
+      "recall": null,
+      "f1": null,
+      "n_edges_est": 14,
+      "dag_json": {
+        "nodes": [
+          {
+            "id": "shipping_mode_speed"
+          },
+          {
+            "id": "scheduled_ship_days"
+          },
+          {
+            "id": "order_processing_time"
+          },
+          {
+            "id": "geographic_distance"
+          },
+          {
+            "id": "order_item_count"
+          },
+          {
+            "id": "total_quantity"
+          },
+          {
+            "id": "total_sales"
+          },
+          {
+            "id": "avg_discount_rate"
+          },
+          {
+            "id": "daily_order_volume"
+          },
+          {
+            "id": "region_weekly_orders"
+          },
+          {
+            "id": "delivery_delay"
+          }
+        ],
+        "links": [
+          {
+            "source": "shipping_mode_speed",
+            "target": "scheduled_ship_days"
+          },
+          {
+            "source": "shipping_mode_speed",
+            "target": "order_processing_time"
+          },
+          {
+            "source": "shipping_mode_speed",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "scheduled_ship_days",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "scheduled_ship_days",
+            "target": "order_processing_time"
+          },
+          {
+            "source": "order_processing_time",
+            "target": "delivery_delay"
+          },
+          {
+            "source": "order_item_count",
+            "target": "total_quantity"
+          },
+          {
+            "source": "order_item_count",
+            "target": "total_sales"
+          },
+          {
+            "source": "total_quantity",
+            "target": "total_sales"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "order_item_count"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "total_sales"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "total_quantity"
+          },
+          {
+            "source": "daily_order_volume",
+            "target": "region_weekly_orders"
+          },
+          {
+            "source": "region_weekly_orders",
+            "target": "total_sales"
+          }
+        ]
+      }
+    }
+  ]
+}

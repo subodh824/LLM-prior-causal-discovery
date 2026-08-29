@@ -1,0 +1,2098 @@
+[
+  {
+    "name": "data_62897.csv",
+    "seed": null,
+    "n_rows": 62897,
+    "lambda": null,
+    "algo": "HC",
+    "type": "Baseline",
+    "prior_name": null,
+    "shd": null,
+    "precision": null,
+    "recall": null,
+    "f1": null,
+    "dag_json": {
+      "nodes": [
+        {
+          "id": "service_tier"
+        },
+        {
+          "id": "promised_transit_days"
+        },
+        {
+          "id": "handling_lead_days"
+        },
+        {
+          "id": "serve_distance_km"
+        },
+        {
+          "id": "line_count"
+        },
+        {
+          "id": "unit_total"
+        },
+        {
+          "id": "consignment_value"
+        },
+        {
+          "id": "mean_markdown"
+        },
+        {
+          "id": "same_day_workload"
+        },
+        {
+          "id": "zone_weekly_bookings"
+        },
+        {
+          "id": "arrival_slip_days"
+        }
+      ],
+      "links": [
+        {
+          "source": "service_tier",
+          "target": "promised_transit_days"
+        },
+        {
+          "source": "service_tier",
+          "target": "arrival_slip_days"
+        },
+        {
+          "source": "promised_transit_days",
+          "target": "arrival_slip_days"
+        },
+        {
+          "source": "handling_lead_days",
+          "target": "arrival_slip_days"
+        },
+        {
+          "source": "handling_lead_days",
+          "target": "service_tier"
+        },
+        {
+          "source": "handling_lead_days",
+          "target": "promised_transit_days"
+        },
+        {
+          "source": "line_count",
+          "target": "consignment_value"
+        },
+        {
+          "source": "line_count",
+          "target": "same_day_workload"
+        },
+        {
+          "source": "unit_total",
+          "target": "line_count"
+        },
+        {
+          "source": "unit_total",
+          "target": "consignment_value"
+        },
+        {
+          "source": "unit_total",
+          "target": "same_day_workload"
+        },
+        {
+          "source": "same_day_workload",
+          "target": "consignment_value"
+        },
+        {
+          "source": "same_day_workload",
+          "target": "zone_weekly_bookings"
+        },
+        {
+          "source": "zone_weekly_bookings",
+          "target": "consignment_value"
+        }
+      ]
+    },
+    "attribution": {
+      "decomposition": [
+        {
+          "node": "handling_lead_days",
+          "share_pct": 57.6
+        },
+        {
+          "node": "service_tier",
+          "share_pct": 42.0
+        },
+        {
+          "node": "arrival_slip_days",
+          "share_pct": 0.4
+        },
+        {
+          "node": "promised_transit_days",
+          "share_pct": 0.0
+        }
+      ],
+      "drivers": [
+        {
+          "source": "handling_lead_days",
+          "target": "arrival_slip_days",
+          "strength": 2.8767932142857147,
+          "share_of_variance_pct": 128.9
+        },
+        {
+          "source": "promised_transit_days",
+          "target": "arrival_slip_days",
+          "strength": 2.2173900588235296,
+          "share_of_variance_pct": 99.4
+        },
+        {
+          "source": "service_tier",
+          "target": "arrival_slip_days",
+          "strength": 0.8795803934426233,
+          "share_of_variance_pct": 39.4
+        }
+      ]
+    },
+    "injected_cause_recovery": [],
+    "target": "arrival_slip_days",
+    "target_stats": {
+      "mean": 0.5658934448383866,
+      "median": 1.0,
+      "std": 1.4938032063280615,
+      "min": -2.0,
+      "max": 4.0,
+      "p10": -2.0,
+      "p90": 2.0,
+      "current_value": 1.0
+    },
+    "interventions": [
+      {
+        "lever": "service_tier",
+        "hops_to_target": 1,
+        "stats": {
+          "mean": 2.337313385376091,
+          "median": 3.0,
+          "std": 0.924055610641041,
+          "min": 0.0,
+          "max": 3.0,
+          "p10": 1.0,
+          "p90": 3.0,
+          "current_value": 3.0
+        },
+        "intervention": {
+          "target": "arrival_slip_days",
+          "new_value": 1.0,
+          "baseline_mean": 0.5658934448383866,
+          "intervened_mean": 2.0810531503887306,
+          "effect": 1.515159705550344
+        },
+        "shift": {
+          "target": "arrival_slip_days",
+          "delta": -0.924055610641041,
+          "baseline_mean": 0.5658934448383866,
+          "intervened_mean": 1.8652876925767525,
+          "effect": 1.299394247738366
+        }
+      },
+      {
+        "lever": "promised_transit_days",
+        "hops_to_target": 1,
+        "stats": {
+          "mean": 2.9356249105680714,
+          "median": 4.0,
+          "std": 1.3737598490463507,
+          "min": 0.0,
+          "max": 4.0,
+          "p10": 1.0,
+          "p90": 4.0,
+          "current_value": 4.0
+        },
+        "intervention": {
+          "target": "arrival_slip_days",
+          "new_value": 1.0,
+          "baseline_mean": 0.5658934448383866,
+          "intervened_mean": 3.042784234542188,
+          "effect": 2.4768907897038015
+        },
+        "shift": {
+          "target": "arrival_slip_days",
+          "delta": -1.3737598490463507,
+          "baseline_mean": 0.5658934448383866,
+          "intervened_mean": 2.178164300364087,
+          "effect": 1.6122708555257006
+        }
+      },
+      {
+        "lever": "handling_lead_days",
+        "hops_to_target": 1,
+        "stats": {
+          "mean": 3.4753167877641222,
+          "median": 3.0,
+          "std": 1.6712718133030213,
+          "min": 0.0,
+          "max": 6.0,
+          "p10": 2.0,
+          "p90": 6.0,
+          "current_value": 3.0
+        },
+        "intervention": {
+          "target": "arrival_slip_days",
+          "new_value": 2.0,
+          "baseline_mean": 0.5658934448383866,
+          "intervened_mean": 0.09213476000445173,
+          "effect": -0.4737586848339348
+        },
+        "shift": {
+          "target": "arrival_slip_days",
+          "delta": -1.6712718133030213,
+          "baseline_mean": 0.5658934448383866,
+          "intervened_mean": 0.2353689365152551,
+          "effect": -0.33052450832313146
+        }
+      }
+    ]
+  },
+  {
+    "name": "data_62897.csv",
+    "seed": null,
+    "n_rows": 62897,
+    "lambda": 0.1,
+    "algo": "HC",
+    "type": "ollama_llama_consensus",
+    "prior_name": "ollama_llama_consensus_prior",
+    "shd": null,
+    "precision": null,
+    "recall": null,
+    "f1": null,
+    "dag_json": {
+      "nodes": [
+        {
+          "id": "service_tier"
+        },
+        {
+          "id": "promised_transit_days"
+        },
+        {
+          "id": "handling_lead_days"
+        },
+        {
+          "id": "serve_distance_km"
+        },
+        {
+          "id": "line_count"
+        },
+        {
+          "id": "unit_total"
+        },
+        {
+          "id": "consignment_value"
+        },
+        {
+          "id": "mean_markdown"
+        },
+        {
+          "id": "same_day_workload"
+        },
+        {
+          "id": "zone_weekly_bookings"
+        },
+        {
+          "id": "arrival_slip_days"
+        }
+      ],
+      "links": [
+        {
+          "source": "service_tier",
+          "target": "arrival_slip_days"
+        },
+        {
+          "source": "promised_transit_days",
+          "target": "service_tier"
+        },
+        {
+          "source": "promised_transit_days",
+          "target": "arrival_slip_days"
+        },
+        {
+          "source": "promised_transit_days",
+          "target": "handling_lead_days"
+        },
+        {
+          "source": "handling_lead_days",
+          "target": "arrival_slip_days"
+        },
+        {
+          "source": "handling_lead_days",
+          "target": "service_tier"
+        },
+        {
+          "source": "line_count",
+          "target": "unit_total"
+        },
+        {
+          "source": "line_count",
+          "target": "consignment_value"
+        },
+        {
+          "source": "line_count",
+          "target": "same_day_workload"
+        },
+        {
+          "source": "consignment_value",
+          "target": "unit_total"
+        },
+        {
+          "source": "consignment_value",
+          "target": "same_day_workload"
+        },
+        {
+          "source": "same_day_workload",
+          "target": "unit_total"
+        },
+        {
+          "source": "zone_weekly_bookings",
+          "target": "consignment_value"
+        },
+        {
+          "source": "zone_weekly_bookings",
+          "target": "same_day_workload"
+        },
+        {
+          "source": "zone_weekly_bookings",
+          "target": "unit_total"
+        }
+      ]
+    },
+    "attribution": {
+      "decomposition": [
+        {
+          "node": "promised_transit_days",
+          "share_pct": 52.8
+        },
+        {
+          "node": "handling_lead_days",
+          "share_pct": 46.8
+        },
+        {
+          "node": "arrival_slip_days",
+          "share_pct": 0.5
+        },
+        {
+          "node": "service_tier",
+          "share_pct": 0.0
+        }
+      ],
+      "drivers": [
+        {
+          "source": "handling_lead_days",
+          "target": "arrival_slip_days",
+          "strength": 1.692999104166667,
+          "share_of_variance_pct": 75.9
+        },
+        {
+          "source": "promised_transit_days",
+          "target": "arrival_slip_days",
+          "strength": 1.0938728815789478,
+          "share_of_variance_pct": 49.0
+        },
+        {
+          "source": "service_tier",
+          "target": "arrival_slip_days",
+          "strength": -4.14909972299171e-05,
+          "share_of_variance_pct": -0.0
+        }
+      ]
+    },
+    "injected_cause_recovery": [],
+    "target": "arrival_slip_days",
+    "target_stats": {
+      "mean": 0.5658934448383866,
+      "median": 1.0,
+      "std": 1.4938032063280615,
+      "min": -2.0,
+      "max": 4.0,
+      "p10": -2.0,
+      "p90": 2.0,
+      "current_value": 1.0
+    },
+    "interventions": [
+      {
+        "lever": "service_tier",
+        "hops_to_target": 1,
+        "stats": {
+          "mean": 2.337313385376091,
+          "median": 3.0,
+          "std": 0.924055610641041,
+          "min": 0.0,
+          "max": 3.0,
+          "p10": 1.0,
+          "p90": 3.0,
+          "current_value": 3.0
+        },
+        "intervention": {
+          "target": "arrival_slip_days",
+          "new_value": 1.0,
+          "baseline_mean": 0.5658934448383866,
+          "intervened_mean": 0.5471803106666455,
+          "effect": -0.01871313417174103
+        },
+        "shift": {
+          "target": "arrival_slip_days",
+          "delta": -0.924055610641041,
+          "baseline_mean": 0.5658934448383866,
+          "intervened_mean": 0.5402642415377522,
+          "effect": -0.02562920330063434
+        }
+      },
+      {
+        "lever": "promised_transit_days",
+        "hops_to_target": 1,
+        "stats": {
+          "mean": 2.9356249105680714,
+          "median": 4.0,
+          "std": 1.3737598490463507,
+          "min": 0.0,
+          "max": 4.0,
+          "p10": 1.0,
+          "p90": 4.0,
+          "current_value": 4.0
+        },
+        "intervention": {
+          "target": "arrival_slip_days",
+          "new_value": 1.0,
+          "baseline_mean": 0.5658934448383866,
+          "intervened_mean": 0.8718857815158115,
+          "effect": 0.305992336677425
+        },
+        "shift": {
+          "target": "arrival_slip_days",
+          "delta": -1.3737598490463507,
+          "baseline_mean": 0.5658934448383866,
+          "intervened_mean": 1.4174602922237944,
+          "effect": 0.8515668473854079
+        }
+      },
+      {
+        "lever": "handling_lead_days",
+        "hops_to_target": 1,
+        "stats": {
+          "mean": 3.4753167877641222,
+          "median": 3.0,
+          "std": 1.6712718133030213,
+          "min": 0.0,
+          "max": 6.0,
+          "p10": 2.0,
+          "p90": 6.0,
+          "current_value": 3.0
+        },
+        "intervention": {
+          "target": "arrival_slip_days",
+          "new_value": 2.0,
+          "baseline_mean": 0.5658934448383866,
+          "intervened_mean": -0.9670572523331796,
+          "effect": -1.5329506971715663
+        },
+        "shift": {
+          "target": "arrival_slip_days",
+          "delta": -1.6712718133030213,
+          "baseline_mean": 0.5658934448383866,
+          "intervened_mean": -0.7416887927882093,
+          "effect": -1.3075822376265958
+        }
+      }
+    ]
+  },
+  {
+    "name": "data_62897.csv",
+    "seed": null,
+    "n_rows": 62897,
+    "lambda": 0.1,
+    "algo": "HC",
+    "type": "ollama_qwen_consensus",
+    "prior_name": "ollama_qwen_consensus_prior",
+    "shd": null,
+    "precision": null,
+    "recall": null,
+    "f1": null,
+    "dag_json": {
+      "nodes": [
+        {
+          "id": "service_tier"
+        },
+        {
+          "id": "promised_transit_days"
+        },
+        {
+          "id": "handling_lead_days"
+        },
+        {
+          "id": "serve_distance_km"
+        },
+        {
+          "id": "line_count"
+        },
+        {
+          "id": "unit_total"
+        },
+        {
+          "id": "consignment_value"
+        },
+        {
+          "id": "mean_markdown"
+        },
+        {
+          "id": "same_day_workload"
+        },
+        {
+          "id": "zone_weekly_bookings"
+        },
+        {
+          "id": "arrival_slip_days"
+        }
+      ],
+      "links": [
+        {
+          "source": "service_tier",
+          "target": "promised_transit_days"
+        },
+        {
+          "source": "service_tier",
+          "target": "handling_lead_days"
+        },
+        {
+          "source": "service_tier",
+          "target": "arrival_slip_days"
+        },
+        {
+          "source": "promised_transit_days",
+          "target": "handling_lead_days"
+        },
+        {
+          "source": "line_count",
+          "target": "consignment_value"
+        },
+        {
+          "source": "unit_total",
+          "target": "line_count"
+        },
+        {
+          "source": "unit_total",
+          "target": "consignment_value"
+        },
+        {
+          "source": "same_day_workload",
+          "target": "line_count"
+        },
+        {
+          "source": "same_day_workload",
+          "target": "consignment_value"
+        },
+        {
+          "source": "same_day_workload",
+          "target": "unit_total"
+        },
+        {
+          "source": "zone_weekly_bookings",
+          "target": "consignment_value"
+        },
+        {
+          "source": "zone_weekly_bookings",
+          "target": "same_day_workload"
+        },
+        {
+          "source": "arrival_slip_days",
+          "target": "handling_lead_days"
+        },
+        {
+          "source": "arrival_slip_days",
+          "target": "promised_transit_days"
+        }
+      ]
+    },
+    "attribution": {
+      "decomposition": [
+        {
+          "node": "service_tier",
+          "share_pct": 56.0
+        },
+        {
+          "node": "arrival_slip_days",
+          "share_pct": 44.0
+        }
+      ],
+      "drivers": [
+        {
+          "source": "service_tier",
+          "target": "arrival_slip_days",
+          "strength": 0.611573794117647,
+          "share_of_variance_pct": 27.4
+        }
+      ]
+    },
+    "injected_cause_recovery": [],
+    "target": "arrival_slip_days",
+    "target_stats": {
+      "mean": 0.5658934448383866,
+      "median": 1.0,
+      "std": 1.4938032063280615,
+      "min": -2.0,
+      "max": 4.0,
+      "p10": -2.0,
+      "p90": 2.0,
+      "current_value": 1.0
+    },
+    "interventions": [
+      {
+        "lever": "service_tier",
+        "hops_to_target": 1,
+        "stats": {
+          "mean": 2.337313385376091,
+          "median": 3.0,
+          "std": 0.924055610641041,
+          "min": 0.0,
+          "max": 3.0,
+          "p10": 1.0,
+          "p90": 3.0,
+          "current_value": 3.0
+        },
+        "intervention": {
+          "target": "arrival_slip_days",
+          "new_value": 1.0,
+          "baseline_mean": 0.5658934448383866,
+          "intervened_mean": 1.0193331955419178,
+          "effect": 0.45343975070353126
+        },
+        "shift": {
+          "target": "arrival_slip_days",
+          "delta": -0.924055610641041,
+          "baseline_mean": 0.5658934448383866,
+          "intervened_mean": 1.4139466111261267,
+          "effect": 0.8480531662877402
+        }
+      }
+    ]
+  },
+  {
+    "name": "data_62897.csv",
+    "seed": null,
+    "n_rows": 62897,
+    "lambda": 0.1,
+    "algo": "HC",
+    "type": "gemini_consensus",
+    "prior_name": "gemini_consensus_prior",
+    "shd": null,
+    "precision": null,
+    "recall": null,
+    "f1": null,
+    "dag_json": {
+      "nodes": [
+        {
+          "id": "service_tier"
+        },
+        {
+          "id": "promised_transit_days"
+        },
+        {
+          "id": "handling_lead_days"
+        },
+        {
+          "id": "serve_distance_km"
+        },
+        {
+          "id": "line_count"
+        },
+        {
+          "id": "unit_total"
+        },
+        {
+          "id": "consignment_value"
+        },
+        {
+          "id": "mean_markdown"
+        },
+        {
+          "id": "same_day_workload"
+        },
+        {
+          "id": "zone_weekly_bookings"
+        },
+        {
+          "id": "arrival_slip_days"
+        }
+      ],
+      "links": [
+        {
+          "source": "service_tier",
+          "target": "promised_transit_days"
+        },
+        {
+          "source": "service_tier",
+          "target": "handling_lead_days"
+        },
+        {
+          "source": "service_tier",
+          "target": "arrival_slip_days"
+        },
+        {
+          "source": "promised_transit_days",
+          "target": "arrival_slip_days"
+        },
+        {
+          "source": "handling_lead_days",
+          "target": "arrival_slip_days"
+        },
+        {
+          "source": "line_count",
+          "target": "consignment_value"
+        },
+        {
+          "source": "unit_total",
+          "target": "consignment_value"
+        },
+        {
+          "source": "same_day_workload",
+          "target": "consignment_value"
+        },
+        {
+          "source": "zone_weekly_bookings",
+          "target": "consignment_value"
+        }
+      ]
+    },
+    "attribution": {
+      "decomposition": [
+        {
+          "node": "service_tier",
+          "share_pct": 53.1
+        },
+        {
+          "node": "handling_lead_days",
+          "share_pct": 46.0
+        },
+        {
+          "node": "arrival_slip_days",
+          "share_pct": 0.8
+        },
+        {
+          "node": "promised_transit_days",
+          "share_pct": 0.0
+        }
+      ],
+      "drivers": [
+        {
+          "source": "handling_lead_days",
+          "target": "arrival_slip_days",
+          "strength": 2.35965745,
+          "share_of_variance_pct": 105.7
+        },
+        {
+          "source": "promised_transit_days",
+          "target": "arrival_slip_days",
+          "strength": 2.0661548291666665,
+          "share_of_variance_pct": 92.6
+        },
+        {
+          "source": "service_tier",
+          "target": "arrival_slip_days",
+          "strength": 0.6929027565789473,
+          "share_of_variance_pct": 31.1
+        }
+      ]
+    },
+    "injected_cause_recovery": [],
+    "target": "arrival_slip_days",
+    "target_stats": {
+      "mean": 0.5658934448383866,
+      "median": 1.0,
+      "std": 1.4938032063280615,
+      "min": -2.0,
+      "max": 4.0,
+      "p10": -2.0,
+      "p90": 2.0,
+      "current_value": 1.0
+    },
+    "interventions": [
+      {
+        "lever": "service_tier",
+        "hops_to_target": 1,
+        "stats": {
+          "mean": 2.337313385376091,
+          "median": 3.0,
+          "std": 0.924055610641041,
+          "min": 0.0,
+          "max": 3.0,
+          "p10": 1.0,
+          "p90": 3.0,
+          "current_value": 3.0
+        },
+        "intervention": {
+          "target": "arrival_slip_days",
+          "new_value": 1.0,
+          "baseline_mean": 0.5658934448383866,
+          "intervened_mean": 1.0225129974402594,
+          "effect": 0.4566195526018728
+        },
+        "shift": {
+          "target": "arrival_slip_days",
+          "delta": -0.924055610641041,
+          "baseline_mean": 0.5658934448383866,
+          "intervened_mean": 1.4896894923446269,
+          "effect": 0.9237960475062403
+        }
+      },
+      {
+        "lever": "promised_transit_days",
+        "hops_to_target": 1,
+        "stats": {
+          "mean": 2.9356249105680714,
+          "median": 4.0,
+          "std": 1.3737598490463507,
+          "min": 0.0,
+          "max": 4.0,
+          "p10": 1.0,
+          "p90": 4.0,
+          "current_value": 4.0
+        },
+        "intervention": {
+          "target": "arrival_slip_days",
+          "new_value": 1.0,
+          "baseline_mean": 0.5658934448383866,
+          "intervened_mean": 3.0296039556735614,
+          "effect": 2.463710510835175
+        },
+        "shift": {
+          "target": "arrival_slip_days",
+          "delta": -1.3737598490463507,
+          "baseline_mean": 0.5658934448383866,
+          "intervened_mean": 1.934782263065011,
+          "effect": 1.3688888182266246
+        }
+      },
+      {
+        "lever": "handling_lead_days",
+        "hops_to_target": 1,
+        "stats": {
+          "mean": 3.4753167877641222,
+          "median": 3.0,
+          "std": 1.6712718133030213,
+          "min": 0.0,
+          "max": 6.0,
+          "p10": 2.0,
+          "p90": 6.0,
+          "current_value": 3.0
+        },
+        "intervention": {
+          "target": "arrival_slip_days",
+          "new_value": 2.0,
+          "baseline_mean": 0.5658934448383866,
+          "intervened_mean": -0.9692354166335437,
+          "effect": -1.5351288614719303
+        },
+        "shift": {
+          "target": "arrival_slip_days",
+          "delta": -1.6712718133030213,
+          "baseline_mean": 0.5658934448383866,
+          "intervened_mean": -1.2115999173251506,
+          "effect": -1.7774933621635371
+        }
+      }
+    ]
+  },
+  {
+    "name": "data_62897.csv",
+    "seed": null,
+    "n_rows": 62897,
+    "lambda": 0.1,
+    "algo": "HC",
+    "type": "cerebras_consensus",
+    "prior_name": "cerebras_consensus_prior",
+    "shd": null,
+    "precision": null,
+    "recall": null,
+    "f1": null,
+    "dag_json": {
+      "nodes": [
+        {
+          "id": "service_tier"
+        },
+        {
+          "id": "promised_transit_days"
+        },
+        {
+          "id": "handling_lead_days"
+        },
+        {
+          "id": "serve_distance_km"
+        },
+        {
+          "id": "line_count"
+        },
+        {
+          "id": "unit_total"
+        },
+        {
+          "id": "consignment_value"
+        },
+        {
+          "id": "mean_markdown"
+        },
+        {
+          "id": "same_day_workload"
+        },
+        {
+          "id": "zone_weekly_bookings"
+        },
+        {
+          "id": "arrival_slip_days"
+        }
+      ],
+      "links": [
+        {
+          "source": "service_tier",
+          "target": "promised_transit_days"
+        },
+        {
+          "source": "service_tier",
+          "target": "handling_lead_days"
+        },
+        {
+          "source": "service_tier",
+          "target": "arrival_slip_days"
+        },
+        {
+          "source": "promised_transit_days",
+          "target": "arrival_slip_days"
+        },
+        {
+          "source": "handling_lead_days",
+          "target": "arrival_slip_days"
+        },
+        {
+          "source": "handling_lead_days",
+          "target": "promised_transit_days"
+        },
+        {
+          "source": "line_count",
+          "target": "unit_total"
+        },
+        {
+          "source": "line_count",
+          "target": "consignment_value"
+        },
+        {
+          "source": "unit_total",
+          "target": "consignment_value"
+        },
+        {
+          "source": "same_day_workload",
+          "target": "line_count"
+        },
+        {
+          "source": "same_day_workload",
+          "target": "consignment_value"
+        },
+        {
+          "source": "same_day_workload",
+          "target": "unit_total"
+        },
+        {
+          "source": "same_day_workload",
+          "target": "zone_weekly_bookings"
+        },
+        {
+          "source": "zone_weekly_bookings",
+          "target": "consignment_value"
+        }
+      ]
+    },
+    "attribution": {
+      "decomposition": [
+        {
+          "node": "service_tier",
+          "share_pct": 54.1
+        },
+        {
+          "node": "handling_lead_days",
+          "share_pct": 45.8
+        },
+        {
+          "node": "arrival_slip_days",
+          "share_pct": 0.2
+        },
+        {
+          "node": "promised_transit_days",
+          "share_pct": 0.0
+        }
+      ],
+      "drivers": [
+        {
+          "source": "handling_lead_days",
+          "target": "arrival_slip_days",
+          "strength": 1.81944455,
+          "share_of_variance_pct": 81.5
+        },
+        {
+          "source": "promised_transit_days",
+          "target": "arrival_slip_days",
+          "strength": 1.0219567045454545,
+          "share_of_variance_pct": 45.8
+        },
+        {
+          "source": "service_tier",
+          "target": "arrival_slip_days",
+          "strength": -0.00010776217532467507,
+          "share_of_variance_pct": -0.0
+        }
+      ]
+    },
+    "injected_cause_recovery": [],
+    "target": "arrival_slip_days",
+    "target_stats": {
+      "mean": 0.5658934448383866,
+      "median": 1.0,
+      "std": 1.4938032063280615,
+      "min": -2.0,
+      "max": 4.0,
+      "p10": -2.0,
+      "p90": 2.0,
+      "current_value": 1.0
+    },
+    "interventions": [
+      {
+        "lever": "service_tier",
+        "hops_to_target": 1,
+        "stats": {
+          "mean": 2.337313385376091,
+          "median": 3.0,
+          "std": 0.924055610641041,
+          "min": 0.0,
+          "max": 3.0,
+          "p10": 1.0,
+          "p90": 3.0,
+          "current_value": 3.0
+        },
+        "intervention": {
+          "target": "arrival_slip_days",
+          "new_value": 1.0,
+          "baseline_mean": 0.5658934448383866,
+          "intervened_mean": 0.8680859182472932,
+          "effect": 0.30219247340890665
+        },
+        "shift": {
+          "target": "arrival_slip_days",
+          "delta": -0.924055610641041,
+          "baseline_mean": 0.5658934448383866,
+          "intervened_mean": 1.4150436427810547,
+          "effect": 0.8491501979426681
+        }
+      },
+      {
+        "lever": "promised_transit_days",
+        "hops_to_target": 1,
+        "stats": {
+          "mean": 2.9356249105680714,
+          "median": 4.0,
+          "std": 1.3737598490463507,
+          "min": 0.0,
+          "max": 4.0,
+          "p10": 1.0,
+          "p90": 4.0,
+          "current_value": 4.0
+        },
+        "intervention": {
+          "target": "arrival_slip_days",
+          "new_value": 1.0,
+          "baseline_mean": 0.5658934448383866,
+          "intervened_mean": 1.8816159753247372,
+          "effect": 1.3157225304863507
+        },
+        "shift": {
+          "target": "arrival_slip_days",
+          "delta": -1.3737598490463507,
+          "baseline_mean": 0.5658934448383866,
+          "intervened_mean": 1.7913890964592907,
+          "effect": 1.2254956516209041
+        }
+      },
+      {
+        "lever": "handling_lead_days",
+        "hops_to_target": 1,
+        "stats": {
+          "mean": 3.4753167877641222,
+          "median": 3.0,
+          "std": 1.6712718133030213,
+          "min": 0.0,
+          "max": 6.0,
+          "p10": 2.0,
+          "p90": 6.0,
+          "current_value": 3.0
+        },
+        "intervention": {
+          "target": "arrival_slip_days",
+          "new_value": 2.0,
+          "baseline_mean": 0.5658934448383866,
+          "intervened_mean": -0.9638774504348379,
+          "effect": -1.5297708952732245
+        },
+        "shift": {
+          "target": "arrival_slip_days",
+          "delta": -1.6712718133030213,
+          "baseline_mean": 0.5658934448383866,
+          "intervened_mean": -0.7418954799116015,
+          "effect": -1.307788924749988
+        }
+      }
+    ]
+  },
+  {
+    "name": "data_62897.csv",
+    "seed": null,
+    "n_rows": 62897,
+    "lambda": null,
+    "algo": "PC",
+    "type": "Baseline",
+    "prior_name": null,
+    "shd": null,
+    "precision": null,
+    "recall": null,
+    "f1": null,
+    "dag_json": {
+      "nodes": [
+        {
+          "id": "service_tier"
+        },
+        {
+          "id": "promised_transit_days"
+        },
+        {
+          "id": "handling_lead_days"
+        },
+        {
+          "id": "serve_distance_km"
+        },
+        {
+          "id": "line_count"
+        },
+        {
+          "id": "unit_total"
+        },
+        {
+          "id": "consignment_value"
+        },
+        {
+          "id": "mean_markdown"
+        },
+        {
+          "id": "same_day_workload"
+        },
+        {
+          "id": "zone_weekly_bookings"
+        },
+        {
+          "id": "arrival_slip_days"
+        }
+      ],
+      "links": [
+        {
+          "source": "line_count",
+          "target": "consignment_value"
+        },
+        {
+          "source": "unit_total",
+          "target": "consignment_value"
+        },
+        {
+          "source": "same_day_workload",
+          "target": "consignment_value"
+        },
+        {
+          "source": "zone_weekly_bookings",
+          "target": "consignment_value"
+        }
+      ]
+    },
+    "attribution": {
+      "decomposition": [
+        {
+          "node": "arrival_slip_days",
+          "share_pct": 100.0
+        }
+      ],
+      "drivers": []
+    },
+    "injected_cause_recovery": [],
+    "target": "arrival_slip_days",
+    "target_stats": {
+      "mean": 0.5658934448383866,
+      "median": 1.0,
+      "std": 1.4938032063280615,
+      "min": -2.0,
+      "max": 4.0,
+      "p10": -2.0,
+      "p90": 2.0,
+      "current_value": 1.0
+    },
+    "interventions": []
+  },
+  {
+    "name": "data_62897.csv",
+    "seed": null,
+    "n_rows": 62897,
+    "lambda": null,
+    "algo": "PC",
+    "type": "ollama_llama_consensus",
+    "prior_name": "ollama_llama_consensus_prior",
+    "shd": null,
+    "precision": null,
+    "recall": null,
+    "f1": null,
+    "dag_json": {
+      "nodes": [
+        {
+          "id": "service_tier"
+        },
+        {
+          "id": "promised_transit_days"
+        },
+        {
+          "id": "handling_lead_days"
+        },
+        {
+          "id": "serve_distance_km"
+        },
+        {
+          "id": "line_count"
+        },
+        {
+          "id": "unit_total"
+        },
+        {
+          "id": "consignment_value"
+        },
+        {
+          "id": "mean_markdown"
+        },
+        {
+          "id": "same_day_workload"
+        },
+        {
+          "id": "zone_weekly_bookings"
+        },
+        {
+          "id": "arrival_slip_days"
+        }
+      ],
+      "links": [
+        {
+          "source": "service_tier",
+          "target": "arrival_slip_days"
+        },
+        {
+          "source": "promised_transit_days",
+          "target": "service_tier"
+        },
+        {
+          "source": "promised_transit_days",
+          "target": "handling_lead_days"
+        },
+        {
+          "source": "promised_transit_days",
+          "target": "arrival_slip_days"
+        },
+        {
+          "source": "handling_lead_days",
+          "target": "service_tier"
+        },
+        {
+          "source": "handling_lead_days",
+          "target": "arrival_slip_days"
+        },
+        {
+          "source": "line_count",
+          "target": "unit_total"
+        },
+        {
+          "source": "line_count",
+          "target": "consignment_value"
+        },
+        {
+          "source": "line_count",
+          "target": "same_day_workload"
+        },
+        {
+          "source": "consignment_value",
+          "target": "unit_total"
+        },
+        {
+          "source": "same_day_workload",
+          "target": "unit_total"
+        },
+        {
+          "source": "same_day_workload",
+          "target": "consignment_value"
+        },
+        {
+          "source": "same_day_workload",
+          "target": "zone_weekly_bookings"
+        },
+        {
+          "source": "zone_weekly_bookings",
+          "target": "consignment_value"
+        }
+      ]
+    },
+    "attribution": {
+      "decomposition": [
+        {
+          "node": "promised_transit_days",
+          "share_pct": 53.6
+        },
+        {
+          "node": "handling_lead_days",
+          "share_pct": 45.7
+        },
+        {
+          "node": "arrival_slip_days",
+          "share_pct": 0.7
+        },
+        {
+          "node": "service_tier",
+          "share_pct": 0.0
+        }
+      ],
+      "drivers": [
+        {
+          "source": "handling_lead_days",
+          "target": "arrival_slip_days",
+          "strength": 2.504481583333333,
+          "share_of_variance_pct": 112.2
+        },
+        {
+          "source": "promised_transit_days",
+          "target": "arrival_slip_days",
+          "strength": 2.0471637745098037,
+          "share_of_variance_pct": 91.7
+        },
+        {
+          "source": "service_tier",
+          "target": "arrival_slip_days",
+          "strength": 0.7234172249999999,
+          "share_of_variance_pct": 32.4
+        }
+      ]
+    },
+    "injected_cause_recovery": [],
+    "target": "arrival_slip_days",
+    "target_stats": {
+      "mean": 0.5658934448383866,
+      "median": 1.0,
+      "std": 1.4938032063280615,
+      "min": -2.0,
+      "max": 4.0,
+      "p10": -2.0,
+      "p90": 2.0,
+      "current_value": 1.0
+    },
+    "interventions": [
+      {
+        "lever": "service_tier",
+        "hops_to_target": 1,
+        "stats": {
+          "mean": 2.337313385376091,
+          "median": 3.0,
+          "std": 0.924055610641041,
+          "min": 0.0,
+          "max": 3.0,
+          "p10": 1.0,
+          "p90": 3.0,
+          "current_value": 3.0
+        },
+        "intervention": {
+          "target": "arrival_slip_days",
+          "new_value": 1.0,
+          "baseline_mean": 0.5658934448383866,
+          "intervened_mean": 0.30534047728826497,
+          "effect": -0.2605529675501216
+        },
+        "shift": {
+          "target": "arrival_slip_days",
+          "delta": -0.924055610641041,
+          "baseline_mean": 0.5658934448383866,
+          "intervened_mean": 0.5039350048491978,
+          "effect": -0.06195843998918871
+        }
+      },
+      {
+        "lever": "promised_transit_days",
+        "hops_to_target": 1,
+        "stats": {
+          "mean": 2.9356249105680714,
+          "median": 4.0,
+          "std": 1.3737598490463507,
+          "min": 0.0,
+          "max": 4.0,
+          "p10": 1.0,
+          "p90": 4.0,
+          "current_value": 4.0
+        },
+        "intervention": {
+          "target": "arrival_slip_days",
+          "new_value": 1.0,
+          "baseline_mean": 0.5658934448383866,
+          "intervened_mean": 1.0265036488226784,
+          "effect": 0.46061020398429187
+        },
+        "shift": {
+          "target": "arrival_slip_days",
+          "delta": -1.3737598490463507,
+          "baseline_mean": 0.5658934448383866,
+          "intervened_mean": 1.1332813965689938,
+          "effect": 0.5673879517306073
+        }
+      },
+      {
+        "lever": "handling_lead_days",
+        "hops_to_target": 1,
+        "stats": {
+          "mean": 3.4753167877641222,
+          "median": 3.0,
+          "std": 1.6712718133030213,
+          "min": 0.0,
+          "max": 6.0,
+          "p10": 2.0,
+          "p90": 6.0,
+          "current_value": 3.0
+        },
+        "intervention": {
+          "target": "arrival_slip_days",
+          "new_value": 2.0,
+          "baseline_mean": 0.5658934448383866,
+          "intervened_mean": -0.9052896004578914,
+          "effect": -1.471183045296278
+        },
+        "shift": {
+          "target": "arrival_slip_days",
+          "delta": -1.6712718133030213,
+          "baseline_mean": 0.5658934448383866,
+          "intervened_mean": -1.1292271491486081,
+          "effect": -1.6951205939869947
+        }
+      }
+    ]
+  },
+  {
+    "name": "data_62897.csv",
+    "seed": null,
+    "n_rows": 62897,
+    "lambda": null,
+    "algo": "PC",
+    "type": "ollama_qwen_consensus",
+    "prior_name": "ollama_qwen_consensus_prior",
+    "shd": null,
+    "precision": null,
+    "recall": null,
+    "f1": null,
+    "dag_json": {
+      "nodes": [
+        {
+          "id": "service_tier"
+        },
+        {
+          "id": "promised_transit_days"
+        },
+        {
+          "id": "handling_lead_days"
+        },
+        {
+          "id": "serve_distance_km"
+        },
+        {
+          "id": "line_count"
+        },
+        {
+          "id": "unit_total"
+        },
+        {
+          "id": "consignment_value"
+        },
+        {
+          "id": "mean_markdown"
+        },
+        {
+          "id": "same_day_workload"
+        },
+        {
+          "id": "zone_weekly_bookings"
+        },
+        {
+          "id": "arrival_slip_days"
+        }
+      ],
+      "links": [
+        {
+          "source": "service_tier",
+          "target": "handling_lead_days"
+        },
+        {
+          "source": "service_tier",
+          "target": "arrival_slip_days"
+        },
+        {
+          "source": "line_count",
+          "target": "consignment_value"
+        },
+        {
+          "source": "unit_total",
+          "target": "line_count"
+        },
+        {
+          "source": "unit_total",
+          "target": "consignment_value"
+        },
+        {
+          "source": "same_day_workload",
+          "target": "line_count"
+        },
+        {
+          "source": "same_day_workload",
+          "target": "unit_total"
+        },
+        {
+          "source": "same_day_workload",
+          "target": "consignment_value"
+        },
+        {
+          "source": "zone_weekly_bookings",
+          "target": "consignment_value"
+        },
+        {
+          "source": "zone_weekly_bookings",
+          "target": "same_day_workload"
+        },
+        {
+          "source": "arrival_slip_days",
+          "target": "handling_lead_days"
+        }
+      ]
+    },
+    "attribution": {
+      "decomposition": [
+        {
+          "node": "service_tier",
+          "share_pct": 54.5
+        },
+        {
+          "node": "arrival_slip_days",
+          "share_pct": 45.5
+        }
+      ],
+      "drivers": [
+        {
+          "source": "service_tier",
+          "target": "arrival_slip_days",
+          "strength": 0.613941857142857,
+          "share_of_variance_pct": 27.5
+        }
+      ]
+    },
+    "injected_cause_recovery": [],
+    "target": "arrival_slip_days",
+    "target_stats": {
+      "mean": 0.5658934448383866,
+      "median": 1.0,
+      "std": 1.4938032063280615,
+      "min": -2.0,
+      "max": 4.0,
+      "p10": -2.0,
+      "p90": 2.0,
+      "current_value": 1.0
+    },
+    "interventions": [
+      {
+        "lever": "service_tier",
+        "hops_to_target": 1,
+        "stats": {
+          "mean": 2.337313385376091,
+          "median": 3.0,
+          "std": 0.924055610641041,
+          "min": 0.0,
+          "max": 3.0,
+          "p10": 1.0,
+          "p90": 3.0,
+          "current_value": 3.0
+        },
+        "intervention": {
+          "target": "arrival_slip_days",
+          "new_value": 1.0,
+          "baseline_mean": 0.5658934448383866,
+          "intervened_mean": 1.0279027616579488,
+          "effect": 0.46200931681956225
+        },
+        "shift": {
+          "target": "arrival_slip_days",
+          "delta": -0.924055610641041,
+          "baseline_mean": 0.5658934448383866,
+          "intervened_mean": 1.4089543221457304,
+          "effect": 0.8430608773073438
+        }
+      }
+    ]
+  },
+  {
+    "name": "data_62897.csv",
+    "seed": null,
+    "n_rows": 62897,
+    "lambda": null,
+    "algo": "PC",
+    "type": "gemini_consensus",
+    "prior_name": "gemini_consensus_prior",
+    "shd": null,
+    "precision": null,
+    "recall": null,
+    "f1": null,
+    "dag_json": {
+      "nodes": [
+        {
+          "id": "service_tier"
+        },
+        {
+          "id": "promised_transit_days"
+        },
+        {
+          "id": "handling_lead_days"
+        },
+        {
+          "id": "serve_distance_km"
+        },
+        {
+          "id": "line_count"
+        },
+        {
+          "id": "unit_total"
+        },
+        {
+          "id": "consignment_value"
+        },
+        {
+          "id": "mean_markdown"
+        },
+        {
+          "id": "same_day_workload"
+        },
+        {
+          "id": "zone_weekly_bookings"
+        },
+        {
+          "id": "arrival_slip_days"
+        }
+      ],
+      "links": [
+        {
+          "source": "service_tier",
+          "target": "promised_transit_days"
+        },
+        {
+          "source": "service_tier",
+          "target": "handling_lead_days"
+        },
+        {
+          "source": "service_tier",
+          "target": "arrival_slip_days"
+        },
+        {
+          "source": "promised_transit_days",
+          "target": "arrival_slip_days"
+        },
+        {
+          "source": "handling_lead_days",
+          "target": "arrival_slip_days"
+        },
+        {
+          "source": "line_count",
+          "target": "consignment_value"
+        },
+        {
+          "source": "unit_total",
+          "target": "consignment_value"
+        },
+        {
+          "source": "same_day_workload",
+          "target": "consignment_value"
+        },
+        {
+          "source": "zone_weekly_bookings",
+          "target": "consignment_value"
+        }
+      ]
+    },
+    "attribution": {
+      "decomposition": [
+        {
+          "node": "service_tier",
+          "share_pct": 51.6
+        },
+        {
+          "node": "handling_lead_days",
+          "share_pct": 47.5
+        },
+        {
+          "node": "arrival_slip_days",
+          "share_pct": 0.8
+        },
+        {
+          "node": "promised_transit_days",
+          "share_pct": 0.0
+        }
+      ],
+      "drivers": [
+        {
+          "source": "handling_lead_days",
+          "target": "arrival_slip_days",
+          "strength": 1.697374767857143,
+          "share_of_variance_pct": 76.1
+        },
+        {
+          "source": "promised_transit_days",
+          "target": "arrival_slip_days",
+          "strength": 1.0117515625,
+          "share_of_variance_pct": 45.3
+        },
+        {
+          "source": "service_tier",
+          "target": "arrival_slip_days",
+          "strength": 7.884769316286821e-05,
+          "share_of_variance_pct": 0.0
+        }
+      ]
+    },
+    "injected_cause_recovery": [],
+    "target": "arrival_slip_days",
+    "target_stats": {
+      "mean": 0.5658934448383866,
+      "median": 1.0,
+      "std": 1.4938032063280615,
+      "min": -2.0,
+      "max": 4.0,
+      "p10": -2.0,
+      "p90": 2.0,
+      "current_value": 1.0
+    },
+    "interventions": [
+      {
+        "lever": "service_tier",
+        "hops_to_target": 1,
+        "stats": {
+          "mean": 2.337313385376091,
+          "median": 3.0,
+          "std": 0.924055610641041,
+          "min": 0.0,
+          "max": 3.0,
+          "p10": 1.0,
+          "p90": 3.0,
+          "current_value": 3.0
+        },
+        "intervention": {
+          "target": "arrival_slip_days",
+          "new_value": 1.0,
+          "baseline_mean": 0.5658934448383866,
+          "intervened_mean": 0.8681654132947517,
+          "effect": 0.30227196845636517
+        },
+        "shift": {
+          "target": "arrival_slip_days",
+          "delta": -0.924055610641041,
+          "baseline_mean": 0.5658934448383866,
+          "intervened_mean": 1.4192091832678824,
+          "effect": 0.8533157384294958
+        }
+      },
+      {
+        "lever": "promised_transit_days",
+        "hops_to_target": 1,
+        "stats": {
+          "mean": 2.9356249105680714,
+          "median": 4.0,
+          "std": 1.3737598490463507,
+          "min": 0.0,
+          "max": 4.0,
+          "p10": 1.0,
+          "p90": 4.0,
+          "current_value": 4.0
+        },
+        "intervention": {
+          "target": "arrival_slip_days",
+          "new_value": 1.0,
+          "baseline_mean": 0.5658934448383866,
+          "intervened_mean": 1.8778797080941858,
+          "effect": 1.3119862632557993
+        },
+        "shift": {
+          "target": "arrival_slip_days",
+          "delta": -1.3737598490463507,
+          "baseline_mean": 0.5658934448383866,
+          "intervened_mean": 1.7795602333974594,
+          "effect": 1.2136667885590728
+        }
+      },
+      {
+        "lever": "handling_lead_days",
+        "hops_to_target": 1,
+        "stats": {
+          "mean": 3.4753167877641222,
+          "median": 3.0,
+          "std": 1.6712718133030213,
+          "min": 0.0,
+          "max": 6.0,
+          "p10": 2.0,
+          "p90": 6.0,
+          "current_value": 3.0
+        },
+        "intervention": {
+          "target": "arrival_slip_days",
+          "new_value": 2.0,
+          "baseline_mean": 0.5658934448383866,
+          "intervened_mean": -0.9617151851439655,
+          "effect": -1.527608629982352
+        },
+        "shift": {
+          "target": "arrival_slip_days",
+          "delta": -1.6712718133030213,
+          "baseline_mean": 0.5658934448383866,
+          "intervened_mean": -0.7437397650126397,
+          "effect": -1.3096332098510262
+        }
+      }
+    ]
+  },
+  {
+    "name": "data_62897.csv",
+    "seed": null,
+    "n_rows": 62897,
+    "lambda": null,
+    "algo": "PC",
+    "type": "cerebras_consensus",
+    "prior_name": "cerebras_consensus_prior",
+    "shd": null,
+    "precision": null,
+    "recall": null,
+    "f1": null,
+    "dag_json": {
+      "nodes": [
+        {
+          "id": "service_tier"
+        },
+        {
+          "id": "promised_transit_days"
+        },
+        {
+          "id": "handling_lead_days"
+        },
+        {
+          "id": "serve_distance_km"
+        },
+        {
+          "id": "line_count"
+        },
+        {
+          "id": "unit_total"
+        },
+        {
+          "id": "consignment_value"
+        },
+        {
+          "id": "mean_markdown"
+        },
+        {
+          "id": "same_day_workload"
+        },
+        {
+          "id": "zone_weekly_bookings"
+        },
+        {
+          "id": "arrival_slip_days"
+        }
+      ],
+      "links": [
+        {
+          "source": "service_tier",
+          "target": "promised_transit_days"
+        },
+        {
+          "source": "service_tier",
+          "target": "handling_lead_days"
+        },
+        {
+          "source": "service_tier",
+          "target": "arrival_slip_days"
+        },
+        {
+          "source": "promised_transit_days",
+          "target": "arrival_slip_days"
+        },
+        {
+          "source": "handling_lead_days",
+          "target": "promised_transit_days"
+        },
+        {
+          "source": "handling_lead_days",
+          "target": "arrival_slip_days"
+        },
+        {
+          "source": "line_count",
+          "target": "unit_total"
+        },
+        {
+          "source": "line_count",
+          "target": "consignment_value"
+        },
+        {
+          "source": "unit_total",
+          "target": "consignment_value"
+        },
+        {
+          "source": "same_day_workload",
+          "target": "unit_total"
+        },
+        {
+          "source": "same_day_workload",
+          "target": "consignment_value"
+        },
+        {
+          "source": "zone_weekly_bookings",
+          "target": "consignment_value"
+        }
+      ]
+    },
+    "attribution": {
+      "decomposition": [
+        {
+          "node": "service_tier",
+          "share_pct": 54.3
+        },
+        {
+          "node": "handling_lead_days",
+          "share_pct": 45.3
+        },
+        {
+          "node": "arrival_slip_days",
+          "share_pct": 0.4
+        },
+        {
+          "node": "promised_transit_days",
+          "share_pct": 0.0
+        }
+      ],
+      "drivers": [
+        {
+          "source": "handling_lead_days",
+          "target": "arrival_slip_days",
+          "strength": 1.7081944249999998,
+          "share_of_variance_pct": 76.6
+        },
+        {
+          "source": "promised_transit_days",
+          "target": "arrival_slip_days",
+          "strength": 1.0189434545454545,
+          "share_of_variance_pct": 45.7
+        },
+        {
+          "source": "service_tier",
+          "target": "arrival_slip_days",
+          "strength": 8.011664953751265e-05,
+          "share_of_variance_pct": 0.0
+        }
+      ]
+    },
+    "injected_cause_recovery": [],
+    "target": "arrival_slip_days",
+    "target_stats": {
+      "mean": 0.5658934448383866,
+      "median": 1.0,
+      "std": 1.4938032063280615,
+      "min": -2.0,
+      "max": 4.0,
+      "p10": -2.0,
+      "p90": 2.0,
+      "current_value": 1.0
+    },
+    "interventions": [
+      {
+        "lever": "service_tier",
+        "hops_to_target": 1,
+        "stats": {
+          "mean": 2.337313385376091,
+          "median": 3.0,
+          "std": 0.924055610641041,
+          "min": 0.0,
+          "max": 3.0,
+          "p10": 1.0,
+          "p90": 3.0,
+          "current_value": 3.0
+        },
+        "intervention": {
+          "target": "arrival_slip_days",
+          "new_value": 1.0,
+          "baseline_mean": 0.5658934448383866,
+          "intervened_mean": 0.87066155778495,
+          "effect": 0.3047681129465635
+        },
+        "shift": {
+          "target": "arrival_slip_days",
+          "delta": -0.924055610641041,
+          "baseline_mean": 0.5658934448383866,
+          "intervened_mean": 1.4168402308536179,
+          "effect": 0.8509467860152313
+        }
+      },
+      {
+        "lever": "promised_transit_days",
+        "hops_to_target": 1,
+        "stats": {
+          "mean": 2.9356249105680714,
+          "median": 4.0,
+          "std": 1.3737598490463507,
+          "min": 0.0,
+          "max": 4.0,
+          "p10": 1.0,
+          "p90": 4.0,
+          "current_value": 4.0
+        },
+        "intervention": {
+          "target": "arrival_slip_days",
+          "new_value": 1.0,
+          "baseline_mean": 0.5658934448383866,
+          "intervened_mean": 1.8797716902236992,
+          "effect": 1.3138782453853126
+        },
+        "shift": {
+          "target": "arrival_slip_days",
+          "delta": -1.3737598490463507,
+          "baseline_mean": 0.5658934448383866,
+          "intervened_mean": 1.775760370128941,
+          "effect": 1.2098669252905545
+        }
+      },
+      {
+        "lever": "handling_lead_days",
+        "hops_to_target": 1,
+        "stats": {
+          "mean": 3.4753167877641222,
+          "median": 3.0,
+          "std": 1.6712718133030213,
+          "min": 0.0,
+          "max": 6.0,
+          "p10": 2.0,
+          "p90": 6.0,
+          "current_value": 3.0
+        },
+        "intervention": {
+          "target": "arrival_slip_days",
+          "new_value": 2.0,
+          "baseline_mean": 0.5658934448383866,
+          "intervened_mean": -0.9625260346280426,
+          "effect": -1.5284194794664292
+        },
+        "shift": {
+          "target": "arrival_slip_days",
+          "delta": -1.6712718133030213,
+          "baseline_mean": 0.5658934448383866,
+          "intervened_mean": -0.748143790641843,
+          "effect": -1.3140372354802294
+        }
+      }
+    ]
+  }
+]

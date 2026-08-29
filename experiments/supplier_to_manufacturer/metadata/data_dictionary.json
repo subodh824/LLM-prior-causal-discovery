@@ -1,0 +1,75 @@
+{
+  "leg": "supplier_to_manufacturer",
+  "natural": [
+    {
+      "name": "geopolitical_disruption",
+      "type": "float",
+      "range": "[0,1]",
+      "description": "Index of geopolitical/tariff-regime disruption severity affecting the supplier base.",
+      "distribution": "Beta(2,5)"
+    },
+    {
+      "name": "supplier_financial_health",
+      "type": "float",
+      "range": "[0,1]",
+      "description": "Composite financial-health score of the supplier (higher = healthier).",
+      "distribution": "Beta(5,2)"
+    },
+    {
+      "name": "supplier_distance",
+      "type": "float",
+      "range": "[0,inf)",
+      "description": "Geographic distance (km) from supplier to buyer facility.",
+      "distribution": "Gamma(shape=2, scale=500)"
+    },
+    {
+      "name": "supplier_risk_score",
+      "type": "float",
+      "range": "[0,100]",
+      "description": "Composite supplier risk score (higher = riskier).",
+      "distribution": "SCM: f(supplier_financial_health) + noise"
+    },
+    {
+      "name": "po_cycle_time",
+      "type": "float",
+      "range": "[1,inf)",
+      "description": "Purchase order cycle time in days, from issue to supplier acknowledgment.",
+      "distribution": "SCM: f(geopolitical_disruption) + noise"
+    },
+    {
+      "name": "lead_time_variability",
+      "type": "float",
+      "range": "[0,inf)",
+      "description": "Variability (std-dev-like measure, days) in observed delivery lead times.",
+      "distribution": "SCM: f(geopolitical_disruption, supplier_distance, supplier_risk_score, po_cycle_time) + noise"
+    },
+    {
+      "name": "safety_stock_held",
+      "type": "float",
+      "range": "[0,inf)",
+      "description": "Units of safety stock held as a buffer against lead-time variability.",
+      "distribution": "SCM: f(lead_time_variability) + noise"
+    },
+    {
+      "name": "raw_material_delay",
+      "type": "float",
+      "range": "[0,inf)",
+      "description": "Observed delay (days) in raw material delivery.",
+      "distribution": "SCM: f(lead_time_variability, safety_stock_held) + noise"
+    },
+    {
+      "name": "production_schedule_instability",
+      "type": "float",
+      "range": "[0,100]",
+      "description": "Index of production schedule disruption/instability.",
+      "distribution": "SCM: f(raw_material_delay) + noise"
+    },
+    {
+      "name": "inventory_holding_cost",
+      "type": "float",
+      "range": "[0,inf)",
+      "description": "Monthly inventory holding cost in $k.",
+      "distribution": "SCM: f(raw_material_delay) + noise"
+    }
+  ]
+}

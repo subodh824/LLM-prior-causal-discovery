@@ -1,0 +1,5 @@
+{
+  "target": "delivery_delay",
+  "causes": ["fulfillment_center_congestion", "weather_severity"],
+  "actionables": ["order_processing_time", "shipping_mode", "scheduled_transit_time", "fulfillment_center_congestion"]
+}

@@ -1,0 +1,110 @@
+[
+  {
+    "name": "Overall",
+    "type": "random",
+    "count": 3,
+    "fco": null,
+    "fco_ci95": null,
+    "tere": null,
+    "tere_ci95": null,
+    "tene": null,
+    "tene_ci95": null,
+    "lod": null
+  },
+  {
+    "name": "Overall",
+    "type": "ollama_llama",
+    "count": 3,
+    "fco": null,
+    "fco_ci95": null,
+    "tere": null,
+    "tere_ci95": null,
+    "tene": null,
+    "tene_ci95": null,
+    "lod": null
+  },
+  {
+    "name": "Overall",
+    "type": "ollama_llama_consensus",
+    "count": 1,
+    "fco": null,
+    "fco_ci95": null,
+    "tere": null,
+    "tere_ci95": null,
+    "tene": null,
+    "tene_ci95": null,
+    "lod": null
+  },
+  {
+    "name": "Overall",
+    "type": "ollama_qwen",
+    "count": 3,
+    "fco": null,
+    "fco_ci95": null,
+    "tere": null,
+    "tere_ci95": null,
+    "tene": null,
+    "tene_ci95": null,
+    "lod": null
+  },
+  {
+    "name": "Overall",
+    "type": "ollama_qwen_consensus",
+    "count": 1,
+    "fco": null,
+    "fco_ci95": null,
+    "tere": null,
+    "tere_ci95": null,
+    "tene": null,
+    "tene_ci95": null,
+    "lod": null
+  },
+  {
+    "name": "Overall",
+    "type": "gemini",
+    "count": 3,
+    "fco": null,
+    "fco_ci95": null,
+    "tere": null,
+    "tere_ci95": null,
+    "tene": null,
+    "tene_ci95": null,
+    "lod": null
+  },
+  {
+    "name": "Overall",
+    "type": "gemini_consensus",
+    "count": 1,
+    "fco": null,
+    "fco_ci95": null,
+    "tere": null,
+    "tere_ci95": null,
+    "tene": null,
+    "tene_ci95": null,
+    "lod": null
+  },
+  {
+    "name": "Overall",
+    "type": "cerebras",
+    "count": 3,
+    "fco": null,
+    "fco_ci95": null,
+    "tere": null,
+    "tere_ci95": null,
+    "tene": null,
+    "tene_ci95": null,
+    "lod": null
+  },
+  {
+    "name": "Overall",
+    "type": "cerebras_consensus",
+    "count": 1,
+    "fco": null,
+    "fco_ci95": null,
+    "tere": null,
+    "tere_ci95": null,
+    "tene": null,
+    "tene_ci95": null,
+    "lod": null
+  }
+]

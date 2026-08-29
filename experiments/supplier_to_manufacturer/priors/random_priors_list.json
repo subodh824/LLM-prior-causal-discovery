@@ -1,0 +1,91 @@
+[
+  {
+    "name": "random_prior_0",
+    "type": "random",
+    "edges_with_probability": [
+      ["supplier_distance", "production_schedule_instability", 0.434],
+      ["supplier_risk_score", "production_schedule_instability", 0.72],
+      ["po_cycle_time", "supplier_distance", 0.494],
+      ["lead_time_variability", "po_cycle_time", 0.32],
+      ["lead_time_variability", "production_schedule_instability", 0.551],
+      ["raw_material_delay", "production_schedule_instability", 0.758]
+    ],
+    "forbidden_edges": [],
+    "tier_ordering": [
+      ["geopolitical_disruption", 2],
+      ["supplier_financial_health", 0],
+      ["supplier_distance", 2],
+      ["supplier_risk_score", 0],
+      ["po_cycle_time", 3],
+      ["lead_time_variability", 2],
+      ["safety_stock_held", 1],
+      ["raw_material_delay", 1],
+      ["production_schedule_instability", 0],
+      ["inventory_holding_cost", 2]
+    ],
+    "rationale": {
+      "_": "RANDOM CONTROL"
+    }
+  },
+  {
+    "name": "random_prior_1",
+    "type": "random",
+    "edges_with_probability": [
+      ["geopolitical_disruption", "supplier_financial_health", 0.847],
+      ["geopolitical_disruption", "production_schedule_instability", 0.028],
+      ["supplier_financial_health", "supplier_risk_score", 0.445],
+      ["supplier_financial_health", "production_schedule_instability", 0.025],
+      ["supplier_distance", "lead_time_variability", 0.222],
+      ["supplier_risk_score", "po_cycle_time", 0.838],
+      ["po_cycle_time", "geopolitical_disruption", 0.333],
+      ["lead_time_variability", "po_cycle_time", 0.243],
+      ["raw_material_delay", "geopolitical_disruption", 0.043],
+      ["inventory_holding_cost", "supplier_financial_health", 0.784]
+    ],
+    "forbidden_edges": [],
+    "tier_ordering": [
+      ["geopolitical_disruption", 0],
+      ["supplier_financial_health", 3],
+      ["supplier_distance", 2],
+      ["supplier_risk_score", 1],
+      ["po_cycle_time", 3],
+      ["lead_time_variability", 3],
+      ["safety_stock_held", 2],
+      ["raw_material_delay", 3],
+      ["production_schedule_instability", 2],
+      ["inventory_holding_cost", 0]
+    ],
+    "rationale": {
+      "_": "RANDOM CONTROL"
+    }
+  },
+  {
+    "name": "random_prior_2",
+    "type": "random",
+    "edges_with_probability": [
+      ["geopolitical_disruption", "supplier_risk_score", 0.085],
+      ["supplier_distance", "supplier_financial_health", 0.027],
+      ["supplier_risk_score", "geopolitical_disruption", 0.325],
+      ["supplier_risk_score", "supplier_financial_health", 0.51],
+      ["production_schedule_instability", "lead_time_variability", 0.82],
+      ["inventory_holding_cost", "supplier_financial_health", 0.653],
+      ["inventory_holding_cost", "lead_time_variability", 0.522]
+    ],
+    "forbidden_edges": [],
+    "tier_ordering": [
+      ["geopolitical_disruption", 0],
+      ["supplier_financial_health", 3],
+      ["supplier_distance", 0],
+      ["supplier_risk_score", 0],
+      ["po_cycle_time", 2],
+      ["lead_time_variability", 2],
+      ["safety_stock_held", 1],
+      ["raw_material_delay", 1],
+      ["production_schedule_instability", 0],
+      ["inventory_holding_cost", 0]
+    ],
+    "rationale": {
+      "_": "RANDOM CONTROL"
+    }
+  }
+]
