@@ -1,0 +1,40 @@
+:root {
+  --hdr: #40466e;
+  --perfect: #f2f2f2;
+  --random: #fdf3e3;
+  --gemini: #e3f0e3;
+  --groq: #e3ebf7;
+}
+body { font-family: Georgia, serif; margin: 2rem auto; max-width: 1250px;
+       color: #222; padding: 0 1rem; font-size: 20px; }
+h1 { font-size: 1.7rem; } h2 { font-size: 1.35rem; margin-top: 1.8rem; }
+h3 { font-size: 1.15rem; }
+nav { font-size: 17px; font-family: Helvetica, sans-serif;
+      border-bottom: 1px solid #ccc; padding-bottom: .6rem; }
+nav a { margin: 0 .3rem; }
+
+table { border-collapse: collapse; margin: .8rem 0 1.4rem; font-size: 17px;
+        font-family: Helvetica, Arial, sans-serif; }
+th { background: var(--hdr); color: #fff; padding: 7px 12px; }
+td { border: 1px solid #ddd; padding: 6px 12px; text-align: center; }
+td:first-child { text-align: left; }
+
+/* row tints by prior type */
+tr.perfect td { background: var(--perfect); font-style: italic; color: #555; }
+tr.random td  { background: var(--random); }
+tr.gemini td  { background: var(--gemini); }
+tr.groq td    { background: var(--groq); }
+
+/* interactive highlighting: hover any data row to track it across columns */
+tbody tr:hover td, table tr:hover td { filter: brightness(0.93); }
+
+/* the winning (best non-oracle SHD) condition gets a full-row highlight */
+tr.winner td { border-top: 2px solid #2e7d32; border-bottom: 2px solid #2e7d32; }
+tr.winner td:first-child { border-left: 4px solid #2e7d32; font-weight: bold; }
+
+td.best { font-weight: bold; }
+.note { font-size: 15px; color: #555; }
+img.dag { max-width: 460px; border: 1px solid #ccc; }
+.missing { color: #999; font-style: italic; }
+.side-by-side { display: flex; gap: 2rem; flex-wrap: wrap;
+                align-items: flex-start; }

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Prior evaluation</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">loading…</div>
+
+<script src="shared.js"></script>
+<script>
+const METRICS = ["fco", "tere", "tene"];
+
+function sortByType(rows) {
+  return [...rows].sort(function (a, b) {
+    const orderA = typeInfo(a.type).order;
+    const orderB = typeInfo(b.type).order;
+    if (orderA !== orderB) return orderA - orderB;
+    return String(a.name).localeCompare(String(b.name));
+  });
+}
+
+// For each metric, find the highest non-oracle mean; that cell gets bold.
+// The perfect prior is the ceiling, so it never competes.
+function findBestValues(rows) {
+  const best = {};
+  for (const metric of METRICS) {
+    let highest = -Infinity;
+    for (const row of rows) {
+      if (String(row.type).toLowerCase() === "perfect") continue;
+      const value = row[metric];
+      if (value != null && value > highest) highest = value;
+    }
+    best[metric] = highest;
+  }
+  return best;
+}
+
+function summaryTable(summary) {
+  const best = findBestValues(summary);
+
+  let html = "<table><tr><th>Prior</th><th>K</th><th>FCO</th>" +
+             "<th>TERE</th><th>TENE</th><th>LOD</th></tr>";
+
+  for (const row of sortByType(summary)) {
+    const info = typeInfo(row.type);
+    html += `<tr class="${info.css}">`;
+    html += `<td>${info.label}</td>`;
+    html += `<td>${row.count ?? 1}</td>`;
+    for (const metric of METRICS) {
+      const isPerfect = String(row.type).toLowerCase() === "perfect";
+      const bold = !isPerfect && row[metric] === best[metric] ? "best" : "";
+      html += `<td class="${bold}">${fmt(row[metric], row[metric + "_ci95"])}</td>`;
+    }
+    html += `<td>${row.lod == null ? "—" : Number(row.lod).toFixed(2)}</td>`;
+    html += "</tr>";
+  }
+  return html + "</table>";
+}
+
+function individualDrawsTable(draws) {
+  let html = "<table><tr><th>Draw</th><th>Type</th><th>FCO</th>" +
+             "<th>TERE</th><th>TENE</th></tr>";
+
+  for (const row of sortByType(draws)) {
+    const info = typeInfo(row.type);
+    html += `<tr class="${info.css}">`;
+    html += `<td>${row.name}</td><td>${row.type}</td>`;
+    for (const metric of METRICS) {
+      const value = row[metric];
+      html += `<td>${value == null ? "—" : Number(value).toFixed(2)}</td>`;
+    }
+    html += "</tr>";
+  }
+  return html + "</table>";
+}
+
+async function main() {
+  let html = navBar() + `<h1>Prior evaluation — ${legTitle}</h1>`;
+
+  const summary = await getJSON(legDir + "priors_summary.json");
+  html += "<h2>Summary (mean ± 95% CI over draws)</h2>";
+  if (summary) {
+    html += summaryTable(summary);
+  } else {
+    html += "<p class='missing'>no priors_summary.json for this leg</p>";
+  }
+
+  const draws = await getJSON(legDir + "priors_all.json");
+  html += "<h2>Individual draws</h2>";
+  if (draws) {
+    html += individualDrawsTable(draws);
+  } else {
+    html += "<p class='missing'>no priors_all.json for this leg</p>";
+  }
+
+  document.getElementById("app").innerHTML = html;
+}
+
+main();
+</script>
+</body>
+</html>

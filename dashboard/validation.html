@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Validation (real data)</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  .filters { display:flex; gap:1.5rem; align-items:center; margin:1rem 0 1.2rem;
+             font-family:Helvetica,sans-serif; font-size:16px; }
+  .filters label { color:#555; margin-right:8px; }
+  .filters select { font-size:16px; padding:4px 8px; }
+  .val-note { font-family:Helvetica,sans-serif; font-size:14px; color:#666; margin:.3rem 0 1.2rem; line-height:1.5; }
+  /* summary comparison table */
+  .sum-tbl { border-collapse:separate; border-spacing:0; width:100%; font-family:Helvetica,sans-serif;
+             margin-bottom:2rem; font-size:15px; }
+  .sum-tbl th { text-align:left; padding:8px 12px; color:#555; font-size:13px;
+                border-bottom:2px solid #ccc; }
+  .sum-tbl td { padding:8px 12px; border-bottom:1px solid #eee; }
+  .sum-tbl td.cond { font-weight:bold; color:#40466e; }
+  .sum-tbl tr.baseline td.cond { color:#888; }
+  .verdict { font-weight:bold; padding:2px 10px; border-radius:12px; font-size:13px; }
+  .verdict.pass { background:#dcedd5; color:#245c1b; }
+  .verdict.fail { background:#f6d5d5; color:#a12020; }
+  .viol-bar-wrap { display:flex; align-items:center; gap:8px; }
+  .viol-bar-track { width:120px; height:14px; background:#f0efe8; border-radius:4px; }
+  .viol-bar { height:14px; border-radius:4px; }
+  .stable-count { font-weight:bold; font-size:16px; }
+  .stable-count.good { color:#2e7d32; } .stable-count.low { color:#c0392b; }
+  .del-badge { font-size:12px; padding:1px 7px; border-radius:8px; margin-left:4px; }
+  .del-badge.has { background:#dcedd5; color:#245c1b; }
+  .del-badge.no { background:#f0efe8; color:#999; }
+  /* detail cards */
+  .detail-grid { display:flex; flex-wrap:wrap; gap:1rem; }
+  .vcard { flex:1 1 320px; min-width:300px; border:1px solid #e0dccf; border-radius:10px;
+           padding:1rem; background:#fdfdfb; }
+  .vcard.baseline { border-color:#ddd; background:#faf9f7; }
+  .vcard-head { font-family:Helvetica,sans-serif; font-weight:bold; font-size:16px;
+                color:#40466e; margin-bottom:.5rem; }
+  .vcard.baseline .vcard-head { color:#888; }
+  .vcard-fals { font-family:Helvetica,sans-serif; font-size:13px; margin-bottom:.7rem;
+                padding:.5rem .7rem; border-radius:6px; }
+  .vcard-fals.pass { background:#f0f7ec; } .vcard-fals.fail { background:#faeaea; }
+  .edge-sec-title { font-family:Helvetica,sans-serif; font-size:12px; font-weight:bold;
+                    color:#666; text-transform:uppercase; letter-spacing:.03em; margin:.6rem 0 .3rem; }
+  .edge-row { display:flex; align-items:center; margin:2px 0; font-family:Helvetica,sans-serif;
+              font-size:12px; }
+  .edge-name { flex:1; color:#444; }
+  .edge-name.delivery { font-weight:bold; color:#245c1b; }
+  .edge-freq-track { width:90px; height:12px; background:#f0efe8; border-radius:3px; margin:0 8px; }
+  .edge-freq-fill { height:12px; border-radius:3px; background:#2e7d32; }
+  .edge-freq-fill.mid { background:#e0a52e; } .edge-freq-fill.low { background:#ccc; }
+  .edge-freq-val { width:34px; text-align:right; color:#666; font-size:11px; }
+</style>
+</head>
+<body>
+<div id="app">loading…</div>
+<script src="shared.js"></script>
+<script>
+let ALL=[], algo=null;
+const OUTCOME="delivery_delay";
+function isType(t,x){return String(t).toLowerCase().includes(x);}
+function isDeliveryEdge(e){return e.includes(OUTCOME);}
+
+function violPct(f){ return f && f.n_tests ? f.given_violations/f.n_tests*100 : null; }
+
+// count stable edges that touch the outcome (the ones that matter)
+function stableDeliveryEdges(run){
+  const st=run.bootstrap_stability?.stable_edges||[];
+  return st.filter(isDeliveryEdge);
+}
+
+function summaryTable(runs){
+  // worst violation for scaling
+  const maxViol=Math.max(...runs.map(r=>violPct(r.falsification)||0),1);
+  let rows="";
+  for(const r of runs){
+    const f=r.falsification||{};
+    const vp=violPct(f);
+    const consistent=f.consistent_with_data;
+    const nStable=(r.bootstrap_stability?.stable_edges||[]).length;
+    const delEdges=stableDeliveryEdges(r);
+    const barW=vp!=null?(vp/maxViol*100):0;
+    const barColor=vp>20?"#c0392b":vp>12?"#e0a52e":"#2e7d32";
+    rows+=`<tr class="${isType(r.type,'baseline')?'baseline':''}">
+      <td class="cond">${typeInfo(r.type).label}</td>
+      <td><span class="verdict ${consistent?'pass':'fail'}">${consistent?'consistent':'rejected'}</span></td>
+      <td><div class="viol-bar-wrap">
+        <div class="viol-bar-track"><div class="viol-bar" style="width:${barW}%;background:${barColor}"></div></div>
+        <span>${vp!=null?vp.toFixed(0)+'%':'—'}</span></div>
+        <span style="color:#999;font-size:12px">${f.given_violations}/${f.n_tests} LMCs</span></td>
+      <td><span class="stable-count ${nStable>=6?'good':'low'}">${nStable}</span></td>
+      <td>${delEdges.length}
+        <span class="del-badge ${delEdges.length>0?'has':'no'}">${delEdges.length>0?'delivery causes stable':'none'}</span></td>
+    </tr>`;
+  }
+  return `<table class="sum-tbl">
+    <tr><th>Graph</th><th>Falsification</th><th>LMC violations (lower better)</th>
+        <th>Stable edges</th><th>Stable delivery-cause edges</th></tr>
+    ${rows}</table>`;
+}
+
+function edgeList(edges, freqMap){
+  // show stable edges first, delivery edges bolded, with frequency bars
+  const sorted=Object.entries(freqMap).sort((a,b)=>b[1]-a[1]);
+  return sorted.slice(0,10).map(([e,f])=>{
+    const cls=f>=0.8?"":(f>=0.4?"mid":"low");
+    return `<div class="edge-row">
+      <div class="edge-name ${isDeliveryEdge(e)?'delivery':''}">${e.replaceAll("_"," ")}</div>
+      <div class="edge-freq-track"><div class="edge-freq-fill ${cls}" style="width:${(f*100).toFixed(0)}%"></div></div>
+      <div class="edge-freq-val">${f.toFixed(2)}</div>
+    </div>`;
+  }).join("");
+}
+
+function detailCard(run){
+  const f=run.falsification||{};
+  const bs=run.bootstrap_stability||{};
+  const consistent=f.consistent_with_data;
+  const vp=violPct(f);
+  const nStable=(bs.stable_edges||[]).length;
+  return `<div class="vcard ${isType(run.type,'baseline')?'baseline':''}">
+    <div class="vcard-head">${typeInfo(run.type).label}${run.lambda!=null?` · λ=${run.lambda}`:""}</div>
+    <div class="vcard-fals ${consistent?'pass':'fail'}">
+      <b>${consistent?'Consistent with data':'Rejected'}</b> —
+      ${f.given_violations}/${f.n_tests} independence tests violated
+      (${vp!=null?vp.toFixed(0):'—'}%), tested on ${f.n_rows_used} rows.
+    </div>
+    <div class="edge-sec-title">${nStable} stable edges (≥0.8 recurrence over ${bs.n_bootstrap} resamples)</div>
+    ${edgeList(bs.stable_edges, bs.edge_frequency||{})}
+  </div>`;
+}
+
+function draw(){
+  const runs=ALL.filter(r=>r.algo===algo);
+  const allAlgo=[...new Set(ALL.map(r=>r.algo))];
+  // order: baseline first, then consensus by fewest violations
+  runs.sort((a,b)=>{
+    const ab=isType(a.type,"baseline")?0:1, bb=isType(b.type,"baseline")?0:1;
+    if(ab!==bb) return ab-bb;
+    return (violPct(a.falsification)||0)-(violPct(b.falsification)||0);
+  });
+
+  let html=navBar()+`<h1>Convergent validation (real data) — ${legTitle}</h1>`;
+  html+=`<div class="filters"><span><label>Algorithm:</label>
+    <select id="f-a">${allAlgo.map(a=>`<option value="${a}"${a===algo?" selected":""}>${a}</option>`).join("")}</select></span></div>`;
+  html+="<p class='val-note'>DataCo has no ground-truth DAG, so instead of accuracy we test "+
+    "whether each graph is <b>consistent with the data</b> (falsification: fewer violated "+
+    "conditional-independence tests is better) and <b>stable under resampling</b> (bootstrap: "+
+    "edges that recur in ≥80% of resamples). A trustworthy graph is consistent, has many stable "+
+    "edges, and — critically — its stable edges include the <b style='color:#245c1b'>delivery-delay "+
+    "causes</b> a manager would act on. Compare the baseline against the prior-informed graphs.</p>";
+
+  html+=summaryTable(runs);
+  html+="<h2 style='font-size:18px;color:#40466e'>Per-graph detail</h2>";
+  html+=`<div class="detail-grid">${runs.map(detailCard).join("")}</div>`;
+
+  document.getElementById("app").innerHTML=html;
+  document.getElementById("f-a").onchange=function(){algo=this.value;draw();};
+}
+
+async function main(){
+  const runs=await getJSON(legDir+"validation_summary.json");
+  if(!runs||!runs.length){
+    document.getElementById("app").innerHTML=navBar()+
+      `<h1>Validation — ${legTitle}</h1><p class="missing">no validation_summary.json for this leg</p>`;
+    return;
+  }
+  ALL=runs;
+  algo=[...new Set(ALL.map(r=>r.algo))][0];
+  draw();
+}
+main();
+</script>
+</body>
+</html>

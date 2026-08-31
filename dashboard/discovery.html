@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Discovery results</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">loading…</div>
+
+<script src="shared.js"></script>
+<script>
+function sortConditions(conditions) {
+  return [...conditions].sort(function (a, b) {
+    const orderA = typeInfo(a.type).order;
+    const orderB = typeInfo(b.type).order;
+    if (orderA !== orderB) return orderA - orderB;
+    return (a.lambda ?? -1) - (b.lambda ?? -1);
+  });
+}
+
+// Summary rows come one per (algo, type, lambda, n_rows). Group them so
+// each condition holds its per-N results together:
+//   { type, lambda, byN: { 250: {shd, f1, ...}, 500: {...} } }
+function groupByCondition(rows) {
+  const conditions = {};
+  for (const row of rows) {
+    const key = row.type + "|" + (row.lambda ?? "none");
+    if (!conditions[key]) {
+      conditions[key] = { type: row.type, lambda: row.lambda, byN: {} };
+    }
+    conditions[key].byN[row.n_rows] = row;
+  }
+  return Object.values(conditions);
+}
+
+// When a prior type was run at several lambdas, keep only the lambda with
+// the lowest mean SHD at the largest N. Lambda = 0 is skipped because it
+// is a no-op duplicate of the baseline.
+function keepBestLambda(conditions, pickN) {
+  const best = {};
+  for (const cond of conditions) {
+    if (cond.lambda === 0) continue;
+    const shd = (cond.byN[pickN] || {}).shd;
+    const current = best[cond.type];
+    const currentShd = current ? current.byN[pickN].shd.mean : null;
+    if (!current || (shd && shd.mean < currentShd)) {
+      best[cond.type] = cond;
+    }
+  }
+  return Object.values(best);
+}
+
+// How many seeds are behind a condition's summary numbers. Usually the
+// same for every N, so show one number; show a range if they differ.
+function seedCount(cond, sizes) {
+  const counts = [];
+  for (const n of sizes) {
+    const cell = cond.byN[n];
+    if (cell && cell.n_seeds != null) counts.push(cell.n_seeds);
+  }
+  if (counts.length === 0) return "—";
+  const lowest = Math.min(...counts);
+  const highest = Math.max(...counts);
+  if (lowest === highest) return String(lowest);
+  return lowest + "–" + highest;
+}
+
+// A CI wider than the mean itself means the cell is statistically
+// near-meaningless (typical with only 2 seeds) - mark it visually.
+function shaky(cell) {
+  if (!cell || cell.ci95 == null || cell.mean == null) return false;
+  return cell.ci95 > Math.abs(cell.mean);
+}
+
+function buildSummaryTable(conditions, sizes) {
+  const largestN = sizes[sizes.length - 1];
+
+  // lowest non-oracle SHD per N column gets bold
+  const bestInColumn = {};
+  for (const n of sizes) {
+    let lowest = Infinity;
+    for (const cond of conditions) {
+      const cell = cond.byN[n];
+      const isPerfect = String(cond.type).toLowerCase() === "perfect";
+      if (isPerfect || !cell || cell.shd.mean == null) continue;
+      if (cell.shd.mean < lowest) {
+        lowest = cell.shd.mean;
+        bestInColumn[n] = cond;
+      }
+    }
+  }
+  const winner = bestInColumn[largestN];   // full-row highlight
+
+  let html = "<table><tr><th>Prior</th><th>λ</th><th>Seeds</th>";
+  for (const n of sizes) html += `<th>SHD N=${n}</th>`;
+  html += "<th>F1</th><th>Precision</th><th>Recall</th>" +
+          "<th>#edges</th></tr>";
+
+  for (const cond of sortConditions(conditions)) {
+    const info = typeInfo(cond.type);
+    const winnerClass = cond === winner ? " winner" : "";
+    html += `<tr class="${info.css}${winnerClass}">`;
+    html += `<td>${info.label}</td>`;
+    html += `<td>${cond.lambda == null ? "—" : cond.lambda}</td>`;
+    html += `<td>${seedCount(cond, sizes)}</td>`;
+
+    for (const n of sizes) {
+      const cell = cond.byN[n];
+      const classes = [];
+      if (bestInColumn[n] === cond) classes.push("best");
+      if (cell && shaky(cell.shd)) classes.push("shaky");
+      html += `<td class="${classes.join(" ")}">` +
+              `${cell ? fmt(cell.shd.mean, cell.shd.ci95) : "—"}</td>`;
+    }
+
+    // F1, precision, recall and edge count shown at the largest N
+    // to keep the table compact
+    const atLargest = cond.byN[largestN] || {};
+    for (const metric of ["f1", "precision", "recall"]) {
+      const cell = atLargest[metric];
+      html += `<td>${cell ? fmt(cell.mean, cell.ci95) : "—"}</td>`;
+    }
+    const edges = atLargest.n_edges_est;
+    html += `<td>${edges ? fmt(edges.mean, edges.ci95) : "—"}</td>`;
+    html += "</tr>";
+  }
+  return html + "</table>";
+}
+
+// Raw per-run table for the toggle panel (one row per seed × N × condition).
+function buildRunsTable(runs) {
+  const sorted = [...runs].sort(function (a, b) {
+    if (a.algo !== b.algo) return a.algo === "PC" ? -1 : 1;
+    const orderA = typeInfo(a.type).order;
+    const orderB = typeInfo(b.type).order;
+    if (orderA !== orderB) return orderA - orderB;
+    if ((a.lambda ?? -1) !== (b.lambda ?? -1))
+      return (a.lambda ?? -1) - (b.lambda ?? -1);
+    if (a.n_rows !== b.n_rows) return a.n_rows - b.n_rows;
+    return a.seed - b.seed;
+  });
+
+  let html = "<table><tr><th>Algo</th><th>Prior</th><th>λ</th><th>N</th>" +
+             "<th>Seed</th><th>SHD</th><th>F1</th><th>Precision</th>" +
+             "<th>Recall</th><th>#edges</th></tr>";
+  for (const run of sorted) {
+    const info = typeInfo(run.type);
+    html += `<tr class="${info.css}">`;
+    html += `<td>${run.algo}</td><td>${run.type}</td>`;
+    html += `<td>${run.lambda == null ? "—" : run.lambda}</td>`;
+    html += `<td>${run.n_rows}</td><td>${run.seed}</td>`;
+    html += `<td>${run.shd}</td>`;
+    html += `<td>${Number(run.f1).toFixed(2)}</td>`;
+    html += `<td>${Number(run.precision).toFixed(2)}</td>`;
+    html += `<td>${Number(run.recall).toFixed(2)}</td>`;
+    html += `<td>${run.n_edges_est ?? "—"}</td></tr>`;
+  }
+  return html + "</table>";
+}
+
+async function main() {
+  let html = navBar() + `<h1>Discovery results — ${legTitle}</h1>`;
+
+  const summary = await getJSON(legDir + "discovery_summary.json");
+  const allRuns = await getJSON(legDir + "all_runs.json");
+
+  if (!summary) {
+    html += "<p class='missing'>no discovery_summary.json for this leg</p>";
+    document.getElementById("app").innerHTML = html;
+    return;
+  }
+
+  const sizes = [...new Set(summary.map(r => r.n_rows))].sort((a, b) => a - b);
+  const largestN = sizes[sizes.length - 1];
+
+  const pcConditions = groupByCondition(summary.filter(r => r.algo === "PC"));
+  const hcConditions = keepBestLambda(
+    groupByCondition(summary.filter(r => r.algo === "HC")), largestN);
+
+  html += `<div class="side-by-side">
+    <div><h3>PC (hard constraints)</h3>
+      ${buildSummaryTable(pcConditions, sizes)}</div>
+    <div><h3>Hill Climbing (soft prior, best λ)</h3>
+      ${buildSummaryTable(hcConditions, sizes)}</div>
+  </div>`;
+
+  html += `<h2>All individual runs
+    <button id="toggle" style="font-size:.7em">show</button></h2>
+    <div id="all-runs" style="display:none"></div>`;
+
+  document.getElementById("app").innerHTML = html;
+
+  const panel = document.getElementById("all-runs");
+  panel.innerHTML = allRuns ? buildRunsTable(allRuns)
+    : "<p class='missing'>no discovery_all_runs.json for this leg</p>";
+
+  document.getElementById("toggle").onclick = function () {
+    const hidden = panel.style.display === "none";
+    panel.style.display = hidden ? "block" : "none";
+    this.textContent = hidden ? "hide" : "show";
+  };
+}
+
+main();
+</script>
+</body>
+</html>

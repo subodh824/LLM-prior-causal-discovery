@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Attribution</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  .filters { display: flex; gap: 1.5rem; align-items: center; margin: 1rem 0 1.5rem;
+             font-family: Helvetica, sans-serif; font-size: 14px; }
+  .filters label { color: #555; margin-right: 6px; }
+  .filters select { font-size: 14px; padding: 3px 6px; }
+  .three-col { display: flex; gap: 1rem; align-items: flex-start; }
+  .cont { flex: 1; min-width: 0; border: 1px solid #e0dccf; border-radius: 10px;
+          padding: .9rem; background: #fdfdfb; }
+  .cont-head { font-family: Helvetica, sans-serif; font-weight: bold; font-size: 15px;
+               padding-bottom: .4rem; margin-bottom: .6rem; border-bottom: 2px solid #e0dccf; }
+  .cont.perfect .cont-head { color: #7a5c00; }
+  .cont.baseline .cont-head { color: #777; }
+  .cont.consensus .cont-head { color: #245c1b; }
+  .cont-toggle { font-family: Helvetica, sans-serif; font-size: 13px; margin-bottom: .7rem; }
+  .cont-toggle select { font-size: 13px; padding: 2px 5px; }
+  .cont-meta { font-family: Helvetica, sans-serif; font-size: 11px; color: #888; margin-bottom: .7rem; }
+  .missing-col { color: #999; font-style: italic; font-family: Helvetica, sans-serif;
+                 padding: 1rem 0; font-size: 13px; }
+  .target-head { background: #f4f6fb; border: 1px solid #dbe0ee; border-radius: 8px;
+                 padding: .5rem .7rem; margin-bottom: .8rem; }
+  .target-name { font-family: Helvetica, sans-serif; font-size: 13px; font-weight: bold; color: #40466e; }
+  .target-meaning { font-family: Helvetica, sans-serif; font-size: 11px; color: #555; margin-top: .2rem; }
+  .sec-title { font-family: Helvetica, sans-serif; font-size: 11px; font-weight: bold;
+               color: #40466e; text-transform: uppercase; letter-spacing: .04em; margin: .8rem 0 .4rem; }
+  .decomp-row { display: flex; align-items: center; margin: 4px 0; font-family: Helvetica, sans-serif; font-size: 12px; }
+  .decomp-label { width: 120px; text-align: right; padding-right: 8px; color: #333; flex-shrink: 0;
+                  overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .decomp-track { flex: 1; background: #f0efe8; border-radius: 3px; height: 20px; }
+  .decomp-fill { height: 20px; border-radius: 3px; }
+  .decomp-val { width: 44px; text-align: right; padding-left: 6px; color: #444; flex-shrink: 0; }
+  .decomp-row.residual .decomp-label { font-style: italic; color: #999; }
+  .decomp-row.residual .decomp-fill { background: #c9c9c9 !important; }
+  .drivers-tbl { width: 100%; border-collapse: collapse; font-size: 11px;
+                 font-family: Helvetica, sans-serif; margin-top: .3rem; }
+  .drivers-tbl th, .drivers-tbl td { text-align: left; padding: 3px 6px; border-bottom: 1px solid #eee; }
+  .acc-line { font-family: Helvetica, sans-serif; font-size: 12px; margin-top: .6rem; color: #444; }
+  .acc-line b.hit { color: #2e7d32; } .acc-line b.miss { color: #c62828; }
+</style>
+</head>
+<body>
+<div id="app">loading…</div>
+<script src="shared.js"></script>
+<script>
+const TARGET_INFO = {
+  delivery_delay:{label:"Delivery lateness",meaning:"Days late vs promised."},
+  late_delivery_risk:{label:"Late-delivery risk",meaning:"Risk of a late order."},
+  raw_material_delay:{label:"Raw-material delay",meaning:"Delay in raw-material delivery."},
+  material_delay:{label:"Material delay",meaning:"Delay in material availability."},
+  delivery_to_distributor:{label:"Delivery-to-distributor",meaning:"Time to reach the distributor."},
+};
+function targetInfo(n){return (n&&TARGET_INFO[n])||{label:n?n.replaceAll("_"," "):"Outcome",meaning:"The variable explained."};}
+
+let ALL=[], nRows=null, algo=null, consType={};
+function isType(r,t){return String(r.type).toLowerCase().includes(t);}
+function slice(){return ALL.filter(r=>r.n_rows===nRows && r.algo===algo);}
+
+function decomposition(run){
+  const dec=(run.attribution&&run.attribution.decomposition)||[];
+  if(!dec.length)return "<p class='missing-col'>no decomposition</p>";
+  const outcome=run.target, max=Math.max(...dec.map(d=>d.share_pct)), color=typeInfo(run.type).color;
+  return dec.map(d=>{
+    const w=(d.share_pct/max*100).toFixed(1), resid=d.node===outcome?" residual":"";
+    return `<div class="decomp-row${resid}"><div class="decomp-label" title="${d.node}">${d.node.replaceAll("_"," ")}</div>
+      <div class="decomp-track"><div class="decomp-fill" style="width:${w}%;background:${color}"></div></div>
+      <div class="decomp-val">${d.share_pct.toFixed(1)}%</div></div>`;
+  }).join("");
+}
+function drivers(run){
+  const dr=(run.attribution&&run.attribution.drivers)||[];
+  if(!dr.length)return "";
+  const rows=dr.map(e=>{const s=e.share_of_variance_pct!=null?` (${e.share_of_variance_pct}%)`:"";
+    return `<tr><td>${e.source.replaceAll("_"," ")} → ${e.target.replaceAll("_"," ")}</td><td>${Number(e.strength).toFixed(3)}${s}</td></tr>`;}).join("");
+  return `<div class="sec-title">Direct drivers</div><table class="drivers-tbl"><tr><th>edge</th><th>strength</th></tr>${rows}</table>`;
+}
+function accuracy(run){
+  const acc=run.injected_cause_recovery||[];
+  if(!acc.length)return "";
+  const n=acc.length, t1=acc.filter(a=>a.top1).length, t3=acc.filter(a=>a.top3).length;
+  const cls=t1>0?"hit":"miss";
+  return `<div class="acc-line">Injected-cause recovery: <b class="${cls}">top-1 ${t1}/${n}</b>, top-3 ${t3}/${n}</div>`;
+}
+function targetHeader(run){
+  const info=targetInfo(run.target);
+  return `<div class="target-head"><div class="target-name">Explaining: ${info.label}</div>
+    <div class="target-meaning">${info.meaning} Bars show share of blame for worst cases.</div></div>`;
+}
+function container(kind, run, options){
+  const cls=kind, title=kind==="perfect"?"Perfect (oracle)":kind==="baseline"?"Baseline (no prior)":"Consensus ";
+  let toggle="";
+  if(kind==="consensus"&&options&&options.length){
+    toggle=`<span class="cont-toggle">Prior:
+      <select data-cons="1">${options.map(o=>`<option value="${o.type}"${o.type===consType[algo+nRows]?" selected":""}>${typeInfo(o.type).label}</option>`).join("")}</select></span>`;
+  }
+  if(!run)return `<div class="cont ${cls}"><div class="cont-head">${title}${toggle}</div><p class="missing-col">no ${kind} run for this slice</p></div>`;
+  return `<div class="cont ${cls}"><div class="cont-head">${title}${toggle}</div>
+    ${targetHeader(run)}<div class="cont-meta">${run.algo} · N=${run.n_rows}${run.lambda!=null?` · λ=${run.lambda}`:""}</div>
+    <div class="sec-title">Blame breakdown</div>${decomposition(run)}${drivers(run)}${accuracy(run)}</div>`;
+}
+function draw(){
+  const s=slice();
+  const perfect=s.find(r=>isType(r,"perfect")), baseline=s.find(r=>isType(r,"baseline"));
+  const consRuns=s.filter(r=>!isType(r,"perfect")&&!isType(r,"baseline")&&!isType(r,"random"));
+  const key=algo+nRows;
+  if(consRuns.length&&!consType[key])consType[key]=consRuns[0].type;
+  const consRun=consRuns.find(r=>r.type===consType[key])||consRuns[0];
+  const consOpts=consRuns.map(r=>({type:r.type}));
+  const allN=[...new Set(ALL.map(r=>r.n_rows))].sort((a,b)=>a-b), allAlgo=[...new Set(ALL.map(r=>r.algo))];
+
+  let html=navBar()+`<h1>Attribution — ${legTitle}</h1>`;
+  html+=`<div class="filters">
+    <span><label>Rows:</label><select id="f-n">${allN.map(n=>`<option value="${n}"${n===nRows?" selected":""}>${n}</option>`).join("")}</select></span>
+    <span><label>Algorithm:</label><select id="f-a">${allAlgo.map(a=>`<option value="${a}"${a===algo?" selected":""}>${a}</option>`).join("")}</select></span>
+  </div>`;
+  html+=`<div class="three-col">${container("baseline",baseline)}${container("consensus",consRun,consOpts)}${container("perfect",perfect)}</div>`;
+  document.getElementById("app").innerHTML=html;
+  document.getElementById("f-n").onchange=function(){nRows=parseInt(this.value,10);draw();};
+  document.getElementById("f-a").onchange=function(){algo=this.value;draw();};
+  const cs=document.querySelector("[data-cons]");
+  if(cs)cs.onchange=function(){consType[algo+nRows]=this.value;draw();};
+}
+async function main(){
+  const records=await getJSON(legDir+"utility_summary.json");
+  if(!records||!records.length){document.getElementById("app").innerHTML=navBar()+`<h1>Attribution — ${legTitle}</h1><p class="missing">no utility_summary.json</p>`;return;}
+  ALL=records;
+  const allN=[...new Set(ALL.map(r=>r.n_rows))].sort((a,b)=>a-b), allAlgo=[...new Set(ALL.map(r=>r.algo))];
+  nRows=allN[allN.length-1]; algo=allAlgo[0];
+  draw();
+}
+main();
+</script>
+</body>
+</html>

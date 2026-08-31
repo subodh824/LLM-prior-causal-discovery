@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Figures & Tables — Results</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  body { font-family: Georgia, serif; }
+  .fig-controls { display:flex; gap:1.2rem; align-items:center; margin:1rem 0 1.5rem;
+                  font-family:Helvetica,sans-serif; font-size:15px; }
+  .fig-controls select { font-size:15px; padding:4px 8px; }
+  .fig-controls button { font-family:Helvetica,sans-serif; font-size:14px; padding:6px 16px;
+        border:1px solid #40466e; background:#40466e; color:#fff; border-radius:5px; cursor:pointer; }
+  .figure { margin:2.2rem 0; page-break-inside:avoid; }
+  .figure h3 { font-family:Helvetica,sans-serif; font-size:16px; color:#40466e; margin:0 0 .2rem; }
+  .figure .caption { font-family:Georgia,serif; font-size:14px; color:#444; font-style:italic;
+                     margin:.4rem 0 1rem; }
+  .chart-wrap { max-width:820px; }
+  .chart-wrap.tall { max-width:820px; }
+  table.rtbl { border-collapse:collapse; font-family:Helvetica,sans-serif; font-size:13px;
+               margin:.5rem 0 1rem; }
+  table.rtbl th, table.rtbl td { border:1px solid #ddd; padding:5px 10px; text-align:right; }
+  table.rtbl th { background:#f4f4f0; color:#333; }
+  table.rtbl td.lab, table.rtbl th.lab { text-align:left; }
+  table.rtbl td.best { font-weight:bold; color:#2e7d32; }
+  .section-h { font-family:Helvetica,sans-serif; font-size:20px; color:#40466e;
+               border-bottom:2px solid #e0dccf; padding-bottom:.3rem; margin:2.5rem 0 1rem; }
+  @media print {
+    .fig-controls, nav, .navbar { display:none !important; }
+    .figure { page-break-inside:avoid; }
+  }
+</style>
+</head>
+<body>
+<div id="app">loading…</div>
+<script src="shared.js"></script>
+<script>
+// ---------------- data + computation ----------------
+const LEG_LABEL={distributor_to_customer:"Distributor→Customer",
+  manufacturer_to_distributor:"Manufacturer→Distributor",
+  supplier_to_manufacturer:"Supplier→Manufacturer",dataco:"DataCo (real)"};
+const PALETTE={perfect:"#c47f17",Baseline:"#888",random:"#ccc",
+  gemini:"#1565c0",gemini_consensus:"#1565c0",cerebras:"#00838f",cerebras_consensus:"#00838f",
+  ollama_llama:"#7b1fa2",ollama_llama_consensus:"#7b1fa2",
+  ollama_qwen:"#c0392b",ollama_qwen_consensus:"#c0392b"};
+function colorFor(t){return PALETTE[t]||"#555";}
+
+let DATA={};   // leg -> {runs, priors, utility, validation}
+let curLeg=null, charts=[];
+
+function mean(a){return a.reduce((x,y)=>x+y,0)/a.length;}
+function byN(runs){return [...new Set(runs.map(r=>r.n_rows))].sort((a,b)=>a-b);}
+function maxN(runs){return Math.max(...runs.map(r=>r.n_rows));}
+
+function f1BySource(runs, algo, N){
+  const g={};
+  for(const r of runs) if(r.algo===algo && r.n_rows===N && r.f1!=null)(g[r.type]=g[r.type]||[]).push(r.f1);
+  const o={}; for(const t in g)o[t]=mean(g[t]); return o;
+}
+function metricBySource(runs, algo, N, metric){
+  const g={};
+  for(const r of runs) if(r.algo===algo && r.n_rows===N && r[metric]!=null)(g[r.type]=g[r.type]||[]).push(r[metric]);
+  const o={}; for(const t in g)o[t]=mean(g[t]); return o;
+}
+function shdVsN(runs, algo, type){
+  const out={};
+  for(const N of byN(runs)){
+    const v=runs.filter(r=>r.algo===algo&&r.type===type&&r.n_rows===N&&r.shd!=null).map(r=>r.shd);
+    if(v.length)out[N]=mean(v);
+  }
+  return out;
+}
+// downstream: top-3 recovery per type (from utility_summary)
+function recoveryByType(utility, kind){ // kind: 'top1'|'top3'
+  const o={};
+  for(const r of utility){
+    const acc=r.injected_cause_recovery||[];
+    if(!acc.length)continue;
+    o[r.type]=o[r.type]||{algo:r.algo,vals:[]};
+    o[r.type].vals.push(acc.filter(a=>a[kind]).length/acc.length);
+  }
+  const out={}; for(const t in o)out[t]={algo:o[t].algo,rate:mean(o[t].vals)}; return out;
+}
+
+// ---------------- chart helpers ----------------
+function barChart(canvasId, labels, datasets, opts={}){
+  const ctx=document.getElementById(canvasId);
+  if(!ctx)return;
+  const c=new Chart(ctx,{type:"bar",data:{labels,datasets},
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:datasets.length>1,labels:{font:{family:"Helvetica",size:12}}},
+               title:{display:false}},
+      scales:{y:{beginAtZero:true,max:opts.ymax,title:{display:!!opts.ylabel,text:opts.ylabel,font:{family:"Helvetica"}}},
+              x:{ticks:{font:{family:"Helvetica",size:11},maxRotation:60,minRotation:30}}}}});
+  charts.push(c);
+}
+function lineChart(canvasId, labels, datasets, opts={}){
+  const ctx=document.getElementById(canvasId);
+  if(!ctx)return;
+  const c=new Chart(ctx,{type:"line",data:{labels,datasets},
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{labels:{font:{family:"Helvetica",size:12}}}},
+      scales:{y:{beginAtZero:opts.zero!==false,title:{display:!!opts.ylabel,text:opts.ylabel,font:{family:"Helvetica"}}},
+              x:{title:{display:!!opts.xlabel,text:opts.xlabel,font:{family:"Helvetica"}}}}}});
+  charts.push(c);
+}
+
+// ---------------- figures ----------------
+function figContainer(num, title, caption, canvasId, tall){
+  return `<div class="figure">
+    <h3>Figure ${num} — ${title}</h3>
+    <div class="chart-wrap ${tall?'tall':''}"><canvas id="${canvasId}" height="${tall?420:320}"></canvas></div>
+    <div class="caption">${caption}</div>
+  </div>`;
+}
+
+function orderedSources(f1){
+  // perfect, priors by F1 desc, baseline, random
+  const ts=Object.keys(f1);
+  const perfect=ts.filter(t=>/perfect/i.test(t));
+  const random=ts.filter(t=>/random/i.test(t));
+  const base=ts.filter(t=>/baseline/i.test(t));
+  const priors=ts.filter(t=>!/perfect|random|baseline/i.test(t)).sort((a,b)=>f1[b]-f1[a]);
+  return [...perfect,...priors,...base,...random];
+}
+
+// build all figure + table HTML shells, then populate charts after DOM insert
+function buildFigures(){
+  const d=DATA[curLeg];
+  const runs=d.runs, N=maxN(runs);
+  let h="";
+
+  // ---- Fig 5.1 prior quality ----
+  h+='<div class="section-h">Prior quality</div>';
+  h+=figContainer("5.1","Prior-quality diagnostics (FCO / TERE / TENE) by source",
+    `Orientation (FCO, TERE) and edge-presence (TENE) of each prior source against the reference DAG for ${LEG_LABEL[curLeg]}. LLM priors are strong on orientation, weaker on proposing edges.`,
+    "c_priors");
+
+  // ---- Fig 5.2 HC F1 by source ----
+  h+='<div class="section-h">Structure recovery</div>';
+  h+=figContainer("5.2",`Structure-recovery F1 by prior source — hill-climbing (N=${N})`,
+    `Mean F1 of the discovered CPDAG against the reference, hill-climbing, at the largest sample size. Baseline and the oracle (perfect) bracket the prior-guided runs.`,
+    "c_hc_f1");
+
+  // ---- Fig 5.3 PC F1 by source (twin) ----
+  h+=figContainer("5.3",`Structure-recovery F1 by prior source — PC (N=${N})`,
+    `The PC twin of Figure 5.2: F1 by prior source under the constraint-based algorithm.`,
+    "c_pc_f1");
+
+  // ---- Fig 5.6 single vs consensus ----
+  h+=figContainer("5.4","Single-draw vs consensus F1 by model (HC)",
+    `Effect of consensus aggregation on F1 per model, hill-climbing. Consensus lifts weaker models; for already-strong models the change is small.`,
+    "c_cons");
+
+  // ---- Fig 5.x cross-model best F1 across legs ----
+  h+=figContainer("5.5","Cross-model comparison: best prior-guided F1 (HC)",
+    `Best prior-guided F1 achieved by each model family, hill-climbing, for ${LEG_LABEL[curLeg]}.`,
+    "c_xmodel");
+
+  // ---- Fig 5.3(lambda) HC F1 vs lambda ----
+  h+='<div class="section-h">Prior strength</div>';
+  h+=figContainer("5.6","HC F1 sensitivity to prior strength λ",
+    `F1 as the soft-prior weight λ varies, hill-climbing. Flatness indicates robustness to the exact λ.`,
+    "c_lambda");
+
+  // ---- Fig 5.4 SHD vs N ----
+  h+='<div class="section-h">Sample size</div>';
+  h+=figContainer("5.7","Structural error (SHD) vs sample size",
+    `Mean SHD across sample sizes for baseline, a capable prior, and the oracle, hill-climbing. Priors help most at small/mid N; the advantage narrows as data grows.`,
+    "c_shd", true);
+
+  // ---- Fig 5.5 downstream top-3 recovery ----
+  h+='<div class="section-h">Downstream utility</div>';
+  h+=figContainer("5.8","Injected-cause top-3 recovery by prior source",
+    `Fraction of injected anomalies whose true cause is recovered in the top-3 of the attribution ranking. A graph that severs the outcome's causes cannot recover them.`,
+    "c_recovery");
+
+  // ---- Fig 5.x HC vs PC recovery ----
+  h+=figContainer("5.9","Downstream attribution: HC vs PC (top-3 recovery)",
+    `Top-3 injected-cause recovery by algorithm, showing whether the discovery method changes downstream attribution quality.`,
+    "c_hcpc_rec");
+
+  // ---- Table: precision/recall/F1 decomposition ----
+  h+='<div class="section-h">Supporting tables</div>';
+  h+=`<div class="figure"><h3>Table — Precision / Recall / F1: baseline vs best prior (N=${N})</h3>
+    <div id="t_prf"></div>
+    <div class="caption">Decomposition showing priors mainly raise recall of true edges.</div></div>`;
+
+  // ---- Table: single vs consensus ΔF1 ----
+  h+=`<div class="figure"><h3>Table — Single vs consensus F1 (ΔF1) by model</h3>
+    <div id="t_cons"></div>
+    <div class="caption">Numeric backing for the consensus figure; ΔF1 = consensus − single.</div></div>`;
+
+  // ---- Table: downstream by algorithm ----
+  h+=`<div class="figure"><h3>Table — Downstream attribution by algorithm (top-1 / top-3)</h3>
+    <div id="t_down"></div>
+    <div class="caption">Per-source recovery rates, HC and PC.</div></div>`;
+
+  return h;
+}
+
+function populateCharts(){
+  const d=DATA[curLeg];
+  const runs=d.runs, N=maxN(runs);
+
+  // 5.1 priors
+  if(d.priors){
+    const rows=d.priors.filter(r=>r.name==="Overall");
+    const order=rows.map(r=>r.type);
+    barChart("c_priors", order.map(t=>typeInfo(t).label), [
+      {label:"FCO",data:order.map(t=>rows.find(r=>r.type===t).fco),backgroundColor:"#40466e"},
+      {label:"TERE",data:order.map(t=>rows.find(r=>r.type===t).tere),backgroundColor:"#1565c0"},
+      {label:"TENE",data:order.map(t=>rows.find(r=>r.type===t).tene),backgroundColor:"#2e7d32"},
+    ],{ymax:1,ylabel:"score"});
+  }
+
+  // 5.2 HC F1
+  const hcf1=f1BySource(runs,"HC",N), hcOrder=orderedSources(hcf1);
+  barChart("c_hc_f1", hcOrder.map(t=>typeInfo(t).label),
+    [{label:"F1",data:hcOrder.map(t=>hcf1[t]),backgroundColor:hcOrder.map(colorFor)}],{ymax:1,ylabel:"F1"});
+
+  // 5.3 PC F1
+  const pcf1=f1BySource(runs,"PC",N), pcOrder=orderedSources(pcf1);
+  barChart("c_pc_f1", pcOrder.map(t=>typeInfo(t).label),
+    [{label:"F1",data:pcOrder.map(t=>pcf1[t]),backgroundColor:pcOrder.map(colorFor)}],{ymax:1,ylabel:"F1"});
+
+  // 5.4 single vs consensus (HC)
+  const models=Object.keys(hcf1).filter(t=>t.endsWith("_consensus")).map(t=>t.slice(0,-10)).filter(b=>b in hcf1);
+  barChart("c_cons", models.map(m=>typeInfo(m).label),[
+    {label:"single",data:models.map(m=>hcf1[m]),backgroundColor:"#9db0d0"},
+    {label:"consensus",data:models.map(m=>hcf1[m+"_consensus"]),backgroundColor:"#2e7d32"},
+  ],{ymax:1,ylabel:"F1"});
+
+  // 5.5 cross-model best F1 (HC) - best of single/consensus per model
+  barChart("c_xmodel", models.map(m=>typeInfo(m).label),
+    [{label:"best F1",data:models.map(m=>Math.max(hcf1[m],hcf1[m+"_consensus"]||0)),
+      backgroundColor:models.map(colorFor)}],{ymax:1,ylabel:"best F1"});
+
+  // 5.6 lambda (HC only, prior runs with lambda)
+  const lambdas=[...new Set(runs.filter(r=>r.algo==="HC"&&r.lambda!=null).map(r=>r.lambda))].sort((a,b)=>a-b);
+  if(lambdas.length){
+    const priorTypes=[...new Set(runs.filter(r=>r.algo==="HC"&&r.lambda!=null&&/consensus/i.test(r.type)).map(r=>r.type))];
+    const ds=priorTypes.map(t=>({label:typeInfo(t).label,borderColor:colorFor(t),backgroundColor:colorFor(t),
+      data:lambdas.map(L=>{const v=runs.filter(r=>r.algo==="HC"&&r.type===t&&r.lambda===L&&r.n_rows===N&&r.f1!=null).map(r=>r.f1);return v.length?mean(v):null;}),tension:0.2}));
+    lineChart("c_lambda", lambdas.map(L=>"λ="+L), ds, {ylabel:"F1",xlabel:"prior strength λ",zero:false});
+  }
+
+  // 5.7 SHD vs N
+  const shdBase=shdVsN(runs,"HC","Baseline");
+  const capable=["cerebras_consensus","gemini_consensus"].find(t=>runs.some(r=>r.type===t))||"gemini_consensus";
+  const shdPrior=shdVsN(runs,"HC",capable);
+  const shdPerf=shdVsN(runs,"HC","perfect");
+  const Ns=byN(runs);
+  lineChart("c_shd", Ns.map(n=>"N="+n),[
+    {label:"Baseline",data:Ns.map(n=>shdBase[n]??null),borderColor:"#888",backgroundColor:"#888",tension:0.2},
+    {label:typeInfo(capable).label,data:Ns.map(n=>shdPrior[n]??null),borderColor:"#2e7d32",backgroundColor:"#2e7d32",tension:0.2},
+    {label:"Perfect",data:Ns.map(n=>shdPerf[n]??null),borderColor:"#c47f17",backgroundColor:"#c47f17",tension:0.2},
+  ],{ylabel:"SHD (lower better)",xlabel:"sample size"});
+
+  // 5.8 recovery by source (top-3), combine algos
+  if(d.utility){
+    const rec=recoveryByType(d.utility,"top3");
+    const order=Object.keys(rec).sort((a,b)=>rec[b].rate-rec[a].rate);
+    barChart("c_recovery", order.map(t=>typeInfo(t).label+" ("+rec[t].algo+")"),
+      [{label:"top-3 recovery",data:order.map(t=>rec[t].rate),backgroundColor:order.map(t=>colorFor(t))}],{ymax:1,ylabel:"top-3 rate"});
+
+    // 5.9 HC vs PC recovery - group by base type
+    const hc=recoveryByType(d.utility.filter(r=>r.algo==="HC"),"top3");
+    const pc=recoveryByType(d.utility.filter(r=>r.algo==="PC"),"top3");
+    const allt=[...new Set([...Object.keys(hc),...Object.keys(pc)])];
+    barChart("c_hcpc_rec", allt.map(t=>typeInfo(t).label),[
+      {label:"HC",data:allt.map(t=>hc[t]?hc[t].rate:null),backgroundColor:"#2e7d32"},
+      {label:"PC",data:allt.map(t=>pc[t]?pc[t].rate:null),backgroundColor:"#1565c0"},
+    ],{ymax:1,ylabel:"top-3 rate"});
+  }
+
+  // ---- tables ----
+  buildTables();
+}
+
+function tbl(headers, rows){
+  let h='<table class="rtbl"><tr>'+headers.map((x,i)=>`<th class="${i===0?'lab':''}">${x}</th>`).join("")+"</tr>";
+  for(const r of rows){
+    h+="<tr>"+r.map((c,i)=>`<td class="${i===0?'lab':''}${c&&c.best?' best':''}">${c&&c.v!=null?c.v:(c==null?'—':c)}</td>`).join("")+"</tr>";
+  }
+  return h+"</table>";
+}
+
+function buildTables(){
+  const d=DATA[curLeg], runs=d.runs, N=maxN(runs);
+
+  // T1 precision/recall/f1 baseline vs best prior, HC & PC
+  const rows=[];
+  for(const algo of ["HC","PC"]){
+    const f1=f1BySource(runs,algo,N);
+    const prec=metricBySource(runs,algo,N,"precision");
+    const rec=metricBySource(runs,algo,N,"recall");
+    const best=orderedSources(f1).find(t=>!/perfect|random|baseline/i.test(t));
+    for(const [lab,t] of [["Baseline","Baseline"],["Best prior ("+typeInfo(best).label+")",best]]){
+      rows.push([`${algo} — ${lab}`,
+        fmt(prec[t]),fmt(rec[t]),fmt(f1[t])]);
+    }
+  }
+  document.getElementById("t_prf").innerHTML=tbl(["Condition","Precision","Recall","F1"],rows);
+
+  // T2 single vs consensus dF1
+  const crows=[];
+  for(const algo of ["HC","PC"]){
+    const f1=f1BySource(runs,algo,N);
+    const models=Object.keys(f1).filter(t=>t.endsWith("_consensus")).map(t=>t.slice(0,-10)).filter(b=>b in f1);
+    for(const m of models){
+      const s=f1[m],c=f1[m+"_consensus"],dv=c-s;
+      crows.push([`${algo} — ${typeInfo(m).label}`,fmt(s),fmt(c),
+        {v:(dv>=0?"+":"")+dv.toFixed(3),best:dv>0}]);
+    }
+  }
+  document.getElementById("t_cons").innerHTML=tbl(["Model","Single F1","Consensus F1","ΔF1"],crows);
+
+  // T3 downstream by algorithm
+  if(d.utility){
+    const drows=[];
+    for(const algo of ["HC","PC"]){
+      const t1=recoveryByType(d.utility.filter(r=>r.algo===algo),"top1");
+      const t3=recoveryByType(d.utility.filter(r=>r.algo===algo),"top3");
+      for(const t of Object.keys(t3)){
+        drows.push([`${algo} — ${typeInfo(t).label}`,
+          fmt(t1[t]?t1[t].rate:null),fmt(t3[t]?t3[t].rate:null)]);
+      }
+    }
+    document.getElementById("t_down").innerHTML=tbl(["Condition","Top-1","Top-3"],drows);
+  }
+}
+
+function draw(){
+  charts.forEach(c=>c.destroy()); charts=[];
+  let html=navBar()+`<h1>Figures &amp; Tables — Results</h1>`;
+  html+=`<div class="fig-controls">
+    <span>Leg: <select id="f-leg">${LEGS.map(l=>`<option value="${l}"${l===curLeg?" selected":""}>${LEG_LABEL[l]}</option>`).join("")}</select></span>
+    <button onclick="window.print()">Print / Save PDF</button>
+  </div>`;
+  html+=`<div id="figs"></div>`;
+  document.getElementById("app").innerHTML=html;
+  document.getElementById("figs").innerHTML=buildFigures();
+  document.getElementById("f-leg").onchange=function(){curLeg=this.value;loadAndDraw();};
+  setTimeout(populateCharts, 50);   // let canvases mount
+}
+
+async function loadAndDraw(){
+  if(!DATA[curLeg]){
+    const base="/report/"+curLeg+"/";   // legDir points at ?leg; but we want per-leg
+    const dir=BASE+curLeg+"/";
+    DATA[curLeg]={
+      runs: await getJSON(dir+"all_runs.json") || [],
+      priors: await getJSON(dir+"priors_summary.json"),
+      utility: await getJSON(dir+"utility_summary.json"),
+      validation: await getJSON(dir+"validation_summary.json"),
+    };
+  }
+  draw();
+}
+
+async function main(){
+  curLeg = (new URLSearchParams(location.search)).get("leg") || LEGS[0];
+  await loadAndDraw();
+}
+main();
+</script>
+</body>
+</html>

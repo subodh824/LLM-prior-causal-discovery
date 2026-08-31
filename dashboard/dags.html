@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>DAG comparison</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  .dag-controls { display: flex; gap: 1.2rem; align-items: center;
+                  flex-wrap: wrap; margin: 1rem 0;
+                  font-family: Helvetica, sans-serif; font-size: 16px; }
+  .dag-controls select { font-size: 16px; padding: 4px 8px; }
+  .dag-panels { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+  .dag-panel { flex: 1; min-width: 480px; }
+  .dag-panel h3 { margin-bottom: .4rem; }
+  .graph-box { height: 640px; border: 1px solid #ddd; border-radius: 8px;
+               background: #fdfdfb; }
+  .dag-legend { font-family: Helvetica, sans-serif; font-size: 14px;
+                color: #555; margin-top: .6rem; }
+  .dag-legend span { margin-right: 1.2rem; }
+  .dag-metrics { font-family: Helvetica, sans-serif; font-size: 15px;
+                 color: #444; margin: .3rem 0 .6rem; min-height: 1.2em; }
+  .explainer { border: 1px solid #e0dccf; border-radius: 10px;
+               background: #fbfaf5; padding: .6rem 1.2rem 1rem;
+               margin: 1.2rem 0; }
+  .explainer summary { font-family: Helvetica, sans-serif;
+                       font-size: 16px; font-weight: bold; color: #40466e;
+                       cursor: pointer; padding: .4rem 0; }
+  .explainer p, .explainer li { font-size: 16px; line-height: 1.45; }
+  .explainer ul { padding-left: 1.2rem; }
+  .swatch { display: inline-block; width: 26px; height: 3px;
+            vertical-align: middle; margin-right: 6px; }
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.28.1/cytoscape.min.js"></script>
+</head>
+<body>
+<div id="app">loading…</div>
+
+<script src="shared.js"></script>
+<script>
+// ---------- reading the JSON shapes ----------
+
+function readEdges(dagJson) {
+  if (dagJson.links) return dagJson.links.map(l => [l.source, l.target]);
+  if (dagJson.edges) return dagJson.edges.map(e => [e[0], e[1]]);
+  return [];
+}
+
+function readNodeIds(dagJson) {
+  return dagJson.nodes.map(n => (typeof n === "string" ? n : n.id));
+}
+
+// ---------- finding the result files ----------
+
+async function listResultFiles() {
+  const manifest = await getJSON(legDir + "results/index.json");
+  if (manifest) return manifest;
+  try {
+    const response = await fetch(legDir + "results/");
+    if (!response.ok) return [];
+    const listing = await response.text();
+    return [...listing.matchAll(/href="([^"]+\.json)"/g)]
+      .map(m => decodeURIComponent(m[1]))
+      .filter(name => name !== "index.json");
+  } catch (err) {
+    return [];
+  }
+}
+
+// ---------- graph building ----------
+
+const NODE_STYLE = [
+  { selector: "node", style: {
+      "shape": "round-rectangle",
+      "background-color": "#eef0f6",
+      "border-color": "#40466e",
+      "border-width": 2,
+      "width": "label",
+      "height": "label",
+      "padding": "10px",
+      "label": "data(label)",
+      "font-family": "Helvetica",
+      "font-size": 28,
+      "color": "#2a3566",
+      "text-wrap": "wrap",
+      "text-max-width": 200,
+      "text-valign": "center",
+      "text-halign": "center",
+  }},
+  { selector: "node.target", style: {
+      "background-color": "#f6d76b",
+      "border-color": "#a5791a",
+      "border-width": 3,
+      "color": "#5a4200",
+      "font-weight": "bold",
+      "font-size": 28,
+  }},
+  { selector: "edge", style: {
+      "curve-style": "bezier",
+      "width": 4,
+      "target-arrow-shape": "triangle",
+      "arrow-scale": 1.5,
+      "line-color": "#5F5E5A",
+      "target-arrow-color": "#5F5E5A",
+  }},
+  { selector: "edge.tp", style: {
+      "line-color": "#2e7d32", "target-arrow-color": "#2e7d32" }},
+  { selector: "edge.fp", style: {
+      "line-color": "#c62828", "target-arrow-color": "#c62828" }},
+  { selector: "edge.ghost", style: {
+      "line-color": "#bbb", "target-arrow-color": "#bbb",
+      "line-style": "dashed", "width": 1.5 }},
+  { selector: "node.dimmed, edge.dimmed", style: { "opacity": 0.15 }},
+];
+
+let TARGET = null;   // outcome node, from downstream_config.json
+
+function makeElements(nodeIds, edges, refPositions) {
+  const elements = [];
+  for (const id of nodeIds) {
+    const el = { data: { id: id, label: id.replaceAll("_", " ") } };
+    if (id === TARGET) el.classes = "target";     // highlight the outcome
+    if (refPositions) el.position = { ...refPositions[id] };
+    elements.push(el);
+  }
+  let counter = 0;
+  for (const [u, v, cls] of edges) {
+    elements.push({ data: { id: "e" + (counter++), source: u, target: v },
+                    classes: cls || "" });
+  }
+  return elements;
+}
+
+// Clicking a node dims everything except the node and its own edges,
+// which makes a single variable's causes and effects easy to trace.
+// Clicking the background clears it.
+function addFocusOnTap(cy) {
+  cy.on("tap", "node", function (event) {
+    const node = event.target;
+    const keep = node.closedNeighborhood();
+    cy.elements().addClass("dimmed");
+    keep.removeClass("dimmed");
+  });
+  cy.on("tap", function (event) {
+    if (event.target === cy) cy.elements().removeClass("dimmed");
+  });
+}
+
+// ---------- layered layout ----------
+
+// Ranks follow topological depth: in-degree-0 roots on row 0, every
+// other node one row below its deepest parent. All true edges therefore
+// point downward; an upward edge in a discovered graph is a reversal
+// made visible. Within each row, nodes are ordered by the average
+// position of their parents (two barycenter passes) to cut crossings.
+function layeredPositions(nodeIds, edges) {
+  const depth = {};
+  for (const id of nodeIds) depth[id] = 0;
+  for (let pass = 0; pass < nodeIds.length; pass++) {
+    for (const [u, v] of edges) {
+      if (depth[v] < depth[u] + 1) depth[v] = depth[u] + 1;
+    }
+  }
+
+  const rows = [];
+  for (const id of nodeIds) {
+    const d = depth[id];
+    if (!rows[d]) rows[d] = [];
+    rows[d].push(id);
+  }
+
+  // order within each row by the mean index of the node's parents
+  const parents = {};
+  for (const id of nodeIds) parents[id] = [];
+  for (const [u, v] of edges) parents[v].push(u);
+
+  const indexIn = {};
+  rows.forEach(row => row.sort().forEach((id, i) => { indexIn[id] = i; }));
+  for (let pass = 0; pass < 2; pass++) {
+    for (const row of rows) {
+      row.sort((a, b) => {
+        const bary = id => {
+          const ps = parents[id].filter(p => indexIn[p] != null);
+          if (ps.length === 0) return indexIn[id];
+          return ps.reduce((s, p) => s + indexIn[p], 0) / ps.length;
+        };
+        return bary(a) - bary(b);
+      });
+      row.forEach((id, i) => { indexIn[id] = i; });
+    }
+  }
+
+  const rowGap = 200;
+  const colGap = 280;
+  const positions = {};
+  rows.forEach((row, d) => {
+    const rowWidth = (row.length - 1) * colGap;
+    row.forEach((id, i) => {
+      positions[id] = { x: i * colGap - rowWidth / 2, y: d * rowGap };
+    });
+  });
+  return positions;
+}
+
+// The reference graph uses the layered (layered, top-down) layout; its
+// node positions are then reused verbatim for every discovered graph,
+// so the two panels always show nodes in the same place.
+function drawReference(nodeIds, refEdges, positions) {
+  const cy = cytoscape({
+    container: document.getElementById("ref-dag"),
+    elements: makeElements(nodeIds,
+      refEdges.map(e => [e[0], e[1]]), positions),
+    style: NODE_STYLE,
+    layout: { name: "preset", padding: 10 },
+    minZoom: 0.3, maxZoom: 3, wheelSensitivity: 0.2,
+  });
+  addFocusOnTap(cy);
+  cy.fit(undefined, 20);
+  return cy;
+}
+
+function drawDiscovered(nodeIds, runEdges, refEdges, positions) {
+  const refSet = new Set(refEdges.map(e => e[0] + "->" + e[1]));
+  const foundSet = new Set(runEdges.map(e => e[0] + "->" + e[1]));
+
+  const edges = [];
+  for (const [u, v] of runEdges) {
+    edges.push([u, v, refSet.has(u + "->" + v) ? "tp" : "fp"]);
+  }
+  for (const [u, v] of refEdges) {
+    if (!foundSet.has(u + "->" + v) && !foundSet.has(v + "->" + u)) {
+      edges.push([u, v, "ghost"]);
+    }
+  }
+
+  const cy = cytoscape({
+    container: document.getElementById("disc-dag"),
+    elements: makeElements(nodeIds, edges, positions),
+    style: NODE_STYLE,
+    layout: { name: "preset", padding: 10 },
+    minZoom: 0.3, maxZoom: 3, wheelSensitivity: 0.2,
+  });
+  addFocusOnTap(cy);
+  cy.fit(undefined, 20);
+  return cy;
+}
+
+// ---------- page ----------
+
+function conditionLabel(run) {
+  const info = typeInfo(run.type);
+  let label = `${run.algo} — ${info.label}`;
+  if (run.lambda != null) label += ` (λ=${run.lambda})`;
+  return label;
+}
+
+function conditionKey(run) {
+  return [run.algo, run.type, run.lambda ?? "none"].join("|");
+}
+
+// A short "how to read this" panel. Open by default the first time so
+// a reader who lands here cold is not left guessing at the colours.
+function explainerBlock() {
+  return `<details class="explainer" open>
+  <summary>How to read these two graphs</summary>
+
+  <p><b>What you are looking at.</b> Left is the <b>reference DAG</b> -
+  the cause-and-effect map built from published supply-chain literature,
+  which is also the map used to generate the synthetic data. It is the
+  answer key. Right is the <b>discovered DAG</b> - what the algorithm
+  worked out on its own from the data alone (plus, in the prior
+  conditions, hints from the LLM). Both panels use the <b>same node
+  positions</b>, so you compare edges, not layouts.</p>
+
+  <p><b>The layout is the causal hierarchy.</b> Rows are topological
+  depth: the top row holds root causes with nothing pointing into them
+  (weather, distance, order volume), each lower row is one causal step
+  further downstream, ending at churn risk. In the reference, therefore,
+  every arrow points <i>downward</i>. That makes a mistake visible as
+  geometry: <b>an arrow pointing upward in the right panel is a reversed
+  edge</b>, an arrow the algorithm drew backwards.</p>
+
+  <p><b>The colours grade the discovered graph against the answer
+  key:</b></p>
+  <ul>
+    <li><span class="swatch" style="background:#2e7d32"></span>
+      <b>green</b> - a true edge, found with the correct direction</li>
+    <li><span class="swatch" style="background:#c62828"></span>
+      <b>red</b> - an edge that should not be there: either invented
+      outright, or a true edge drawn the wrong way round</li>
+    <li><span class="swatch" style="background:#bbb"></span>
+      <b>dashed grey</b> - a true edge the algorithm missed entirely
+      (the ghost of what should have been drawn)</li>
+  </ul>
+
+  <p><b>The numbers above the right panel.</b> <b>SHD</b> (structural
+  Hamming distance) counts the edits needed to turn the discovered graph
+  into the reference one - missing + extra + reversed - so lower is
+  better and 0 is a perfect match. <b>Precision</b> is the share of drawn
+  edges that are correct; <b>recall</b> is the share of true edges that
+  were found; <b>F1</b> combines the two. Roughly: precision punishes
+  invention, recall punishes omission.</p>
+
+  <p><b>How to use the page.</b> Change <i>Condition</i> to flip between
+  the baseline (no prior), the LLM-prior conditions and the perfect-prior
+  ceiling on the identical dataset - the edges turning green as the prior
+  improves is the result of this dissertation, shown one edge at a time
+  rather than as a single number. Change <i>N</i> to see how much of the
+  gap more data closes on its own, and <i>Seed</i> to check whether an
+  error is systematic or just one unlucky sample. Click any node to dim
+  everything except that variable and its direct causes and effects,
+  which is the quickest way to ask "did this graph get the story around
+  <i>delivery delay</i> right?"</p>
+
+  <p><b>Why the errors matter more than the count.</b> Two graphs with
+  the same SHD are not equally useful. An extra edge between two
+  irrelevant variables is cosmetic; a reversed edge on the path into the
+  outcome corrupts every downstream answer, because the attribution and
+  intervention machinery reads causes off this map. That is why this page
+  exists next to the tables: the tables say <i>how many</i> errors, this
+  page says <i>which</i>.</p>
+</details>`;
+}
+
+async function main() {
+  let html = navBar() + `<h1>DAG comparison — ${legTitle}</h1>`;
+
+  // load the outcome node so it can be highlighted in every graph
+  const dsConfig = await getJSON(legDir + "metadata/downstream_config.json");
+  if (dsConfig && dsConfig.target) TARGET = dsConfig.target;
+
+  const refJson = await getJSON(legDir + "metadata/ref_dag.json");
+  if (!refJson) {
+    html += "<p class='missing'>no metadata/ref_dag.json for this leg</p>";
+    document.getElementById("app").innerHTML = html;
+    return;
+  }
+  const refEdges = readEdges(refJson);
+  const nodeIds = readNodeIds(refJson);
+
+  const runs = [];
+  for (const fileName of await listResultFiles()) {
+    const data = await getJSON(legDir + "results/" + fileName);
+    if (!data || !data.runs) continue;
+    for (const run of data.runs) {
+      runs.push({
+        algo: run.algo, type: run.type,
+        lambda: (run.params || {}).lambda ?? null,
+        seed: data.seed, n_rows: data.num_rows,
+        shd: run.shd, f1: run.f1,
+        precision: run.precision, recall: run.recall,
+        edges: readEdges(run.dag_json || {}),
+      });
+    }
+  }
+
+  const conditions = [];
+  const seen = new Set();
+  for (const run of runs) {
+    const key = conditionKey(run);
+    if (!seen.has(key)) {
+      seen.add(key);
+      conditions.push({ key: key, label: conditionLabel(run) });
+    }
+  }
+  conditions.sort((a, b) => a.label.localeCompare(b.label));
+
+  const sizes = [...new Set(runs.map(r => r.n_rows))].sort((a, b) => a - b);
+  const seeds = [...new Set(runs.map(r => r.seed))].sort((a, b) => a - b);
+
+  html += `<div class="dag-controls">
+    <label>Condition
+      <select id="pick-condition">
+        ${conditions.map(c => `<option value="${c.key}">${c.label}</option>`).join("")}
+      </select></label>
+    <label>N
+      <select id="pick-n">
+        ${sizes.map(n => `<option ${n === sizes[sizes.length - 1] ? "selected" : ""}>${n}</option>`).join("")}
+      </select></label>
+    <label>Seed
+      <select id="pick-seed">
+        ${seeds.map(s => `<option>${s}</option>`).join("")}
+      </select></label>
+  </div>`;
+
+  html += `<div class="dag-panels">
+    <div class="dag-panel">
+      <h3>Reference DAG (literature)</h3>
+      <p class="dag-metrics">drag, zoom, click a node to trace it</p>
+      <div id="ref-dag" class="graph-box"></div>
+    </div>
+    <div class="dag-panel">
+      <h3 id="disc-title">Discovered DAG</h3>
+      <p class="dag-metrics" id="disc-metrics"></p>
+      <div id="disc-dag" class="graph-box"></div>
+      <p class="dag-legend">
+        <span style="color:#2e7d32">— true edge found</span>
+        <span style="color:#c62828">— extra or reversed edge</span>
+        <span style="color:#999">┄ reference edge missed</span>
+      </p>
+    </div>
+  </div>`;
+
+  html += explainerBlock();
+
+  document.getElementById("app").innerHTML = html;
+
+  // one layered layout for both panels, computed from the reference DAG
+  const positions = layeredPositions(nodeIds, refEdges);
+  drawReference(nodeIds, refEdges, positions);
+
+  let discovered = null;
+  function renderSelection() {
+    const key = document.getElementById("pick-condition").value;
+    const n = Number(document.getElementById("pick-n").value);
+    const seed = Number(document.getElementById("pick-seed").value);
+
+    const run = runs.find(r =>
+      conditionKey(r) === key && r.n_rows === n && r.seed === seed);
+
+    const title = document.getElementById("disc-title");
+    const metrics = document.getElementById("disc-metrics");
+    if (discovered) { discovered.destroy(); discovered = null; }
+
+    if (!run) {
+      title.textContent = "Discovered DAG";
+      metrics.textContent = "no run for this condition / N / seed";
+      return;
+    }
+    title.textContent = `Discovered: ${conditionLabel(run)}`;
+    metrics.textContent = `N=${run.n_rows}, seed ${run.seed} — ` +
+      `SHD ${run.shd}, F1 ${run.f1}, ` +
+      `precision ${run.precision}, recall ${run.recall}`;
+    discovered = drawDiscovered(nodeIds, run.edges, refEdges, positions);
+  }
+
+  for (const id of ["pick-condition", "pick-n", "pick-seed"]) {
+    document.getElementById(id).onchange = renderSelection;
+  }
+  if (conditions.length > 0) renderSelection();
+  else document.getElementById("disc-metrics").textContent =
+    "no result files found — add results/index.json";
+}
+
+main();
+</script>
+</body>
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Improvement</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  .filters { display:flex; gap:1.5rem; align-items:center; margin:1rem 0 1.2rem;
+             font-family:Helvetica,sans-serif; font-size:14px; }
+  .filters label { color:#555; margin-right:6px; }
+  .filters select { font-size:14px; padding:3px 6px; }
+  .imp-note { font-family:Helvetica,sans-serif; font-size:13px; color:#666; margin:.3rem 0 1rem; }
+  .imp-cols { display:flex; gap:1.5rem; align-items:flex-start; }
+  .imp-cols > .imp-section { flex:1; min-width:0; margin:1.5rem 0 2rem; }
+  .sec-head { display:flex; align-items:center; justify-content:space-between;
+              border-bottom:2px solid #e0dccf; padding-bottom:.3rem; }
+  .sec-head h2 { border-bottom:none; padding-bottom:0; margin:0; }
+  .sec-filter { font-family:Helvetica,sans-serif; font-size:13px; color:#555; }
+  .sec-filter label { margin-right:5px; }
+  .sec-filter select { font-size:13px; padding:2px 5px; }
+  .imp-section { margin:1.5rem 0 2.5rem; }
+  .imp-section h2 { font-size:18px; color:#40466e; border-bottom:2px solid #e0dccf;
+                    padding-bottom:.3rem; }
+  .imp-sub { font-family:Helvetica,sans-serif; font-size:13px; color:#666; margin:.2rem 0 1rem; }
+  /* diverging bar chart (same N) */
+  .div-row { display:flex; align-items:center; margin:5px 0; font-family:Helvetica,sans-serif; font-size:13px; }
+  .div-label { width:190px; text-align:right; padding-right:10px; color:#333; flex-shrink:0;
+               overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .div-track { flex:1; position:relative; height:24px; background:linear-gradient(#f0efe8,#f0efe8) no-repeat;
+               background-size:2px 100%; background-position:center; }
+  .div-bar { position:absolute; top:3px; height:18px; border-radius:3px; display:flex; align-items:center; }
+  .div-bar.better { background:#2e7d32; left:50%; padding-left:5px; }
+  .div-bar.worse  { background:#c62828; right:50%; justify-content:flex-end; padding-right:5px; }
+  .div-bar span { color:#fff; font-size:11px; }
+  .div-val { width:52px; text-align:right; padding-left:8px; flex-shrink:0; }
+  .div-val.better { color:#2e7d32; } .div-val.worse { color:#c62828; }
+  /* line chart (across N) */
+  .line-wrap { border:1px solid #e0dccf; border-radius:8px; padding:1rem; background:#fdfdfb; }
+  .legend { display:flex; flex-wrap:wrap; gap:14px; font-family:Helvetica,sans-serif;
+            font-size:12px; margin-top:.6rem; }
+  .legend span { display:flex; align-items:center; gap:5px; }
+  .legend i { width:16px; height:3px; display:inline-block; border-radius:2px; }
+</style>
+</head>
+<body>
+<div id="app">loading…</div>
+<script src="shared.js"></script>
+<script>
+let RESULTS=[], algo=null;
+
+// palette per condition type
+const PAL=["#2e7d32","#1565c0","#c47f17","#7b1fa2","#00838f","#c62828","#555"];
+function colorFor(types){const m={};types.forEach((t,i)=>m[t]=PAL[i%PAL.length]);return m;}
+
+function isType(t,x){return String(t).toLowerCase().includes(x);}
+
+// build: type -> N -> [shd values]
+function collect(){
+  const shd={};
+  for(const run of RESULTS){
+    if(run.algo!==algo || run.shd==null) continue;
+    const N=run.n_rows, t=run.type;
+    shd[t]=shd[t]||{}; shd[t][N]=shd[t][N]||[]; shd[t][N].push(run.shd);
+  }
+  return shd;
+}
+function mean(a){return a.reduce((x,y)=>x+y,0)/a.length;}
+
+// ---- Comparison 1: improvement vs baseline at a chosen N ----
+function sameNSection(shd, N){
+  const base=shd["Baseline"] && shd["Baseline"][N] ? mean(shd["Baseline"][N]) : null;
+  if(base==null) return "<p class='imp-note'>no baseline at this N</p>";
+  const conds=Object.keys(shd).filter(t=>!isType(t,"baseline")&&!isType(t,"random")&&shd[t][N]);
+  // improvement = baseline - condition (positive = better)
+  const rows=conds.map(t=>({t, imp: base - mean(shd[t][N])})).sort((a,b)=>b.imp-a.imp);
+  const maxAbs=Math.max(...rows.map(r=>Math.abs(r.imp)),0.1);
+  let body=rows.map(r=>{
+    const better=r.imp>=0, w=(Math.abs(r.imp)/maxAbs*50).toFixed(1);
+    return `<div class="div-row">
+      <div class="div-label" title="${t=r.t}">${r.t.replaceAll("_"," ")}</div>
+      <div class="div-track"><div class="div-bar ${better?'better':'worse'}" style="width:${w}%">
+        <span>${r.imp>=0?"+":""}${r.imp.toFixed(1)}</span></div></div>
+      <div class="div-val ${better?'better':'worse'}">${r.imp>=0?"+":""}${r.imp.toFixed(1)}</div>
+    </div>`;
+  }).join("");
+  return `<p class="imp-sub">Baseline SHD at N=${N} is <b>${base.toFixed(1)}</b>. Bars show how much
+    lower each prior's SHD is (green = beats baseline, red = worse). The centre line is baseline.</p>${body}`;
+}
+
+// ---- Comparison 2: improvement across N (line chart) ----
+function acrossNChart(shd, Ns){
+  const conds=Object.keys(shd).filter(t=>isType(t,"consensus"));
+  const cmap=colorFor(conds);
+  // series: for each cond, improvement over baseline at each N
+  const series=conds.map(t=>({t, pts: Ns.map(N=>{
+    const base=shd["Baseline"]&&shd["Baseline"][N]?mean(shd["Baseline"][N]):null;
+    const v=shd[t][N]?mean(shd[t][N]):null;
+    return (base!=null&&v!=null)?{N, imp:base-v}:{N, imp:null};
+  })}));
+  // scale
+  const allImp=series.flatMap(s=>s.pts.map(p=>p.imp).filter(x=>x!=null));
+  const lo=Math.min(0,...allImp), hi=Math.max(0,...allImp);
+  const W=560,H=300,padL=45,padB=35,padT=15,padR=15;
+  const xw=W-padL-padR, yh=H-padT-padB;
+  const xFor=i=>padL+ (Ns.length>1? i/(Ns.length-1)*xw : xw/2);
+  const yFor=v=>padT + (hi-v)/(hi-lo||1)*yh;
+  // zero line
+  const y0=yFor(0);
+  let svg=`<svg viewBox="0 0 ${W} ${H}" style="width:100%;max-width:${W}px;font-family:Helvetica,sans-serif">`;
+  // axes
+  svg+=`<line x1="${padL}" y1="${padT}" x2="${padL}" y2="${H-padB}" stroke="#ccc"/>`;
+  svg+=`<line x1="${padL}" y1="${y0}" x2="${W-padR}" y2="${y0}" stroke="#999" stroke-dasharray="3 3"/>`;
+  svg+=`<text x="${padL-6}" y="${y0+3}" text-anchor="end" font-size="10" fill="#999">0</text>`;
+  svg+=`<text x="${padL-6}" y="${yFor(hi)+3}" text-anchor="end" font-size="10" fill="#666">${hi.toFixed(0)}</text>`;
+  svg+=`<text x="${padL-6}" y="${yFor(lo)+3}" text-anchor="end" font-size="10" fill="#666">${lo.toFixed(0)}</text>`;
+  // x labels
+  Ns.forEach((N,i)=>{svg+=`<text x="${xFor(i)}" y="${H-padB+15}" text-anchor="middle" font-size="10" fill="#666">N=${N}</text>`;});
+  svg+=`<text x="${padL-32}" y="${padT+yh/2}" font-size="10" fill="#888" transform="rotate(-90 ${padL-32} ${padT+yh/2})" text-anchor="middle">improvement (SHD)</text>`;
+  // lines
+  for(const s of series){
+    const pts=s.pts.map((p,i)=>p.imp!=null?`${xFor(i)},${yFor(p.imp)}`:null).filter(Boolean);
+    if(pts.length) svg+=`<polyline points="${pts.join(" ")}" fill="none" stroke="${cmap[s.t]}" stroke-width="2"/>`;
+    s.pts.forEach((p,i)=>{if(p.imp!=null)svg+=`<circle cx="${xFor(i)}" cy="${yFor(p.imp)}" r="3" fill="${cmap[s.t]}"/>`;});
+  }
+  svg+=`</svg>`;
+  const legend=`<div class="legend">${conds.map(t=>`<span><i style="background:${cmap[t]}"></i>${typeInfo(t).label}</span>`).join("")}</div>`;
+  return `<p class="imp-sub">Each line is one prior's improvement over baseline (baseline SHD − prior SHD)
+    at each sample size. Lines that <b>rise then fall</b> show priors helping most at small/mid N and
+    the advantage shrinking as data grows — the "priors substitute for scarce data" pattern. Points below
+    the dashed zero line mean the prior did worse than baseline.</p>
+    <div class="line-wrap">${svg}${legend}</div>`;
+}
+
+function draw(){
+  const shd=collect();
+  const Ns=[...new Set(RESULTS.map(r=>r.n_rows))].sort((a,b)=>a-b);
+  const allAlgo=[...new Set(RESULTS.map(r=>r.algo))];
+  if(!window._selN) window._selN=Ns[Ns.length-1];
+
+  let html=navBar()+`<h1>Improvement over baseline — ${legTitle}</h1>`;
+  html+=`<div class="filters">
+    <span><label>Algorithm:</label><select id="f-a">${allAlgo.map(a=>`<option value="${a}"${a===algo?" selected":""}>${a}</option>`).join("")}</select></span>
+  </div>`;
+
+  html+=`<div class="imp-cols">
+    <div class="imp-section">
+      <div class="sec-head"><h2>Improvement across sample size</h2></div>
+      ${acrossNChart(shd, Ns)}
+    </div>
+    <div class="imp-section">
+      <div class="sec-head">
+        <h2>Improvement at a fixed sample size</h2>
+        <span class="sec-filter"><label>Rows:</label>
+          <select id="f-n">${Ns.map(n=>`<option value="${n}"${n===window._selN?" selected":""}>${n}</option>`).join("")}</select></span>
+      </div>
+      ${sameNSection(shd, window._selN)}
+    </div>
+  </div>`;
+
+  document.getElementById("app").innerHTML=html;
+  document.getElementById("f-a").onchange=function(){algo=this.value;draw();};
+  const fn=document.getElementById("f-n");
+  if(fn)fn.onchange=function(){window._selN=parseInt(this.value,10);draw();};
+}
+
+async function main(){
+  const runs=await getJSON(legDir+"all_runs.json");
+  if(!runs||!runs.length){
+    document.getElementById("app").innerHTML=navBar()+
+      `<h1>Improvement — ${legTitle}</h1><p class="missing">no all_runs.json for this leg</p>`;
+    return;
+  }
+  RESULTS=runs;                       // flat array of run records
+  algo=[...new Set(RESULTS.map(r=>r.algo))][0];
+  draw();
+}
+main();
+</script>
+</body>
+</html>

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Intervention</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  .filters { display: flex; gap: 1.5rem; align-items: center; margin: 1rem 0 1.5rem;
+             font-family: Helvetica, sans-serif; font-size: 14px; }
+  .filters label { color: #555; margin-right: 6px; }
+  .filters select { font-size: 14px; padding: 3px 6px; }
+  .view-toggle { margin-left: auto; }
+  .view-toggle button { font-family: Helvetica, sans-serif; font-size: 13px;
+        padding: 4px 12px; border: 1px solid #bbb; background: #f4f4f0;
+        cursor: pointer; border-radius: 5px; margin-left: 4px; }
+  .view-toggle button.active { background: #40466e; color: #fff; border-color: #40466e; }
+  .three-col { display: flex; gap: 1rem; align-items: flex-start; }
+  .cont { flex: 1; min-width: 0; border: 1px solid #e0dccf; border-radius: 10px;
+          padding: .9rem; background: #fdfdfb; }
+  .cont-head { font-family: Helvetica, sans-serif; font-weight: bold;
+               font-size: 15px; padding-bottom: .4rem; margin-bottom: .6rem;
+               border-bottom: 2px solid #e0dccf; }
+  .cont.perfect .cont-head { color: #7a5c00; }
+  .cont.baseline .cont-head { color: #777; }
+  .cont.consensus .cont-head { color: #245c1b; }
+  .cont-toggle { font-family: Helvetica, sans-serif; font-size: 13px;
+                 margin-bottom: .7rem; }
+  .cont-toggle select { font-size: 13px; padding: 2px 5px; }
+  .cont-meta { font-family: Helvetica, sans-serif; font-size: 11px;
+               color: #888; margin-bottom: .7rem; }
+  .missing-col { color: #999; font-style: italic; font-family: Helvetica, sans-serif;
+                 padding: 1rem 0; font-size: 13px; }
+  /* target header */
+  .target-head { background: #f4f6fb; border: 1px solid #dbe0ee; border-radius: 8px;
+                 padding: .5rem .7rem; margin-bottom: .8rem; }
+  .target-name { font-family: Helvetica, sans-serif; font-size: 13px;
+                 font-weight: bold; color: #40466e; }
+  .target-meaning { font-family: Helvetica, sans-serif; font-size: 11px;
+                    color: #555; margin-top: .2rem; line-height: 1.35; }
+  /* intervention TABLE view */
+  .iv-tbl { width: 100%; border-collapse: collapse; font-family: Helvetica, sans-serif;
+            font-size: 12px; }
+  .iv-tbl th, .iv-tbl td { padding: 4px 6px; border-bottom: 1px solid #eee;
+            text-align: right; }
+  .iv-tbl th { color: #666; font-weight: bold; border-bottom: 1px solid #ccc; }
+  .iv-tbl td.lever { text-align: left; color: #40466e; font-weight: bold; }
+  .iv-tbl td.good { color: #2e7d32; } .iv-tbl td.bad { color: #c62828; }
+  .iv-tbl tr.sev td { color: #b06; font-style: italic; }
+  /* path chain */
+  .path-chain { display: flex; align-items: center; flex-wrap: wrap; gap: 2px;
+                margin: .3rem 0 .5rem; }
+  .path-node { font-family: Helvetica, sans-serif; font-size: 11px;
+               padding: 2px 7px; border-radius: 10px; white-space: nowrap; }
+  .path-node.lever   { background: #d7e8d2; color: #245c1b; font-weight: bold; }
+  .path-node.mediator{ background: #eef0f4; color: #555; }
+  .path-node.outcome { background: #dde4f2; color: #2a3566; font-weight: bold; }
+  .path-arrow { color: #aaa; font-size: 12px; }
+  .path-none { font-family: Helvetica, sans-serif; font-size: 11px; color: #b06;
+               font-style: italic; margin: .3rem 0; }
+  /* gauges (compact) */
+  .lever-card { border: 1px solid #ddd; border-radius: 8px; padding: .6rem .7rem;
+                margin-bottom: .8rem; background: #fff; }
+  .lever-name { font-weight: bold; color: #40466e; font-size: 13px;
+                font-family: Helvetica, sans-serif; }
+  .lever-hops { font-family: Helvetica, sans-serif; font-size: 10px; color: #999;
+                margin-left: 5px; }
+  .ce-block { margin: .5rem 0; padding: .5rem; border: 1px solid #eee;
+              border-radius: 6px; background: #fcfcfa; }
+  .ce-action { font-family: Helvetica, sans-serif; font-size: 11px; font-weight: bold;
+               color: #40466e; margin-bottom: .4rem; }
+  .gauge-row { display: flex; align-items: center; gap: 6px; margin: .2rem 0; }
+  .gauge-tag { width: 48px; font-family: Helvetica, sans-serif; font-size: 9px;
+               color: #888; text-transform: uppercase; flex-shrink: 0; text-align: right; }
+  .gauge { flex: 1; position: relative; height: 24px; background: #f0efe8; border-radius: 4px; }
+  .gauge-normal { position: absolute; top: 0; bottom: 0; background: #e5e9e0; border-radius: 4px; }
+  .gauge-move { position: absolute; top: 10px; height: 3px; border-radius: 2px; }
+  .gauge-move.good { background: #2e7d32; } .gauge-move.bad { background: #c62828; }
+  .gauge-move.neutral { background: #7a86a8; }
+  .gauge-dot { position: absolute; top: 6px; width: 11px; height: 11px; border-radius: 50%;
+               transform: translateX(-50%); border: 2px solid #fff; box-shadow: 0 0 0 1px #bbb; }
+  .gauge-dot.from { background: #b9b9b9; }
+  .gauge-dot.to.good { background: #2e7d32; } .gauge-dot.to.bad { background: #c62828; }
+  .gauge-dot.to.neutral { background: #7a86a8; }
+  .gauge-num { position: absolute; top: -13px; font-family: Helvetica, sans-serif;
+               font-size: 9px; color: #555; transform: translateX(-50%); white-space: nowrap; }
+  .ce-arrow { text-align: center; color: #b6b0a0; font-size: 10px;
+              font-family: Helvetica, sans-serif; margin: 1px 0; }
+  .ce-summary { font-family: Helvetica, sans-serif; font-size: 11px; margin-top: .3rem;
+                color: #444; text-align: center; }
+  .ce-summary b.good { color: #2e7d32; } .ce-summary b.bad { color: #c62828; }
+</style>
+</head>
+<body>
+<div id="app">loading…</div>
+
+<script src="shared.js"></script>
+<script>
+const TARGET_INFO = {
+  delivery_delay:{label:"Delivery lateness",unit:"days",meaning:"Days late vs promised. Higher = later.",good_direction:"down"},
+  late_delivery_risk:{label:"Late-delivery risk",unit:"score",meaning:"Risk of a late order.",good_direction:"down"},
+  raw_material_delay:{label:"Raw-material delay",unit:"days",meaning:"Delay in raw-material delivery.",good_direction:"down"},
+  material_delay:{label:"Material delay",unit:"days",meaning:"Delay in material availability.",good_direction:"down"},
+  delivery_to_distributor:{label:"Delivery-to-distributor",unit:"days",meaning:"Time to reach the distributor.",good_direction:"down"},
+};
+function targetInfo(n){return (n&&TARGET_INFO[n])||{label:n?n.replaceAll("_"," "):"Outcome",unit:"",meaning:"The variable being moved.",good_direction:"down"};}
+
+let ALL=[], VIEW="table", nRows=null, algo=null, consType={};
+
+function isType(r,t){return String(r.type).toLowerCase().includes(t);}
+function slice(){return ALL.filter(r=>r.n_rows===nRows && r.algo===algo);}
+
+// ---- path helpers ----
+function buildAdj(dag){const a={};if(!dag)return a;for(const e of dag.links){(a[e.source]=a[e.source]||[]).push(e.target);}return a;}
+function shortestPath(adj,s,g){if(s===g)return[s];const q=[[s]],seen=new Set([s]);while(q.length){const p=q.shift(),n=p[p.length-1];for(const x of(adj[n]||[])){if(seen.has(x))continue;const e=p.concat(x);if(x===g)return e;seen.add(x);q.push(e);}}return null;}
+function pathChain(path,lever,outcome){
+  if(!path)return `<div class="path-none">no directed path to outcome — lever cannot move it here</div>`;
+  return `<div class="path-chain">`+path.map((n,i)=>{
+    let c=n===lever?"lever":(n===outcome?"outcome":"mediator");
+    const pill=`<span class="path-node ${c}">${n.replaceAll("_"," ")}</span>`;
+    return i<path.length-1?pill+`<span class="path-arrow">→</span>`:pill;
+  }).join("")+`</div>`;
+}
+
+// ---- gauges ----
+function spanPos(lo,hi,v){if(hi===lo)return 50;return Math.max(2,Math.min(98,(v-lo)/(hi-lo)*100));}
+function gauge(tag,lo,hi,from,to,bandLo,bandHi,moveCls,toCls){
+  const pf=spanPos(lo,hi,from),pt=spanPos(lo,hi,to),L=Math.min(pf,pt),R=Math.max(pf,pt);
+  let band="";if(bandLo!=null&&bandHi!=null){const bl=spanPos(lo,hi,bandLo),bh=spanPos(lo,hi,bandHi);band=`<div class="gauge-normal" style="left:${bl}%;width:${bh-bl}%"></div>`;}
+  return `<div class="gauge-row"><div class="gauge-tag">${tag}</div><div class="gauge">${band}
+    <div class="gauge-move ${moveCls}" style="left:${L}%;width:${R-L}%"></div>
+    <div class="gauge-num" style="left:${pf}%">${from.toFixed(2)}</div><div class="gauge-dot from" style="left:${pf}%"></div>
+    <div class="gauge-num" style="left:${pt}%">${to.toFixed(2)}</div><div class="gauge-dot to ${toCls}" style="left:${pt}%"></div>
+  </div></div>`;
+}
+function ceBlock(kind,e,base,tInfo,stats){
+  const eff=e.effect, goodDown=!tInfo||tInfo.good_direction!=="up", isGood=goodDown?eff<0:eff>0;
+  const toCls=eff===0?"neutral":(isGood?"good":"bad"), word=eff<0?"down":"up";
+  const tName=tInfo?tInfo.label.toLowerCase():"outcome";
+  const action=kind==="intervention"?`Set to ${(+e.new_value).toFixed(2)}`:`Shift by ${(+e.delta).toFixed(2)}`;
+  let lg="";if(stats){const f=stats.median,t=kind==="intervention"?+e.new_value:f+(+e.delta);lg=gauge("lever",stats.min,stats.max,f,t,stats.p10,stats.p90,"neutral","neutral");}
+  const oF=base!=null?base:0, oT=e.intervened_mean!=null?e.intervened_mean:oF+eff;
+  const oLo=Math.min(oF,oT)-Math.abs(eff)*0.6-0.01, oHi=Math.max(oF,oT)+Math.abs(eff)*0.6+0.01;
+  const og=gauge("outcome",oLo,oHi,oF,oT,null,null,toCls,toCls);
+  const pct=oF?Math.abs(eff/Math.abs(oF)*100):null, pctT=pct!=null?` (${pct.toFixed(0)}%)`:"";
+  return `<div class="ce-block"><div class="ce-action">${action}</div>${lg}
+    <div class="ce-arrow">↓ causes ↓</div>${og}
+    <div class="ce-summary">${tName} moves <b class="${isGood?'good':'bad'}">${word} ${Math.abs(eff).toFixed(2)}${pctT}</b></div></div>`;
+}
+
+// ---- TABLE view ----
+function tableView(run, tInfo){
+  const ivs=run.interventions||[];
+  if(!ivs.length) return "<p class='missing-col'>no levers reach the outcome</p>";
+  const goodDown=!tInfo||tInfo.good_direction!=="up";
+  let rows="";
+  for(const iv of ivs){
+    const adj=buildAdj(run.dag_json), path=shortestPath(adj,iv.lever,run.target);
+    const sev=!path?" class='sev'":"";
+    for(const kind of ["intervention","shift"]){
+      const e=iv[kind]; if(!e)continue;
+      const eff=e.effect, isGood=goodDown?eff<0:eff>0, cls=eff===0?"":(isGood?"good":"bad");
+      const set=kind==="intervention"?(+e.new_value).toFixed(2):`Δ${(+e.delta).toFixed(2)}`;
+      const from=(e.baseline_mean!=null?e.baseline_mean:0).toFixed(2);
+      const to=(e.intervened_mean!=null?e.intervened_mean:(e.baseline_mean||0)+eff).toFixed(2);
+      rows+=`<tr${sev}><td class="lever">${iv.lever.replaceAll("_"," ")}</td>
+        <td>${kind==="intervention"?"set":"shift"}</td><td>${set}</td>
+        <td>${from}→${to}</td><td class="${cls}">${eff>=0?"+":""}${eff.toFixed(2)}</td>
+        <td>${iv.hops_to_target}</td></tr>`;
+    }
+  }
+  return `<table class="iv-tbl"><tr><th style="text-align:left">lever</th><th>type</th>
+    <th>value</th><th>outcome</th><th>effect</th><th>hops</th></tr>${rows}</table>`;
+}
+
+// ---- GAUGE view ----
+function gaugeView(run, tInfo){
+  const ivs=run.interventions||[];
+  if(!ivs.length) return "<p class='missing-col'>no levers reach the outcome</p>";
+  return ivs.map(iv=>{
+    const adj=buildAdj(run.dag_json), path=shortestPath(adj,iv.lever,run.target);
+    let b="";
+    if(iv.intervention)b+=ceBlock("intervention",iv.intervention,iv.intervention.baseline_mean,tInfo,iv.stats);
+    if(iv.shift)b+=ceBlock("shift",iv.shift,iv.shift.baseline_mean,tInfo,iv.stats);
+    return `<div class="lever-card">
+      <div><span class="lever-name">${iv.lever.replaceAll("_"," ")}</span>
+      <span class="lever-hops">${iv.hops_to_target} hops</span></div>
+      ${pathChain(path,iv.lever,run.target)}${b}</div>`;
+  }).join("");
+}
+
+function targetHeader(run){
+  const info=targetInfo(run.target);
+  return `<div class="target-head"><div class="target-name">Outcome: ${info.label}</div>
+    <div class="target-meaning">${info.meaning} ${info.good_direction==="down"?"lower is better":"higher is better"}.</div></div>`;
+}
+
+function container(kind, run, options){
+  const cls=kind, title=kind==="perfect"?"Perfect (oracle)":kind==="baseline"?"Baseline (no prior)":"Consensus ";
+  let toggle="";
+  if(kind==="consensus" && options && options.length){
+    toggle=`<span class="cont-toggle">Prior:
+      <select data-cons="1">${options.map(o=>`<option value="${o.type}"${o.type===consType[algo+nRows]?" selected":""}>${typeInfo(o.type).label}</option>`).join("")}</select></span>`;
+  }
+  if(!run){
+    return `<div class="cont ${cls}"><div class="cont-head">${title}${toggle}</div>
+      <p class="missing-col">no ${kind} run for this slice</p></div>`;
+  }
+  const tInfo=targetInfo(run.target);
+  const body=VIEW==="table"?tableView(run,tInfo):gaugeView(run,tInfo);
+  return `<div class="cont ${cls}"><div class="cont-head">${title}${toggle}</div>
+    ${targetHeader(run)}
+    <div class="cont-meta">${run.algo} · N=${run.n_rows}${run.lambda!=null?` · λ=${run.lambda}`:""}</div>
+    ${body}</div>`;
+}
+
+function draw(){
+  const s=slice();
+  const perfect=s.find(r=>isType(r,"perfect"));
+  const baseline=s.find(r=>isType(r,"baseline"));
+  const consRuns=s.filter(r=>!isType(r,"perfect")&&!isType(r,"baseline")&&!isType(r,"random"));
+  const key=algo+nRows;
+  if(consRuns.length && !consType[key]) consType[key]=consRuns[0].type;
+  const consRun=consRuns.find(r=>r.type===consType[key]) || consRuns[0];
+  const consOpts=consRuns.map(r=>({type:r.type}));
+
+  const allN=[...new Set(ALL.map(r=>r.n_rows))].sort((a,b)=>a-b);
+  const allAlgo=[...new Set(ALL.map(r=>r.algo))];
+
+  let html=navBar()+`<h1>Intervention — ${legTitle}</h1>`;
+  html+=`<div class="filters">
+    <span><label>Rows:</label><select id="f-n">${allN.map(n=>`<option value="${n}"${n===nRows?" selected":""}>${n}</option>`).join("")}</select></span>
+    <span><label>Algorithm:</label><select id="f-a">${allAlgo.map(a=>`<option value="${a}"${a===algo?" selected":""}>${a}</option>`).join("")}</select></span>
+    <span class="view-toggle">View:
+      <button data-v="table" class="${VIEW==='table'?'active':''}">Table</button>
+      <button data-v="gauge" class="${VIEW==='gauge'?'active':''}">Gauges</button></span>
+  </div>`;
+  html+=`<div class="three-col">
+    ${container("baseline",baseline)}
+    ${container("consensus",consRun,consOpts)}
+    ${container("perfect",perfect)}
+  </div>`;
+  document.getElementById("app").innerHTML=html;
+
+  document.getElementById("f-n").onchange=function(){nRows=parseInt(this.value,10);draw();};
+  document.getElementById("f-a").onchange=function(){algo=this.value;draw();};
+  document.querySelectorAll("[data-v]").forEach(b=>b.onclick=function(){VIEW=this.dataset.v;draw();});
+  const cs=document.querySelector("[data-cons]");
+  if(cs)cs.onchange=function(){consType[algo+nRows]=this.value;draw();};
+}
+
+async function main(){
+  const records=await getJSON(legDir+"utility_summary.json");
+  if(!records||!records.length){
+    document.getElementById("app").innerHTML=navBar()+`<h1>Intervention — ${legTitle}</h1><p class="missing">no utility_summary.json</p>`;
+    return;
+  }
+  ALL=records;
+  const allN=[...new Set(ALL.map(r=>r.n_rows))].sort((a,b)=>a-b);
+  const allAlgo=[...new Set(ALL.map(r=>r.algo))];
+  nRows=allN[allN.length-1]; algo=allAlgo[0];
+  draw();
+}
+main();
+</script>
+</body>
+</html>

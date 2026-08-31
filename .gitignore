@@ -13,3 +13,7 @@ __pycache__/
 Thumbs.db
 
 experiments*
+
+.env
+.env.local
+*.key

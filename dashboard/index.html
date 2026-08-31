@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Results — LLM Priors for Causal Discovery</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>LLM Priors for Causal Discovery in Supply Chains</h1>
+
+<div id="app">loading…</div>
+
+<script src="shared.js"></script>
+<script>
+async function main() {
+  let html = navBar();
+
+  for (const name of LEGS) {
+    const dir = BASE + name + "/";
+
+    // Peek at which result files exist so the links can say so.
+    const priors = await getJSON(dir + "priors_summary.json");
+    const shd = await getJSON(dir + "discovery_summary.json");
+
+    html += `<h2>${name.replaceAll("_", " ")}</h2>`;
+    html += `<img class="dag" src="${dir}metadata/ref_dag.png"
+                  onerror="this.remove()" alt="">`;
+
+    html += "<p>";
+    html += `<a href="priors.html?leg=${name}">prior evaluation</a>`;
+    if (!priors) html += " <span class='missing'>(no priors yet)</span>";
+    html += ` · <a href="discovery.html?leg=${name}">discovery results</a>`;
+    if (!shd) html += " <span class='missing'>(no results yet)</span>";
+    html += "</p>";
+  }
+
+  document.getElementById("app").innerHTML = html;
+}
+
+main();
+</script>
+</body>
+</html>
